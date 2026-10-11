@@ -2,8 +2,14 @@ import './style.css';
 import { loadSettings, saveSettings } from './export-settings.js';
 import { canShareFile, deliverFile, isMobileDevice } from './share.js';
 import { prepareExport } from './export.js';
+import { createViewer } from './viewer.js';
 
 const artwork = document.querySelector('#artwork');
+const viewer = createViewer(document.querySelector('#canvas-viewport'), artwork);
+const menuToggle = document.querySelector('#menu-toggle');
+const menu = document.querySelector('#painting-menu');
+const menuBackdrop = document.querySelector('#menu-backdrop');
+const phoneLayout = matchMedia('(max-width: 720px)');
 const gallery = document.querySelector('.gallery');
 const status = document.querySelector('#status');
 const regenerate = document.querySelector('#regenerate');
@@ -54,7 +60,9 @@ function updateSelectedTab() {
 function updateExportButton() {
   const file = prepared.get(mode)?.file;
   const sharing = mobile() && canShareFile(file, navigator);
-  download.textContent = sharing ? 'Share' : 'Download';
+  document.querySelector('#download-label').textContent = sharing ? 'Share' : 'Download';
+  download.querySelector('.download-icon').hidden = sharing;
+  download.querySelector('.share-icon').hidden = !sharing;
   download.title = file ? `${sharing ? 'Share' : 'Download'} ${file.name}` : '';
 }
 coarsePointer.addEventListener('change', updateExportButton);
@@ -98,6 +106,7 @@ async function prepareCurrentExport() {
 }
 
 async function showPainting(painting) {
+  viewer.reset();
   artwork.className = `artwork ${painting.mode}`;
   artwork.style.backgroundImage = '';
   artwork.style.backgroundSize = '';
@@ -158,7 +167,10 @@ window.addEventListener('message', async event => {
 regenerate.addEventListener('click', generatePainting);
 for (const button of modes) {
   button.addEventListener('click', async () => {
-    if (busy || mode === button.dataset.mode) return;
+    if (busy) return;
+    const fromPhoneMenu = phoneLayout.matches && menuToggle.getAttribute('aria-expanded') === 'true';
+    closeMenu(fromPhoneMenu);
+    if (mode === button.dataset.mode) return;
     mode = button.dataset.mode;
     updateSelectedTab();
     artwork.className = `artwork ${mode}`;
@@ -173,12 +185,12 @@ for (const button of modes) {
     }
   });
   button.addEventListener('keydown', event => {
-    if (busy || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    if (busy || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
     const index = modes.indexOf(button);
     const next = event.key === 'Home' ? 0 : event.key === 'End' ? modes.length - 1
-      : (index + (event.key === 'ArrowRight' ? 1 : -1) + modes.length) % modes.length;
-    restoreTabFocus = modes[next].dataset.mode !== mode;
+      : (index + (['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1) + modes.length) % modes.length;
+    restoreTabFocus = !phoneLayout.matches && modes[next].dataset.mode !== mode;
     modes[next].focus();
     modes[next].click();
   });
@@ -239,5 +251,30 @@ settingsDialog.addEventListener('click', event => {
   const bounds = settingsDialog.getBoundingClientRect();
   if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeSettings();
 });
+function closeMenu(restoreFocus = false) {
+  document.body.classList.remove('menu-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Open menu');
+  menuToggle.querySelector('path').setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+  menuBackdrop.hidden = true;
+  menu.inert = phoneLayout.matches;
+  if (restoreFocus) menuToggle.focus();
+}
+menuToggle.addEventListener('click', () => {
+  if (menuToggle.getAttribute('aria-expanded') === 'true') { closeMenu(true); return; }
+  document.body.classList.add('menu-open');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  menuToggle.setAttribute('aria-label', 'Close menu');
+  menuToggle.querySelector('path').setAttribute('d', 'M6 6l12 12M18 6 6 18');
+  menuBackdrop.hidden = false;
+  menu.inert = false;
+  modes.find(tab => tab.dataset.mode === mode).focus();
+});
+menuBackdrop.addEventListener('click', () => closeMenu(true));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') { event.preventDefault(); closeMenu(true); }
+});
+phoneLayout.addEventListener('change', () => { closeMenu(); viewer.reset(); });
+closeMenu();
 updateSelectedTab();
 generatePainting();
