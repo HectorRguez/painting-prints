@@ -4,7 +4,7 @@ export const papers = ['a4', 'a3'];
 const storageKey = 'painting-export-v1';
 
 export function defaultSettings(mode, mobile = false) {
-  return { format: mobile ? 'png' : 'pdf', orientation: mode === 'flowers' ? 'portrait' : 'landscape', paper: 'a4' };
+  return { format: mobile ? 'png' : 'pdf', orientation: mode === 'flowers' ? 'portrait' : 'landscape', paper: 'a4', background: false };
 }
 
 export function loadSettings(storage, mobile = false) {
@@ -17,6 +17,7 @@ export function loadSettings(storage, mobile = false) {
       format: formats.includes(value?.format) ? value.format : defaults.format,
       orientation: orientations.includes(value?.orientation) ? value.orientation : defaults.orientation,
       paper: papers.includes(value?.paper) ? value.paper : defaults.paper,
+      background: typeof value?.background === 'boolean' ? value.background : defaults.background,
     }];
   }));
 }

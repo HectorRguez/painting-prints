@@ -2,6 +2,7 @@
 // Work in its 600-unit coordinate system, drawing at 3x resolution throughout
 // the plant's layers (not enlarging a finished 600px bitmap).
 const resolution = 3;
+let paperContext, flowerContext;
 Layer.empty = function (w = 600, h = w) {
   const canvas = document.createElement('canvas');
   canvas.width = w * resolution;
@@ -14,6 +15,9 @@ Layer.blit = function (destination, source, args = {}) {
   destination.globalCompositeOperation = args.ble === 'normal' ? 'source-over' : (args.ble || 'source-over');
   destination.drawImage(source.canvas, args.xof || 0, args.yof || 0,
     source.canvas.width / resolution, source.canvas.height / resolution);
+  // Capture the same plant layers without changing the original composition
+  // or consuming any extra random draws for the paper-backed version.
+  if (destination === paperContext) Layer.blit(flowerContext, source, args);
 };
 Layer.filter = function (context, filter) {
   const { width, height } = context.canvas;
@@ -55,16 +59,21 @@ try {
   for (let x = 0; x < 600; x += 512) {
     for (let y = 0; y < 600; y += 512) CTX.drawImage(texture, x, y);
   }
+  paperContext = CTX;
+  flowerContext = Layer.empty();
   if (Math.random() <= 0.5) woody({ ctx: CTX, xof: 300, yof: 550 });
   else herbal({ ctx: CTX, xof: 300, yof: 600 });
-  Layer.border(CTX, squircle(0.98, 3));
+  const border = squircle(0.98, 3);
+  Layer.border(CTX, border);
+  Layer.border(flowerContext, border);
   const print = Layer.empty();
   for (let x = 0; x < 600; x += 512) {
     for (let y = 0; y < 600; y += 512) print.drawImage(BGCANV, x, y);
   }
   print.drawImage(CTX.canvas, 0, 0, 600, 600);
   parent.postMessage({ type: 'painting-ready', mode: 'flowers', seed: SEED,
-    png: print.canvas.toDataURL('image/png'), width: 1800, height: 1800 }, location.origin);
+    png: print.canvas.toDataURL('image/png'), transparentPng: flowerContext.canvas.toDataURL('image/png'),
+    width: 1800, height: 1800 }, location.origin);
 } catch (error) {
   console.error(error);
   parent.postMessage({ type: 'painting-error' }, location.origin);

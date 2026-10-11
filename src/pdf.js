@@ -9,7 +9,7 @@ export async function createPdf(painting, settings) {
   const { x, y, width, height } = layout.art;
   const png = await artworkPng(painting, {
     width: Math.ceil(width / 25.4 * 300), height: Math.ceil(height / 25.4 * 300),
-  });
+  }, settings.background);
   pdf.addImage(new Uint8Array(await png.arrayBuffer()), 'PNG', x, y, width, height, undefined, 'FAST');
   return pdf.output('blob');
 }

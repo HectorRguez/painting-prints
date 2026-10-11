@@ -13,6 +13,7 @@ const settingsDialog = document.querySelector('#settings-dialog');
 const formatField = document.querySelector('#file-format');
 const orientationField = document.querySelector('#orientation');
 const paperField = document.querySelector('#page-size');
+const backgroundField = document.querySelector('#add-background');
 const settingsNote = document.querySelector('#settings-note');
 const modes = [...document.querySelectorAll('[data-mode]')];
 const paintingTitle = document.querySelector('#painting-title');
@@ -81,7 +82,7 @@ async function prepareCurrentExport() {
   const painting = paintings.get(mode);
   if (!painting) { setBusy(false); return; }
   const settings = exportSettings[mode];
-  const key = JSON.stringify([painting.seed, settings.format,
+  const key = JSON.stringify([painting.seed, settings.format, settings.background,
     ...(settings.format === 'pdf' ? [settings.paper, settings.orientation] : [])]);
   if (prepared.get(mode)?.key === key) { setBusy(false); return; }
   prepared.delete(mode);
@@ -103,7 +104,7 @@ async function showPainting(painting) {
   const image = new Image();
   image.alt = painting.mode === 'flowers' ? 'Procedurally generated flower painting' : 'Procedurally generated Chinese landscape';
   if (painting.mode === 'flowers') {
-    image.src = painting.png;
+    image.src = painting.transparentPng;
     await image.decode();
     artwork.replaceChildren(image);
   } else {
@@ -111,9 +112,6 @@ async function showPainting(painting) {
     const svg = new DOMParser().parseFromString(painting.svg, 'image/svg+xml').documentElement;
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', image.alt);
-    svg.style.mixBlendMode = 'multiply';
-    artwork.style.backgroundImage = `url("${painting.texture}")`;
-    artwork.style.backgroundSize = `${512 / painting.width * 100}% auto`;
     artwork.replaceChildren(document.importNode(svg, true));
   }
 }
@@ -205,7 +203,7 @@ function updateSettingsFields() {
   orientationField.disabled = !pdf;
   paperField.disabled = !pdf;
   const rasterSvg = mode === 'flowers' && formatField.value === 'svg';
-  settingsNote.textContent = 'Orientation and page size apply to PDFs.'
+  settingsNote.textContent = 'Add the original paper to exported files. The preview stays transparent. Orientation and page size apply to PDFs.'
     + (rasterSvg ? ' Flower SVGs embed the original image.' : '');
 }
 settingsButton.addEventListener('click', () => {
@@ -214,12 +212,13 @@ settingsButton.addEventListener('click', () => {
   formatField.value = settings.format;
   orientationField.value = settings.orientation;
   paperField.value = settings.paper;
+  backgroundField.checked = settings.background;
   updateSettingsFields();
   settingsDialog.showModal();
 });
 formatField.addEventListener('change', updateSettingsFields);
 function closeSettings() {
-  exportSettings[mode] = { format: formatField.value, orientation: orientationField.value, paper: paperField.value };
+  exportSettings[mode] = { format: formatField.value, orientation: orientationField.value, paper: paperField.value, background: backgroundField.checked };
   saveSettings(storage, exportSettings);
   restoreSettingsFocus = true;
   settingsDialog.close();
