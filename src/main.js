@@ -1,23 +1,41 @@
 import './style.css';
+import { loadSettings, saveSettings } from './export-settings.js';
+import { canShareFile, deliverFile, isMobileDevice } from './share.js';
+import { prepareExport } from './export.js';
+
 const artwork = document.querySelector('#artwork');
 const gallery = document.querySelector('.gallery');
 const status = document.querySelector('#status');
 const regenerate = document.querySelector('#regenerate');
 const download = document.querySelector('#download');
+const settingsButton = document.querySelector('#settings');
+const settingsDialog = document.querySelector('#settings-dialog');
+const formatField = document.querySelector('#file-format');
+const orientationField = document.querySelector('#orientation');
+const paperField = document.querySelector('#page-size');
+const settingsNote = document.querySelector('#settings-note');
 const modes = [...document.querySelectorAll('[data-mode]')];
-const paperDialog = document.querySelector('#paper-dialog');
 const paintingTitle = document.querySelector('#painting-title');
 const paintingAuthor = document.querySelector('#painting-author');
+const coarsePointer = matchMedia('(pointer: coarse)');
+const mobile = () => isMobileDevice(navigator, coarsePointer.matches);
+let storage;
+try { storage = localStorage; } catch { /* Preferences still work for this visit. */ }
+const exportSettings = loadSettings(storage, mobile());
 const projects = {
   flowers: { title: 'Nonflowers', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/nonflowers' },
   landscapes: { title: 'Shan Shui', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/shan-shui-inf' },
 };
 const paintings = new Map();
+// Keep one prepared file per generator, rather than accumulating old exports.
+const prepared = new Map();
 let mode = 'flowers';
 let busy = false;
 let engine;
 let timeout;
 let restoreTabFocus = false;
+let restoreSettingsFocus = false;
+
 function updateSelectedTab() {
   const project = projects[mode];
   paintingTitle.textContent = project.title;
@@ -31,18 +49,53 @@ function updateSelectedTab() {
     if (selected) gallery.setAttribute('aria-labelledby', tab.id);
   }
 }
+
+function updateExportButton() {
+  const file = prepared.get(mode)?.file;
+  const sharing = mobile() && canShareFile(file, navigator);
+  download.textContent = sharing ? 'Share' : 'Download';
+  download.title = file ? `${sharing ? 'Share' : 'Download'} ${file.name}` : '';
+}
+coarsePointer.addEventListener('change', updateExportButton);
+
 function setBusy(value, message = '') {
   busy = value;
   gallery.setAttribute('aria-busy', String(value));
   regenerate.disabled = value;
-  download.disabled = value || !paintings.has(mode);
+  download.disabled = value || !prepared.has(mode);
+  settingsButton.disabled = value;
   for (const button of modes) button.disabled = value;
   status.textContent = message;
+  updateExportButton();
   if (!value && restoreTabFocus) {
     modes.find(tab => tab.dataset.mode === mode).focus();
     restoreTabFocus = false;
   }
+  if (!value && restoreSettingsFocus) {
+    settingsButton.focus();
+    restoreSettingsFocus = false;
+  }
 }
+
+async function prepareCurrentExport() {
+  const painting = paintings.get(mode);
+  if (!painting) { setBusy(false); return; }
+  const settings = exportSettings[mode];
+  const key = JSON.stringify([painting.seed, settings.format,
+    ...(settings.format === 'pdf' ? [settings.paper, settings.orientation] : [])]);
+  if (prepared.get(mode)?.key === key) { setBusy(false); return; }
+  prepared.delete(mode);
+  setBusy(true, 'Preparing your file…');
+  try {
+    const file = await prepareExport(painting, settings);
+    prepared.set(mode, { key, file });
+    setBusy(false);
+  } catch (error) {
+    console.error(error);
+    setBusy(false, 'Could not prepare the file. Open Settings to try again.');
+  }
+}
+
 async function showPainting(painting) {
   artwork.className = `artwork ${painting.mode}`;
   artwork.style.backgroundImage = '';
@@ -64,6 +117,7 @@ async function showPainting(painting) {
     artwork.replaceChildren(document.importNode(svg, true));
   }
 }
+
 function generatePainting() {
   if (busy) return;
   setBusy(true, 'Making your painting…');
@@ -96,7 +150,7 @@ window.addEventListener('message', async event => {
     await showPainting(painting);
     paintings.set(mode, painting);
     engine.remove();
-    setBusy(false);
+    await prepareCurrentExport();
   } catch (error) {
     console.error(error);
     engine?.remove();
@@ -112,9 +166,13 @@ for (const button of modes) {
     artwork.className = `artwork ${mode}`;
     if (paintings.has(mode)) {
       setBusy(true);
-      try { await showPainting(paintings.get(mode)); setBusy(false); }
+      try { await showPainting(paintings.get(mode)); await prepareCurrentExport(); }
       catch { setBusy(false, 'Could not show the painting. Please try Regenerate.'); }
-    } else generatePainting();
+    } else {
+      artwork.replaceChildren();
+      artwork.style.backgroundImage = '';
+      generatePainting();
+    }
   });
   button.addEventListener('keydown', event => {
     if (busy || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
@@ -127,30 +185,60 @@ for (const button of modes) {
     modes[next].click();
   });
 }
-async function savePdf(paper = 'a4') {
-  const painting = paintings.get(mode);
-  if (busy || !painting) return;
-  setBusy(true, 'Preparing your PDF…');
+
+download.addEventListener('click', async () => {
+  const file = prepared.get(mode)?.file;
+  if (busy || !file) return;
+  setBusy(true);
   try {
-    const { downloadPainting } = await import('./pdf.js');
-    await downloadPainting(painting, paper);
-    setBusy(false);
+    // No generation, import or fetch is awaited before opening the share sheet.
+    const result = await deliverFile(file, { mobile: mobile(), navigator });
+    setBusy(false, result === 'downloaded-after-share-failed' ? 'Sharing was unavailable. Your file was downloaded instead.' : '');
   } catch (error) {
     console.error(error);
-    setBusy(false, 'Could not download the PDF. Please try again.');
+    setBusy(false, 'Could not save the file. Please try again.');
   }
+});
+
+function updateSettingsFields() {
+  const pdf = formatField.value === 'pdf';
+  orientationField.disabled = !pdf;
+  paperField.disabled = !pdf;
+  const rasterSvg = mode === 'flowers' && formatField.value === 'svg';
+  settingsNote.textContent = 'Orientation and page size apply to PDFs.'
+    + (rasterSvg ? ' Flower SVGs embed the original image.' : '');
 }
-download.addEventListener('click', () => {
-  if (mode === 'flowers') savePdf();
-  else { paperDialog.returnValue = ''; paperDialog.showModal(); }
+settingsButton.addEventListener('click', () => {
+  if (busy) return;
+  const settings = exportSettings[mode];
+  formatField.value = settings.format;
+  orientationField.value = settings.orientation;
+  paperField.value = settings.paper;
+  updateSettingsFields();
+  settingsDialog.showModal();
 });
-paperDialog.addEventListener('close', () => {
-  if (paperDialog.returnValue === 'download') savePdf(paperDialog.querySelector('input:checked').value);
+formatField.addEventListener('change', updateSettingsFields);
+function closeSettings() {
+  exportSettings[mode] = { format: formatField.value, orientation: orientationField.value, paper: paperField.value };
+  saveSettings(storage, exportSettings);
+  restoreSettingsFocus = true;
+  settingsDialog.close();
+  // Disable exporting synchronously with Done/Escape, rather than waiting
+  // for the browser's queued close event and briefly exposing the old file.
+  void prepareCurrentExport();
+}
+settingsDialog.querySelector('form').addEventListener('submit', event => {
+  event.preventDefault();
+  closeSettings();
 });
-paperDialog.addEventListener('click', event => {
-  if (event.target !== paperDialog) return;
-  const bounds = paperDialog.getBoundingClientRect();
-  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) paperDialog.close('cancel');
+settingsDialog.addEventListener('cancel', event => {
+  event.preventDefault();
+  closeSettings();
+});
+settingsDialog.addEventListener('click', event => {
+  if (event.target !== settingsDialog) return;
+  const bounds = settingsDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeSettings();
 });
 updateSelectedTab();
 generatePainting();

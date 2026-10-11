@@ -31,3 +31,19 @@ test('both landscape sizes fit with equal opposite margins and preserve the comp
 test('unsupported landscape sizes fail clearly', () => {
   assert.throws(() => printLayout('landscapes', 'letter'), /Unsupported/);
 });
+
+test('all paper/orientation combinations keep the full art centered without distortion', () => {
+  for (const mode of ['flowers', 'landscapes']) {
+    for (const paper of ['a4', 'a3']) {
+      for (const orientation of ['portrait', 'landscape']) {
+        const { width, height, art } = printLayout(mode, paper, orientation);
+        assert.equal(width > height, orientation === 'landscape');
+        near(2 * art.x + art.width, width);
+        near(2 * art.y + art.height, height);
+        near(art.width / art.height, mode === 'flowers' ? 1 : Math.SQRT2);
+        assert.ok(art.x >= 9.999 && art.y >= 9.999);
+      }
+    }
+  }
+  assert.throws(() => printLayout('flowers', 'a4', 'diagonal'), /Unsupported/);
+});

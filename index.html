@@ -26,26 +26,35 @@
         <button type="button" id="regenerate" disabled>
           <span>Regenerate</span>
         </button>
-        <div class="download-wrap">
-          <button type="button" id="download" disabled>
-            <span>Download</span>
-          </button>
-          <dialog id="paper-dialog" aria-labelledby="paper-title">
-            <form method="dialog">
-              <p id="paper-title">Landscape PDF</p>
-              <fieldset>
-                <legend class="sr-only">Paper size</legend>
-                <label><input type="radio" name="paper" value="a4" checked> A4 <small>297 × 210 mm</small></label>
-                <label><input type="radio" name="paper" value="a3"> A3 <small>420 × 297 mm</small></label>
-              </fieldset>
-              <div class="dialog-actions">
-                <button value="cancel">Cancel</button>
-                <button value="download" class="confirm">Download</button>
-              </div>
-            </form>
-          </dialog>
-        </div>
+        <button type="button" id="download" disabled><span>Download</span></button>
+        <button type="button" id="settings" aria-haspopup="dialog" aria-controls="settings-dialog" disabled>Settings</button>
       </div>
+      <dialog id="settings-dialog" aria-labelledby="settings-title" aria-describedby="settings-note">
+        <form method="dialog">
+          <h2 id="settings-title">Settings</h2>
+          <div class="setting-row"><label for="file-format">File type</label>
+            <select id="file-format" name="format">
+              <option value="pdf">PDF</option>
+              <option value="png">PNG</option>
+              <option value="svg">SVG</option>
+            </select>
+          </div>
+          <div class="setting-row"><label for="orientation">Orientation</label>
+            <select id="orientation" name="orientation">
+              <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
+            </select>
+          </div>
+          <div class="setting-row"><label for="page-size">Page size</label>
+            <select id="page-size" name="paper">
+              <option value="a4">A4</option>
+              <option value="a3">A3</option>
+            </select>
+          </div>
+          <p id="settings-note">Orientation and page size apply to PDFs.</p>
+          <div class="dialog-actions"><button value="done" class="confirm">Done</button></div>
+        </form>
+      </dialog>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>

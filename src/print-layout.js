@@ -1,14 +1,18 @@
-export function printLayout(mode, paper = 'a4') {
+export function printLayout(mode, paper = 'a4', orientation = mode === 'flowers' ? 'portrait' : 'landscape') {
+  if (!['flowers', 'landscapes'].includes(mode) || !['a4', 'a3'].includes(paper)
+    || !['portrait', 'landscape'].includes(orientation)) throw new Error('Unsupported print layout');
+  const [short, long] = paper === 'a3' ? [297, 420] : [210, 297];
+  const [width, height] = orientation === 'portrait' ? [short, long] : [long, short];
   if (mode === 'flowers') {
-    return { orientation: 'portrait', format: 'a4', width: 210, height: 297, art: { x: 15, y: 58.5, width: 180, height: 180 } };
+    const side = short - 30;
+    return { orientation, format: paper, width, height,
+      art: { x: (width - side) / 2, y: (height - side) / 2, width: side, height: side } };
   }
-  if (mode !== 'landscapes' || !['a4', 'a3'].includes(paper)) throw new Error('Unsupported print layout');
-  const [width, height] = paper === 'a3' ? [420, 297] : [297, 210];
   const ratio = Math.SQRT2;
   const artHeight = Math.min(height - 20, (width - 20) / ratio);
   const artWidth = artHeight * ratio;
   return {
-    orientation: 'landscape', format: paper, width, height,
+    orientation, format: paper, width, height,
     art: { x: (width - artWidth) / 2, y: (height - artHeight) / 2, width: artWidth, height: artHeight },
   };
 }
