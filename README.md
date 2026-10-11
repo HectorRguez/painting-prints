@@ -6,9 +6,9 @@ A single, minimal page for generating and downloading flower and landscape paint
 
 The interface follows the warm background, monospace text, serif title and simple outlined controls of [Hector's homepage](https://numbda.cs.tsinghua.edu.cn/~hector/).
 
-Choose **Flowers** or **Landscapes**, then **Regenerate** or **Download**.
+Choose the **Flowers** or **Landscapes** tab, then **Regenerate** or **Download**. The current project's original title and author appear together above the tabs, with a link to the original source. Tabs support arrow keys, Home and End.
 
-- Flowers download directly as a one-page portrait A4 PDF: a 180 mm square centered on white paper. The plant is rendered at 1800 × 1800 pixels throughout its layers, without the upstream rounded mask.
+- Flowers download directly as a one-page portrait A4 PDF: a 180 mm square centered on white paper. The plant is rendered at 1800 × 1800 pixels throughout its layers. Nonflowers' original inner and outer paper textures, colors, rounded paper edge, and background generation order are preserved.
 - Landscapes offer A4 or A3 only when downloading. Both use landscape orientation, at least 10 mm margins, and the same complete composition. The preview remains SVG; the PDF is rendered at 300 dpi with the original paper texture and multiply blending.
 - Each type retains its last painting when switching. Regenerating replaces only the current type.
 - All generation and PDF creation run locally in the browser. There is no backend, tracking, upload, account, or API key.

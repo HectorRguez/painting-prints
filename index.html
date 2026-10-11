@@ -10,12 +10,15 @@
   </head>
   <body>
     <main>
-      <h1>Painting</h1>
-      <nav class="modes" aria-label="Painting type">
-        <button type="button" data-mode="flowers" aria-pressed="true">Flowers</button>
-        <button type="button" data-mode="landscapes" aria-pressed="false">Landscapes</button>
-      </nav>
-      <section class="gallery" aria-label="Generated painting" aria-busy="true">
+      <header class="painting-heading">
+        <h1 id="painting-title">Nonflowers</h1>
+        <span class="credit">by <a id="painting-author" href="https://github.com/LingDong-/nonflowers" target="_blank" rel="noopener noreferrer">Lingdong Huang</a></span>
+      </header>
+      <div class="modes" role="tablist" aria-label="Painting type">
+        <button type="button" id="flowers-tab" role="tab" data-mode="flowers" aria-selected="true" aria-controls="painting-panel">Flowers</button>
+        <button type="button" id="landscapes-tab" role="tab" data-mode="landscapes" aria-selected="false" aria-controls="painting-panel" tabindex="-1">Landscapes</button>
+      </div>
+      <section id="painting-panel" role="tabpanel" class="gallery" aria-labelledby="flowers-tab" aria-busy="true">
         <div id="artwork" class="artwork flowers"></div>
         <p id="status" role="status" aria-live="polite">Making your painting…</p>
       </section>
@@ -44,7 +47,6 @@
         </div>
       </div>
     </main>
-    <footer>Art by <a href="https://github.com/LingDong-" target="_blank" rel="noopener noreferrer">Lingdong Huang</a></footer>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

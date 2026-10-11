@@ -42,18 +42,29 @@ Layer.bound = function (context) {
   }
   return { xmin: xmin / resolution, xmax: xmax / resolution, ymin: ymin / resolution, ymax: ymax / resolution };
 };
-// The print has straight square edges; the upstream squircle mask is omitted.
+// Preserve both original paper textures and the rounded paper edge. The
+// complete image is still square, as in Nonflowers' original download.
 vizParams = function () {};
 try {
+  // Match the original makeBG -> generate order, including its random draws.
+  BGCANV = paper({ col: PAPER_COL0, tex: 10, spr: 0 });
   CTX = Layer.empty();
+  CTX.fillStyle = 'white';
+  CTX.fillRect(0, 0, 600, 600);
   const texture = paper({ col: PAPER_COL1 });
   for (let x = 0; x < 600; x += 512) {
     for (let y = 0; y < 600; y += 512) CTX.drawImage(texture, x, y);
   }
   if (Math.random() <= 0.5) woody({ ctx: CTX, xof: 300, yof: 550 });
-  else herbal({ ctx: CTX, xof: 300, yof: 580 });
+  else herbal({ ctx: CTX, xof: 300, yof: 600 });
+  Layer.border(CTX, squircle(0.98, 3));
+  const print = Layer.empty();
+  for (let x = 0; x < 600; x += 512) {
+    for (let y = 0; y < 600; y += 512) print.drawImage(BGCANV, x, y);
+  }
+  print.drawImage(CTX.canvas, 0, 0, 600, 600);
   parent.postMessage({ type: 'painting-ready', mode: 'flowers', seed: SEED,
-    png: CTX.canvas.toDataURL('image/png'), width: 1800, height: 1800 }, location.origin);
+    png: print.canvas.toDataURL('image/png'), width: 1800, height: 1800 }, location.origin);
 } catch (error) {
   console.error(error);
   parent.postMessage({ type: 'painting-error' }, location.origin);

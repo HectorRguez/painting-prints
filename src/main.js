@@ -6,11 +6,31 @@ const regenerate = document.querySelector('#regenerate');
 const download = document.querySelector('#download');
 const modes = [...document.querySelectorAll('[data-mode]')];
 const paperDialog = document.querySelector('#paper-dialog');
+const paintingTitle = document.querySelector('#painting-title');
+const paintingAuthor = document.querySelector('#painting-author');
+const projects = {
+  flowers: { title: 'Nonflowers', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/nonflowers' },
+  landscapes: { title: 'Shan Shui', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/shan-shui-inf' },
+};
 const paintings = new Map();
 let mode = 'flowers';
 let busy = false;
 let engine;
 let timeout;
+let restoreTabFocus = false;
+function updateSelectedTab() {
+  const project = projects[mode];
+  paintingTitle.textContent = project.title;
+  paintingAuthor.textContent = project.author;
+  paintingAuthor.href = project.source;
+  document.title = `Painting · ${project.title}`;
+  for (const tab of modes) {
+    const selected = tab.dataset.mode === mode;
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    if (selected) gallery.setAttribute('aria-labelledby', tab.id);
+  }
+}
 function setBusy(value, message = '') {
   busy = value;
   gallery.setAttribute('aria-busy', String(value));
@@ -18,6 +38,10 @@ function setBusy(value, message = '') {
   download.disabled = value || !paintings.has(mode);
   for (const button of modes) button.disabled = value;
   status.textContent = message;
+  if (!value && restoreTabFocus) {
+    modes.find(tab => tab.dataset.mode === mode).focus();
+    restoreTabFocus = false;
+  }
 }
 async function showPainting(painting) {
   artwork.className = `artwork ${painting.mode}`;
@@ -84,13 +108,23 @@ for (const button of modes) {
   button.addEventListener('click', async () => {
     if (busy || mode === button.dataset.mode) return;
     mode = button.dataset.mode;
-    for (const tab of modes) tab.setAttribute('aria-pressed', String(tab.dataset.mode === mode));
+    updateSelectedTab();
     artwork.className = `artwork ${mode}`;
     if (paintings.has(mode)) {
       setBusy(true);
       try { await showPainting(paintings.get(mode)); setBusy(false); }
       catch { setBusy(false, 'Could not show the painting. Please try Regenerate.'); }
     } else generatePainting();
+  });
+  button.addEventListener('keydown', event => {
+    if (busy || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const index = modes.indexOf(button);
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? modes.length - 1
+      : (index + (event.key === 'ArrowRight' ? 1 : -1) + modes.length) % modes.length;
+    restoreTabFocus = modes[next].dataset.mode !== mode;
+    modes[next].focus();
+    modes[next].click();
   });
 }
 async function savePdf(paper = 'a4') {
@@ -118,4 +152,5 @@ paperDialog.addEventListener('click', event => {
   const bounds = paperDialog.getBoundingClientRect();
   if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) paperDialog.close('cancel');
 });
+updateSelectedTab();
 generatePainting();

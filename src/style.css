@@ -1,13 +1,16 @@
 :root { color-scheme: light; font-family: "SF Mono", "Menlo", "Consolas", monospace; color: #1a1a1a; background: #f5f2eb; font-synthesis: none; font-size: 15px; line-height: 1.6; }
 * { box-sizing: border-box; }
 body { margin: 0 auto; max-width: 768px; padding: 36px 24px 24px; }
-h1 { font-family: Georgia, serif; font-size: 2em; font-weight: normal; line-height: 1.3; margin: 0 0 12px; }
+.painting-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 12px; }
+h1 { font-family: Georgia, serif; font-size: 2em; font-weight: normal; line-height: 1.3; margin: 0; }
+.credit { font-size: .7em; color: #666; }
+.credit a { color: inherit; text-underline-offset: 3px; }
 button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; }
 button:disabled { opacity: .4; cursor: wait; }
 button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #1a1a1a; outline-offset: 5px; }
 .modes { display: flex; gap: 24px; margin-bottom: 28px; }
 .modes button { border: 0; background: none; padding: 6px 0; font-size: .85em; color: #777; border-bottom: 1px solid transparent; }
-.modes button[aria-pressed="true"] { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+.modes button[aria-selected="true"] { color: #1a1a1a; border-bottom-color: #1a1a1a; }
 .gallery { width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; }
 .artwork { background: #ede4ce; overflow: hidden; }
 .artwork.flowers { width: min(100%, 460px, max(220px, calc(100svh - 280px))); aspect-ratio: 1; }
@@ -18,8 +21,6 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .actions { display: flex; justify-content: center; gap: 14px; margin-top: 8px; }
 .actions > button, .download-wrap > button { display: inline-block; border: 1px solid #1a1a1a; border-radius: 0; padding: 8px 16px; background: transparent; font-size: .85em; min-height: 44px; }
 .actions button:hover:not(:disabled) { background: #1a1a1a; color: #f5f2eb; }
-footer { text-align: center; font-size: .65em; color: #777; padding-top: 32px; }
-footer a { color: inherit; text-underline-offset: 3px; }
 iframe.engine { position: fixed; width: 1px; height: 1px; left: -100px; top: 0; border: 0; visibility: hidden; }
 dialog { padding: 22px; border: 1px solid #1a1a1a; border-radius: 0; width: 310px; max-width: calc(100% - 32px); color: inherit; background: #f5f2eb; }
 dialog::backdrop { background: #1a1a1a33; }
