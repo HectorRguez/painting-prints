@@ -36,6 +36,22 @@ export function artworkSvg(painting, background = false) {
       definitions.append(pattern);
       const paperRect = element(document, 'rect', { width: painting.width, height: painting.height, fill: 'url(#paper-texture)' });
       svg.prepend(definitions, paperRect);
+    } else {
+      // Composite the white occlusion fills first, then turn the finished
+      // monochrome drawing into ink opacity. Removing fills individually
+      // would expose lines that should be hidden behind foreground objects.
+      const definitions = element(document, 'defs');
+      const filter = element(document, 'filter', {
+        id: 'transparent-ink', x: 0, y: 0, width: painting.width,
+        height: painting.height, filterUnits: 'userSpaceOnUse',
+        'color-interpolation-filters': 'sRGB',
+      });
+      filter.append(element(document, 'feColorMatrix', { type: 'matrix',
+        values: '0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -0.2126 -0.7152 -0.0722 1 0',
+      }));
+      definitions.append(filter);
+      svg.prepend(definitions);
+      drawing.setAttribute('filter', 'url(#transparent-ink)');
     }
   }
   const title = element(document, 'title');
@@ -67,7 +83,7 @@ export async function artworkPng(painting, dimensions, background = false) {
     context.fillStyle = context.createPattern(texture, 'repeat');
     context.fillRect(0, 0, painting.width, painting.height);
   }
-  const url = URL.createObjectURL(new Blob([painting.svg], { type: 'image/svg+xml' }));
+  const url = URL.createObjectURL(new Blob([background ? painting.svg : artworkSvg(painting)], { type: 'image/svg+xml' }));
   try {
     const drawing = await loadImage(url);
     context.resetTransform();

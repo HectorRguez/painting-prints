@@ -35,7 +35,7 @@ export function createViewer(viewport, artwork) {
     gesture = a ? { view: { ...view }, anchor: b ? midpoint(a, b) : a, distance: b ? Math.max(1, distance(a, b)) : 0 } : undefined;
   }
   viewport.addEventListener('pointerdown', event => {
-    if (event.button !== 0 || !artwork.firstElementChild) return;
+    if (event.button !== 0 || event.target?.closest?.('a, button') || !artwork.firstElementChild) return;
     const position = point(event);
     pointers.set(event.pointerId, position);
     viewport.setPointerCapture(event.pointerId);

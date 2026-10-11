@@ -14,7 +14,8 @@ for (const mode of ['flowers', 'landscapes']) {
       .replace('data-mode="flowers" aria-current="page"', 'data-mode="flowers"')
       .replace('data-mode="landscapes"', 'data-mode="landscapes" aria-current="page"')
       .replace('aria-labelledby="flowers-link"', 'aria-labelledby="landscapes-link"')
-      .replace('class="artwork flowers"', 'class="artwork landscapes"');
+      .replace('class="artwork flowers"', 'class="artwork landscapes"')
+      .replace('class="artwork-frame flowers"', 'class="artwork-frame landscapes"');
   } else html = html.replace('<title>Painting</title>', '<title>Painting · Nonflowers</title>');
   const directory = new URL(`${mode}/`, dist);
   await mkdir(directory, { recursive: true });
