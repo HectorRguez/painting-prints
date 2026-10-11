@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f2eb">
+    <meta name="description" content="A quiet place to make and print procedural flowers and landscapes. Artwork by Lingdong Huang.">
+    <title>Painting</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f7f7f3'/%3E%3Cpath d='M16 45 28 21 39 37 47 29 56 45Z' fill='%23666b5a'/%3E%3C/svg%3E">
+  </head>
+  <body>
+    <main>
+      <h1>Painting</h1>
+      <nav class="modes" aria-label="Painting type">
+        <button type="button" data-mode="flowers" aria-pressed="true">Flowers</button>
+        <button type="button" data-mode="landscapes" aria-pressed="false">Landscapes</button>
+      </nav>
+      <section class="gallery" aria-label="Generated painting" aria-busy="true">
+        <div id="artwork" class="artwork flowers"></div>
+        <p id="status" role="status" aria-live="polite">Making your painting…</p>
+      </section>
+      <div class="actions">
+        <button type="button" id="regenerate" disabled>
+          <span>Regenerate</span>
+        </button>
+        <div class="download-wrap">
+          <button type="button" id="download" disabled>
+            <span>Download</span>
+          </button>
+          <dialog id="paper-dialog" aria-labelledby="paper-title">
+            <form method="dialog">
+              <p id="paper-title">Landscape PDF</p>
+              <fieldset>
+                <legend class="sr-only">Paper size</legend>
+                <label><input type="radio" name="paper" value="a4" checked> A4 <small>297 × 210 mm</small></label>
+                <label><input type="radio" name="paper" value="a3"> A3 <small>420 × 297 mm</small></label>
+              </fieldset>
+              <div class="dialog-actions">
+                <button value="cancel">Cancel</button>
+                <button value="download" class="confirm">Download</button>
+              </div>
+            </form>
+          </dialog>
+        </div>
+      </div>
+    </main>
+    <footer>Art by <a href="https://github.com/LingDong-" target="_blank" rel="noopener noreferrer">Lingdong Huang</a></footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
