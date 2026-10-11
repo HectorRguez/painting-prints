@@ -1,3 +1,4 @@
+import { projects } from './projects.js';
 const namespace = 'http://www.w3.org/2000/svg';
 
 export function pngBlob(dataUrl) {
@@ -14,7 +15,7 @@ function element(document, name, attributes = {}) {
 }
 
 export function artworkSvg(painting, background = false) {
-  const document = painting.mode === 'landscapes'
+  const document = painting.mode !== 'flowers'
     ? new DOMParser().parseFromString(painting.svg, 'image/svg+xml')
     : new DOMParser().parseFromString(`<svg xmlns="${namespace}"/>`, 'image/svg+xml');
   const svg = document.documentElement;
@@ -27,8 +28,17 @@ export function artworkSvg(painting, background = false) {
   } else {
     svg.removeAttribute('style');
     svg.style.isolation = 'isolate';
-    const drawing = svg.querySelector('g');
-    if (background) {
+    // Wrap the whole drawing, including occlusion shapes, in one composite.
+    const drawing = element(document, 'g');
+    while (svg.firstChild) drawing.append(svg.firstChild);
+    svg.append(drawing);
+    if (painting.mode === 'fish') {
+      drawing.querySelector('rect[fill="floralwhite"]')?.remove();
+    }
+    if (painting.mode === 'galiano' && !background) {
+      for (const shape of drawing.querySelectorAll('[fill="floralwhite"]')) shape.setAttribute('fill', 'white');
+    }
+    if (background && painting.texture) {
       drawing.style.mixBlendMode = 'multiply';
       const definitions = element(document, 'defs');
       const pattern = element(document, 'pattern', { id: 'paper-texture', patternUnits: 'userSpaceOnUse', width: 512, height: 512 });
@@ -36,7 +46,9 @@ export function artworkSvg(painting, background = false) {
       definitions.append(pattern);
       const paperRect = element(document, 'rect', { width: painting.width, height: painting.height, fill: 'url(#paper-texture)' });
       svg.prepend(definitions, paperRect);
-    } else {
+    } else if (background) {
+      svg.prepend(element(document, 'rect', { width: painting.width, height: painting.height, fill: painting.paperColor || 'white' }));
+    } else if (['landscapes', 'galiano'].includes(painting.mode)) {
       // Composite the white occlusion fills first, then turn the finished
       // monochrome drawing into ink opacity. Removing fills individually
       // would expose lines that should be hidden behind foreground objects.
@@ -55,9 +67,9 @@ export function artworkSvg(painting, background = false) {
     }
   }
   const title = element(document, 'title');
-  title.textContent = painting.mode === 'flowers' ? 'Nonflowers' : 'Shan Shui';
+  title.textContent = projects[painting.mode].title;
   const description = element(document, 'desc');
-  description.textContent = `Artwork by Lingdong Huang. Seed ${painting.seed}.`;
+  description.textContent = `Artwork by ${projects[painting.mode].author}. Seed ${painting.seed}.`;
   svg.prepend(title, description);
   return new XMLSerializer().serializeToString(svg);
 }
@@ -77,17 +89,11 @@ export async function artworkPng(painting, dimensions, background = false) {
   canvas.width = dimensions?.width || 3200;
   canvas.height = dimensions?.height || Math.round(canvas.width * painting.height / painting.width);
   const context = canvas.getContext('2d');
-  if (background) {
-    const texture = await loadImage(painting.texture);
-    context.setTransform(canvas.width / painting.width, 0, 0, canvas.height / painting.height, 0, 0);
-    context.fillStyle = context.createPattern(texture, 'repeat');
-    context.fillRect(0, 0, painting.width, painting.height);
-  }
-  const url = URL.createObjectURL(new Blob([background ? painting.svg : artworkSvg(painting)], { type: 'image/svg+xml' }));
+  const url = URL.createObjectURL(new Blob([artworkSvg(painting, background)], { type: 'image/svg+xml' }));
   try {
     const drawing = await loadImage(url);
     context.resetTransform();
-    context.globalCompositeOperation = background ? 'multiply' : 'source-over';
+    context.globalCompositeOperation = 'source-over';
     context.drawImage(drawing, 0, 0, canvas.width, canvas.height);
     return await new Promise((resolve, reject) => canvas.toBlob(
       blob => blob ? resolve(blob) : reject(new Error('Could not prepare the image.')), 'image/png'));

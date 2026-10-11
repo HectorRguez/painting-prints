@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pageFromPath, pageUrl } from '../src/pages.js';
+import { pageFromPath, pageUrl, pageModes } from '../src/pages.js';
 
 test('subpage links stay under the GitHub Pages project root', () => {
   const base = new URL('https://hectorrguez.github.io/painting-prints/');
@@ -21,4 +21,12 @@ test('direct folder, index and landing-page URLs select the right generator', ()
   assert.equal(pageFromPath('/painting-prints/landscapesindex.html', base), null);
   assert.equal(pageFromPath('/another-project/landscapes/', base), null);
   assert.equal(pageFromPath('/landscapes/', '/'), 'landscapes');
+});
+
+test('every generator supports a direct URL and a refresh', () => {
+  const base = new URL('https://example.com/painting-prints/');
+  for (const mode of pageModes) {
+    assert.equal(pageFromPath(pageUrl(mode, base).pathname, base.pathname), mode);
+    assert.equal(pageFromPath(`/painting-prints/${mode}/index.html`, base.pathname), mode);
+  }
 });

@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { projects, pageModes } from '../src/projects.js';
 import { printLayout } from '../src/print-layout.js';
 
 const near = (a, b) => assert.ok(Math.abs(a - b) < 0.001, `${a} differs from ${b}`);
@@ -33,14 +34,14 @@ test('unsupported landscape sizes fail clearly', () => {
 });
 
 test('all paper/orientation combinations keep the full art centered without distortion', () => {
-  for (const mode of ['flowers', 'landscapes']) {
+  for (const mode of pageModes) {
     for (const paper of ['a4', 'a3']) {
       for (const orientation of ['portrait', 'landscape']) {
         const { width, height, art } = printLayout(mode, paper, orientation);
         assert.equal(width > height, orientation === 'landscape');
         near(2 * art.x + art.width, width);
         near(2 * art.y + art.height, height);
-        near(art.width / art.height, mode === 'flowers' ? 1 : Math.SQRT2);
+        near(art.width / art.height, projects[mode].ratio);
         assert.ok(art.x >= 9.999 && art.y >= 9.999);
       }
     }

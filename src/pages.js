@@ -1,4 +1,5 @@
-export const pageModes = ['flowers', 'landscapes'];
+import { pageModes } from './projects.js';
+export { pageModes };
 
 export function pageFromPath(pathname, basePath) {
   if (!pathname.startsWith(basePath)) return null;

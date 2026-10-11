@@ -15,7 +15,7 @@ test('per-art preferences survive reload and malformed entries are individually 
   const storage = { getItem: () => value, setItem: (key, data) => { value = data; } };
   const settings = { flowers: { format: 'svg', orientation: 'landscape', paper: 'a3', background: true }, landscapes: defaultSettings('landscapes') };
   saveSettings(storage, settings);
-  assert.deepEqual(loadSettings(storage, true), settings);
+  assert.deepEqual(loadSettings(storage, true), { ...settings, galiano: defaultSettings('galiano', true), fish: defaultSettings('fish', true), maps: defaultSettings('maps', true) });
   value = JSON.stringify({ flowers: { format: 'html', orientation: 'landscape', paper: 'a0' }, landscapes: settings.landscapes });
   assert.deepEqual(loadSettings(storage).flowers, { format: 'pdf', orientation: 'landscape', paper: 'a4', background: false });
   value = '{broken';

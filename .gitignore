@@ -3,3 +3,4 @@ dist/
 tmp/
 output/
 public/engines/landscape-engine.js
+public/engines/map-worker.js
