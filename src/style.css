@@ -15,8 +15,8 @@ button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulat
 button:disabled { opacity: .4; cursor: wait; }
 button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible, .canvas-viewport:focus-visible { outline: 2px solid #1a1a1a; outline-offset: 4px; }
 .modes { display: flex; flex-direction: column; gap: 10px; }
-.modes button { text-align: left; border: 0; background: none; padding: 12px 14px; min-height: 44px; font-size: .85em; color: #777; border-left: 1px solid transparent; }
-.modes button[aria-selected="true"] { color: #1a1a1a; border-left-color: #1a1a1a; }
+.modes a { display: block; text-decoration: none; text-align: left; background: none; padding: 12px 14px; min-height: 44px; font-size: .85em; color: #777; border-left: 1px solid transparent; touch-action: manipulation; }
+.modes a[aria-current="page"] { color: #1a1a1a; border-left-color: #1a1a1a; }
 .gallery { grid-column: 2; grid-row: 2; min-height: 0; position: relative; margin: 0 28px; }
 .canvas-viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; container-type: size; touch-action: none; user-select: none; -webkit-user-select: none; }
 .canvas-viewport.zoomed { cursor: grab; }

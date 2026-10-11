@@ -21,13 +21,13 @@
       </header>
       <aside id="painting-menu" class="sidebar" aria-label="Painting menu">
         <div class="site-title">Painting</div>
-        <div class="modes" role="tablist" aria-label="Painting type" aria-orientation="vertical">
-          <button type="button" id="flowers-tab" role="tab" data-mode="flowers" aria-selected="true" aria-controls="painting-panel">Flowers</button>
-          <button type="button" id="landscapes-tab" role="tab" data-mode="landscapes" aria-selected="false" aria-controls="painting-panel" tabindex="-1">Landscapes</button>
-        </div>
+        <nav class="modes" aria-label="Painting type">
+          <a id="flowers-link" href="./flowers/" data-mode="flowers" aria-current="page">Flowers</a>
+          <a id="landscapes-link" href="./landscapes/" data-mode="landscapes">Landscapes</a>
+        </nav>
       </aside>
       <button id="menu-backdrop" type="button" tabindex="-1" aria-label="Close menu" hidden></button>
-      <section id="painting-panel" role="tabpanel" class="gallery" aria-labelledby="flowers-tab" aria-busy="true">
+      <section id="painting-panel" class="gallery" aria-labelledby="flowers-link" aria-busy="true">
         <div id="canvas-viewport" class="canvas-viewport" tabindex="0" role="group" aria-label="Artwork viewer" aria-describedby="zoom-help">
           <div id="artwork" class="artwork flowers"></div>
         </div>
