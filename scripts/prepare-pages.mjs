@@ -10,7 +10,6 @@ for (const mode of ['flowers', 'landscapes']) {
     .replaceAll('href="./landscapes/"', 'href="../landscapes/"');
   if (mode === 'landscapes') {
     html = html.replace('<title>Painting</title>', '<title>Painting · Shan Shui</title>')
-      .replace('id="painting-title">Nonflowers', 'id="painting-title">Shan Shui')
       .replace('https://github.com/LingDong-/nonflowers', 'https://github.com/LingDong-/shan-shui-inf')
       .replace('data-mode="flowers" aria-current="page"', 'data-mode="flowers"')
       .replace('data-mode="landscapes"', 'data-mode="landscapes" aria-current="page"')

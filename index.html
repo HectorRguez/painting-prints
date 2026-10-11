@@ -11,22 +11,12 @@
   <body>
     <main class="painting-app">
       <header class="painting-heading">
-        <button id="menu-toggle" type="button" class="icon-button menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="painting-menu">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-        <div class="heading-copy">
-          <h1 id="painting-title">Nonflowers</h1>
-          <span class="credit">by <a id="painting-author" href="https://github.com/LingDong-/nonflowers" target="_blank" rel="noopener noreferrer">Lingdong Huang</a></span>
-        </div>
-      </header>
-      <aside id="painting-menu" class="sidebar" aria-label="Painting menu">
-        <div class="site-title">Painting</div>
         <nav class="modes" aria-label="Painting type">
           <a id="flowers-link" href="./flowers/" data-mode="flowers" aria-current="page">Flowers</a>
           <a id="landscapes-link" href="./landscapes/" data-mode="landscapes">Landscapes</a>
         </nav>
-      </aside>
-      <button id="menu-backdrop" type="button" tabindex="-1" aria-label="Close menu" hidden></button>
+        <span class="credit">by <a id="painting-author" href="https://github.com/LingDong-/nonflowers" target="_blank" rel="noopener noreferrer">Lingdong Huang</a></span>
+      </header>
       <section id="painting-panel" class="gallery" aria-labelledby="flowers-link" aria-busy="true">
         <div id="canvas-viewport" class="canvas-viewport" tabindex="0" role="group" aria-label="Artwork viewer" aria-describedby="zoom-help">
           <div id="artwork" class="artwork flowers"></div>
