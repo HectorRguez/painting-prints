@@ -199,7 +199,7 @@ async function nextPainting({ cachedFirst = false, seed = null, historyAction = 
   } catch (error) {
     if (token !== revision) return;
     console.error(error);
-    setBusy(false, 'Could not load the painting. Please try Regenerate.');
+    setBusy(false, 'Could not load the painting. Please try Create.');
   }
 }
 
@@ -222,13 +222,13 @@ function generatePainting(token, requestedSeed, historyAction) {
     finish();
     if (token === revision) setBusy(false, message);
   };
-  worker.onerror = () => fail('Could not make the painting. Please try Regenerate.');
+  worker.onerror = () => fail('Could not make the painting. Please try Create.');
   worker.onmessage = async ({ data }) => {
     if (token !== revision) return;
     if (!['painting-ready', 'painting-error'].includes(data?.type)) return;
     finish();
     if (data.type === 'painting-error') {
-      setBusy(false, 'Could not make the painting. Please try Regenerate.');
+      setBusy(false, 'Could not make the painting. Please try Create.');
       return;
     }
     try {
@@ -237,10 +237,10 @@ function generatePainting(token, requestedSeed, historyAction) {
     } catch (error) {
       if (token !== revision) return;
       console.error(error);
-      setBusy(false, 'Could not show the painting. Please try Regenerate.');
+      setBusy(false, 'Could not show the painting. Please try Create.');
     }
   };
-  timeout = setTimeout(() => fail('Generation took too long. Please try Regenerate.'), 120_000);
+  timeout = setTimeout(() => fail('Generation took too long. Please try Create.'), 120_000);
   worker.postMessage({ mode: targetMode, seed });
 }
 regenerate.addEventListener('click', () => void nextPainting({ historyAction: 'push' }));
@@ -279,7 +279,7 @@ async function showPage(nextMode, seed = null) {
     } catch (error) {
       if (token !== revision) return;
       console.error(error);
-      setBusy(false, 'Could not show the painting. Please try Regenerate.');
+      setBusy(false, 'Could not show the painting. Please try Create.');
     }
   } else {
     setBusy(false);

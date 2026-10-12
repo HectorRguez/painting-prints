@@ -43,15 +43,15 @@ export function createInterface() {
       const status = document.querySelector('#status');
       messageUnderline?.destroy();
       messageUnderline = undefined;
-      const retry = message.includes('Regenerate');
+      const retry = message.includes('Create');
       document.querySelector('.gallery').dataset.failed = String(retry);
       status.replaceChildren();
       if (retry) {
-        const [before, after] = message.split('Regenerate');
+        const [before, after] = message.split('Create');
         const link = document.createElement('a');
         link.id = 'retry-painting';
         link.href = '#regenerate';
-        link.textContent = 'Regenerate';
+        link.textContent = 'Create';
         status.append(before, link, after);
         messageUnderline = drawablyUnderline(link, pen);
       } else status.textContent = message;

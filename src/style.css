@@ -35,7 +35,7 @@ a:focus-visible, .canvas-viewport:focus-visible { outline: 2px solid #1a1a1a; ou
 #status:empty { display: none; }
 #status a { color: inherit; text-decoration: none; display: inline-block; line-height: 1.15; pointer-events: auto; }
 .gallery[data-failed="true"] .canvas-viewport { visibility: hidden; }
-.actions { font-size: 14px; display: flex; justify-content: center; gap: 22px; }
+.actions { font-size: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 110px)); justify-content: center; gap: 22px; }
 iframe.engine { position: fixed; width: 1px; height: 1px; left: -100px; top: 0; border: 0; visibility: hidden; }
 dialog { padding: 20px; border: 1px solid #1a1a1a; border-radius: 0; width: 360px; max-width: calc(100% - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; color: inherit; background: #f5f2eb; }
 dialog::backdrop { background: #1a1a1a33; }
@@ -65,7 +65,7 @@ dialog::backdrop { background: #1a1a1a33; }
 /* Genuine Drawably controls use their own bundled pen font. */
 :root { --drawably-stroke: #000; --drawably-fill: #000; --drawably-error: #000; --drawably-success: #000; --drawably-paper: #f5f2eb; }
 .drawably-host, .drawably-button { font-family: inherit; }
-.actions .drawably-button { flex-direction: column; gap: 4px; }
+.actions .drawably-button { width: 100%; min-width: 0; flex-direction: column; gap: 4px; }
 .button-icon.drawably-svg { position: static; width: 26px; height: 26px; flex: none; z-index: auto; --drawably-stroke: currentColor; --drawably-ink: currentColor; }
 .button-icon.drawably-svg path { stroke-width: 1.5; }
 .drawably-button--scribble .drawably-scribble { stroke-opacity: .16; }

@@ -1,6 +1,6 @@
 import { scribbleFill, variants } from 'drawably';
 
-// Reuse the same Drawably hatching primitive as the Regenerate button.
+// Reuse the same Drawably hatching primitive as the Create button.
 export function createRegenerationMark(viewport, artwork) {
   const namespace = 'http://www.w3.org/2000/svg';
   const mark = document.createElement('div');
