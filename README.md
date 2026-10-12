@@ -4,9 +4,9 @@ A minimal procedural-art gallery with Flowers, Landscapes, Fish, and Maps.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
-The interface uses Drawably controls and a transparent hand-drawn favicon. Each style keeps its latest image. First visits use a bundled collection of ten paintings per style; Regenerate always creates a fresh image.
+The interface uses Drawably controls and a transparent hand-drawn favicon. Each style keeps its latest image. First visits use a bundled collection of ten paintings per style; Create always creates a fresh image.
 
-Every displayed artwork writes its seed to the URL, for example `fish/?seed=painting-stock-v1-fish-0`. Sharing or reopening that URL loads that exact cached painting or regenerates it from the same seed. Regenerate creates a new URL, and browser Back/Forward restores prior seeds. Artwork framing adapts to the device; zoom and pan are not part of the link.
+Every displayed artwork writes its seed to the URL, for example `fish/?seed=painting-stock-v1-fish-0`. Sharing or reopening that URL loads that exact cached painting or regenerates it from the same seed. Create creates a new URL, and browser Back/Forward restores prior seeds. Artwork framing adapts to the device; zoom and pan are not part of the link.
 
 Generation, SVG preparation, centering, and export rendering run in Web Workers. Landscapes use a 4096-pixel-wide raster preview for smooth zooming; their cached source and SVG downloads remain vector. Other previews use SVG (flowers preserve their original raster artwork inside SVG). Landscapes display a panorama while exports crop the central composition. Downloads support SVG, PNG, and PDF, with A4/A3 settings and optional paper backgrounds; supported phones can share files directly.
 
@@ -17,6 +17,42 @@ Phones and narrow layouts show only the landscape's central export crop as a 204
 Run `npm ci`, then `npm run dev`. Use `npm test` for checks and `npm run build` for the GitHub Pages output. Pushing to `main` runs the build/test/publish workflow.
 
 See [cache instructions](scripts/cache/README.md) to rebuild the starter artwork.
+
+## Code layout
+
+```text
+src/
+  generators/
+    flowers/       Nonflowers source, adapter, worker, WASM and build
+    landscapes/    Shan Shui source, adapter, worker and build
+    fish/          Fishdraw source, framing, worker, WASM and build
+    maps/          Mapgen4 source, terrain/river SVG, worker, WASM and build
+    shared/        Canvas compatibility and WASM loading/memory
+  ...              Gallery UI, preview, download and cache code
+public/cache/      Bundled starter artwork and direct previews
+scripts/           Build, cache maintenance and benchmark tools
+tests/             Behavior and artwork equivalence checks
+docs/              Engine explanation and measured performance
+```
+
+To change a style, start in `src/generators/<style>/`. `project.js` holds its
+caption/defaults, `worker.js` (or `.ts`) is its entry point, `generate.js` (or `.ts`)
+contains the adapter, and `build.mjs` prepares its browser files. Fish uses its
+original generator directly from its worker. `kernels.ts`/`wasm.js` contain that
+style's optional accelerated calculations. Treat `upstream/` and its licenses as
+unchanged reference snapshots.
+
+`src/projects.js` is the small style registry. Every style is served at
+`generators/<style>/worker.js`; the app, cache baker and benchmark use that same
+entry point. Workers accept `{ mode, seed }` and return `painting-ready` or
+`painting-error`; upstream flower/landscape scripts also read the seed from the
+worker URL. The shared WASM binary is built once.
+
+**Generated files stay out of Git.** `npm run prepare-generators` recreates
+`public/generators/`; `npm run build` recreates `dist/`. Do not hand-edit either.
+No generator source lives in `public/`, and no build step writes patched source
+back into `src/`. New styles follow the same directory layout and register in
+`src/projects.js` (plus their UI tab/routes).
 
 ## Artwork and attribution
 

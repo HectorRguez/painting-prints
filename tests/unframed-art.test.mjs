@@ -4,12 +4,12 @@ import { readFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
 import vm from 'node:vm';
 const context = vm.createContext({});
-vm.runInContext(await readFile(new URL('../public/engines/unframed-art.js', import.meta.url), 'utf8'), context);
+vm.runInContext(await readFile(new URL('../src/generators/fish/unframe.js', import.meta.url), 'utf8'), context);
 for (const mode of ['fish']) test(`${mode} loses its printed frame and lettering while preserving drawing geometry`, async () => {
   const source = JSON.parse(gunzipSync(await readFile(new URL('./fixtures/fish-original.json.gz', import.meta.url)))).svg;
-  const clean = context.unframeDrawing(mode, source);
+  const clean = context.unframeFish(source);
   assert.ok(clean.length < source.length);
-  assert.equal(context.unframeDrawing(mode, clean), clean);
+  assert.equal(context.unframeFish(clean), clean);
   if (mode === 'fish') {
     assert.ok(!clean.includes('width="500" height="300"'));
     const fishStart = source.indexOf('M ');

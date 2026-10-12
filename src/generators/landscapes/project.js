@@ -1,0 +1,1 @@
+export default { published: '2018-01-30', label: 'Landscapes', title: 'Shan Shui', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/shan-shui-inf', ratio: Math.SQRT2, orientation: 'landscape' };

@@ -1,5 +1,5 @@
 (async () => {
-const encodeCanvas = self.canvasDataUrl || (async canvas => canvas.toDataURL("image/png"));
+const encodeCanvas = self.canvasDataUrl;
 // Generate a wide scroll for the viewer; exports retain the central ISO-paper composition.
 try {
   MEM.windx = 3200;
@@ -21,12 +21,12 @@ try {
       context.fillRect(x, 512 - y, 1, 1); context.fillRect(512 - x, 512 - y, 1, 1);
     }
   }
-  parent.postMessage({ type: 'painting-ready', mode: 'landscapes', artRevision: 2, seed: SEED,
+  self.postMessage({ type: 'painting-ready', mode: 'landscapes', artRevision: 2, seed: SEED,
     svg: new XMLSerializer().serializeToString(svg), texture: await encodeCanvas(paper),
-    width: 800 * Math.SQRT2, height: MEM.windy, previewWidth: MEM.windx }, location.origin);
+    width: 800 * Math.SQRT2, height: MEM.windy, previewWidth: MEM.windx });
 } catch (error) {
   console.error(error);
-  parent.postMessage({ type: 'painting-error' }, location.origin);
+  self.postMessage({ type: 'painting-error' });
 }
 
 })();

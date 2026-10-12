@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { riverSegments } from '../src/engines/map-rivers.js';
-import { drapeSegment, terrainSvg } from '../src/engines/map-svg.js';
+import { riverSegments } from '../src/generators/maps/rivers.js';
+import { drapeSegment, terrainSvg } from '../src/generators/maps/svg.js';
 
 // Triangle vertices correspond to red, green and blue barycentric coordinates.
 const triangleBuffer = (w1,w2) => Float32Array.from([10,0,w1,w2, 0,0,w1,w2, 0,10,w1,w2]);

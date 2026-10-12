@@ -5,16 +5,16 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {gunzipSync} from 'node:zlib';
-import {build} from 'esbuild';
+import {buildMap} from '../src/generators/maps/build.mjs';
 import vm from 'node:vm';
-import {createArtKernels} from '../src/wasm/art-kernels.js';
-const binary=await readFile(new URL('../public/engines/art-kernels-v1.wasm',import.meta.url));
+import {createArtKernels} from '../src/generators/shared/wasm/host.js';
+const binary=await readFile(new URL('../public/generators/shared/kernels-v1.wasm',import.meta.url));
 
 test('the accelerated map still matches the previously published cached SVG exactly',async()=>{
   const directory=await mkdtemp(join(tmpdir(),'painting-wasm-'));
   try {
     const file=join(directory,'map.mjs');
-    await build({entryPoints:[new URL('../src/engines/map-worker.ts',import.meta.url).pathname],bundle:true,platform:'node',format:'esm',outfile:file});
+    await buildMap({platform:'node',format:'esm',outfile:file});
     const {generateMap}=await import(pathToFileURL(file));
     const painting=JSON.parse(gunzipSync(await readFile(new URL('../public/cache/maps-v4/0.json.gz',import.meta.url))));
     let hash=2166136261;
@@ -24,7 +24,7 @@ test('the accelerated map still matches the previously published cached SVG exac
 });
 
 test('the accelerated fish preserves complete generated SVGs and random state',async()=>{
-  const source=await readFile(new URL('../public/upstream/fishdraw/fishdraw.js',import.meta.url),'utf8');
+  const source=await readFile(new URL('../src/generators/fish/upstream/fishdraw.js',import.meta.url),'utf8');
   for(const seed of ['profile-v1','flower-perf-1']) {
     const kernels=await createArtKernels(binary);
     const generate=accelerated=>{

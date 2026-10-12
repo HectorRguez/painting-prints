@@ -43,7 +43,7 @@ its larger improvement. Canvas drawing and PNG encoding still take time.
 
 ## Reproduce and maintain
 
-1. Run `npm ci`, then `npm run prepare-engines`.
+1. Run `npm ci`, then `npm run prepare-generators`.
 2. Serve the repository with a local HTTP server.
 3. Open `scripts/benchmark-engines.html` and run the paired comparison while other
    CPU-heavy tasks are idle. The tool explicitly requests the JavaScript reference
@@ -55,7 +55,9 @@ The tests cover byte-for-byte flower filters and paper (including subsequent
 random state), full fish SVG equivalence, map equivalence against an existing
 published SVG, polygon edge cases, terrain depth clipping, and memory growth.
 
-Source: `src/wasm/art-kernels.ts`; host bridge: `src/wasm/art-kernels.js`.
+Each style owns `src/generators/<style>/kernels.ts` and its `wasm.js` host adapter.
+Shared loading/memory lives in `src/generators/shared/wasm/`; the build compiles
+one binary from those modules. See the [repository layout](../README.md#code-layout).
 The original upstream files remain untouched. The build exposes Nonflowers'
 existing noise table in a generated adapter only.
 

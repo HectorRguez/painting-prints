@@ -1,9 +1,9 @@
-import { build } from 'esbuild';
+import { buildMap } from '../../src/generators/maps/build.mjs';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { measureInk } from '../../src/ink-measurement.js';
 import { artworkSvg } from '../../src/artwork-svg.js';
-await build({entryPoints:['src/engines/map-worker.ts'],outfile:'tmp/map-bake.mjs',bundle:true,platform:'node',format:'esm'});
+await buildMap({outfile:'tmp/map-bake.mjs',platform:'node',format:'esm'});
 const { generateMap } = await import('../../tmp/map-bake.mjs');
 const manifest=JSON.parse(await readFile('public/cache/manifest.json','utf8'));
 await mkdir('public/cache/maps-v4',{recursive:true});

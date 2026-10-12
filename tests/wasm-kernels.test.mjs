@@ -2,11 +2,11 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
-import {createArtKernels} from '../src/wasm/art-kernels.js';
-import {visibleIntervals} from '../src/engines/map-svg.js';
-const binary=await readFile(new URL('../public/engines/art-kernels-v1.wasm',import.meta.url));
+import {createArtKernels} from '../src/generators/shared/wasm/host.js';
+import {visibleIntervals} from '../src/generators/maps/svg.js';
+const binary=await readFile(new URL('../public/generators/shared/kernels-v1.wasm',import.meta.url));
 const fish=vm.createContext({Math});
-vm.runInContext(await readFile(new URL('../public/upstream/fishdraw/fishdraw.js',import.meta.url),'utf8'),fish);
+vm.runInContext(await readFile(new URL('../src/generators/fish/upstream/fishdraw.js',import.meta.url),'utf8'),fish);
 const original=(...args)=>fish.seg_isect_poly(...args);
 let state=12345;
 const random=()=>((state=Math.imul(state,1664525)+1013904223>>>0)/4294967296);
@@ -64,7 +64,7 @@ function flowerContext(source) {
   vm.runInContext(source.replace('  var perlin;','  var perlin; this.perlinValues=function(){this.noise(0);return perlin;};'),context);
   return context;
 }
-const flowerSource=await readFile(new URL('../public/upstream/nonflowers/main.js',import.meta.url),'utf8');
+const flowerSource=await readFile(new URL('../src/generators/flowers/upstream/main.js',import.meta.url),'utf8');
 
 test('WASM flower filters preserve every channel and alpha byte',async()=>{
   const kernels=await createArtKernels(binary),flowers=flowerContext(flowerSource);

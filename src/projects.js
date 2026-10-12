@@ -1,9 +1,9 @@
-export const projects = {
-  flowers: { published: '2018-02-12', label: 'Flowers', title: 'Nonflowers', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/nonflowers', ratio: 1, orientation: 'portrait' },
-  landscapes: { published: '2018-01-30', label: 'Landscapes', title: 'Shan Shui', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/shan-shui-inf', ratio: Math.SQRT2, orientation: 'landscape' },
-  fish: { published: '2021-08-11', label: 'Fish', title: 'Fishdraw', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/fishdraw', ratio: 520 / 320, orientation: 'landscape' },
-  maps: { published: '2018-07-20', label: 'Maps', title: 'Mapgen4 · 3D line art', author: 'Amit Patel', source: 'https://github.com/redblobgames/mapgen4', ratio: 1, orientation: 'portrait' },
-};
+import flowers from './generators/flowers/project.js';
+import landscapes from './generators/landscapes/project.js';
+import fish from './generators/fish/project.js';
+import maps from './generators/maps/project.js';
+
+export const projects = { flowers, landscapes, fish, maps };
 export const pageModes = Object.keys(projects);
 
 export function publicationDate(project) {

@@ -5,7 +5,7 @@ import { artworkSvg } from '../../src/artwork-svg.js';
 import { measureInk } from '../../src/ink-measurement.js';
 const base = new URL('../../public/cache/', import.meta.url);
 const manifest = JSON.parse(await readFile(new URL('manifest.json', base), 'utf8'));
-const source = await readFile(new URL('../../public/engines/landscape-engine.js', import.meta.url), 'utf8');
+const source = await readFile(new URL('../../public/generators/landscapes/engine.js', import.meta.url), 'utf8');
 const wasm = await readFile(new URL('../../node_modules/@resvg/resvg-wasm/index_bg.wasm', import.meta.url));
 await mkdir(new URL('landscapes-v2/', base), { recursive: true });
 for (const [i, entry] of manifest.landscapes.entries()) {

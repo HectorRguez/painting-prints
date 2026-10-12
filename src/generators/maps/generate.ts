@@ -1,14 +1,13 @@
 // Line-art presentation of Mapgen4's original elevation and river algorithms.
-import Mapgen from '../../vendor/mapgen4/map.ts';
-import { choosePoints } from '../../vendor/mapgen4/generate-points.ts';
-import { fromPointsFile, toPointsFile } from '../../vendor/mapgen4/serialize-points.ts';
-import { riverSegments } from './map-rivers.js';
-import { TriangleMesh } from '../../vendor/mapgen4/dual-mesh/index.ts';
-import { Generator } from '../../tmp/map-constraints.ts';
+import Mapgen from './upstream/map.ts';
+import { choosePoints } from './upstream/generate-points.ts';
+import { fromPointsFile, toPointsFile } from './upstream/serialize-points.ts';
+import { riverSegments } from './rivers.js';
+import { TriangleMesh } from './upstream/dual-mesh/index.ts';
+import { Generator } from 'mapgen-constraints';
 import Delaunator from 'delaunator';
-import Geometry from '../../vendor/mapgen4/geometry.ts';
-import { loadArtKernels } from '../wasm/art-kernels.js';
-import { terrainSvg } from './map-svg.js';
+import Geometry from './upstream/geometry.ts';
+import { terrainSvg } from './svg.js';
 
 export function generateMap(seed: number, kernels?: any) {
   const spacing = 5.5;
@@ -46,11 +45,3 @@ export function generateMap(seed: number, kernels?: any) {
   const rivers = riverSegments(riverBuffer.subarray(0, riverCount * 12));
   return terrainSvg(vertices, indices, rivers, kernels);
 }
-if (typeof self !== 'undefined') self.onmessage = async ({ data: { seed, engine = 'wasm' } }) => {
-  try {
-    const kernels = engine === 'javascript' ? undefined : await loadArtKernels(new URL('art-kernels-v1.wasm', self.location.href));
-    let hash = 2166136261;
-    for (const char of seed) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-    self.postMessage({ type: 'painting-ready', artRevision: 4, svg: generateMap(hash >>> 0 || 1, kernels), width: 1000, height: 1000, paperColor: '#fff' });
-  } catch (error) { self.postMessage({ type: 'painting-error', message: String(error) }); }
-};

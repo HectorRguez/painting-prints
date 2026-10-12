@@ -1,5 +1,5 @@
 (async () => {
-const encodeCanvas = self.canvasDataUrl || (async canvas => canvas.toDataURL("image/png"));
+const encodeCanvas = self.canvasDataUrl;
 // Print adapter for Nonflowers. The original engine remains unmodified.
 // Work in its 600-unit coordinate system, drawing at 3x resolution throughout
 // the plant's layers (not enlarging a finished 600px bitmap).
@@ -99,12 +99,12 @@ try {
     for (let y = 0; y < 600; y += 512) print.drawImage(BGCANV, x, y);
   }
   print.drawImage(CTX.canvas, 0, 0, 600, 600);
-  parent.postMessage({ type: 'painting-ready', mode: 'flowers', seed: SEED,
+  self.postMessage({ type: 'painting-ready', mode: 'flowers', seed: SEED,
     png: await encodeCanvas(print.canvas), transparentPng: await encodeCanvas(flowerContext.canvas),
-    width: 1800, height: 1800 }, location.origin);
+    width: 1800, height: 1800 });
 } catch (error) {
   console.error(error);
-  parent.postMessage({ type: 'painting-error' }, location.origin);
+  self.postMessage({ type: 'painting-error' });
 }
 
 })();

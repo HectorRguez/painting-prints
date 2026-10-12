@@ -2,8 +2,4 @@ node_modules/
 dist/
 tmp/
 output/
-public/engines/landscape-engine.js
-public/engines/map-worker.js
-public/engines/flower-engine.js
-public/engines/art-kernels.js
-public/engines/art-kernels-v1.wasm
+public/generators/

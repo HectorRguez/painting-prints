@@ -1,23 +1,22 @@
 import { gzipSync, zipSync, strToU8 } from '../../node_modules/fflate/esm/browser.js';
 const base = new URL('../../public/', import.meta.url);
 const files = {}, manifest = {};
-let frame;
 function generate(mode, seed) {
   return new Promise((resolve, reject) => {
-    frame = document.createElement('iframe'); frame.hidden = true;
-    const page = ['flowers', 'landscapes'].includes(mode) ? mode : 'vector';
-    frame.src = new URL(`engines/${page}.html?mode=${mode}&seed=${seed}`, base);
+    const url = new URL(`generators/${mode}/worker.js`, base);
+    url.searchParams.set('seed', seed);
+    const worker = new Worker(url);
     const timer = setTimeout(() => finish(new Error('Generation timed out')), 180000);
     function finish(error, painting) {
-      clearTimeout(timer); removeEventListener('message', receive); frame.remove();
-      error ? reject(error) : resolve(painting);
+      clearTimeout(timer); worker.terminate();
+      error ? reject(error) : resolve({ ...painting, mode, seed });
     }
-    function receive(event) {
-      if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
-      if (event.data?.type === 'painting-ready') finish(null, event.data);
-      else if (event.data?.type === 'painting-error') finish(new Error(event.data.message || 'Generation failed'));
-    }
-    addEventListener('message', receive); document.body.append(frame);
+    worker.onmessage = ({ data }) => {
+      if (data?.type === 'painting-ready') finish(null, data);
+      else if (data?.type === 'painting-error') finish(new Error(data.message || 'Generation failed'));
+    };
+    worker.onerror = event => finish(new Error(event.message || 'Generation failed'));
+    worker.postMessage({ mode, seed });
   });
 }
 document.querySelector('#start').onclick=async () => {

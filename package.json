@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare-engines": "node scripts/prepare-engines.mjs",
-    "dev": "npm run prepare-engines && vite --host 127.0.0.1",
-    "build": "npm run prepare-engines && vite build && node scripts/prepare-pages.mjs",
+    "prepare-generators": "node scripts/prepare-generators.mjs",
+    "dev": "npm run prepare-generators && vite --host 127.0.0.1",
+    "build": "npm run prepare-generators && vite build && node scripts/prepare-pages.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --test tests/*.test.mjs",
-    "pretest": "node scripts/prepare-engines.mjs"
+    "pretest": "node scripts/prepare-generators.mjs"
   },
   "dependencies": {
     "@redblobgames/prng": "github:redblobgames/prng",

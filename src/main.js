@@ -206,9 +206,7 @@ async function nextPainting({ cachedFirst = false, seed = null, historyAction = 
 function generatePainting(token, requestedSeed, historyAction) {
   const targetMode = mode;
   const seed = requestedSeed || Date.now().toString(36) + '-' + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
-  const file = ['flowers', 'landscapes'].includes(mode) ? 'painting-worker.js'
-    : mode === 'maps' ? 'map-worker.js' : 'drawing-worker.js';
-  const url = new URL(`engines/${file}`, appBase);
+  const url = new URL(`generators/${mode}/worker.js`, appBase);
   url.searchParams.set('seed', seed);
   if (mode === 'maps') url.searchParams.set('revision', '4');
   if (mode !== 'landscapes') url.searchParams.set('engine', 'wasm-v1');

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { project, hiddenInterval, visibleIntervals, terrainSvg } from '../src/engines/map-svg.js';
+import { project, hiddenInterval, visibleIntervals, terrainSvg } from '../src/generators/maps/svg.js';
 
 test('the hybrid 3D projection raises mountain peaks above sea level', () => {
   const sea=project([500,500,0]), peak=project([500,500,1]);
