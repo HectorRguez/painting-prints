@@ -2,7 +2,7 @@ import { pageModes } from './projects.js';
 
 export const cacheLimit = 10;
 const version = 1;
-const requiredArtRevision = { landscapes: 2, fish: 2, maps: 3 };
+const requiredArtRevision = { landscapes: 2, fish: 2, maps: 4 };
 
 // Sampling without replacement gives ten distinct pictures before fresh work.
 export function pickUnseen(entries, seen, currentSeed, random = Math.random) {

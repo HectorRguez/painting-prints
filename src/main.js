@@ -210,6 +210,7 @@ function generatePainting(token, requestedSeed, historyAction) {
     : mode === 'maps' ? 'map-worker.js' : 'drawing-worker.js';
   const url = new URL(`engines/${file}`, appBase);
   url.searchParams.set('seed', seed);
+  if (mode === 'maps') url.searchParams.set('revision', '4');
   const worker = new Worker(url);
   engine = worker;
   const finish = () => {

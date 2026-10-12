@@ -1,11 +1,12 @@
 // Vector adaptation of Mapgen4's hybrid oblique projection.
 // Projection reference: Red Blob Games, render.ts (Apache-2.0), pinned in THIRD_PARTY.md.
 // Occlusion is computed on the projected triangles; the SVG contains only visible paths.
-const tilt = 20 * Math.PI / 180;
-const height = 85;
+// Upstream defaults: tilt=0, mountain_height=50. Its oblique matrix keeps
+// coasts top-down while shifting elevated land up the page.
+const height = 50;
 export function project([x, y, elevation]) {
   const z = Math.max(0, elevation) * height;
-  return [x, Math.cos(tilt) * y - z, Math.sin(tilt) * y + Math.cos(tilt) * z];
+  return [x, y - z, z];
 }
 const mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
 const cross = (a, b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
@@ -80,16 +81,37 @@ export function visibleIntervals(a,b,triangles) {
   return intervals;
 }
 
+// Clip a river chord to a terrain face and interpolate its real elevation.
+// Splitting at folds prevents rivers from disappearing under their own hills.
+export function drapeSegment(a, b, triangle) {
+  const u=barycentric(a,triangle), v=barycentric(b,triangle);
+  if (!u || !v) return null;
+  let lo=0,hi=1;
+  for(let i=0;i<3;i++) {
+    if(u[i]<0 && v[i]<0)return null;
+    if(u[i]<0)lo=Math.max(lo,-u[i]/(v[i]-u[i]));
+    else if(v[i]<0)hi=Math.min(hi,-u[i]/(v[i]-u[i]));
+    if(lo>=hi)return null;
+  }
+  const point=t=>{
+    const p=mix(a,b,t), weights=mix(u,v,t);
+    p[2]=dot(weights,triangle.map(p=>p[2]));
+    return p;
+  };
+  return [point(lo),point(hi)];
+}
+
 export function terrainSvg(vertices, indices, rivers) {
-  const faces=[], edges=new Map(), segments=[];
+  const faces=[], ground=[], edges=new Map(), segments=[];
   for(let i=0;i<indices.length;i+=3) {
     const ids=Array.from(indices.slice(i,i+3));
     const points=ids.map(id=>vertices[id]);
     // Discard the external apron and submerged terrain.
     if(points.some(p=>p[0]<0 || p[0]>1000 || p[1]<0 || p[1]>1000) || points.every(p=>p[2]<=0))continue;
     const polygon=landPolygon(points);
+    ground.push(points);
     const n=normal(points);
-    const facing=n[1]/Math.cos(tilt)+n[2]>0;
+    const facing=n[1]+n[2]>0;
     const face={points,normal:n,facing};
     for(let j=1;j+1<polygon.length;j++)faces.push([polygon[0],polygon[j],polygon[j+1]].map(project));
     for(let j=0;j<3;j++) {
@@ -105,10 +127,14 @@ export function terrainSvg(vertices, indices, rivers) {
     }
     if(shore.length===2)segments.push({a:shore[0],b:shore[1],kind:'coast'});
     // Sparse, slope-dependent hatching replaces the original color/lighting shader.
-    const light=dot(n,normalize([-0.6,-0.5,1]));
-    if(facing && light<.62 && Math.max(...points.map(p=>p[2]))>.07) {
+    // Upstream lighting uses elevation gradients, light_angle=80, overhead=30,
+    // slope=2, flat=2.5, ambient=.25. Translate its shadow into fine hatching.
+    const slope=normalize([-10*n[1]/n[2],-10*n[0]/n[2],30]);
+    const angle=80*Math.PI/180;
+    const light=.25+Math.max(0,dot(slope,normalize([Math.cos(angle),Math.sin(angle),2+.5*slope[2]])));
+    if(facing && light<1.16 && Math.max(...points.map(p=>p[2]))>.07) {
       const values=points.map(p=>p[0]+p[1]*.65);
-      const spacing=light<.2?3.5:5.5;
+      const spacing=light<.85?1.5:light<1.05?3:6;
       for(let level=Math.ceil(Math.min(...values)/spacing)*spacing;level<Math.max(...values);level+=spacing) {
         const hits=[];
         for(let j=0;j<3;j++) {
@@ -123,15 +149,8 @@ export function terrainSvg(vertices, indices, rivers) {
     if(Math.min(a[2],b[2])<=.015)continue;
     const silhouette=adjacent.length===2 && adjacent[0].facing!==adjacent[1].facing;
     const crease=adjacent.length===2 && adjacent.some(f=>f.facing)
-      && dot(adjacent[0].normal,adjacent[1].normal)<.78;
+      && dot(adjacent[0].normal,adjacent[1].normal)<.45;
     if(silhouette || crease)segments.push({a,b,kind:silhouette?'ridge':'crease'});
-  }
-  for(const river of rivers) {
-    let {a,b}=river;
-    if(a[2]<0 && b[2]<0)continue;
-    if(a[2]<0)a=mix(a,b,-a[2]/(b[2]-a[2]));
-    if(b[2]<0)b=mix(a,b,-a[2]/(b[2]-a[2]));
-    segments.push({a,b,kind:'river'});
   }
   // A spatial index keeps exact hidden-line clipping local to each segment.
   const cell=24,grid=new Map();
@@ -141,6 +160,27 @@ export function terrainSvg(vertices, indices, rivers) {
       for(let x=Math.floor(Math.min(a[0],b[0])/cell);x<=Math.floor(Math.max(a[0],b[0])/cell);x++)result.push(`${x}:${y}`);
     return result;
   };
+  const groundGrid=new Map();
+  for(const face of ground) {
+    const min=[Math.min(...face.map(p=>p[0])),Math.min(...face.map(p=>p[1]))];
+    const max=[Math.max(...face.map(p=>p[0])),Math.max(...face.map(p=>p[1]))];
+    for(const key of keys(min,max)) {if(!groundGrid.has(key))groundGrid.set(key,[]);groundGrid.get(key).push(face);}
+  }
+  for(const river of rivers) {
+    const candidates=new Set(keys(river.a,river.b).flatMap(key=>groundGrid.get(key)||[]));
+    for(const face of candidates) {
+      const draped=drapeSegment(river.a,river.b,face);
+      if(!draped)continue;
+      let [a,b]=draped;
+      if(a[2]<0 && b[2]<0)continue;
+      if(a[2]<0)a=mix(a,b,-a[2]/(b[2]-a[2]));
+      if(b[2]<0)b=mix(a,b,-a[2]/(b[2]-a[2]));
+      // Quarter-unit buckets keep SVG path count bounded while preserving
+      // the visible difference between headwaters and broad river mouths.
+      const width=Math.max(.25,Math.round(river.width*4)/4);
+      segments.push({a,b,kind:`river-${width}`,width});
+    }
+  }
   for(const face of faces) {
     const min=[Math.min(...face.map(p=>p[0])),Math.min(...face.map(p=>p[1]))];
     const max=[Math.max(...face.map(p=>p[0])),Math.max(...face.map(p=>p[1]))];
@@ -155,13 +195,17 @@ export function terrainSvg(vertices, indices, rivers) {
     for(const [lo,hi] of visibleIntervals(a,b,candidates)) {
       const start=mix(a,b,lo),end=mix(a,b,hi);
       if(Math.hypot(end[0]-start[0],end[1]-start[1])<.12)continue;
-      paths[segment.kind]+=`M${point(start)}L${point(end)}`;
+      paths[segment.kind]=(paths[segment.kind]||'')+`M${point(start)}L${point(end)}`;
       for(const p of [start,end]) {bounds[0]=Math.min(bounds[0],p[0]);bounds[1]=Math.min(bounds[1],p[1]);bounds[2]=Math.max(bounds[2],p[0]);bounds[3]=Math.max(bounds[3],p[1]);}
     }
   }
   if (!Number.isFinite(bounds[0])) throw new Error('Map has no visible land');
   const size=Math.max(bounds[2]-bounds[0],bounds[3]-bounds[1])+60;
   const x=(bounds[0]+bounds[2]-size)/2,y=(bounds[1]+bounds[3]-size)/2;
-  const styles={hatch:[.5,.55],crease:[.65,.65],river:[1,1],coast:[1.3,1],ridge:[1.1,1]};
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000"><g transform="scale(${1000/size}) translate(${-x},${-y})" fill="none" stroke="#292722" stroke-linecap="round" stroke-linejoin="round">${Object.entries(paths).map(([kind,d])=>`<path data-feature="${kind}" stroke-width="${styles[kind][0]}" opacity="${styles[kind][1]}" d="${d}"/>`).join('')}</g></svg>`;
+  const styles={hatch:[.45,.65],crease:[.5,.45],river:[1,1],coast:[.85,.85],ridge:[.95,.95]};
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000"><g transform="scale(${1000/size}) translate(${-x},${-y})" fill="none" stroke="#292722" stroke-linecap="round" stroke-linejoin="round">${Object.entries(paths).filter(([,d])=>d).map(([kind,d])=>{
+    const river=kind.startsWith('river-');
+    const [width,opacity]=river?[Number(kind.slice(6)),.85]:styles[kind];
+    return `<path data-feature="${river?'river':kind}" stroke-width="${width}" opacity="${opacity}" d="${d}"/>`;
+  }).join('')}</g></svg>`;
 }

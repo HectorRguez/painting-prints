@@ -37,3 +37,9 @@ test('3D terrain exports real vector lines on a transparent normalized canvas', 
   assert.ok(!/<image|<canvas|NaN|Infinity/.test(svg));
   assert.equal(terrainSvg(vertices,indices,[]),svg);
 });
+
+test('projection matches the original default top-down coasts and height-50 mountains', () => {
+  assert.deepEqual(project([125,700,0]),[125,700,0]);
+  assert.deepEqual(project([125,700,1]),[125,650,50]);
+  assert.deepEqual(project([900,125,.5]),[900,100,25]);
+});

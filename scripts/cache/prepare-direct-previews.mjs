@@ -9,7 +9,7 @@ import { artworkSvg } from '../../src/artwork-svg.js';
 const cache = new URL('../../public/cache/', import.meta.url);
 const manifest = JSON.parse(await readFile(new URL('manifest.json', cache), 'utf8'));
 for (const mode of ['flowers', 'fish', 'maps']) {
-  const directory = `${mode}-preview-v1/`;
+  const directory = `${mode}-preview-v${mode === 'maps' ? 2 : 1}/`;
   await mkdir(new URL(directory, cache), { recursive: true });
   let sourceBytes = 0, previewBytes = 0;
   for (const [index, entry] of manifest[mode].entries()) {

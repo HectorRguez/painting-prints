@@ -126,7 +126,7 @@ test('a fresh landscape retains its raster preview and original SVG independentl
 test('each style can reopen a prepared preview while retaining its complete export source', async () => {
   const storage = store();
   for (const mode of ['flowers', 'fish', 'maps']) {
-    const painting = { mode, artRevision: mode === 'maps' ? 3 : mode === 'fish' ? 2 : 1, seed: 'ready-preview',
+    const painting = { mode, artRevision: mode === 'maps' ? 4 : mode === 'fish' ? 2 : 1, seed: 'ready-preview',
       ...(mode === 'flowers' ? { png: 'paper', transparentPng: 'ink' } : { svg: '<svg>vectors</svg>' }) };
     const type = mode === 'flowers' ? 'image/png' : 'image/svg+xml';
     const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['ready'], { type }), inkOffset: { x: 1, y: -2 } };
@@ -164,4 +164,14 @@ test('shared seeds bypass the last/random image and can find stock displaced by 
   assert.equal((await cache.find('fish', 'fish-0')).seed, 'fish-0');
   assert.equal((await cache.find('fish', 'personal-2')).seed, 'personal-2');
   assert.equal(await cache.find('fish', 'new-shared-seed'), null);
+});
+
+test('older map renderings cannot override the revised terrain and rivers', async () => {
+  const storage=store();
+  const old={mode:'maps',artRevision:3,seed:'old-map',asset:'maps-v3/0.json.gz'};
+  await storage.put('maps',{version:1,latest:old.seed,entries:[old]});
+  const updated={mode:'maps',artRevision:4,seed:'new-map',asset:'maps-v4/0.json.gz',previewAsset:'maps-preview-v2/0.svg'};
+  const cache=createPaintingCache(base,{storage,fetcher:async()=>({ok:true,json:async()=>({maps:[updated]})})});
+  assert.deepEqual(await cache.next('maps'),updated);
+  assert.equal(await cache.find('maps',old.seed),null);
 });

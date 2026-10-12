@@ -29,7 +29,7 @@ document.querySelector('#start').onclick=async () => {
         document.querySelector('#progress').textContent=`Preparing ${mode} ${i+1}/10`;
         const seed=`painting-stock-v1-${mode}-${i}`;
         const painting=await generate(mode,seed);
-        const stem=`${mode}${mode==="maps"?"-v3":["fish","landscapes"].includes(mode)?"-v2":""}/${i}`;
+        const stem=`${mode}${mode==="maps"?"-v4":["fish","landscapes"].includes(mode)?"-v2":""}/${i}`;
         files[`${stem}.json.gz`]=gzipSync(strToU8(JSON.stringify(painting)),{level:6});
         manifest[mode].push({artRevision:painting.artRevision||1,mode,seed:painting.seed,width:painting.width,height:painting.height,previewWidth:painting.previewWidth,asset:`${stem}.json.gz`});
       }
