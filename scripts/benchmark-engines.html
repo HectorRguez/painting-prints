@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Painting engine benchmark</title>
+<style>body{font:16px system-ui;max-width:70em;margin:2em auto;padding:0 1em}pre{white-space:pre-wrap}button{padding:.75em}</style>
+<h1>Painting engine benchmark</h1>
+<p>Three paired runs per style, in alternating order, using a fresh worker for each run. Includes worker startup and engine loading. Full painting hashes must match. Keep other CPU-heavy work idle while this runs.</p>
+<button id="run">Run comparison</button><pre id="results" aria-live="polite"></pre>
+<script type="module">
+const output=document.querySelector('#results');
+async function hash(value) {
+  const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value)));
+  return [...new Uint8Array(bytes)].map(n=>n.toString(16).padStart(2,'0')).join('');
+}
+function generate(mode,seed,engine) {
+  const file=mode==='fish'?'drawing':mode==='maps'?'map':'painting';
+  const url=new URL(`../public/engines/${file}-worker.js`,location.href);
+  url.searchParams.set('seed',seed);
+  return new Promise((resolve,reject)=>{
+    const start=performance.now(),worker=new Worker(url);
+    const timeout=setTimeout(()=>finish(new Error('Generation timed out')),180000);
+    function finish(error,painting){clearTimeout(timeout);worker.terminate();error?reject(error):resolve({painting,ms:Math.round(performance.now()-start)});}
+    worker.onerror=event=>finish(new Error(event.message));
+    worker.onmessage=({data})=>data.type==='painting-error'?finish(new Error(data.message||'Generation failed')):finish(null,data);
+    worker.postMessage({mode,seed,engine});
+  });
+}
+document.querySelector('#run').onclick=async event=>{
+  event.target.disabled=true;output.textContent='';
+  try {
+    for(const mode of ['fish','maps','flowers'])for(const [round,seed] of ['profile-v1','flower-perf-0','flower-perf-1'].entries()) {
+      const hashes=[];
+      for(const engine of (round%2?['wasm','javascript']:['javascript','wasm'])) {
+        output.textContent+=`Running ${mode}: ${seed}, ${engine}…\n`;
+        const {painting,ms}=await generate(mode,seed,engine),digest=await hash(painting);
+        hashes.push(digest);output.textContent+=JSON.stringify({mode,seed,engine,ms,hash:digest})+'\n';
+      }
+      if(hashes[0]!==hashes[1])throw new Error(`Output mismatch: ${mode}, ${seed}`);
+    }
+    output.textContent+='PASS: all paired artwork hashes match.\n';
+  } catch(error){output.textContent+=`FAIL: ${error.message}\n`;}
+  finally{event.target.disabled=false;}
+};
+</script></html>

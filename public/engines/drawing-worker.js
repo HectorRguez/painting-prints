@@ -1,9 +1,14 @@
 importScripts('unframed-art.js');
-self.onmessage = async ({ data: { mode, seed } }) => {
+self.onmessage = async ({ data: { mode, seed, engine = 'wasm' } }) => {
   try {
     let svg, width, height;
     if (mode === 'fish') {
       importScripts('../upstream/fishdraw/fishdraw.js');
+      if (engine !== 'javascript') {
+        importScripts('art-kernels.js');
+        const kernels = await ArtKernels.loadArtKernels(new URL('art-kernels-v1.wasm', location.href));
+        seg_isect_poly = kernels.polygonIntersections;
+      }
       jsr = str_to_seed(seed);
       const name = binomen();
       jsr = str_to_seed(name);

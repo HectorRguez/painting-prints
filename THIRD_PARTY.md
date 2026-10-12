@@ -22,3 +22,11 @@ The caption uses the original repository date (creation and first commit agree o
 | Mapgen4 | 20 July 2018 | [Author's project page: Created 20 Jul 2018](https://www.redblobgames.com/maps/mapgen4/) |
 
 SVG ink measurement, landscape preview rasterization, and export rendering use [resvg-wasm](https://github.com/thx/resvg-js), MPL-2.0, unmodified from npm. These operations run inside Web Workers; cached sources and SVG exports retain the original geometry. Flowers and landscapes use the original generator code with OffscreenCanvas adapters in a dedicated worker.
+
+Generation also uses our WebAssembly numeric kernels in `src/wasm/`, compiled
+with AssemblyScript (Apache-2.0). Flower noise, paper texture, PRNG, filtering and
+fish intersection formulas are adapted from the vendored MIT-licensed Nonflowers
+and Fishdraw sources by Lingdong Huang. Map interval clipping is our vector
+renderer implementation. The upstream source snapshots remain unchanged; only a
+build-generated Nonflowers adapter exposes its existing noise table. See
+[engine implementation and measurements](docs/generation-engine.md).

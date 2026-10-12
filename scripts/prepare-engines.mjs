@@ -20,3 +20,12 @@ await writeFile(new URL('tmp/map-constraints.ts', root), constraints.split('let 
 const { build } = await import('esbuild');
 await build({ entryPoints: [new URL('src/engines/map-worker.ts', root).pathname], bundle: true,
   outfile: new URL('public/engines/map-worker.js', root).pathname, format: 'iife', minify: true, legalComments: 'eof' });
+
+// Expose the existing noise table only to the pixel-filter adapter. Its original
+// initialization and random draws remain inside the unmodified generator.
+const flowers = await readFile(new URL('public/upstream/nonflowers/main.js', root), 'utf8');
+const marker = '  var perlin;';
+if (flowers.split(marker).length !== 2) throw new Error('Unexpected flower noise source');
+await writeFile(new URL('public/engines/flower-engine.js', root), flowers.replace(marker,
+  marker + '\n  this.perlinValues = function () { this.noise(0); return perlin; };'));
+await import('./prepare-wasm.mjs');

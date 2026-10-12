@@ -101,7 +101,7 @@ export function drapeSegment(a, b, triangle) {
   return [point(lo),point(hi)];
 }
 
-export function terrainSvg(vertices, indices, rivers) {
+export function terrainSvg(vertices, indices, rivers, kernels) {
   const faces=[], ground=[], edges=new Map(), segments=[];
   for(let i=0;i<indices.length;i+=3) {
     const ids=Array.from(indices.slice(i,i+3));
@@ -181,7 +181,8 @@ export function terrainSvg(vertices, indices, rivers) {
       segments.push({a,b,kind:`river-${width}`,width});
     }
   }
-  for(const face of faces) {
+  const acceleratedClip = kernels?.terrainClipper(faces);
+  if (!acceleratedClip) for(const face of faces) {
     const min=[Math.min(...face.map(p=>p[0])),Math.min(...face.map(p=>p[1]))];
     const max=[Math.max(...face.map(p=>p[0])),Math.max(...face.map(p=>p[1]))];
     for(const key of keys(min,max)) {if(!grid.has(key))grid.set(key,[]);grid.get(key).push(face);}
@@ -191,8 +192,8 @@ export function terrainSvg(vertices, indices, rivers) {
   const point=p=>`${p[0].toFixed(2)},${p[1].toFixed(2)}`;
   for(const segment of segments) {
     const a=project(segment.a),b=project(segment.b);
-    const candidates=new Set(keys(a,b).flatMap(key=>grid.get(key)||[]));
-    for(const [lo,hi] of visibleIntervals(a,b,candidates)) {
+    const intervals = acceleratedClip ? acceleratedClip(a,b) : visibleIntervals(a,b,new Set(keys(a,b).flatMap(key=>grid.get(key)||[])));
+    for(const [lo,hi] of intervals) {
       const start=mix(a,b,lo),end=mix(a,b,hi);
       if(Math.hypot(end[0]-start[0],end[1]-start[1])<.12)continue;
       paths[segment.kind]=(paths[segment.kind]||'')+`M${point(start)}L${point(end)}`;

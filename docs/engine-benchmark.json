@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-12",
+  "environment": "Codex Chromium in-app browser, local machine; fresh worker per run; includes engine loading; three paired seeds in alternating engine order",
+  "results": [
+    {
+      "mode": "fish",
+      "seed": "profile-v1",
+      "version": "javascript",
+      "ms": 448,
+      "hash": "b864383f9805f38c597ad219d2189f5175ba979459c9f9469160fa350d315d58"
+    },
+    {
+      "mode": "fish",
+      "seed": "profile-v1",
+      "version": "wasm",
+      "ms": 516,
+      "hash": "b864383f9805f38c597ad219d2189f5175ba979459c9f9469160fa350d315d58"
+    },
+    {
+      "mode": "fish",
+      "seed": "flower-perf-0",
+      "version": "wasm",
+      "ms": 154,
+      "hash": "99b5cf51b057b580e5570dbde3644699eb7592138ffb1c8bc78fb530fe263ec1"
+    },
+    {
+      "mode": "fish",
+      "seed": "flower-perf-0",
+      "version": "javascript",
+      "ms": 295,
+      "hash": "99b5cf51b057b580e5570dbde3644699eb7592138ffb1c8bc78fb530fe263ec1"
+    },
+    {
+      "mode": "fish",
+      "seed": "flower-perf-1",
+      "version": "javascript",
+      "ms": 647,
+      "hash": "60c2f1da6b0ce5cf96400b46e7d83267dd7e61f26dd6020c20b81b005ac44a46"
+    },
+    {
+      "mode": "fish",
+      "seed": "flower-perf-1",
+      "version": "wasm",
+      "ms": 269,
+      "hash": "60c2f1da6b0ce5cf96400b46e7d83267dd7e61f26dd6020c20b81b005ac44a46"
+    },
+    {
+      "mode": "maps",
+      "seed": "profile-v1",
+      "version": "javascript",
+      "ms": 2942,
+      "hash": "d5b0ee295207445638140ad3c2682549c3834eed4cf2eb0e7350b72e10adb11a"
+    },
+    {
+      "mode": "maps",
+      "seed": "profile-v1",
+      "version": "wasm",
+      "ms": 2112,
+      "hash": "d5b0ee295207445638140ad3c2682549c3834eed4cf2eb0e7350b72e10adb11a"
+    },
+    {
+      "mode": "maps",
+      "seed": "flower-perf-0",
+      "version": "wasm",
+      "ms": 2027,
+      "hash": "a2cfa9342340bbe080fe640edca9b482dd8b4caf04c4a7d649b121990b435d50"
+    },
+    {
+      "mode": "maps",
+      "seed": "flower-perf-0",
+      "version": "javascript",
+      "ms": 2614,
+      "hash": "a2cfa9342340bbe080fe640edca9b482dd8b4caf04c4a7d649b121990b435d50"
+    },
+    {
+      "mode": "maps",
+      "seed": "flower-perf-1",
+      "version": "javascript",
+      "ms": 2471,
+      "hash": "5340edcdf2a85c5527cb4ea7b18ea2677520c2553ca4abd2f5326866435f3daa"
+    },
+    {
+      "mode": "maps",
+      "seed": "flower-perf-1",
+      "version": "wasm",
+      "ms": 1990,
+      "hash": "5340edcdf2a85c5527cb4ea7b18ea2677520c2553ca4abd2f5326866435f3daa"
+    },
+    {
+      "mode": "flowers",
+      "seed": "profile-v1",
+      "version": "javascript",
+      "ms": 5802,
+      "hash": "54fc02aa07532b5d60d1353fd99b801c6b54ea4fa6989f4e683c88c342d1b832"
+    },
+    {
+      "mode": "flowers",
+      "seed": "profile-v1",
+      "version": "wasm",
+      "ms": 5534,
+      "hash": "54fc02aa07532b5d60d1353fd99b801c6b54ea4fa6989f4e683c88c342d1b832"
+    },
+    {
+      "mode": "flowers",
+      "seed": "flower-perf-0",
+      "version": "wasm",
+      "ms": 9089,
+      "hash": "b2a4512857022767318ac3501a7fd12e7204582de1c5f239c00c22ea47c227a1"
+    },
+    {
+      "mode": "flowers",
+      "seed": "flower-perf-0",
+      "version": "javascript",
+      "ms": 14668,
+      "hash": "b2a4512857022767318ac3501a7fd12e7204582de1c5f239c00c22ea47c227a1"
+    },
+    {
+      "mode": "flowers",
+      "seed": "flower-perf-1",
+      "version": "javascript",
+      "ms": 14944,
+      "hash": "0f9190558f1c3a19bcb0062774d65dc0990269128921f30dd9747dbe8a84296f"
+    },
+    {
+      "mode": "flowers",
+      "seed": "flower-perf-1",
+      "version": "wasm",
+      "ms": 13897,
+      "hash": "0f9190558f1c3a19bcb0062774d65dc0990269128921f30dd9747dbe8a84296f"
+    }
+  ]
+}

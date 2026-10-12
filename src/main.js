@@ -211,6 +211,7 @@ function generatePainting(token, requestedSeed, historyAction) {
   const url = new URL(`engines/${file}`, appBase);
   url.searchParams.set('seed', seed);
   if (mode === 'maps') url.searchParams.set('revision', '4');
+  if (mode !== 'landscapes') url.searchParams.set('engine', 'wasm-v1');
   const worker = new Worker(url);
   engine = worker;
   const finish = () => {

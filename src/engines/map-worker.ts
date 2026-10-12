@@ -7,9 +7,10 @@ import { TriangleMesh } from '../../vendor/mapgen4/dual-mesh/index.ts';
 import { Generator } from '../../tmp/map-constraints.ts';
 import Delaunator from 'delaunator';
 import Geometry from '../../vendor/mapgen4/geometry.ts';
+import { loadArtKernels } from '../wasm/art-kernels.js';
 import { terrainSvg } from './map-svg.js';
 
-export function generateMap(seed: number) {
+export function generateMap(seed: number, kernels?: any) {
   const spacing = 5.5;
   // Upstream uses one fixed, precomputed mesh, including its Uint16 round trip.
   // Only the elevation/noise seed changes when generating a new map.
@@ -43,12 +44,13 @@ export function generateMap(seed: number) {
   const riverBuffer = new Float32Array(24 * mesh.numSolidTriangles);
   const riverCount = Geometry.setRiverGeometry(map, spacing, riverParams, riverBuffer);
   const rivers = riverSegments(riverBuffer.subarray(0, riverCount * 12));
-  return terrainSvg(vertices, indices, rivers);
+  return terrainSvg(vertices, indices, rivers, kernels);
 }
-if (typeof self !== 'undefined') self.onmessage = ({ data: { seed } }) => {
+if (typeof self !== 'undefined') self.onmessage = async ({ data: { seed, engine = 'wasm' } }) => {
   try {
+    const kernels = engine === 'javascript' ? undefined : await loadArtKernels(new URL('art-kernels-v1.wasm', self.location.href));
     let hash = 2166136261;
     for (const char of seed) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-    self.postMessage({ type: 'painting-ready', artRevision: 4, svg: generateMap(hash >>> 0 || 1), width: 1000, height: 1000, paperColor: '#fff' });
+    self.postMessage({ type: 'painting-ready', artRevision: 4, svg: generateMap(hash >>> 0 || 1, kernels), width: 1000, height: 1000, paperColor: '#fff' });
   } catch (error) { self.postMessage({ type: 'painting-error', message: String(error) }); }
 };

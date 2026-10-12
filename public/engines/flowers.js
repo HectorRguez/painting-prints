@@ -4,6 +4,14 @@ const encodeCanvas = self.canvasDataUrl || (async canvas => canvas.toDataURL("im
 // Work in its 600-unit coordinate system, drawing at 3x resolution throughout
 // the plant's layers (not enlarging a finished 600px bitmap).
 const resolution = 3;
+if (self.artKernels) paper = function (args) {
+  const result = self.artKernels.flowerPaper(Noise.perlinValues(), Prng.s, args);
+  Prng.s = result.state;
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 512;
+  canvas.getContext('2d').putImageData(new ImageData(result.pixels, 512, 512), 0, 0);
+  return canvas;
+};
 let paperContext, flowerContext;
 Layer.empty = function (w = 600, h = w) {
   const canvas = document.createElement('canvas');
@@ -24,6 +32,11 @@ Layer.blit = function (destination, source, args = {}) {
 Layer.filter = function (context, filter) {
   const { width, height } = context.canvas;
   const image = context.getImageData(0, 0, width, height);
+  if (self.artKernels && (filter === Filter.fade || filter === Filter.wispy)) {
+    self.artKernels.filterFlower(image, Noise.perlinValues(), filter === Filter.wispy, resolution);
+    context.putImageData(image, 0, 0);
+    return;
+  }
   const pixels = image.data;
   for (let i = 0; i < pixels.length; i += 4) {
     if (pixels[i + 3] === 0) continue;
