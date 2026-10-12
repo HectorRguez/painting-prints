@@ -4,9 +4,9 @@ import './style.css';
 import { createPaintingCache } from './painting-cache.js';
 import { projects, publicationDate } from './projects.js';
 import { loadSettings, saveSettings } from './export-settings.js';
-import { canShareFile, deliverFile, isMobileDevice } from './share.js';
+import { deliverFile, isMobileDevice } from './share.js';
 import { createViewer } from './viewer.js';
-import { pageFromPath, pageUrl } from './pages.js';
+import { pageFromPath, pageUrl, seedFromSearch } from './pages.js';
 
 // Both the development module and the production bundle live one directory
 // below the app root, so assets also resolve correctly from either subpage.
@@ -31,7 +31,9 @@ const modes = [...document.querySelectorAll('[data-mode]')];
 const interfaceSketch = createInterface();
 const paintingAuthor = document.querySelector('#painting-author');
 const coarsePointer = matchMedia('(pointer: coarse)');
+const phoneLayout = matchMedia('(max-width: 720px)');
 const mobile = () => isMobileDevice(navigator, coarsePointer.matches);
+const useLandscapeCrop = mode => mode === 'landscapes' && (mobile() || phoneLayout.matches);
 let storage;
 try { storage = localStorage; } catch { /* Preferences still work for this visit. */ }
 const exportSettings = loadSettings(storage, mobile());
@@ -58,7 +60,7 @@ function updateSelectedPage() {
   document.title = `Painting · ${project.title}`;
   for (const link of modes) {
     const selected = link.dataset.mode === mode;
-    link.href = pageUrl(link.dataset.mode, appBase).href;
+    link.href = pageUrl(link.dataset.mode, appBase, paintings.get(link.dataset.mode)?.seed).href;
     if (selected) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
     if (selected) {
@@ -71,10 +73,8 @@ function updateSelectedPage() {
 function updateExportButton() {
   const file = prepared.get(mode)?.file;
   interfaceSketch.setExporting(exporting);
-  const sharing = mobile() && canShareFile(file, navigator);
-  interfaceSketch.setSharing(sharing);
-  document.querySelector('#download-label').textContent = sharing ? 'Share' : 'Download';
-  download.title = file ? `${sharing ? 'Share' : 'Download'} ${file.name}` : '';
+  document.querySelector('#download-label').textContent = 'Download';
+  download.title = file ? `Download ${file.name}` : '';
 }
 coarsePointer.addEventListener('change', updateExportButton);
 
@@ -122,33 +122,53 @@ async function prepareCurrentExport(token = revision, force = false) {
   }
 }
 
-async function showPainting(entry, token = revision) {
+function syncPaintingUrl(entry, action = 'replace') {
+  const url = new URL(location.href);
+  url.searchParams.set('seed', entry.seed);
+  if (url.href !== location.href) history[`${action}State`](null, '', url.pathname + url.search + url.hash);
+  updateSelectedPage();
+}
+
+function frameClass(mode) {
+  return `artwork-frame ${mode}${useLandscapeCrop(mode) ? ' landscape-crop' : ''}`;
+}
+
+async function showPainting(entry, token = revision, historyAction = 'replace') {
   // Bundled raster previews display directly without fetching/parsing the SVG.
   // Fresh previews are prepared once in a worker and retained in browser storage.
-  let cached = entry, preview = entry.previewBlob, offset = entry.inkOffset;
-  if (!entry.previewAsset && !preview) {
+  const cropLandscape = useLandscapeCrop(entry.mode);
+  const previewAsset = cropLandscape ? entry.cropPreviewAsset : entry.previewAsset;
+  let cached = entry, preview = cropLandscape ? entry.cropPreviewBlob : entry.previewBlob;
+  let offset = cropLandscape ? { x: 0, y: 0 } : entry.inkOffset;
+  if (!previewAsset && !preview) {
     ({ preview, offset, entry: cached } = await previewJob.run(entry,
-      entry.asset ? new URL(`cache/${entry.asset}`, appBase).href : undefined));
+      entry.asset ? new URL(`cache/${entry.asset}`, appBase).href : undefined, undefined, { cropLandscape }));
   }
   if (token !== revision) return false;
   const painting = cached;
   const image = new Image();
   image.alt = `Procedurally generated ${projects[painting.mode].label.toLowerCase()}`;
-  image.dataset.format = entry.previewAsset || preview.type === 'image/png' ? 'png' : 'svg';
-  const url = entry.previewAsset ? new URL(`cache/${entry.previewAsset}`, appBase).href : URL.createObjectURL(preview);
+  image.dataset.format = previewAsset || preview.type === 'image/png' ? 'png' : 'svg';
+  const url = previewAsset ? new URL(`cache/${previewAsset}`, appBase).href : URL.createObjectURL(preview);
   try { image.src = url; await image.decode(); }
   catch (error) { URL.revokeObjectURL(url); throw error; }
   if (token !== revision) { URL.revokeObjectURL(url); return false; }
+  // The viewport can cross the phone breakpoint while the worker is rendering.
+  if (cropLandscape !== useLandscapeCrop(painting.mode)) {
+    URL.revokeObjectURL(url);
+    return showPainting(cached, token, historyAction);
+  }
   const previous = displayed.get(painting.mode);
   if (previous) URL.revokeObjectURL(previous.url);
-  displayed.set(painting.mode, { image, url });
+  displayed.set(painting.mode, { image, url, cropLandscape });
   paintings.set(painting.mode, cached);
   void paintingCache.remember(cached);
-  artwork.parentElement.className = `artwork-frame ${painting.mode}`;
+  artwork.parentElement.className = frameClass(painting.mode);
   artwork.className = `artwork ${painting.mode}`;
   image.style.transform = `translate(${offset.x}%, ${offset.y}%)`;
   artwork.replaceChildren(image);
   viewer.reset();
+  syncPaintingUrl(cached, historyAction);
   return true;
 }
 
@@ -162,18 +182,19 @@ function cancelCurrentWork() {
   engine = undefined;
 }
 
-async function nextPainting({ cachedFirst = false } = {}) {
+async function nextPainting({ cachedFirst = false, seed = null, historyAction = 'replace' } = {}) {
   if (busy) return;
   cancelCurrentWork();
   const token = revision;
   setBusy(true);
   try {
-    const cached = cachedFirst ? await paintingCache.next(mode, paintings.get(mode)?.seed) : null;
+    const cached = seed ? await paintingCache.find(mode, seed)
+      : cachedFirst ? await paintingCache.next(mode, paintings.get(mode)?.seed) : null;
     if (token !== revision) return;
     if (cached) {
-      if (await showPainting(cached, token)) void prepareCurrentExport(token);
+      if (await showPainting(cached, token, historyAction)) void prepareCurrentExport(token);
     } else {
-      if (token === revision) generatePainting(token);
+      if (token === revision) generatePainting(token, seed, historyAction);
     }
   } catch (error) {
     if (token !== revision) return;
@@ -182,12 +203,13 @@ async function nextPainting({ cachedFirst = false } = {}) {
   }
 }
 
-function generatePainting(token) {
+function generatePainting(token, requestedSeed, historyAction) {
   const targetMode = mode;
-  const seed = Date.now().toString(36) + '-' + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
+  const seed = requestedSeed || Date.now().toString(36) + '-' + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
   const file = ['flowers', 'landscapes'].includes(mode) ? 'painting-worker.js'
     : mode === 'maps' ? 'map-worker.js' : 'drawing-worker.js';
-  const url = new URL(`engines/${file}?seed=${seed}`, appBase);
+  const url = new URL(`engines/${file}`, appBase);
+  url.searchParams.set('seed', seed);
   const worker = new Worker(url);
   engine = worker;
   const finish = () => {
@@ -210,7 +232,7 @@ function generatePainting(token) {
     }
     try {
       const painting = { ...data, mode: targetMode, seed };
-      if (await showPainting(painting, token)) void prepareCurrentExport(token);
+      if (await showPainting(painting, token, historyAction)) void prepareCurrentExport(token);
     } catch (error) {
       if (token !== revision) return;
       console.error(error);
@@ -220,15 +242,18 @@ function generatePainting(token) {
   timeout = setTimeout(() => fail('Generation took too long. Please try Regenerate.'), 120_000);
   worker.postMessage({ mode: targetMode, seed });
 }
-regenerate.addEventListener('click', () => void nextPainting());
+regenerate.addEventListener('click', () => void nextPainting({ historyAction: 'push' }));
 status.addEventListener('click', event => {
   if (!event.target.closest('#retry-painting')) return;
   event.preventDefault();
   void nextPainting();
 });
 
-async function showPage(nextMode) {
-  if (nextMode === mode) return;
+async function showPage(nextMode, seed = null) {
+  const remembered = paintings.get(nextMode);
+  const matches = remembered && (!seed || remembered.seed === seed);
+  const matchingPreview = matches && displayed.get(nextMode)?.cropLandscape === useLandscapeCrop(nextMode);
+  if (nextMode === mode && !busy && matchingPreview) { syncPaintingUrl(remembered); return; }
   // Back/Forward can arrive while an image or export is still being prepared.
   // Save an open settings panel, then invalidate all work from the old page.
   if (settingsDialog.open) closeSettings();
@@ -236,15 +261,16 @@ async function showPage(nextMode) {
   restoreSettingsFocus = false;
   mode = nextMode;
   updateSelectedPage();
-  artwork.parentElement.className = `artwork-frame ${mode}`;
+  artwork.parentElement.className = frameClass(mode);
   artwork.className = `artwork ${mode}`;
   artwork.replaceChildren();
   viewer.reset();
-  if (displayed.has(mode)) {
+  if (matchingPreview) {
     artwork.replaceChildren(displayed.get(mode).image);
     viewer.reset();
+    syncPaintingUrl(remembered);
     void prepareCurrentExport(revision);
-  } else if (paintings.has(mode)) {
+  } else if (matches) {
     const token = revision;
     setBusy(true);
     try {
@@ -256,7 +282,7 @@ async function showPage(nextMode) {
     }
   } else {
     setBusy(false);
-    void nextPainting({ cachedFirst: true });
+    void nextPainting({ cachedFirst: !seed, seed });
   }
 }
 for (const link of modes) {
@@ -265,14 +291,17 @@ for (const link of modes) {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const nextMode = link.dataset.mode;
-    const target = pageUrl(nextMode, appBase);
-    if (location.pathname !== target.pathname) history.pushState(null, '', target.pathname);
-    void showPage(nextMode);
+    const target = new URL(link.href);
+    if (location.href !== target.href) history.pushState(null, '', target.pathname + target.search);
+    void showPage(nextMode, seedFromSearch(target.search));
   });
 }
 window.addEventListener('popstate', () => {
   const nextMode = pageFromPath(location.pathname, appBase.pathname);
-  if (nextMode) void showPage(nextMode);
+  if (nextMode) void showPage(nextMode, seedFromSearch(location.search));
+});
+phoneLayout.addEventListener('change', () => {
+  if (!busy && mode === 'landscapes') void showPage(mode, paintings.get(mode)?.seed);
 });
 
 download.addEventListener('click', async () => {
@@ -353,4 +382,4 @@ if (location.pathname !== pageUrl(mode, appBase).pathname) {
 }
 history.scrollRestoration = 'manual';
 updateSelectedPage();
-void nextPainting({ cachedFirst: true });
+void nextPainting({ cachedFirst: true, seed: seedFromSearch(location.search) });

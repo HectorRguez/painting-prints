@@ -8,7 +8,7 @@ export function createPreviewJob(makeWorker = () => new Worker(new URL('./previe
       active.reject(new DOMException('Painting changed', 'AbortError'));
       active = undefined;
     },
-    run(entry, assetUrl, settings) {
+    run(entry, assetUrl, settings, previewOptions) {
       this.cancel();
       return new Promise((resolve, reject) => {
         const worker = makeWorker();
@@ -20,7 +20,7 @@ export function createPreviewJob(makeWorker = () => new Worker(new URL('./previe
         };
         worker.onmessage = ({ data }) => finish(data.error ? new Error(data.error) : null, data);
         worker.onerror = event => finish(new Error(event.message || 'Could not prepare painting'));
-        worker.postMessage({ entry, assetUrl, settings });
+        worker.postMessage({ entry, assetUrl, settings, previewOptions });
       });
     },
   };

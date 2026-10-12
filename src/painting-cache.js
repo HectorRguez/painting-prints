@@ -81,6 +81,15 @@ export function createPaintingCache(base, {
     return pools.get(mode);
   }
   return {
+    async find(mode, seed) {
+      const entries = await pool(mode);
+      // A shared starter seed remains available even after ten personal images
+      // have displaced it from the bounded browser cache.
+      return entries.find(entry => entry.seed === seed)
+        || (await stock())[mode]?.find(entry => entry.seed === seed
+          && (!requiredArtRevision[mode] || entry.artRevision === requiredArtRevision[mode]))
+        || null;
+    },
     async next(mode, currentSeed) {
       const entries = await pool(mode);
       if (!seen.has(mode)) seen.set(mode, new Set());

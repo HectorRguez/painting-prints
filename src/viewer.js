@@ -7,15 +7,19 @@ export function createViewer(viewport, artwork) {
   let lastTap;
   let tap;
 
+  const minimumScale = () => Math.min(1, viewport.clientWidth / (artwork.offsetWidth || 1),
+    viewport.clientHeight / (artwork.offsetHeight || 1));
+  const zoom = (view, scale, anchor, destination = anchor) => zoomAt(view, scale, anchor, destination, minimumScale());
+
   function apply(next) {
-    view = constrainView(next, viewport.getBoundingClientRect(), { width: artwork.offsetWidth, height: artwork.offsetHeight });
+    view = constrainView(next, viewport.getBoundingClientRect(), { width: artwork.offsetWidth, height: artwork.offsetHeight }, minimumScale());
     viewport.dataset.magnified = String(view.scale > 1.001);
     // Landscape previews are pre-rendered in a worker. Scale their existing
     // image layer during gestures; other SVGs redraw at the new size.
-    const landscape = artwork.classList.contains('landscapes');
-    artwork.style.setProperty('--view-scale', landscape ? 1 : view.scale);
+    const raster = artwork.firstElementChild?.dataset?.format === 'png';
+    artwork.style.setProperty('--view-scale', raster ? 1 : view.scale);
     artwork.style.transform = `translate(${view.x}px, ${view.y}px)`
-      + (landscape ? ` scale(${view.scale})` : '');
+      + (raster ? ` scale(${view.scale})` : '');
     viewport.classList.toggle('zoomed', artwork.offsetWidth * view.scale > viewport.clientWidth
       || artwork.offsetHeight * view.scale > viewport.clientHeight);
   }
@@ -54,7 +58,7 @@ export function createViewer(viewport, artwork) {
     if (tap && distance(tap.position, position) > 8) tap = undefined;
     const [a, b] = [...pointers.values()];
     if (b && gesture.distance) {
-      apply(zoomAt(gesture.view, gesture.view.scale * distance(a, b) / gesture.distance, gesture.anchor, midpoint(a, b)));
+      apply(zoom(gesture.view, gesture.view.scale * distance(a, b) / gesture.distance, gesture.anchor, midpoint(a, b)));
     } else {
       apply({ ...gesture.view, x: gesture.view.x + a.x - gesture.anchor.x, y: gesture.view.y + a.y - gesture.anchor.y });
     }
@@ -75,12 +79,12 @@ export function createViewer(viewport, artwork) {
     if (!artwork.firstElementChild) return;
     event.preventDefault();
     const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
-    apply(zoomAt(view, view.scale * Math.exp(-delta * 0.002), point(event)));
+    apply(zoom(view, view.scale * Math.exp(-delta * 0.002), point(event)));
   }, { passive: false });
   viewport.addEventListener('keydown', event => {
     if (['+', '=', '-', '_'].includes(event.key)) {
       event.preventDefault();
-      apply(zoomAt(view, view.scale * (['+', '='].includes(event.key) ? 1.25 : 0.8), { x: 0, y: 0 }));
+      apply(zoom(view, view.scale * (['+', '='].includes(event.key) ? 1.25 : 0.8), { x: 0, y: 0 }));
     } else if (event.key === '0') { event.preventDefault(); fit(); }
     else if (event.key.startsWith('Arrow')) {
       event.preventDefault();

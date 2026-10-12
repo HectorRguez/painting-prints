@@ -55,7 +55,6 @@ export function createInterface() {
         messageUnderline = drawablyUnderline(link, pen);
       } else status.textContent = message;
     },
-    setSharing(sharing) { exportIcon(sharing ? 'share' : 'download'); },
     setExporting(loading) { buttons.get('download').setState(loading ? 'loading' : 'idle'); },
     setLoading(loading) {
       buttons.get('regenerate').setState(loading ? 'loading' : 'idle');

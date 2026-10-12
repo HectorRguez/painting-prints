@@ -7,3 +7,5 @@ To rebuild the starter collection, install dependencies and run `npm run prepare
 Landscapes use 3200 × 800 panoramic sources for the viewer, with a centered 800√2 × 800 crop for every export. `node scripts/cache/widen-landscapes.mjs` rebuilds the ten panoramic starter landscapes and their ink offsets. Landscape revision 2 rejects older narrow browser entries.
 
 After rebuilding the landscapes or the starter collection, run `node scripts/cache/render-landscape-previews.mjs` to replace the ten high-resolution preview images and update the manifest. Keep the `.json.gz` SVG sources for vector exports; these are separate from the screen previews. Then run `npm run build`.
+
+Each landscape also includes a 2048-pixel-wide `cropPreviewAsset` containing exactly the central export composition for phones. Use `--crop-only` to rebuild those ten crops without re-rendering the desktop panoramas. Shared seed URLs look up the original starter collection even when personal paintings have displaced it from the bounded browser cache.

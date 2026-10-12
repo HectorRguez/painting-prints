@@ -28,7 +28,8 @@ function fixture(artWidth = 320, artHeight = 320, mode = 'fish') {
   const viewport = { dataset: {}, clientWidth: 320, clientHeight: 560, classList: { toggle() {} }, setPointerCapture() {},
     getBoundingClientRect: () => ({ left: 0, top: 0, width: 320, height: 560 }),
     addEventListener(name, callback) { listeners.set(name, callback); } };
-  const artwork = { classList: { contains: name => name === mode }, style: { setProperty(name, value) { this[name] = value; } }, offsetWidth: artWidth, offsetHeight: artHeight, firstElementChild: {} };
+  const artwork = { style: { setProperty(name, value) { this[name] = value; } }, offsetWidth: artWidth, offsetHeight: artHeight,
+    firstElementChild: { dataset: { format: mode === 'landscapes' ? 'png' : 'svg' } } };
   globalThis.ResizeObserver = class { observe() {} };
   const viewer = createViewer(viewport, artwork);
   const fire = (type, id, x, y, extra = {}) => listeners.get(type)({ type, pointerId: id,
@@ -83,18 +84,18 @@ test('double-tap and a new painting reset the viewer; keyboard zoom has an acces
 });
 
 
-test('wheel, keyboard and pinch cannot shrink below the height-filling baseline', () => {
+test('wheel, keyboard and pinch can zoom out to fit the entire image', () => {
   const { artwork, fire, viewer } = fixture(792, 560);
   viewer.reset();
   fire('wheel', 0, 160, 280, { deltaY: 10000, deltaMode: 0 });
   assert.equal(artwork.style.transform, 'translate(0px, 0px)');
-  assert.equal(artwork.style['--view-scale'], 1);
+  assert.equal(artwork.style['--view-scale'], 320 / 792);
   fire('keydown', 0, 0, 0, { key: '-' });
   assert.equal(artwork.style.transform, 'translate(0px, 0px)');
-  assert.equal(artwork.style['--view-scale'], 1);
+  assert.equal(artwork.style['--view-scale'], 320 / 792);
   fire('pointerdown', 1, 60, 280); fire('pointerdown', 2, 260, 280);
   fire('pointermove', 1, 150, 280); fire('pointermove', 2, 170, 280);
-  assert.equal(artwork.style['--view-scale'], 1);
+  assert.equal(artwork.style['--view-scale'], 320 / 792);
 });
 
 test('panning stops at the image edges without exposing empty strips', () => {

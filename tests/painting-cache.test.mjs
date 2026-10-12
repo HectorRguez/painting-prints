@@ -134,5 +134,17 @@ test('all ten bundled landscapes include a 4096 by 1024 PNG preview and separate
     assert.equal(image.readUInt32BE(16), 4096);
     assert.equal(image.readUInt32BE(20), 1024);
     assert.equal(typeof entry.inkOffset.y, 'number');
+    const crop = await readFile(new URL(entry.cropPreviewAsset, directory));
+    assert.equal(crop.readUInt32BE(16), 2048);
+    assert.equal(crop.readUInt32BE(20), Math.round(2048 / Math.SQRT2));
   }
+});
+
+test('shared seeds bypass the last/random image and can find stock displaced by personal entries', async () => {
+  const storage = store();
+  const cache = createPaintingCache(base, options(storage));
+  for (let i = 0; i < 10; i++) await cache.remember({ ...stock[0], seed: `personal-${i}` });
+  assert.equal((await cache.find('fish', 'fish-0')).seed, 'fish-0');
+  assert.equal((await cache.find('fish', 'personal-2')).seed, 'personal-2');
+  assert.equal(await cache.find('fish', 'new-shared-seed'), null);
 });

@@ -8,7 +8,14 @@ export function pageFromPath(pathname, basePath) {
   return pageModes.includes(page) ? page : null;
 }
 
-export function pageUrl(mode, base) {
+export function seedFromSearch(search) {
+  const seed = new URLSearchParams(search).get('seed');
+  return seed && seed.length <= 256 ? seed : null;
+}
+
+export function pageUrl(mode, base, seed) {
   if (!pageModes.includes(mode)) throw new Error('Unknown painting page');
-  return new URL(`${mode}/`, base);
+  const url = new URL(`${mode}/`, base);
+  if (seed) url.searchParams.set('seed', seed);
+  return url;
 }
