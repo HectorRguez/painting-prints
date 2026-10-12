@@ -1,8 +1,10 @@
+import { createPreviewJob } from './preview-job.js';
+import { createInterface } from './interface.js';
 import './style.css';
-import { projects } from './projects.js';
+import { createPaintingCache } from './painting-cache.js';
+import { projects, publicationDate } from './projects.js';
 import { loadSettings, saveSettings } from './export-settings.js';
 import { canShareFile, deliverFile, isMobileDevice } from './share.js';
-import { artworkSvg, prepareExport } from './export.js';
 import { createViewer } from './viewer.js';
 import { pageFromPath, pageUrl } from './pages.js';
 
@@ -10,6 +12,9 @@ import { pageFromPath, pageUrl } from './pages.js';
 // below the app root, so assets also resolve correctly from either subpage.
 const appBase = new URL(/* @vite-ignore */ '../', import.meta.url);
 
+const paintingCache = createPaintingCache(appBase);
+const previewJob = createPreviewJob();
+const exportJob = createPreviewJob();
 const artwork = document.querySelector('#artwork');
 const viewer = createViewer(document.querySelector('#canvas-viewport'), artwork);
 const gallery = document.querySelector('.gallery');
@@ -22,8 +27,8 @@ const formatField = document.querySelector('#file-format');
 const orientationField = document.querySelector('#orientation');
 const paperField = document.querySelector('#page-size');
 const backgroundField = document.querySelector('#add-background');
-const settingsNote = document.querySelector('#settings-note');
 const modes = [...document.querySelectorAll('[data-mode]')];
+const interfaceSketch = createInterface();
 const paintingAuthor = document.querySelector('#painting-author');
 const coarsePointer = matchMedia('(pointer: coarse)');
 const mobile = () => isMobileDevice(navigator, coarsePointer.matches);
@@ -31,18 +36,24 @@ let storage;
 try { storage = localStorage; } catch { /* Preferences still work for this visit. */ }
 const exportSettings = loadSettings(storage, mobile());
 const paintings = new Map();
+// Retain one decoded SVG per style; returning does not fetch or decode it again.
+const displayed = new Map();
 // Keep one prepared file per generator, rather than accumulating old exports.
 const prepared = new Map();
 let mode = pageFromPath(location.pathname, appBase.pathname) || 'flowers';
 let revision = 0;
 let busy = false;
+let exporting = false;
 let engine;
 let timeout;
 let restoreSettingsFocus = false;
 
 function updateSelectedPage() {
   const project = projects[mode];
-  paintingAuthor.textContent = project.author;
+  document.querySelector('#painting-author-name').textContent = project.author;
+  const publication = document.querySelector('#painting-date');
+  publication.dateTime = project.published;
+  publication.textContent = publicationDate(project);
   paintingAuthor.href = project.source;
   document.title = `Painting · ${project.title}`;
   for (const link of modes) {
@@ -50,16 +61,19 @@ function updateSelectedPage() {
     link.href = pageUrl(link.dataset.mode, appBase).href;
     if (selected) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
-    if (selected) gallery.setAttribute('aria-labelledby', link.id);
+    if (selected) {
+      gallery.setAttribute('aria-labelledby', link.id);
+      interfaceSketch.selectPage(link);
+    }
   }
 }
 
 function updateExportButton() {
   const file = prepared.get(mode)?.file;
+  interfaceSketch.setExporting(exporting);
   const sharing = mobile() && canShareFile(file, navigator);
+  interfaceSketch.setSharing(sharing);
   document.querySelector('#download-label').textContent = sharing ? 'Share' : 'Download';
-  download.querySelector('.download-icon').hidden = sharing;
-  download.querySelector('.share-icon').hidden = !sharing;
   download.title = file ? `${sharing ? 'Share' : 'Download'} ${file.name}` : '';
 }
 coarsePointer.addEventListener('change', updateExportButton);
@@ -67,10 +81,12 @@ coarsePointer.addEventListener('change', updateExportButton);
 function setBusy(value, message = '') {
   busy = value;
   gallery.setAttribute('aria-busy', String(value));
+  document.querySelector('#loading-indicator').hidden = !value;
+  interfaceSketch.setLoading(value);
   regenerate.disabled = value;
-  download.disabled = value || !prepared.has(mode);
-  settingsButton.disabled = value;
-  status.textContent = message;
+  download.disabled = value || exporting || !paintings.has(mode) || (mobile() && !prepared.has(mode));
+  settingsButton.disabled = false;
+  interfaceSketch.setMessage(message);
   updateExportButton();
   if (!value && restoreSettingsFocus) {
     settingsButton.focus();
@@ -78,101 +94,133 @@ function setBusy(value, message = '') {
   }
 }
 
-async function prepareCurrentExport(token = revision) {
+async function prepareCurrentExport(token = revision, force = false) {
   const targetMode = mode;
-  const painting = paintings.get(targetMode);
+  const entry = paintings.get(targetMode);
+  let painting = entry;
   if (!painting) { setBusy(false); return; }
   const settings = exportSettings[targetMode];
   const key = JSON.stringify([painting.seed, settings.format, settings.background,
     ...(settings.format === 'pdf' ? [settings.paper, settings.orientation] : [])]);
   if (prepared.get(targetMode)?.key === key) { setBusy(false); return; }
+  exportJob.cancel();
   prepared.delete(targetMode);
-  setBusy(true);
+  if (!mobile() && !force) { setBusy(false); return; }
+  exporting = true;
+  setBusy(false);
   try {
-    const file = await prepareExport(painting, settings);
+    const { file } = await exportJob.run(entry, entry.asset ? new URL(`cache/${entry.asset}`, appBase).href : undefined, settings);
     if (token !== revision) return;
     prepared.set(targetMode, { key, file });
+    exporting = false;
     setBusy(false);
   } catch (error) {
     if (token !== revision) return;
     console.error(error);
+    exporting = false;
     setBusy(false, 'Could not prepare the file. Open Settings to try again.');
   }
 }
 
-async function showPainting(painting, token = revision) {
+async function showPainting(entry, token = revision) {
+  // Cached and fresh paintings follow the same SVG-only display path.
+  const { svg, offset, entry: cached } = await previewJob.run(entry, entry.asset ? new URL(`cache/${entry.asset}`, appBase).href : undefined);
+  if (token !== revision) return false;
+  const painting = cached;
   const image = new Image();
   image.alt = `Procedurally generated ${projects[painting.mode].label.toLowerCase()}`;
-  let drawing;
-  if (painting.mode === 'flowers') {
-    image.src = painting.transparentPng;
-    await image.decode();
-    drawing = image;
-  } else {
-    const url = URL.createObjectURL(new Blob([artworkSvg(painting)], { type: 'image/svg+xml' }));
-    try { image.src = url; await image.decode(); drawing = image; }
-    finally { URL.revokeObjectURL(url); }
-  }
-  if (token !== revision) return false;
+  image.dataset.format = 'svg';
+  const url = URL.createObjectURL(svg);
+  try { image.src = url; await image.decode(); }
+  catch (error) { URL.revokeObjectURL(url); throw error; }
+  if (token !== revision) { URL.revokeObjectURL(url); return false; }
+  const previous = displayed.get(painting.mode);
+  if (previous) URL.revokeObjectURL(previous.url);
+  displayed.set(painting.mode, { image, url });
+  paintings.set(painting.mode, cached);
+  void paintingCache.remember(cached);
   artwork.parentElement.className = `artwork-frame ${painting.mode}`;
   artwork.className = `artwork ${painting.mode}`;
-  artwork.replaceChildren(drawing);
+  image.style.transform = `translate(${offset.x}%, ${offset.y}%)`;
+  artwork.replaceChildren(image);
   viewer.reset();
   return true;
 }
 
 function cancelCurrentWork() {
   revision++;
+  exporting = false;
   clearTimeout(timeout);
-  engine?.remove();
+  engine?.terminate();
+  previewJob.cancel();
+  exportJob.cancel();
   engine = undefined;
 }
 
-function generatePainting() {
+async function nextPainting({ cachedFirst = false } = {}) {
   if (busy) return;
   cancelCurrentWork();
   const token = revision;
-  setBusy(true, 'Making your painting…');
-  const frame = document.createElement('iframe');
-  engine = frame;
-  frame.className = 'engine';
-  frame.title = 'Painting generator';
-  frame.setAttribute('aria-hidden', 'true');
-  frame.tabIndex = -1;
-  const seed = Date.now().toString(36) + '-' + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
-  const enginePage = ['flowers', 'landscapes'].includes(mode) ? mode : 'vector';
-  frame.src = new URL(`engines/${enginePage}.html?mode=${mode}&seed=${seed}`, appBase).href;
-  document.body.append(frame);
-  timeout = setTimeout(() => {
-    if (token !== revision) return;
-    frame.remove();
-    engine = undefined;
-    setBusy(false, 'Generation took too long. Please try Regenerate.');
-  }, 120_000);
-}
-window.addEventListener('message', async event => {
-  if (event.origin !== location.origin || event.source !== engine?.contentWindow) return;
-  if (!['painting-ready', 'painting-error'].includes(event.data?.type)) return;
-  const token = revision;
-  clearTimeout(timeout);
-  engine.remove();
-  engine = undefined;
-  if (event.data.type === 'painting-error') {
-    setBusy(false, 'Could not make the painting. Please try Regenerate.');
-    return;
-  }
+  setBusy(true);
   try {
-    const painting = event.data;
-    if (painting.mode !== mode) throw new Error('Unexpected painting type');
-    paintings.set(mode, painting);
-    if (await showPainting(painting, token)) await prepareCurrentExport(token);
+    const cached = cachedFirst ? await paintingCache.next(mode, paintings.get(mode)?.seed) : null;
+    if (token !== revision) return;
+    if (cached) {
+      if (await showPainting(cached, token)) void prepareCurrentExport(token);
+    } else {
+      if (token === revision) generatePainting(token);
+    }
   } catch (error) {
     if (token !== revision) return;
     console.error(error);
-    setBusy(false, 'Could not show the painting. Please try Regenerate.');
+    setBusy(false, 'Could not load the painting. Please try Regenerate.');
   }
+}
+
+function generatePainting(token) {
+  const targetMode = mode;
+  const seed = Date.now().toString(36) + '-' + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
+  const file = ['flowers', 'landscapes'].includes(mode) ? 'painting-worker.js'
+    : mode === 'maps' ? 'map-worker.js' : 'drawing-worker.js';
+  const url = new URL(`engines/${file}?seed=${seed}`, appBase);
+  const worker = new Worker(url);
+  engine = worker;
+  const finish = () => {
+    clearTimeout(timeout);
+    worker.terminate();
+    if (engine === worker) engine = undefined;
+  };
+  const fail = message => {
+    finish();
+    if (token === revision) setBusy(false, message);
+  };
+  worker.onerror = () => fail('Could not make the painting. Please try Regenerate.');
+  worker.onmessage = async ({ data }) => {
+    if (token !== revision) return;
+    if (!['painting-ready', 'painting-error'].includes(data?.type)) return;
+    finish();
+    if (data.type === 'painting-error') {
+      setBusy(false, 'Could not make the painting. Please try Regenerate.');
+      return;
+    }
+    try {
+      const painting = { ...data, mode: targetMode, seed };
+      if (await showPainting(painting, token)) void prepareCurrentExport(token);
+    } catch (error) {
+      if (token !== revision) return;
+      console.error(error);
+      setBusy(false, 'Could not show the painting. Please try Regenerate.');
+    }
+  };
+  timeout = setTimeout(() => fail('Generation took too long. Please try Regenerate.'), 120_000);
+  worker.postMessage({ mode: targetMode, seed });
+}
+regenerate.addEventListener('click', () => void nextPainting());
+status.addEventListener('click', event => {
+  if (!event.target.closest('#retry-painting')) return;
+  event.preventDefault();
+  void nextPainting();
 });
-regenerate.addEventListener('click', generatePainting);
 
 async function showPage(nextMode) {
   if (nextMode === mode) return;
@@ -187,7 +235,11 @@ async function showPage(nextMode) {
   artwork.className = `artwork ${mode}`;
   artwork.replaceChildren();
   viewer.reset();
-  if (paintings.has(mode)) {
+  if (displayed.has(mode)) {
+    artwork.replaceChildren(displayed.get(mode).image);
+    viewer.reset();
+    void prepareCurrentExport(revision);
+  } else if (paintings.has(mode)) {
     const token = revision;
     setBusy(true);
     try {
@@ -199,7 +251,7 @@ async function showPage(nextMode) {
     }
   } else {
     setBusy(false);
-    generatePainting();
+    void nextPainting({ cachedFirst: true });
   }
 }
 for (const link of modes) {
@@ -219,17 +271,27 @@ window.addEventListener('popstate', () => {
 });
 
 download.addEventListener('click', async () => {
-  const file = prepared.get(mode)?.file;
-  if (busy || !file) return;
+  if (busy || exporting) return;
   const token = revision;
-  setBusy(true);
+  let file = prepared.get(mode)?.file;
+  // Desktop downloads may prepare on demand. Phone files are prepared before
+  // the tap, preserving the user activation needed by the native share sheet.
+  if (!file && !mobile()) {
+    await prepareCurrentExport(token, true);
+    if (token !== revision) return;
+    file = prepared.get(mode)?.file;
+  }
+  if (!file) return;
+  exporting = true;
+  setBusy(false);
   try {
-    // No generation, import or fetch is awaited before opening the share sheet.
     const result = await deliverFile(file, { mobile: mobile(), navigator });
     if (token !== revision) return;
+    exporting = false;
     setBusy(false, result === 'downloaded-after-share-failed' ? 'Sharing was unavailable. Your file was downloaded instead.' : '');
   } catch (error) {
     if (token !== revision) return;
+    exporting = false;
     console.error(error);
     setBusy(false, 'Could not save the file. Please try again.');
   }
@@ -239,12 +301,8 @@ function updateSettingsFields() {
   const pdf = formatField.value === 'pdf';
   orientationField.disabled = !pdf;
   paperField.disabled = !pdf;
-  const rasterSvg = mode === 'flowers' && formatField.value === 'svg';
-  settingsNote.textContent = 'Add a background to exported files. The preview stays transparent. Orientation and page size apply to PDFs.'
-    + (rasterSvg ? ' Flower SVGs embed the original image.' : '');
 }
 settingsButton.addEventListener('click', () => {
-  if (busy) return;
   const settings = exportSettings[mode];
   formatField.value = settings.format;
   orientationField.value = settings.orientation;
@@ -252,11 +310,19 @@ settingsButton.addEventListener('click', () => {
   backgroundField.checked = settings.background;
   updateSettingsFields();
   settingsDialog.showModal();
+  interfaceSketch.syncSettings();
 });
 formatField.addEventListener('change', updateSettingsFields);
 function closeSettings() {
   exportSettings[mode] = { format: formatField.value, orientation: orientationField.value, paper: paperField.value, background: backgroundField.checked };
   saveSettings(storage, exportSettings);
+  if (busy) {
+    settingsDialog.close();
+    settingsButton.focus();
+    return;
+  }
+  revision++;
+  exporting = false;
   restoreSettingsFocus = true;
   settingsDialog.close();
   // Disable exporting synchronously with Done/Escape, rather than waiting
@@ -282,4 +348,4 @@ if (location.pathname !== pageUrl(mode, appBase).pathname) {
 }
 history.scrollRestoration = 'manual';
 updateSelectedPage();
-generatePainting();
+void nextPainting({ cachedFirst: true });

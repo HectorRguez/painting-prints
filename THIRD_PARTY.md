@@ -1,10 +1,24 @@
 # Artwork and upstream sources
 
-Each artwork page links to its original author above the image.
+Each artwork page links to its original author below the image.
 
 - **Nonflowers** and **Shan Shui** — Lingdong Huang, MIT. Original source and licenses are in `public/upstream/`.
 - **Fishdraw** — Lingdong Huang, MIT. Snapshot `a514372de1d05b4aa32a9e35aadec9a5299689a2`; original source and license in `public/upstream/fishdraw/`. Our worker supplies a seed and our presentation makes the paper optional.
-- **A View on Galiano Island** — Lingdong Huang. The upstream repository has no license file. Its source is not redistributed here; the browser fetches the original `main.js` from the author's GitHub repository at `b35a8c905a0312e1721c0cd4fad8e8c8110ca061`. This page requires access to raw.githubusercontent.com. Our adapter captures its SVG output and varies its random seed. The original title and signature remain in the drawing.
-- **Mapgen4**, including dual-mesh — Amit Patel / Red Blob Games, Apache-2.0. Snapshot `c1d8cb018a11a8b9e17d59233c36c176429d37eb`; unchanged source and licenses in `vendor/mapgen4/`. Our build extracts the constraint generator without its editor, and our worker renders the original terrain and river results as SVG contours. This is a line-art adaptation, not the original Mapgen4 renderer.
+- **Mapgen4**, including dual-mesh — Amit Patel / Red Blob Games, Apache-2.0. Snapshot `c1d8cb018a11a8b9e17d59233c36c176429d37eb`; unchanged source and licenses in `vendor/mapgen4/`. Our build extracts the constraint generator without its editor, and our worker uses the original folded terrain mesh with a vector adaptation of the hybrid oblique projection in upstream `render.ts`. It emits visible coastlines, mountain silhouettes, creases, rivers and slope hatching as SVG paths, using triangle-based hidden-line removal. This is a 3D line-art adaptation, not a pixel-identical reproduction of the original WebGL lighting and biome shaders.
 
 The landscape's transparent version composites its white occlusion shapes before converting the finished grayscale image to ink opacity. This preserves hidden lines. Original flower paper is unchanged and available with Add background.
+
+Interface controls use [Drawably](https://github.com/danielwh2/drawably) by Daniel Belyi, MIT, installed from npm.
+
+## Original project dates shown in the caption
+
+The caption uses the original repository date (creation and first commit agree on the day), except Mapgen4, whose author documents an earlier public project date. Verified 12 October 2026. This is a source record; the interface contains only one author/date caption.
+
+| Project | Date | Evidence |
+| --- | --- | --- |
+| Nonflowers | 12 February 2018 | [Original commit](https://github.com/LingDong-/nonflowers/commit/7c54d974dbcaa415f2b9f406b86968b75226bfca) |
+| Shan Shui | 30 January 2018 | [Original commit](https://github.com/LingDong-/shan-shui-inf/commit/9bbbbbd3353447ea1dbf4fbff0837948903ccada) |
+| Fishdraw | 11 August 2021 | [Original commit](https://github.com/LingDong-/fishdraw/commit/2a5ef1dcc467883b424ad9276a4500162e12065d) |
+| Mapgen4 | 20 July 2018 | [Author's project page: Created 20 Jul 2018](https://www.redblobgames.com/maps/mapgen4/) |
+
+SVG ink measurement and export rendering use [resvg-wasm](https://github.com/thx/resvg-js), MPL-2.0, unmodified from npm. These operations run inside Web Workers; the preview retains the original SVG. Flowers and landscapes use the original generator code with OffscreenCanvas adapters in a dedicated worker.

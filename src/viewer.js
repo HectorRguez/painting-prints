@@ -9,7 +9,11 @@ export function createViewer(viewport, artwork) {
 
   function apply(next) {
     view = constrainView(next, viewport.getBoundingClientRect(), { width: artwork.offsetWidth, height: artwork.offsetHeight });
-    artwork.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.scale})`;
+    viewport.dataset.magnified = String(view.scale > 1.001);
+    // Resize the SVG's viewport instead of magnifying a cached compositor texture.
+    // The wrapper retains its baseline dimensions for pan bounds and pointer math.
+    artwork.style.setProperty('--view-scale', view.scale);
+    artwork.style.transform = `translate(${view.x}px, ${view.y}px)`;
     viewport.classList.toggle('zoomed', artwork.offsetWidth * view.scale > viewport.clientWidth
       || artwork.offsetHeight * view.scale > viewport.clientHeight);
   }
@@ -22,7 +26,6 @@ export function createViewer(viewport, artwork) {
   }
   function fit() {
     reset();
-    apply({ scale: Math.min(1, viewport.clientWidth / artwork.offsetWidth, viewport.clientHeight / artwork.offsetHeight), x: 0, y: 0 });
   }
   function point(event) {
     const bounds = viewport.getBoundingClientRect();
@@ -83,7 +86,7 @@ export function createViewer(viewport, artwork) {
         y: view.y + (event.key === 'ArrowUp' ? 40 : event.key === 'ArrowDown' ? -40 : 0) });
     }
   });
-  // Rotation and browser chrome resizing both return to a complete, fitted view.
+  // Rotation and browser chrome resizing restore the height-filling baseline.
   const observer = new ResizeObserver(reset);
   observer.observe(viewport);
   return { reset };

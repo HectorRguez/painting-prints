@@ -1,7 +1,8 @@
-// Print adapter for Shan Shui. A fixed ISO-paper aspect ratio keeps the same
-// complete composition on screen and in A4 and A3 downloads.
+(async () => {
+const encodeCanvas = self.canvasDataUrl || (async canvas => canvas.toDataURL("image/png"));
+// Generate a wide scroll for the viewer; exports retain the central ISO-paper composition.
 try {
-  MEM.windx = 800 * Math.SQRT2;
+  MEM.windx = 3200;
   MEM.windy = 800;
   calcViewBox = function () { return `0 0 ${MEM.windx} ${MEM.windy}`; };
   update();
@@ -20,10 +21,12 @@ try {
       context.fillRect(x, 512 - y, 1, 1); context.fillRect(512 - x, 512 - y, 1, 1);
     }
   }
-  parent.postMessage({ type: 'painting-ready', mode: 'landscapes', seed: SEED,
-    svg: new XMLSerializer().serializeToString(svg), texture: paper.toDataURL('image/png'),
-    width: MEM.windx, height: MEM.windy }, location.origin);
+  parent.postMessage({ type: 'painting-ready', mode: 'landscapes', artRevision: 2, seed: SEED,
+    svg: new XMLSerializer().serializeToString(svg), texture: await encodeCanvas(paper),
+    width: 800 * Math.SQRT2, height: MEM.windy, previewWidth: MEM.windx }, location.origin);
 } catch (error) {
   console.error(error);
   parent.postMessage({ type: 'painting-error' }, location.origin);
 }
+
+})();
