@@ -21,3 +21,9 @@ See [cache instructions](scripts/cache/README.md) to rebuild the starter artwork
 ## Artwork and attribution
 
 Flowers, landscapes, and fish are based on work by **Lingdong Huang**. Maps are adapted from **Amit Patel / Red Blob Games**. Every page links to the original repository below its drawing. See [THIRD_PARTY.md](THIRD_PARTY.md) for source snapshots, licenses, modifications, and interface dependencies.
+
+### Rendering efficiency
+
+Every starter image has a direct preview asset: PNG for Flowers/Landscapes, SVG for Fish/Maps. Opening one does not decompress its print source or initialize a rendering worker. Newly generated previews are also retained in browser storage for all styles. Print sources remain independent, preserving vector exports and original flower paper backgrounds.
+
+Fresh landscapes are rasterized once at full preview resolution; the same pixels determine their ink bounds. Phone crops use the export composition and skip ink alignment. Flowers use their native PNG directly and measure alignment in an offscreen canvas, avoiding an SVG wrapper and WASM download. Their two paper/transparent versions share one border calculation. Map hidden-line clipping reuses triangle coefficients and avoids per-test constraint/depth arrays. Generation and preparation remain in cancellable workers; the original geometry, random sequence, preview resolution and export sources are preserved.

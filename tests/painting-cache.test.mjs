@@ -123,6 +123,23 @@ test('a fresh landscape retains its raster preview and original SVG independentl
   assert.deepEqual(await cache.resolve(restored), painting);
 });
 
+test('each style can reopen a prepared preview while retaining its complete export source', async () => {
+  const storage = store();
+  for (const mode of ['flowers', 'fish', 'maps']) {
+    const painting = { mode, artRevision: mode === 'maps' ? 3 : mode === 'fish' ? 2 : 1, seed: 'ready-preview',
+      ...(mode === 'flowers' ? { png: 'paper', transparentPng: 'ink' } : { svg: '<svg>vectors</svg>' }) };
+    const type = mode === 'flowers' ? 'image/png' : 'image/svg+xml';
+    const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['ready'], { type }), inkOffset: { x: 1, y: -2 } };
+    await createPaintingCache(base, options(storage)).remember(entry);
+    const cache = createPaintingCache(base, options(storage));
+    const restored = await cache.find(mode, painting.seed);
+    assert.equal(await restored.previewBlob.text(), 'ready');
+    assert.equal(restored.previewBlob.type, type);
+    assert.deepEqual(restored.inkOffset, entry.inkOffset);
+    assert.deepEqual(await cache.resolve(restored), painting);
+  }
+});
+
 test('all ten bundled landscapes include a 4096 by 1024 PNG preview and separate SVG source', async () => {
   const directory = new URL('../public/cache/', import.meta.url);
   const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));

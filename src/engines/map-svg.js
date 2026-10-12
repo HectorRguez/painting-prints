@@ -27,12 +27,23 @@ function landPolygon(points) {
   }
   return result;
 }
-function barycentric(p, triangle) {
+// Each face clips many nearby segments. Keep its constant coefficients instead
+// of recalculating them and allocating depth/constraint arrays for every test.
+const triangleMetrics = new WeakMap();
+function metrics(triangle) {
+  let result = triangleMetrics.get(triangle);
+  if (result) return result;
   const [a,b,c] = triangle;
-  const denominator = (b[1]-c[1])*(a[0]-c[0])+(c[0]-b[0])*(a[1]-c[1]);
+  const by = b[1]-c[1], bx = c[0]-b[0], cy = c[1]-a[1], cx = a[0]-c[0];
+  result = { by, bx, cy, cx, x: c[0], y: c[1], denominator: by*(a[0]-c[0])+bx*(a[1]-c[1]) };
+  triangleMetrics.set(triangle, result);
+  return result;
+}
+function barycentric(p, triangle) {
+  const { by, bx, cy, cx, x, y, denominator } = metrics(triangle);
   if (Math.abs(denominator) < 1e-9) return null;
-  const u=((b[1]-c[1])*(p[0]-c[0])+(c[0]-b[0])*(p[1]-c[1]))/denominator;
-  const v=((c[1]-a[1])*(p[0]-c[0])+(a[0]-c[0])*(p[1]-c[1]))/denominator;
+  const u=(by*(p[0]-x)+bx*(p[1]-y))/denominator;
+  const v=(cy*(p[0]-x)+cx*(p[1]-y))/denominator;
   return [u,v,1-u-v];
 }
 // Portion of a line hidden by one triangle, including intersections in depth.
@@ -40,10 +51,10 @@ export function hiddenInterval(a, b, triangle) {
   const u=barycentric(a,triangle), v=barycentric(b,triangle);
   if (!u || !v) return null;
   let lo=0, hi=1;
-  const constraints=u.map((value,i)=>[value,v[i]]);
-  constraints.push([dot(u,triangle.map(p=>p[2]))-a[2]-.015,
-                    dot(v,triangle.map(p=>p[2]))-b[2]-.015]);
-  for (const [start,end] of constraints) {
+  const depth = weights => weights[0]*triangle[0][2]+weights[1]*triangle[1][2]+weights[2]*triangle[2][2];
+  for (let i=0;i<4;i++) {
+    const start=i<3?u[i]:depth(u)-a[2]-.015;
+    const end=i<3?v[i]:depth(v)-b[2]-.015;
     if (start<0 && end<0) return null;
     if (start<0) lo=Math.max(lo,-start/(end-start));
     else if (end<0) hi=Math.min(hi,start/(start-end));

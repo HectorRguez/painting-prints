@@ -66,8 +66,21 @@ try {
   if (Math.random() <= 0.5) woody({ ctx: CTX, xof: 300, yof: 550 });
   else herbal({ ctx: CTX, xof: 300, yof: 600 });
   const border = squircle(0.98, 3);
-  Layer.border(CTX, border);
-  Layer.border(flowerContext, border);
+  // Both versions share the same border. Compute it once, without allocating
+  // small arrays for every pixel in each of the two 1800px canvases.
+  const contexts = [CTX, flowerContext];
+  const images = contexts.map(ctx => ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
+  const { width, height } = images[0];
+  for (let y = 0; y < height; y++) {
+    const ny = (y / height - 0.5) * 2;
+    for (let x = 0; x < width; x++) {
+      const nx = (x / width - 0.5) * 2;
+      if (Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2)) <= border(Math.atan2(ny, nx))) continue;
+      const i = (y * width + x) * 4;
+      for (const image of images) image.data.fill(0, i, i + 4);
+    }
+  }
+  contexts.forEach((ctx, i) => ctx.putImageData(images[i], 0, 0));
   const print = Layer.empty();
   for (let x = 0; x < 600; x += 512) {
     for (let y = 0; y < 600; y += 512) print.drawImage(BGCANV, x, y);

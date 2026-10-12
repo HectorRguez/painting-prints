@@ -1,6 +1,6 @@
 import { prepareExport, pngBlob } from './export.js';
 import wasmUrl from '@resvg/resvg-wasm/index_bg.wasm?url';
-import { measureInk, renderSvgPng } from './ink-measurement.js';
+import { measureInk, measurePngInk, renderSvgPng, renderSvgPreview } from './ink-measurement.js';
 import { artworkSvg } from './artwork-svg.js';
 import { cacheEntry } from './painting-cache.js';
 self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {} } }) => {
@@ -25,16 +25,28 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
     }
     const cached = entry.svg || entry.png ? await cacheEntry(painting) : entry;
     const crop = painting.mode === 'landscapes' && previewOptions.cropLandscape;
-    const markup = artworkSvg(painting, false, !crop);
-    const offset = crop ? { x: 0, y: 0 } : cached.inkOffset || await measureInk(markup, fetch(wasmUrl));
+    let offset = crop ? { x: 0, y: 0 } : cached.inkOffset;
+    let preview;
+    if (painting.mode === 'flowers') {
+      // Nonflowers already provides its finished pixels. Avoid an SVG wrapper
+      // and a WASM renderer download just to decode and align this PNG.
+      preview = pngBlob(painting.transparentPng);
+      offset ||= await measurePngInk(preview);
+    } else if (painting.mode === 'landscapes') {
+      const markup = artworkSvg(painting, false, !crop);
+      const rendered = await renderSvgPreview(markup, crop ? 2048 : 4096, fetch(wasmUrl), !offset);
+      preview = rendered.preview;
+      offset ||= rendered.offset;
+    } else {
+      const markup = artworkSvg(painting, false, true);
+      offset ||= await measureInk(markup, fetch(wasmUrl));
+      preview = new Blob([markup], { type: 'image/svg+xml' });
+    }
     if (painting.mode === 'landscapes') offset.x = 0;
     if (!crop) cached.inkOffset = offset;
-    // Rasterize the expensive panorama once, off the UI thread. Zooming reuses
-    // this 4096 × 1024 preview; the cached source and exports retain the SVG.
-    const preview = painting.mode === 'landscapes'
-      ? await renderSvgPng(markup, crop ? 2048 : 4096, fetch(wasmUrl))
-      : new Blob([markup], { type: 'image/svg+xml' });
-    if (painting.mode === 'landscapes') cached[crop ? 'cropPreviewBlob' : 'previewBlob'] = preview;
+    // Reopening any style can display its prepared preview directly. Keep its
+    // complete compressed source separately for background and print exports.
+    cached[crop ? 'cropPreviewBlob' : 'previewBlob'] = preview;
     self.postMessage({ entry: cached, preview, offset });
   } catch (error) { self.postMessage({ error: String(error) }); }
 };

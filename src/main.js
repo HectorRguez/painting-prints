@@ -148,7 +148,7 @@ async function showPainting(entry, token = revision, historyAction = 'replace') 
   const painting = cached;
   const image = new Image();
   image.alt = `Procedurally generated ${projects[painting.mode].label.toLowerCase()}`;
-  image.dataset.format = previewAsset || preview.type === 'image/png' ? 'png' : 'svg';
+  image.dataset.format = (previewAsset ? previewAsset.endsWith('.png') : preview.type === 'image/png') ? 'png' : 'svg';
   const url = previewAsset ? new URL(`cache/${previewAsset}`, appBase).href : URL.createObjectURL(preview);
   try { image.src = url; await image.decode(); }
   catch (error) { URL.revokeObjectURL(url); throw error; }
