@@ -21,4 +21,4 @@ The caption uses the original repository date (creation and first commit agree o
 | Fishdraw | 11 August 2021 | [Original commit](https://github.com/LingDong-/fishdraw/commit/2a5ef1dcc467883b424ad9276a4500162e12065d) |
 | Mapgen4 | 20 July 2018 | [Author's project page: Created 20 Jul 2018](https://www.redblobgames.com/maps/mapgen4/) |
 
-SVG ink measurement and export rendering use [resvg-wasm](https://github.com/thx/resvg-js), MPL-2.0, unmodified from npm. These operations run inside Web Workers; the preview retains the original SVG. Flowers and landscapes use the original generator code with OffscreenCanvas adapters in a dedicated worker.
+SVG ink measurement, landscape preview rasterization, and export rendering use [resvg-wasm](https://github.com/thx/resvg-js), MPL-2.0, unmodified from npm. These operations run inside Web Workers; cached sources and SVG exports retain the original geometry. Flowers and landscapes use the original generator code with OffscreenCanvas adapters in a dedicated worker.

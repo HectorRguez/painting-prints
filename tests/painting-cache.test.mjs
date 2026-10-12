@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { createPaintingCache, pickUnseen, retainPainting, cacheEntry } from '../src/painting-cache.js';
 const base = new URL('https://example.com/painting/');
 const stock = Array.from({ length: 10 }, (_, i) => ({ artRevision: 2, mode: 'fish', seed: `fish-${i}`, width: 520, height: 320, asset: `fish/${i}.json.gz` }));
@@ -100,4 +101,38 @@ test('narrow landscape cache entries cannot override panoramic starter images', 
   await storage.put('landscapes', { version: 1, latest: 'narrow', entries: [{ ...wide, artRevision: 1, seed: 'narrow' }] });
   const cache = createPaintingCache(base, { storage, fetcher: async () => ({ ok: true, json: async () => ({ landscapes: [wide] }) }) });
   assert.equal((await cache.next('landscapes')).seed, 'wide');
+});
+
+test('remembered stock landscapes pick up new pre-rendered previews after a deployment', async () => {
+  const storage = store();
+  const old = { mode: 'landscapes', artRevision: 2, seed: 'wide', asset: 'landscapes-v2/0.json.gz', inkOffset: { x: 0, y: 2 } };
+  await storage.put('landscapes', { version: 1, latest: old.seed, entries: [old] });
+  const updated = { ...old, previewAsset: 'landscapes-preview-v1/0.png' };
+  const cache = createPaintingCache(base, { storage, fetcher: async () => ({ ok: true, json: async () => ({ landscapes: [updated] }) }) });
+  assert.deepEqual(await cache.next('landscapes'), updated);
+});
+
+test('a fresh landscape retains its raster preview and original SVG independently after reload', async () => {
+  const storage = store();
+  const painting = { mode: 'landscapes', artRevision: 2, seed: 'fresh-wide', svg: '<svg>original panorama</svg>' };
+  const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['preview'], { type: 'image/png' }), inkOffset: { x: 0, y: 0 } };
+  await createPaintingCache(base, options(storage)).remember(entry);
+  const cache = createPaintingCache(base, options(storage));
+  const restored = await cache.next('landscapes');
+  assert.equal(await restored.previewBlob.text(), 'preview');
+  assert.deepEqual(await cache.resolve(restored), painting);
+});
+
+test('all ten bundled landscapes include a 4096 by 1024 PNG preview and separate SVG source', async () => {
+  const directory = new URL('../public/cache/', import.meta.url);
+  const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
+  assert.equal(manifest.landscapes.length, 10);
+  for (const entry of manifest.landscapes) {
+    assert.match(entry.asset, /\.json\.gz$/);
+    const image = await readFile(new URL(entry.previewAsset, directory));
+    assert.equal(image.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+    assert.equal(image.readUInt32BE(16), 4096);
+    assert.equal(image.readUInt32BE(20), 1024);
+    assert.equal(typeof entry.inkOffset.y, 'number');
+  }
 });

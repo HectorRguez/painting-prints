@@ -23,12 +23,12 @@ test('panning cannot lose the painting; zooming out returns it to the center', (
   assert.deepEqual(constrainView({ scale: 0.5, x: 100, y: -200 }, viewport, artwork), { scale: 1, x: 0, y: 0 });
 });
 
-function fixture(artWidth = 320, artHeight = 320) {
+function fixture(artWidth = 320, artHeight = 320, mode = 'fish') {
   const listeners = new Map();
   const viewport = { dataset: {}, clientWidth: 320, clientHeight: 560, classList: { toggle() {} }, setPointerCapture() {},
     getBoundingClientRect: () => ({ left: 0, top: 0, width: 320, height: 560 }),
     addEventListener(name, callback) { listeners.set(name, callback); } };
-  const artwork = { style: { setProperty(name, value) { this[name] = value; } }, offsetWidth: artWidth, offsetHeight: artHeight, firstElementChild: {} };
+  const artwork = { classList: { contains: name => name === mode }, style: { setProperty(name, value) { this[name] = value; } }, offsetWidth: artWidth, offsetHeight: artHeight, firstElementChild: {} };
   globalThis.ResizeObserver = class { observe() {} };
   const viewer = createViewer(viewport, artwork);
   const fire = (type, id, x, y, extra = {}) => listeners.get(type)({ type, pointerId: id,
@@ -101,4 +101,17 @@ test('panning stops at the image edges without exposing empty strips', () => {
   assert.deepEqual(constrainView({ scale: 1, x: 10000, y: -10000 },
     { width: 320, height: 560 }, { width: 792, height: 560 }),
     { scale: 1, x: 236, y: 0 });
+});
+
+test('landscape zoom keeps its rendering dimensions fixed and still pans and resets', () => {
+  const { artwork, viewer, fire } = fixture(1800, 450, 'landscapes');
+  viewer.reset();
+  for (let i = 0; i < 20; i++) fire('keydown', 0, 0, 0, { key: '+' });
+  assert.equal(artwork.style['--view-scale'], 1);
+  assert.equal(artwork.style.transform, 'translate(0px, 0px) scale(6)');
+  fire('keydown', 0, 0, 0, { key: 'ArrowRight' });
+  assert.equal(artwork.style.transform, 'translate(-40px, 0px) scale(6)');
+  viewer.reset();
+  assert.equal(artwork.style.transform, 'translate(0px, 0px) scale(1)');
+  assert.equal(artwork.style['--view-scale'], 1);
 });

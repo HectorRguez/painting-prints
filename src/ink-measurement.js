@@ -3,8 +3,8 @@ import { inkOffset } from './preview-layout.js';
 let ready;
 export async function measureInk(svg, wasm) {
   await (ready ??= initWasm(wasm));
-  // A small off-thread rendering is only used for alignment. Display and
-  // downloads retain the complete SVG and all of its original geometry.
+  // This small off-thread rendering is only used for alignment. Cached source
+  // and SVG downloads retain all of the original geometry.
   const renderer = new Resvg(svg, { fitTo: { mode: 'width', value: 384 }, font: { loadSystemFonts: false } });
   let pixels;
   try {

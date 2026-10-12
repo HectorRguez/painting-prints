@@ -10,10 +10,12 @@ export function createViewer(viewport, artwork) {
   function apply(next) {
     view = constrainView(next, viewport.getBoundingClientRect(), { width: artwork.offsetWidth, height: artwork.offsetHeight });
     viewport.dataset.magnified = String(view.scale > 1.001);
-    // Resize the SVG's viewport instead of magnifying a cached compositor texture.
-    // The wrapper retains its baseline dimensions for pan bounds and pointer math.
-    artwork.style.setProperty('--view-scale', view.scale);
-    artwork.style.transform = `translate(${view.x}px, ${view.y}px)`;
+    // Landscape previews are pre-rendered in a worker. Scale their existing
+    // image layer during gestures; other SVGs redraw at the new size.
+    const landscape = artwork.classList.contains('landscapes');
+    artwork.style.setProperty('--view-scale', landscape ? 1 : view.scale);
+    artwork.style.transform = `translate(${view.x}px, ${view.y}px)`
+      + (landscape ? ` scale(${view.scale})` : '');
     viewport.classList.toggle('zoomed', artwork.offsetWidth * view.scale > viewport.clientWidth
       || artwork.offsetHeight * view.scale > viewport.clientHeight);
   }

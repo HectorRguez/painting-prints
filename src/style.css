@@ -24,6 +24,7 @@ a:focus-visible, .canvas-viewport:focus-visible { outline: 2px solid #1a1a1a; ou
 .canvas-viewport.zoomed:active { cursor: grabbing; }
 .artwork-frame { --ratio: 1; width: calc(100cqh * var(--ratio)); height: 100cqh; aspect-ratio: var(--ratio); position: relative; flex: none; }
 .artwork { width: 100%; height: 100%; background: transparent; flex: none; position: relative; transform-origin: center; }
+.artwork.landscapes { will-change: transform; }
 .artwork-frame.flowers { --ratio: 1; width: min(100cqw, 100cqh); height: auto; }
 .artwork-frame.landscapes { --ratio: 4; width: max(100cqw, 360cqh); height: auto; }
 .artwork-frame.fish { --ratio: 1.625; width: min(100cqw, calc(100cqh * var(--ratio))); height: auto; }

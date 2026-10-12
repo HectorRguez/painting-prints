@@ -36,7 +36,7 @@ let storage;
 try { storage = localStorage; } catch { /* Preferences still work for this visit. */ }
 const exportSettings = loadSettings(storage, mobile());
 const paintings = new Map();
-// Retain one decoded SVG per style; returning does not fetch or decode it again.
+// Retain one decoded preview per style; returning does not fetch or decode it again.
 const displayed = new Map();
 // Keep one prepared file per generator, rather than accumulating old exports.
 const prepared = new Map();
@@ -123,14 +123,19 @@ async function prepareCurrentExport(token = revision, force = false) {
 }
 
 async function showPainting(entry, token = revision) {
-  // Cached and fresh paintings follow the same SVG-only display path.
-  const { svg, offset, entry: cached } = await previewJob.run(entry, entry.asset ? new URL(`cache/${entry.asset}`, appBase).href : undefined);
+  // Bundled raster previews display directly without fetching/parsing the SVG.
+  // Fresh previews are prepared once in a worker and retained in browser storage.
+  let cached = entry, preview = entry.previewBlob, offset = entry.inkOffset;
+  if (!entry.previewAsset && !preview) {
+    ({ preview, offset, entry: cached } = await previewJob.run(entry,
+      entry.asset ? new URL(`cache/${entry.asset}`, appBase).href : undefined));
+  }
   if (token !== revision) return false;
   const painting = cached;
   const image = new Image();
   image.alt = `Procedurally generated ${projects[painting.mode].label.toLowerCase()}`;
-  image.dataset.format = 'svg';
-  const url = URL.createObjectURL(svg);
+  image.dataset.format = entry.previewAsset || preview.type === 'image/png' ? 'png' : 'svg';
+  const url = entry.previewAsset ? new URL(`cache/${entry.previewAsset}`, appBase).href : URL.createObjectURL(preview);
   try { image.src = url; await image.decode(); }
   catch (error) { URL.revokeObjectURL(url); throw error; }
   if (token !== revision) { URL.revokeObjectURL(url); return false; }
