@@ -3,7 +3,6 @@ import wasmUrl from '@resvg/resvg-wasm/index_bg.wasm?url';
 import { measurePngInk, renderSvgPng } from './ink-measurement.js';
 import { artworkSvg } from './artwork-svg.js';
 import { renderLandscapePreview } from './generators/landscapes/preview.js';
-import { renderFishPreview } from './generators/fish/preview.js';
 import { renderLinePreview } from './generators/shared/line-preview.js';
 import { cacheEntry } from './painting-cache.js';
 import { projects } from './projects.js';
@@ -45,8 +44,7 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
       preview = rendered.preview;
       offset ||= rendered.offset;
     } else {
-      const render = painting.mode === 'fish' ? renderFishPreview : renderLinePreview;
-      const rendered = await render(painting, { measure: !offset });
+      const rendered = await renderLinePreview(painting, { measure: !offset });
       preview = rendered.preview;
       offset ||= rendered.offset;
     }

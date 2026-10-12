@@ -1,6 +1,6 @@
 """Losslessly compact monochrome PNG previews (optional; requires Pillow).
 
-python scripts/cache/optimize-png.py currents cityscapes buildings
+python scripts/cache/optimize-png.py cityscapes buildings
 """
 import sys
 from pathlib import Path

@@ -27,14 +27,3 @@ export async function canvasPreview(painting, draw, { width = 3200, viewWidth = 
   }
   return { preview: await canvas.convertToBlob({ type: 'image/png' }), offset };
 }
-
-export function strokePaths(context, paths) {
-  context.lineCap = context.lineJoin = 'round';
-  for (const path of paths) {
-    if (!path.d || path.fill !== 'none') throw new Error('Unsupported preview path');
-    context.strokeStyle = path.stroke;
-    context.lineWidth = Number(path['stroke-width']);
-    context.globalAlpha = Number(path.opacity ?? 1);
-    context.stroke(new Path2D(path.d));
-  }
-}

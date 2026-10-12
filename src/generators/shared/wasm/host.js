@@ -1,5 +1,4 @@
 import { createFlowerKernels } from '../../flowers/wasm.js';
-import { createFishKernels } from '../../fish/wasm.js';
 
 // Shared worker-local WASM instance. All buffers are bounded by the current
 // job and released when its worker terminates. No cross-origin isolation needed.
@@ -10,8 +9,5 @@ export async function loadArtKernels(url) {
 }
 export async function createArtKernels(bytes) {
   const { instance } = await WebAssembly.instantiate(bytes);
-  return {
-    ...createFlowerKernels(instance.exports),
-    ...createFishKernels(instance.exports),
-  };
+  return createFlowerKernels(instance.exports);
 }

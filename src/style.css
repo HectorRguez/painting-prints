@@ -28,7 +28,6 @@ a:focus-visible, .canvas-viewport:focus-visible { outline: 2px solid #1a1a1a; ou
 .artwork-frame.flowers { --ratio: 1; width: min(100cqw, 100cqh); height: auto; }
 .artwork-frame.landscapes { --ratio: 4; width: max(100cqw, 360cqh); height: auto; }
 .artwork-frame.landscapes.landscape-crop { --ratio: 1.41421356237; width: min(100cqw, calc(100cqh * var(--ratio))); height: auto; }
-.artwork-frame.fish { --ratio: 1.625; width: min(100cqw, calc(100cqh * var(--ratio))); height: auto; }
 .artwork img, .artwork > svg { display: block; position: absolute; width: calc(100% * var(--view-scale, 1)); height: calc(100% * var(--view-scale, 1)); left: calc((1 - var(--view-scale, 1)) * 50%); top: calc((1 - var(--view-scale, 1)) * 50%); pointer-events: none; }
 #status { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(52ch, calc(100% - 40px)); font-size: .9em; margin: 0; color: #666; text-align: center; pointer-events: none; z-index: 13; }
 #status:empty { display: none; }
@@ -121,7 +120,7 @@ dialog.drawably-host > .drawably-svg > .drawably-outline { fill: var(--drawably-
   .style-picker select::picker(select) { position-area: block-end span-inline-end; max-height: 65dvh; overflow-y: auto; }
   .style-picker option { min-height: 44px; }
 }
-.artwork-frame:is(.currents, .buildings) { width: min(100cqw, 100cqh); height: auto; }
+.artwork-frame.buildings { width: min(100cqw, 100cqh); height: auto; }
 .artwork-frame.cityscapes { --ratio: 1.414; width: min(100cqw, calc(100cqh * var(--ratio))); height: auto; }
 @media (max-width: 720px) {
   .has-style-picker .modes { display: none; }

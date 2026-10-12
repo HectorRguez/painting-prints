@@ -16,7 +16,7 @@ function generate(mode, seed) {
   });
 }
 
-for (const mode of ['currents', 'cityscapes', 'buildings']) {
+for (const mode of ['cityscapes', 'buildings']) {
   test(`${mode}: shipping WASM worker produces distinct, repeatable vector drawings`, { timeout: 90000 }, async () => {
     const seed = `painting-stock-v1-${mode}-0`;
     const a = await generate(mode, seed);

@@ -12,10 +12,14 @@ const mountains = line(13, 44, 27, 26, 74) + line(27, 26, 40, 44, 75)
 const sun = roughCircle(44, 22, 3.5, { ...pen, seed: 79 });
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>Painting</title>
-<g stroke="#171715" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<style>
+  :root { color: #171715; }
+  @media (prefers-color-scheme: dark) { :root { color: #f5f2eb; } }
+</style>
+<g stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
 <path d="${frame}"/>
 <path d="${mountains}"/>
-<path d="${sun}" fill="#171715" stroke-width="1"/>
+<path d="${sun}" fill="currentColor" stroke-width="1"/>
 </g>
 </svg>\n`;
 await writeFile(new URL('../public/favicon.svg', import.meta.url), svg);

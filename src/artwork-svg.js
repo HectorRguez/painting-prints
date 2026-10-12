@@ -23,7 +23,6 @@ export function artworkSvg(painting, background = false, preview = false) {
       // Preview panning and zoom never change this centered export region.
       if (!preview) drawing = `<g transform="translate(${-(painting.previewWidth - painting.width) / 2} 0)">${drawing}</g>`;
     }
-    if (mode === 'fish') drawing = drawing.replace(/<rect\b[^>]*\bfill=["']floralwhite["'][^>]*\/>/, '');
     let definitions = '', paper = '', attributes = '';
     if (background && painting.texture) {
       definitions = `<defs><pattern id="paper-texture" patternUnits="userSpaceOnUse" width="512" height="512"><image href="${escape(painting.texture)}" width="512" height="512"/></pattern></defs>`;

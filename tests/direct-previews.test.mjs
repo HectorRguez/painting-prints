@@ -27,7 +27,7 @@ test('every style ships ten raster previews with independent original export sou
         assert.equal(crop.readUInt32BE(16), 2048);
         assert.equal(crop.readUInt32BE(20), Math.round(2048 / Math.SQRT2));
       } else {
-        const width = mode === 'fish' ? 3200 : 2400;
+        const width = 2400;
         assert.equal(preview.readUInt32BE(16), width);
         assert.equal(preview.readUInt32BE(20), Math.round(width * painting.height / painting.width));
         assert.ok(painting.svg.includes('<path'));

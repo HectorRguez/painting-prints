@@ -4,27 +4,8 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import {createArtKernels} from '../src/generators/shared/wasm/host.js';
 const binary=await readFile(new URL('../public/generators/shared/kernels-v1.wasm',import.meta.url));
-const fish=vm.createContext({Math});
-vm.runInContext(await readFile(new URL('../src/generators/fish/upstream/fishdraw.js',import.meta.url),'utf8'),fish);
-const original=(...args)=>fish.seg_isect_poly(...args);
 let state=12345;
 const random=()=>((state=Math.imul(state,1664525)+1013904223>>>0)/4294967296);
-
-test('WASM polygon intersections match upstream at vertices, parallel edges and rays',async()=>{
-  const kernels=await createArtKernels(binary);
-  const polygons=[[],[[1,1]],[[0,0],[1,0],[1,1],[0,1]],[[0,0],[2,0],[1,1],[2,2],[0,2]]];
-  const lines=[[0,0,1,0],[0,0,1,1],[-1,.5,2,.5],[1,1,1,1]];
-  for(let i=0;i<60;i++)lines.push(Array.from({length:4},()=>random()*6-2));
-  for(const polygon of polygons)for(const line of lines)for(const ray of [true,false])
-    assert.equal(JSON.stringify(kernels.polygonIntersections(...line,polygon,ray)),JSON.stringify(original(...line,polygon,ray)));
-});
-
-test('large polygon buffers grow safely and remain reusable',async()=>{
-  const kernels=await createArtKernels(binary);
-  const poly=Array.from({length:20000},(_,i)=>[Math.cos(i/20000*Math.PI*2),Math.sin(i/20000*Math.PI*2)]);
-  assert.equal(JSON.stringify(kernels.polygonIntersections(-2,.1,2,.1,poly)),JSON.stringify(original(-2,.1,2,.1,poly)));
-  assert.deepEqual(kernels.polygonIntersections(0,0,1,1,[]),[]);
-});
 
 function flowerContext(source) {
   const canvas=()=>{

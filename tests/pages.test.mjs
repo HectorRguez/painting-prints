@@ -26,7 +26,7 @@ test('direct folder, index and landing-page URLs select the right generator', ()
 
 test('shared seeds round-trip through every style URL without altering special characters', () => {
   const base = new URL('https://example.com/painting-prints/');
-  for (const mode of pageModes) for (const seed of ['painting-stock-v1-fish-0', 'fresh-123', 'snow 雪 & = / ? #']) {
+  for (const mode of pageModes) for (const seed of ['painting-stock-v1-landscapes-0', 'fresh-123', 'snow 雪 & = / ? #']) {
     const url = pageUrl(mode, base, seed);
     assert.equal(seedFromSearch(url.search), seed);
     assert.equal(pageFromPath(url.pathname, base.pathname), mode);
