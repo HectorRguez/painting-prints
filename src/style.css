@@ -39,7 +39,7 @@ a:focus-visible, .canvas-viewport:focus-visible { outline: 2px solid #1a1a1a; ou
 iframe.engine { position: fixed; width: 1px; height: 1px; left: -100px; top: 0; border: 0; visibility: hidden; }
 dialog { padding: 20px; border: 1px solid #1a1a1a; border-radius: 0; width: 360px; max-width: calc(100% - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; color: inherit; background: #f5f2eb; }
 dialog::backdrop { background: #1a1a1a33; }
-#settings-title { font-size: .9em; font-weight: normal; margin: 0 0 16px; }
+#settings-title { display: flex; align-items: center; gap: 10px; font-size: .9em; font-weight: normal; margin: 0 0 16px; outline: none; }
 .setting-row { display: grid; grid-template-columns: 1fr 180px; align-items: center; gap: 10px; font-size: .8em; margin-top: 10px; }
 .setting-row select { width: 100%; min-height: 44px; font: inherit; font-size: 16px; border: 1px solid #a7a398; border-radius: 0; background: transparent; color: inherit; padding: 6px; }
 .setting-row select:disabled { opacity: .45; }
@@ -75,6 +75,16 @@ dialog.drawably-host { position: fixed; border: 0; padding: 24px; background: tr
 dialog.drawably-host > .drawably-svg > .drawably-outline { fill: var(--drawably-paper); }
 .select-sketch { min-width: 0; width: 100%; }
 .setting-row .drawably-select select { border: 0; padding: 8px 34px 8px 12px; min-width: 0 !important; }
+/* Drawably's ancestor :has(:focus-visible) rule otherwise activates every
+   descendant focus ring when a control inside its dialog card is focused. */
+#settings-dialog .drawably-focus { visibility: hidden; }
+#settings-dialog .drawably-button:focus-visible > .drawably-svg > .drawably-focus,
+#settings-dialog .drawably-checkbox:has(> input:focus-visible) > .drawably-svg > .drawably-focus { visibility: visible; }
+/* Highlight just this dropdown's existing outline; never add a second box. */
+#settings-dialog .drawably-select:focus-within > .drawably-svg > .drawably-outline {
+  fill: color-mix(in srgb, var(--drawably-stroke) 10%, var(--drawably-paper));
+  stroke-width: 2.5;
+}
 @supports (appearance: base-select) {
   .setting-row .drawably-select select::picker(select) {
     position-area: block-end span-inline-end;

@@ -14,6 +14,7 @@ export function createInterface() {
   ]));
   buttonIcon(document.querySelector('#regenerate'), 'regenerate')();
   buttonIcon(document.querySelector('#settings'), 'settings')();
+  buttonIcon(document.querySelector('#settings-title'), 'settings')();
   const exportIcon = buttonIcon(document.querySelector('#download'), 'download');
   exportIcon();
   buttonIcon(document.querySelector('.spinner-sketch'), 'regenerate')();
