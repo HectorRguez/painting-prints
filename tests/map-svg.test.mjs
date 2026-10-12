@@ -2,14 +2,6 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { project, hiddenInterval, visibleIntervals, terrainSvg } from '../src/generators/maps/svg.js';
 
-test('the hybrid 3D projection raises mountain peaks above sea level', () => {
-  const sea=project([500,500,0]), peak=project([500,500,1]);
-  assert.equal(sea[0],peak[0]);
-  assert.ok(peak[1]<sea[1]);
-  assert.ok(peak[2]>sea[2]);
-  assert.deepEqual(project([500,500,-1]),sea);
-});
-
 test('a foreground triangle hides only the line interval behind it', () => {
   const a=[-1,.25,0], b=[2,.25,0], triangle=[[0,0,1],[1,0,1],[0,1,1]];
   const interval=hiddenInterval(a,b,triangle);
@@ -40,6 +32,7 @@ test('3D terrain exports real vector lines on a transparent normalized canvas', 
 
 test('projection matches the original default top-down coasts and height-50 mountains', () => {
   assert.deepEqual(project([125,700,0]),[125,700,0]);
+  assert.deepEqual(project([125,700,-1]),[125,700,0]);
   assert.deepEqual(project([125,700,1]),[125,650,50]);
   assert.deepEqual(project([900,125,.5]),[900,100,25]);
 });

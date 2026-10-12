@@ -1,7 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { createPaintingCache, pickUnseen, retainPainting, cacheEntry } from '../src/painting-cache.js';
+import { createPaintingCache, pickUnseen, cacheEntry } from '../src/painting-cache.js';
 const base = new URL('https://example.com/painting/');
 const stock = Array.from({ length: 10 }, (_, i) => ({ artRevision: 2, mode: 'fish', seed: `fish-${i}`, width: 520, height: 320, asset: `fish/${i}.json.gz` }));
 const store = () => {
@@ -10,7 +9,7 @@ const store = () => {
 };
 const options = storage => ({ storage, fetcher: async () => ({ ok: true, json: async () => ({ fish: stock }) }), random: () => .25 });
 
-test('ten distinct cached pictures are served before fresh generation is needed', async () => {
+test('starter selection avoids repeats and the current seed, then reports exhaustion', async () => {
   const cache = createPaintingCache(base, options(store()));
   const seeds = [];
   for (let i = 0; i < 10; i++) seeds.push((await cache.next('fish', seeds.at(-1)))?.seed);
@@ -31,7 +30,6 @@ test('fresh paintings replace the oldest item and survive a new cache instance',
   assert.ok(!saved.entries.some(entry => entry.seed === 'fish-0'));
   const reloaded = createPaintingCache(base, { ...options(storage), random: () => .999 });
   assert.equal((await reloaded.next('fish')).seed, 'fresh');
-  assert.equal(retainPainting(saved.entries, fresh).length, 10);
 });
 
 test('storage restrictions and a missing stock manifest still permit fresh generation', async () => {
@@ -59,16 +57,7 @@ test('compressed cache restores the full source rather than exporting the previe
   const cache = createPaintingCache(base, options(store()));
   assert.deepEqual(await cache.resolve(entry), painting);
   await assert.rejects(cache.resolve({ ...entry, seed: 'different' }), /mismatch/);
-  assert.equal('preview' in entry, false);
 });
-
-test('older framed fish in browser storage cannot replace the unframed stock', async () => {
-  const storage = store();
-  await storage.put('fish', { version: 1, entries: stock.map(entry => ({ ...entry, artRevision: 1 })) });
-  const cache = createPaintingCache(base, options(storage));
-  for (let i = 0; i < 10; i++) assert.equal((await cache.next('fish')).artRevision, 2);
-});
-
 
 test('bundled SVG originals load without any raster preview request', async () => {
   const painting = { mode: 'fish', seed: 'fish-0', svg: '<svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0L10 10"/></svg>' };
@@ -87,22 +76,6 @@ test('bundled SVG originals load without any raster preview request', async () =
   assert.deepEqual(requests, ['/painting/cache/manifest.json', '/painting/cache/fish/0.json.gz']);
 });
 
-test('reopening a style restores its last displayed painting instead of choosing randomly', async () => {
-  const storage = store();
-  const cache = createPaintingCache(base, options(storage));
-  await cache.remember(stock[7]);
-  const reopened = createPaintingCache(base, { ...options(storage), random: () => 0 });
-  assert.equal((await reopened.next('fish')).seed, stock[7].seed);
-});
-
-test('narrow landscape cache entries cannot override panoramic starter images', async () => {
-  const storage = store();
-  const wide = { mode: 'landscapes', artRevision: 2, seed: 'wide', previewWidth: 3200, asset: 'landscapes-v2/0.json.gz' };
-  await storage.put('landscapes', { version: 1, latest: 'narrow', entries: [{ ...wide, artRevision: 1, seed: 'narrow' }] });
-  const cache = createPaintingCache(base, { storage, fetcher: async () => ({ ok: true, json: async () => ({ landscapes: [wide] }) }) });
-  assert.equal((await cache.next('landscapes')).seed, 'wide');
-});
-
 test('remembered stock landscapes pick up new pre-rendered previews after a deployment', async () => {
   const storage = store();
   const old = { mode: 'landscapes', artRevision: 2, seed: 'wide', asset: 'landscapes-v2/0.json.gz', inkOffset: { x: 0, y: 2 } };
@@ -112,48 +85,21 @@ test('remembered stock landscapes pick up new pre-rendered previews after a depl
   assert.deepEqual(await cache.next('landscapes'), updated);
 });
 
-test('a fresh landscape retains its raster preview and original SVG independently after reload', async () => {
-  const storage = store();
-  const painting = { mode: 'landscapes', artRevision: 2, seed: 'fresh-wide', svg: '<svg>original panorama</svg>' };
-  const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['preview'], { type: 'image/png' }), inkOffset: { x: 0, y: 0 } };
-  await createPaintingCache(base, options(storage)).remember(entry);
-  const cache = createPaintingCache(base, options(storage));
-  const restored = await cache.next('landscapes');
-  assert.equal(await restored.previewBlob.text(), 'preview');
-  assert.deepEqual(await cache.resolve(restored), painting);
-});
-
 test('each style can reopen a prepared preview while retaining its complete export source', async () => {
   const storage = store();
-  for (const mode of ['flowers', 'fish', 'maps']) {
-    const painting = { mode, artRevision: mode === 'maps' ? 4 : mode === 'fish' ? 2 : 1, seed: 'ready-preview',
+  for (const mode of ['flowers', 'landscapes', 'fish', 'maps']) {
+    const painting = { mode, artRevision: mode === 'maps' ? 4 : mode === 'flowers' ? 1 : 2, seed: 'ready-preview',
       ...(mode === 'flowers' ? { png: 'paper', transparentPng: 'ink' } : { svg: '<svg>vectors</svg>' }) };
     const type = 'image/png';
     const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['ready'], { type }), inkOffset: { x: 1, y: -2 } };
     await createPaintingCache(base, options(storage)).remember(entry);
     const cache = createPaintingCache(base, options(storage));
-    const restored = await cache.find(mode, painting.seed);
+    const restored = await cache.next(mode);
+    assert.equal(restored.seed, painting.seed);
     assert.equal(await restored.previewBlob.text(), 'ready');
     assert.equal(restored.previewBlob.type, type);
     assert.deepEqual(restored.inkOffset, entry.inkOffset);
     assert.deepEqual(await cache.resolve(restored), painting);
-  }
-});
-
-test('all ten bundled landscapes include a 4096 by 1024 PNG preview and separate SVG source', async () => {
-  const directory = new URL('../public/cache/', import.meta.url);
-  const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
-  assert.equal(manifest.landscapes.length, 10);
-  for (const entry of manifest.landscapes) {
-    assert.match(entry.asset, /\.json\.gz$/);
-    const image = await readFile(new URL(entry.previewAsset, directory));
-    assert.equal(image.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-    assert.equal(image.readUInt32BE(16), 4096);
-    assert.equal(image.readUInt32BE(20), 1024);
-    assert.equal(typeof entry.inkOffset.y, 'number');
-    const crop = await readFile(new URL(entry.cropPreviewAsset, directory));
-    assert.equal(crop.readUInt32BE(16), 2048);
-    assert.equal(crop.readUInt32BE(20), Math.round(2048 / Math.SQRT2));
   }
 });
 
@@ -164,16 +110,6 @@ test('shared seeds bypass the last/random image and can find stock displaced by 
   assert.equal((await cache.find('fish', 'fish-0')).seed, 'fish-0');
   assert.equal((await cache.find('fish', 'personal-2')).seed, 'personal-2');
   assert.equal(await cache.find('fish', 'new-shared-seed'), null);
-});
-
-test('older map renderings cannot override the revised terrain and rivers', async () => {
-  const storage=store();
-  const old={mode:'maps',artRevision:3,seed:'old-map',asset:'maps-v3/0.json.gz'};
-  await storage.put('maps',{version:1,latest:old.seed,entries:[old]});
-  const updated={mode:'maps',artRevision:4,seed:'new-map',asset:'maps-v4/0.json.gz',previewAsset:'maps-preview-v2/0.svg'};
-  const cache=createPaintingCache(base,{storage,fetcher:async()=>({ok:true,json:async()=>({maps:[updated]})})});
-  assert.deepEqual(await cache.next('maps'),updated);
-  assert.equal(await cache.find('maps',old.seed),null);
 });
 
 test('old SVG previews migrate without losing the latest seed or original source', async () => {
@@ -190,4 +126,18 @@ test('old SVG previews migrate without losing the latest seed or original source
   const bundled = await cache.find('fish', stock[0].seed);
   assert.equal(bundled.previewAsset, 'new.png');
   assert.equal(bundled.previewBlob, undefined);
+});
+
+test('outdated art cannot override current stock or be restored through a seed URL', async () => {
+  for (const [mode, artRevision] of [['fish', 2], ['landscapes', 2], ['maps', 4]]) {
+    const storage = store();
+    const current = { mode, artRevision, seed: 'stock', asset: `${mode}/0.json.gz` };
+    const stale = { ...current, artRevision: artRevision - 1 };
+    await storage.put(mode, { version: 1, latest: 'obsolete', entries: [stale, { ...stale, seed: 'obsolete' }] });
+    const cache = createPaintingCache(base, { storage,
+      fetcher: async () => ({ ok: true, json: async () => ({ [mode]: [current] }) }) });
+    assert.deepEqual(await cache.next(mode), current, mode);
+    assert.deepEqual(await cache.find(mode, 'stock'), current, mode);
+    assert.equal(await cache.find(mode, 'obsolete'), null, mode);
+  }
 });

@@ -4,31 +4,24 @@ import { pageFromPath, pageUrl, pageModes, seedFromSearch } from '../src/pages.j
 
 test('subpage links stay under the GitHub Pages project root', () => {
   const base = new URL('https://hectorrguez.github.io/painting-prints/');
-  assert.equal(pageUrl('flowers', base).href, 'https://hectorrguez.github.io/painting-prints/flowers/');
-  assert.equal(pageUrl('landscapes', base).href, 'https://hectorrguez.github.io/painting-prints/landscapes/');
+  for (const mode of pageModes) {
+    assert.equal(pageUrl(mode, base).href, `https://hectorrguez.github.io/painting-prints/${mode}/`);
+  }
   assert.throws(() => pageUrl('../another-site', base), /Unknown painting page/);
 });
 
 test('direct folder, index and landing-page URLs select the right generator', () => {
   const base = '/painting-prints/';
-  for (const suffix of ['', 'index.html', 'flowers', 'flowers/', 'flowers/index.html']) {
+  for (const suffix of ['', 'index.html']) {
     assert.equal(pageFromPath(base + suffix, base), 'flowers');
   }
-  for (const suffix of ['landscapes', 'landscapes/', 'landscapes/index.html']) {
-    assert.equal(pageFromPath(base + suffix, base), 'landscapes');
+  for (const mode of pageModes) for (const suffix of [mode, `${mode}/`, `${mode}/index.html`]) {
+    assert.equal(pageFromPath(base + suffix, base), mode);
   }
   assert.equal(pageFromPath('/painting-prints/unknown/', base), null);
   assert.equal(pageFromPath('/painting-prints/landscapesindex.html', base), null);
   assert.equal(pageFromPath('/another-project/landscapes/', base), null);
   assert.equal(pageFromPath('/landscapes/', '/'), 'landscapes');
-});
-
-test('every generator supports a direct URL and a refresh', () => {
-  const base = new URL('https://example.com/painting-prints/');
-  for (const mode of pageModes) {
-    assert.equal(pageFromPath(pageUrl(mode, base).pathname, base.pathname), mode);
-    assert.equal(pageFromPath(`/painting-prints/${mode}/index.html`, base.pathname), mode);
-  }
 });
 
 test('shared seeds round-trip through every style URL without altering special characters', () => {

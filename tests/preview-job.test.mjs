@@ -8,7 +8,7 @@ class FakeWorker {
   postMessage(message) { this.message = message; }
   terminate() { this.terminated = true; }
 }
-test('switching styles terminates pending SVG work and ignores its late result', async () => {
+test('switching styles terminates pending preview work and ignores its late result', async () => {
   const job = createPreviewJob(() => new FakeWorker());
   const first = job.run({ mode: 'landscapes' });
   const old = FakeWorker.instances.at(-1);
