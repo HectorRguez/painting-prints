@@ -1,7 +1,10 @@
 import { prepareExport, pngBlob } from './export.js';
 import wasmUrl from '@resvg/resvg-wasm/index_bg.wasm?url';
-import { measureInk, measurePngInk, renderSvgPng, renderSvgPreview } from './ink-measurement.js';
+import { measurePngInk, renderSvgPng } from './ink-measurement.js';
 import { artworkSvg } from './artwork-svg.js';
+import { renderLandscapePreview } from './generators/landscapes/preview.js';
+import { renderFishPreview } from './generators/fish/preview.js';
+import { renderMapPreview } from './generators/maps/preview.js';
 import { cacheEntry } from './painting-cache.js';
 self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {} } }) => {
   try {
@@ -33,14 +36,14 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
       preview = pngBlob(painting.transparentPng);
       offset ||= await measurePngInk(preview);
     } else if (painting.mode === 'landscapes') {
-      const markup = artworkSvg(painting, false, !crop);
-      const rendered = await renderSvgPreview(markup, crop ? 2048 : 4096, fetch(wasmUrl), !offset);
+      const rendered = await renderLandscapePreview(painting, { crop, measure: !offset });
       preview = rendered.preview;
       offset ||= rendered.offset;
     } else {
-      const markup = artworkSvg(painting, false, true);
-      offset ||= await measureInk(markup, fetch(wasmUrl));
-      preview = new Blob([markup], { type: 'image/svg+xml' });
+      const render = painting.mode === 'fish' ? renderFishPreview : renderMapPreview;
+      const rendered = await render(painting, { measure: !offset });
+      preview = rendered.preview;
+      offset ||= rendered.offset;
     }
     if (painting.mode === 'landscapes') offset.x = 0;
     if (!crop) cached.inkOffset = offset;

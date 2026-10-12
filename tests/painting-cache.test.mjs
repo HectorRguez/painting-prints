@@ -128,7 +128,7 @@ test('each style can reopen a prepared preview while retaining its complete expo
   for (const mode of ['flowers', 'fish', 'maps']) {
     const painting = { mode, artRevision: mode === 'maps' ? 4 : mode === 'fish' ? 2 : 1, seed: 'ready-preview',
       ...(mode === 'flowers' ? { png: 'paper', transparentPng: 'ink' } : { svg: '<svg>vectors</svg>' }) };
-    const type = mode === 'flowers' ? 'image/png' : 'image/svg+xml';
+    const type = 'image/png';
     const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['ready'], { type }), inkOffset: { x: 1, y: -2 } };
     await createPaintingCache(base, options(storage)).remember(entry);
     const cache = createPaintingCache(base, options(storage));
@@ -174,4 +174,20 @@ test('older map renderings cannot override the revised terrain and rivers', asyn
   const cache=createPaintingCache(base,{storage,fetcher:async()=>({ok:true,json:async()=>({maps:[updated]})})});
   assert.deepEqual(await cache.next('maps'),updated);
   assert.equal(await cache.find('maps',old.seed),null);
+});
+
+test('old SVG previews migrate without losing the latest seed or original source', async () => {
+  const storage = store();
+  const payload = new Blob(['original']);
+  const entries = [{ ...stock[0], previewAsset: 'fish-preview-v1/0.svg', previewBlob: new Blob(['svg'], { type: 'image/svg+xml' }) },
+    { ...stock[1], seed: 'personal', asset: undefined, payload, previewBlob: new Blob(['svg'], { type: 'image/svg+xml' }) }];
+  await storage.put('fish', { version: 1, latest: 'personal', entries });
+  const cache = createPaintingCache(base, { ...options(storage), fetcher: async () => ({ ok: true, json: async () => ({ fish: stock.map(entry => ({ ...entry, previewAsset: 'new.png' })) }) }) });
+  const personal = await cache.next('fish');
+  assert.equal(personal.seed, 'personal');
+  assert.equal(await personal.payload.text(), 'original');
+  assert.equal(personal.previewBlob, undefined);
+  const bundled = await cache.find('fish', stock[0].seed);
+  assert.equal(bundled.previewAsset, 'new.png');
+  assert.equal(bundled.previewBlob, undefined);
 });

@@ -67,12 +67,17 @@ export function createPaintingCache(base, {
       if (saved?.latest) latest.set(mode, saved.latest);
       const starter = Array.isArray(bundled[mode]) ? bundled[mode] : [];
       const stored = saved?.version === version && Array.isArray(saved.entries) ? saved.entries : [];
-      const entries = [...starter, ...stored.map(entry => ({
-        // Pick up newly published previews even when this stock painting was
-        // remembered before previews were added to the manifest.
-        ...starter.find(stock => stock.seed === entry.seed && stock.artRevision === entry.artRevision),
-        ...entry,
-      }))];
+      const entries = [...starter, ...stored.map(savedEntry => {
+        const entry = { ...savedEntry };
+        // Keep the seed/source/latest selection; retire only old SVG previews.
+        if (entry.previewBlob?.type === 'image/svg+xml') delete entry.previewBlob;
+        if (entry.previewAsset?.endsWith('.svg')) delete entry.previewAsset;
+        return {
+          // Pick up newly published previews for this same source painting.
+          ...starter.find(stock => stock.seed === entry.seed && stock.artRevision === entry.artRevision),
+          ...entry,
+        };
+      })];
       return entries.filter(entry => entry?.mode === mode
         && (!requiredArtRevision[mode] || entry.artRevision === requiredArtRevision[mode])
         && typeof entry.seed === 'string' && (entry.asset || entry.payload))

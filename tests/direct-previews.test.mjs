@@ -2,9 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
-import { artworkSvg } from '../src/artwork-svg.js';
 
-test('direct cached previews preserve the original pixels or vectors for all thirty paintings', async () => {
+test('direct cached previews use high-resolution bitmaps with independent original sources for all thirty paintings', async () => {
   const directory = new URL('../public/cache/', import.meta.url);
   const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
   for (const mode of ['flowers', 'fish', 'maps']) {
@@ -18,8 +17,11 @@ test('direct cached previews preserve the original pixels or vectors for all thi
         assert.equal(preview.readUInt32BE(16), 1800);
         assert.equal(preview.readUInt32BE(20), 1800);
       } else {
-        assert.equal(preview.toString(), artworkSvg(painting, false, true));
-        assert.ok(!preview.toString().includes('<image'));
+        assert.equal(preview.subarray(1, 4).toString(), 'PNG');
+        assert.equal(preview.readUInt32BE(16), 3200);
+        assert.equal(preview.readUInt32BE(20), Math.round(3200 * painting.height / painting.width));
+        assert.ok(painting.svg.includes('<path'));
+        assert.ok(!painting.svg.includes('<image'));
       }
     }
   }
