@@ -2,11 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
+import { pageModes } from '../src/projects.js';
 
-test('direct cached previews use high-resolution bitmaps with independent original sources for all forty paintings', async () => {
+test('every style ships ten raster previews with independent original export sources', async () => {
   const directory = new URL('../public/cache/', import.meta.url);
   const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
-  for (const mode of ['flowers', 'landscapes', 'fish', 'maps']) {
+  for (const mode of pageModes) {
     assert.equal(manifest[mode].length, 10);
     for (const entry of manifest[mode]) {
       const painting = JSON.parse(gunzipSync(await readFile(new URL(entry.asset, directory))));
@@ -26,8 +27,9 @@ test('direct cached previews use high-resolution bitmaps with independent origin
         assert.equal(crop.readUInt32BE(16), 2048);
         assert.equal(crop.readUInt32BE(20), Math.round(2048 / Math.SQRT2));
       } else {
-        assert.equal(preview.readUInt32BE(16), 3200);
-        assert.equal(preview.readUInt32BE(20), Math.round(3200 * painting.height / painting.width));
+        const width = mode === 'fish' ? 3200 : 2400;
+        assert.equal(preview.readUInt32BE(16), width);
+        assert.equal(preview.readUInt32BE(20), Math.round(width * painting.height / painting.width));
         assert.ok(painting.svg.includes('<path'));
         assert.ok(!painting.svg.includes('<image'));
       }

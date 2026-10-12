@@ -87,8 +87,8 @@ test('remembered stock landscapes pick up new pre-rendered previews after a depl
 
 test('each style can reopen a prepared preview while retaining its complete export source', async () => {
   const storage = store();
-  for (const mode of ['flowers', 'landscapes', 'fish', 'maps']) {
-    const painting = { mode, artRevision: mode === 'maps' ? 4 : mode === 'flowers' ? 1 : 2, seed: 'ready-preview',
+  for (const mode of ['flowers', 'landscapes', 'fish']) {
+    const painting = { mode, artRevision: mode === 'flowers' ? 1 : 2, seed: 'ready-preview',
       ...(mode === 'flowers' ? { png: 'paper', transparentPng: 'ink' } : { svg: '<svg>vectors</svg>' }) };
     const type = 'image/png';
     const entry = { ...await cacheEntry(painting), previewBlob: new Blob(['ready'], { type }), inkOffset: { x: 1, y: -2 } };
@@ -129,7 +129,7 @@ test('old SVG previews migrate without losing the latest seed or original source
 });
 
 test('outdated art cannot override current stock or be restored through a seed URL', async () => {
-  for (const [mode, artRevision] of [['fish', 2], ['landscapes', 2], ['maps', 4]]) {
+  for (const [mode, artRevision] of [['fish', 2], ['landscapes', 2]]) {
     const storage = store();
     const current = { mode, artRevision, seed: 'stock', asset: `${mode}/0.json.gz` };
     const stale = { ...current, artRevision: artRevision - 1 };

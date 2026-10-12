@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import {createArtKernels} from '../src/generators/shared/wasm/host.js';
-import {visibleIntervals} from '../src/generators/maps/svg.js';
 const binary=await readFile(new URL('../public/generators/shared/kernels-v1.wasm',import.meta.url));
 const fish=vm.createContext({Math});
 vm.runInContext(await readFile(new URL('../src/generators/fish/upstream/fishdraw.js',import.meta.url),'utf8'),fish);
@@ -18,26 +17,6 @@ test('WASM polygon intersections match upstream at vertices, parallel edges and 
   for(let i=0;i<60;i++)lines.push(Array.from({length:4},()=>random()*6-2));
   for(const polygon of polygons)for(const line of lines)for(const ray of [true,false])
     assert.equal(JSON.stringify(kernels.polygonIntersections(...line,polygon,ray)),JSON.stringify(original(...line,polygon,ray)));
-});
-
-test('WASM terrain visibility matches JS for overlapping faces, cell boundaries and depth crossings',async()=>{
-  const kernels=await createArtKernels(binary);
-  const triangles=Array.from({length:100},()=>{
-    const x=random()*100-50,y=random()*100-50,z=random()*10;
-    return [[x,y,z],[x+random()*50,y+random()*10,z+1],[x+random()*10,y+random()*50,z+2]];
-  });
-  triangles.push([[0,0,0],[0,0,0],[0,0,0]]);
-  assert.deepEqual(kernels.terrainClipper([])([0,0,0],[1,1,1]),[[0,1]]);
-  const clip=kernels.terrainClipper(triangles);
-  for(let i=0;i<250;i++) {
-    const a=[random()*200-100,random()*200-100,random()*20-5];
-    const b=[random()*200-100,random()*200-100,random()*20-5];
-    // The union of hidden portions is order independent; arithmetic at a
-    // boundary may differ by a final binary digit when subtraction reorders.
-    const actual=clip(a,b),expected=visibleIntervals(a,b,triangles);
-    assert.equal(actual.length,expected.length);
-    for(let j=0;j<actual.length;j++)for(let k=0;k<2;k++)assert.ok(Math.abs(actual[j][k]-expected[j][k])<1e-12);
-  }
 });
 
 test('large polygon buffers grow safely and remain reusable',async()=>{

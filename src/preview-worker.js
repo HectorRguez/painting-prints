@@ -4,8 +4,9 @@ import { measurePngInk, renderSvgPng } from './ink-measurement.js';
 import { artworkSvg } from './artwork-svg.js';
 import { renderLandscapePreview } from './generators/landscapes/preview.js';
 import { renderFishPreview } from './generators/fish/preview.js';
-import { renderMapPreview } from './generators/maps/preview.js';
+import { renderLinePreview } from './generators/shared/line-preview.js';
 import { cacheEntry } from './painting-cache.js';
+import { projects } from './projects.js';
 self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {} } }) => {
   try {
     let painting = entry;
@@ -22,6 +23,10 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
     if (settings) {
       const file = await prepareExport(painting, settings, (art, dimensions, background) =>
         art.mode === 'flowers' ? pngBlob(background ? art.png : art.transparentPng)
+          : projects[art.mode].renderer === 'lines' ? renderLinePreview(art, {
+            width: dimensions?.width || 3200, measure: false,
+            background: background ? art.paperColor || 'white' : undefined,
+          }).then(result => result.preview)
           : renderSvgPng(artworkSvg(art, background), dimensions?.width || 3200, fetch(wasmUrl)));
       self.postMessage({ file });
       return;
@@ -40,7 +45,7 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
       preview = rendered.preview;
       offset ||= rendered.offset;
     } else {
-      const render = painting.mode === 'fish' ? renderFishPreview : renderMapPreview;
+      const render = painting.mode === 'fish' ? renderFishPreview : renderLinePreview;
       const rendered = await render(painting, { measure: !offset });
       preview = rendered.preview;
       offset ||= rendered.offset;

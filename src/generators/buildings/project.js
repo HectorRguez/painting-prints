@@ -1,0 +1,1 @@
+export default {"published": "2026-08-03", "label": "Houses", "title": "Isometric Building Generator", "author": "N3R01N", "source": "https://github.com/N3R01N/iso-building-generator", "ratio": 1, "orientation": "portrait", "renderer": "lines"};

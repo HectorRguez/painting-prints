@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f5f2eb">
-    <meta name="description" content="A quiet place to make and print procedural flowers, landscapes, drawings, fish, and maps.">
+    <meta name="description" content="A quiet place to make and print procedural flowers, landscapes, fish, flowing lines, cityscapes, and houses.">
     <title>Painting</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=drawably-2">
   </head>
   <body>
     <main class="painting-app">
       <header class="painting-heading">
+        <div class="style-picker" hidden>
+          <select id="painting-style" aria-label="Painting style"></select>
+        </div>
         <nav class="modes" aria-label="Painting type">
           <a id="flowers-link" href="./flowers/" data-mode="flowers" aria-current="page"><span class="tab-label">Flowers</span></a>
           <a id="landscapes-link" href="./landscapes/" data-mode="landscapes"><span class="tab-label">Landscapes</span></a>
           <a id="fish-link" href="./fish/" data-mode="fish"><span class="tab-label">Fish</span></a>
-          <a id="maps-link" href="./maps/" data-mode="maps"><span class="tab-label">Maps</span></a>
+          <a id="currents-link" href="./currents/" data-mode="currents"><span class="tab-label">Currents</span></a>
+          <a id="cityscapes-link" href="./cityscapes/" data-mode="cityscapes"><span class="tab-label">Cityscapes</span></a>
+          <a id="buildings-link" href="./buildings/" data-mode="buildings"><span class="tab-label">Houses</span></a>
         </nav>
         <div class="section-divider" aria-hidden="true"></div>
       </header>

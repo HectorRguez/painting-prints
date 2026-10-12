@@ -6,7 +6,7 @@ export function attributes(tag) {
 
 // Draw once, measure the same pixels, and retain a bitmap for cheap zoom/pan.
 // This module runs in the preview worker, never on the UI thread.
-export async function canvasPreview(painting, draw, { width = 3200, viewWidth = painting.width, measure = true, filter } = {}) {
+export async function canvasPreview(painting, draw, { width = 3200, viewWidth = painting.width, measure = true, filter, background } = {}) {
   const height = Math.max(1, Math.round(width * painting.height / viewWidth));
   const canvas = new OffscreenCanvas(width, height);
   const context = canvas.getContext('2d', { willReadFrequently: true });
@@ -18,6 +18,12 @@ export async function canvasPreview(painting, draw, { width = 3200, viewWidth = 
     const pixels = context.getImageData(0, 0, width, height);
     if (filter) { filter(pixels.data); context.putImageData(pixels, 0, 0); }
     if (measure) offset = inkOffset(pixels);
+  }
+  if (background) {
+    context.resetTransform();
+    context.globalCompositeOperation = 'destination-over';
+    context.fillStyle = background;
+    context.fillRect(0, 0, width, height);
   }
   return { preview: await canvas.convertToBlob({ type: 'image/png' }), offset };
 }

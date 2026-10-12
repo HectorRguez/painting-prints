@@ -7,7 +7,7 @@ for (const mode of pageModes) {
   const project = projects[mode];
   let html = root.replaceAll('./assets/', '../assets/')
     .replace('href="./favicon.svg', 'href="../favicon.svg')
-    .replace('<title>Painting</title>', `<title>Painting · ${project.title}</title>`)
+    .replace('<title>Painting</title>', `<title>Painting · ${project.label}</title>`)
     .replace('https://github.com/LingDong-/nonflowers', project.source)
     .replace('>Lingdong Huang</span>', `>${project.author}</span>`)
     .replace('datetime="2018-02-12"', `datetime="${project.published}"`)

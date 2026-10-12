@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { defaultSettings, loadSettings, saveSettings } from '../src/export-settings.js';
 import { prepareExport } from '../src/export.js';
+import { pageModes } from '../src/projects.js';
 
 test('phones default to shareable PNG; desktop defaults to PDF with sensible per-art orientation', () => {
   assert.equal(defaultSettings('flowers', true).format, 'png');
@@ -15,7 +16,7 @@ test('per-art preferences survive reload and malformed entries are individually 
   const storage = { getItem: () => value, setItem: (key, data) => { value = data; } };
   const settings = { flowers: { format: 'svg', orientation: 'landscape', paper: 'a3', background: true }, landscapes: defaultSettings('landscapes') };
   saveSettings(storage, settings);
-  assert.deepEqual(loadSettings(storage, true), { ...settings, fish: defaultSettings('fish', true), maps: defaultSettings('maps', true) });
+  assert.deepEqual(loadSettings(storage, true), { ...Object.fromEntries(pageModes.map(mode => [mode, defaultSettings(mode, true)])), ...settings });
   value = JSON.stringify({ flowers: { format: 'html', orientation: 'landscape', paper: 'a0' }, landscapes: settings.landscapes });
   assert.deepEqual(loadSettings(storage).flowers, { format: 'pdf', orientation: 'landscape', paper: 'a4', background: false });
   value = '{broken';

@@ -31,7 +31,8 @@ export function artworkSvg(painting, background = false, preview = false) {
       attributes = ' style="mix-blend-mode:multiply"';
     } else if (background) {
       paper = `<rect width="${width}" height="${height}" fill="${escape(painting.paperColor || 'white')}"/>`;
-    } else if (mode === 'landscapes') {
+    }
+    if ((!background && mode === 'landscapes') || painting.whiteToAlpha) {
       definitions = `<defs><filter id="transparent-ink" x="0" y="0" width="${width}" height="${height}" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -0.2126 -0.7152 -0.0722 1 0"/></filter></defs>`;
       attributes = ' filter="url(#transparent-ink)"';
     }

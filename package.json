@@ -12,14 +12,9 @@
     "pretest": "node scripts/prepare-generators.mjs"
   },
   "dependencies": {
-    "@redblobgames/prng": "github:redblobgames/prng",
     "@resvg/resvg-wasm": "^2.6.2",
-    "delaunator": "^5.1.0",
     "drawably": "^0.4.2",
-    "fast-2d-poisson-disk-sampling": "^1.0.3",
-    "flatqueue": "^2.0.3",
-    "jspdf": "4.2.1",
-    "simplex-noise": "^4.0.3"
+    "jspdf": "4.2.1"
   },
   "devDependencies": {
     "assemblyscript": "0.28.20",

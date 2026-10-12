@@ -28,7 +28,11 @@ const orientationField = document.querySelector('#orientation');
 const paperField = document.querySelector('#page-size');
 const backgroundField = document.querySelector('#add-background');
 const modes = [...document.querySelectorAll('[data-mode]')];
+const stylePicker = document.querySelector('#painting-style');
+for (const link of modes) stylePicker.add(new Option(link.textContent, link.dataset.mode));
 const interfaceSketch = createInterface();
+stylePicker.parentElement.hidden = false;
+document.querySelector('.painting-heading').classList.add('has-style-picker');
 const paintingAuthor = document.querySelector('#painting-author');
 const coarsePointer = matchMedia('(pointer: coarse)');
 const phoneLayout = matchMedia('(max-width: 720px)');
@@ -52,12 +56,13 @@ let restoreSettingsFocus = false;
 
 function updateSelectedPage() {
   const project = projects[mode];
+  stylePicker.value = mode;
   document.querySelector('#painting-author-name').textContent = project.author;
   const publication = document.querySelector('#painting-date');
   publication.dateTime = project.published;
   publication.textContent = publicationDate(project);
   paintingAuthor.href = project.source;
-  document.title = `Painting · ${project.title}`;
+  document.title = `Painting · ${project.label}`;
   for (const link of modes) {
     const selected = link.dataset.mode === mode;
     link.href = pageUrl(link.dataset.mode, appBase, paintings.get(link.dataset.mode)?.seed).href;
@@ -66,6 +71,7 @@ function updateSelectedPage() {
     if (selected) {
       gallery.setAttribute('aria-labelledby', link.id);
       interfaceSketch.selectPage(link);
+      if (link.getClientRects().length) link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
   }
 }
@@ -208,7 +214,6 @@ function generatePainting(token, requestedSeed, historyAction) {
   const seed = requestedSeed || Date.now().toString(36) + '-' + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
   const url = new URL(`generators/${mode}/worker.js`, appBase);
   url.searchParams.set('seed', seed);
-  if (mode === 'maps') url.searchParams.set('revision', '4');
   if (mode !== 'landscapes') url.searchParams.set('engine', 'wasm-v1');
   const worker = new Worker(url);
   engine = worker;
@@ -296,6 +301,9 @@ for (const link of modes) {
     void showPage(nextMode, seedFromSearch(target.search));
   });
 }
+stylePicker.addEventListener('change', () => {
+  modes.find(link => link.dataset.mode === stylePicker.value)?.click();
+});
 window.addEventListener('popstate', () => {
   const nextMode = pageFromPath(location.pathname, appBase.pathname);
   if (nextMode) void showPage(nextMode, seedFromSearch(location.search));

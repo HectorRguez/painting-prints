@@ -1,27 +1,9 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile,mkdtemp,rm} from 'node:fs/promises';
-import {tmpdir} from 'node:os';
-import {join} from 'node:path';
-import {pathToFileURL} from 'node:url';
-import {gunzipSync} from 'node:zlib';
-import {buildMap} from '../src/generators/maps/build.mjs';
+import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import {createArtKernels} from '../src/generators/shared/wasm/host.js';
 const binary=await readFile(new URL('../public/generators/shared/kernels-v1.wasm',import.meta.url));
-
-test('the accelerated map still matches the previously published cached SVG exactly',async()=>{
-  const directory=await mkdtemp(join(tmpdir(),'painting-wasm-'));
-  try {
-    const file=join(directory,'map.mjs');
-    await buildMap({platform:'node',format:'esm',outfile:file});
-    const {generateMap}=await import(pathToFileURL(file));
-    const painting=JSON.parse(gunzipSync(await readFile(new URL('../public/cache/maps-v4/0.json.gz',import.meta.url))));
-    let hash=2166136261;
-    for(const char of painting.seed)hash=Math.imul(hash^char.charCodeAt(0),16777619);
-    assert.equal(generateMap(hash>>>0||1,await createArtKernels(binary)),painting.svg);
-  } finally {await rm(directory,{recursive:true,force:true});}
-});
 
 test('the accelerated fish preserves complete generated SVGs and random state',async()=>{
   const source=await readFile(new URL('../src/generators/fish/upstream/fishdraw.js',import.meta.url),'utf8');

@@ -1,23 +1,44 @@
 # Painting
 
-A minimal procedural-art gallery with Flowers, Landscapes, Fish, and Maps. Flowers, landscapes, and fish are based on work by **Lingdong Huang**. Maps are adapted from **Amit Patel / Red Blob Games**.
+A minimal procedural-art gallery with Flowers, Landscapes, Fish, Currents,
+Cityscapes, and Houses. Create a drawing, explore it, and download it for print.
+
 **Live:** https://hectorrguez.github.io/painting-prints/
 
-The interface uses Drawably controls.
+## Credits
 
-Every displayed artwork writes its seed to the URL, for example `fish/?seed=painting-stock-v1-fish-0`. Sharing or reopening that URL loads that exact cached painting or regenerates it from the same seed.
+The gallery brings together work by these authors. Each artwork also links to its
+original repository beneath the image.
 
-| Style | Generation speedup | Canvas rendering speedup |
-| --- | ---: | ---: |
-| Flowers | 1.24× | Already canvas |
-| Landscapes | Unchanged | 4.11× desktop / 3.62× phone crop |
-| Fish | 1.48× | 6.40× |
-| Maps | 1.31× | 27.31× |
+| Contribution | Author | Original project |
+| --- | --- | --- |
+| Flowers | Lingdong Huang | [nonflowers](https://github.com/LingDong-/nonflowers) |
+| Landscapes | Lingdong Huang | [shan-shui-inf](https://github.com/LingDong-/shan-shui-inf) |
+| Fish | Lingdong Huang | [fishdraw](https://github.com/LingDong-/fishdraw) |
+| Currents | Andrei Kashcha | [noisylines](https://github.com/anvaka/noisylines) |
+| Cityscapes | Michael Fogleman | [ln](https://github.com/fogleman/ln) |
+| Houses | Matthias Schermann (N3R01N) | [iso-building-generator](https://github.com/N3R01N/iso-building-generator) |
+| Interface controls, icons and typography | Daniel Belyi | [Drawably](https://github.com/danielwh2/drawably) |
 
-Three paired seeds on local Chromium, 12 October 2026. Generation compares the
-original JavaScript calculation path with our WASM hybrid. Rendering compares
-native canvas with resvg at identical resolutions, including PNG encoding;
-fish/maps previously displayed SVG directly, so these are renderer measurements,
-not whole-page or original-demo speedups. Results vary by image and device.
-Reproduce with [the benchmark](scripts/benchmark-engines.html). All previews are
-cached PNGs; original vector export sources are retained.
+Original source snapshots and licenses are retained in each generator's
+`upstream/` directory; Drawably's license ships with its dependency.
+
+## Sharing and rendering
+
+Every displayed artwork writes its seed to the URL, for example
+`fish/?seed=painting-stock-v1-fish-0`. Sharing or reopening that URL loads that
+exact cached painting or regenerates it from the same seed.
+
+Every generator lives in `src/generators/<style>/`, with its source snapshot,
+license, adapter and build. Cityscapes compiles Fogleman's Go engine; Currents
+and Houses combine original JavaScript with WASM kernels. These are curated
+adaptations, not pixel-identical ports of every original demo. All three render
+directly to canvas in workers and preserve SVG export sources. Every gallery
+style has ten cached first-load previews; Create always generates a new seed.
+
+## Development
+
+Development requires Node 22+ and Go 1.27.2 (or set `PAINTING_GO` to its binary).
+Run `npm ci`, then `npm run dev`. `npm test` rebuilds the workers and checks their
+output; `npm run build` creates the GitHub Pages subpages. The build downloads no
+upstream generators. See each generator's README for its port and license details.

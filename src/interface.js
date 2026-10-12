@@ -20,6 +20,7 @@ export function createInterface() {
   buttonIcon(document.querySelector('.spinner-sketch'), 'regenerate')();
   for (const divider of document.querySelectorAll('.section-divider')) drawablyDivider(divider, pen);
   drawablyUnderline(document.querySelector('#painting-author'), pen);
+  drawablySelect(document.querySelector('.style-picker'), pen);
   const dialog = document.querySelector('#settings-dialog');
   drawablyCard(dialog, pen);
   for (const field of dialog.querySelectorAll('select')) {

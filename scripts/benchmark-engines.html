@@ -25,7 +25,7 @@ function generate(mode,seed,engine) {
 document.querySelector('#run').onclick=async event=>{
   document.querySelectorAll('button').forEach(button=>button.disabled=true);output.textContent='';
   try {
-    for(const mode of ['fish','maps','flowers'])for(const [round,seed] of ['profile-v1','flower-perf-0','flower-perf-1'].entries()) {
+    for(const mode of ['fish','flowers'])for(const [round,seed] of ['profile-v1','flower-perf-0','flower-perf-1'].entries()) {
       const hashes=[];
       for(const engine of (round%2?['wasm','javascript']:['javascript','wasm'])) {
         output.textContent+=`Running ${mode}: ${seed}, ${engine}…\n`;
@@ -51,26 +51,25 @@ document.querySelector('#render').onclick=()=>{
 <script id="render-worker" type="text/plain">
 self.onmessage=async({data:{root}})=>{
   try {
-    const [{initWasm,Resvg},{artworkSvg},{inkOffset},{renderLandscapePreview},{renderFishPreview},{renderMapPreview}]=await Promise.all([
+    const [{initWasm,Resvg},{artworkSvg},{inkOffset},{renderLandscapePreview},{renderFishPreview}]=await Promise.all([
       import(new URL('node_modules/@resvg/resvg-wasm/index.mjs',root)),
       import(new URL('src/artwork-svg.js',root)),
       import(new URL('src/preview-layout.js',root)),
       import(new URL('src/generators/landscapes/preview.js',root)),
       import(new URL('src/generators/fish/preview.js',root)),
-      import(new URL('src/generators/maps/preview.js',root)),
     ]);
     const now=()=>performance.now();
     let start=now();await initWasm(fetch(new URL('node_modules/@resvg/resvg-wasm/index_bg.wasm',root)));
     self.postMessage({wasmStartupMs:now()-start});
     const manifest=await (await fetch(new URL('public/cache/manifest.json',root))).json();
-    for(const mode of ['fish','maps','landscapes']) for(const [round,index] of [0,3,7].entries()) {
+    for(const mode of ['fish','landscapes']) for(const [round,index] of [0,3,7].entries()) {
       const response=await fetch(new URL(`public/cache/${manifest[mode][index].asset}`,root));
       const painting=await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).json();
       for(const crop of (mode==='landscapes'?[false,true]:[false])) {
         const outputs={};
         for(const engine of ((round+Number(crop))%2?['native','resvg']:['resvg','native'])) {
           const stages={};start=now();let preview,offset;
-          if(engine==='native') ({preview,offset}=await ({landscapes:renderLandscapePreview,fish:renderFishPreview,maps:renderMapPreview}[mode])(painting,{crop,measure:!crop}));
+          if(engine==='native') ({preview,offset}=await ({landscapes:renderLandscapePreview,fish:renderFishPreview}[mode])(painting,{crop,measure:!crop}));
           else {
             const markup=artworkSvg(painting,false,!crop);let t=now();
             const renderer=new Resvg(markup,{fitTo:{mode:'width',value:mode==='landscapes'?(crop?2048:4096):3200},font:{loadSystemFonts:false}});

@@ -3,7 +3,7 @@ import { gunzipSync } from 'node:zlib';
 import { renderSvgPng } from '../../src/ink-measurement.js';
 import { artworkSvg } from '../../src/artwork-svg.js';
 
-// All runtime previews are bitmaps; fish/maps keep their vector export sources.
+// All runtime previews are bitmaps; fish keep their vector export sources.
 // Offline cache baking uses resvg, so it does not need a browser or native dependency.
 // These small preview files avoid downloading print sources or starting WASM
 // just to display the first cached painting. Landscape previews have their own
@@ -11,8 +11,8 @@ import { artworkSvg } from '../../src/artwork-svg.js';
 const cache = new URL('../../public/cache/', import.meta.url);
 const wasm = readFile(new URL('../../node_modules/@resvg/resvg-wasm/index_bg.wasm', import.meta.url));
 const manifest = JSON.parse(await readFile(new URL('manifest.json', cache), 'utf8'));
-for (const mode of ['flowers', 'fish', 'maps']) {
-  const directory = `${mode}-preview-v${mode === 'maps' ? 3 : mode === 'fish' ? 2 : 1}/`;
+for (const mode of ['flowers', 'fish']) {
+  const directory = `${mode}-preview-v${mode === 'fish' ? 2 : 1}/`;
   await mkdir(new URL(directory, cache), { recursive: true });
   let sourceBytes = 0, previewBytes = 0;
   for (const [index, entry] of manifest[mode].entries()) {
