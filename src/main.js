@@ -197,10 +197,13 @@ async function nextPainting({ cachedFirst = false, seed = null, historyAction = 
     const cached = seed ? await paintingCache.find(mode, seed)
       : cachedFirst ? await paintingCache.next(mode, paintings.get(mode)?.seed) : null;
     if (token !== revision) return;
-    if (cached) {
+    // Older flower PNGs have the original rounded mask baked into their pixels.
+    // Regenerate the same seed once, then cache the complete artwork and preview.
+    const regenerateCached = cached?.mode === 'flowers' && cached.artRevision !== 2;
+    if (cached && !regenerateCached) {
       if (await showPainting(cached, token, historyAction)) void prepareCurrentExport(token);
     } else {
-      if (token === revision) generatePainting(token, seed, historyAction);
+      if (token === revision) generatePainting(token, cached?.seed || seed, historyAction);
     }
   } catch (error) {
     if (token !== revision) return;

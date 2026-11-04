@@ -61,8 +61,8 @@ Layer.bound = function (context) {
   }
   return { xmin: xmin / resolution, xmax: xmax / resolution, ymin: ymin / resolution, ymax: ymax / resolution };
 };
-// Preserve both original paper textures and the rounded paper edge. The
-// complete image is still square, as in Nonflowers' original download.
+// Keep the original paper setup and random draws so existing seeds retain
+// their composition, but leave the full rectangular artwork unmasked.
 vizParams = function () {};
 try {
   // Match the original makeBG -> generate order, including its random draws.
@@ -78,28 +78,12 @@ try {
   flowerContext = Layer.empty();
   if (Math.random() <= 0.5) woody({ ctx: CTX, xof: 300, yof: 550 });
   else herbal({ ctx: CTX, xof: 300, yof: 600 });
-  const border = squircle(0.98, 3);
-  // Both versions share the same border. Compute it once, without allocating
-  // small arrays for every pixel in each of the two 1800px canvases.
-  const contexts = [CTX, flowerContext];
-  const images = contexts.map(ctx => ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
-  const { width, height } = images[0];
-  for (let y = 0; y < height; y++) {
-    const ny = (y / height - 0.5) * 2;
-    for (let x = 0; x < width; x++) {
-      const nx = (x / width - 0.5) * 2;
-      if (Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2)) <= border(Math.atan2(ny, nx))) continue;
-      const i = (y * width + x) * 4;
-      for (const image of images) image.data.fill(0, i, i + 4);
-    }
-  }
-  contexts.forEach((ctx, i) => ctx.putImageData(images[i], 0, 0));
   const print = Layer.empty();
   for (let x = 0; x < 600; x += 512) {
     for (let y = 0; y < 600; y += 512) print.drawImage(BGCANV, x, y);
   }
   print.drawImage(CTX.canvas, 0, 0, 600, 600);
-  self.postMessage({ type: 'painting-ready', mode: 'flowers', seed: SEED,
+  self.postMessage({ type: 'painting-ready', mode: 'flowers', seed: SEED, artRevision: 2,
     png: await encodeCanvas(print.canvas), transparentPng: await encodeCanvas(flowerContext.canvas),
     width: 1800, height: 1800 });
 } catch (error) {
