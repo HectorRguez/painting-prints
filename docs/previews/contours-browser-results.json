@@ -1,0 +1,31 @@
+[
+  {
+    "mode": "contours",
+    "seed": "browser-review-contours",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1577548
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1555452
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 150628
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 762965
+      }
+    ]
+  }
+]
