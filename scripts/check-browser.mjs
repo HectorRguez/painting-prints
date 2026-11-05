@@ -37,8 +37,8 @@ async function ready(page) {
   }, null, { timeout: 120_000 });
   assert.equal(await page.locator('#status').innerText(), '');
 }
-async function waitForSaved(page, mode, seed) {
-  await page.waitForFunction(async ({ mode, seed }) => {
+async function waitForSaved(page, mode, seed, artRevision = projects[mode].artRevision) {
+  await page.waitForFunction(async ({ mode, seed, artRevision }) => {
     return new Promise(resolve => {
       const request = indexedDB.open('painting-cache-v1:/');
       request.onerror = () => resolve(false);
@@ -46,11 +46,35 @@ async function waitForSaved(page, mode, seed) {
         const db = request.result;
         if (!db.objectStoreNames.contains('paintings')) { db.close(); resolve(false); return; }
         const read = db.transaction('paintings').objectStore('paintings').get(mode);
-        read.onsuccess = () => { db.close(); resolve(read.result?.latest === seed); };
+        read.onsuccess = () => {
+          db.close();
+          const entry = read.result?.entries?.find(entry => entry.seed === seed);
+          resolve(read.result?.latest === seed && (!artRevision || entry?.artRevision === artRevision));
+        };
         read.onerror = () => { db.close(); resolve(false); };
       };
     });
-  }, { mode, seed }, { timeout: 10_000 });
+  }, { mode, seed, artRevision }, { timeout: 10_000 });
+}
+
+async function retireSavedRevision(page, mode, seed) {
+  await page.evaluate(({ mode, seed }) => new Promise((resolve, reject) => {
+    const request = indexedDB.open('painting-cache-v1:/');
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction('paintings', 'readwrite');
+      const store = transaction.objectStore('paintings');
+      const read = store.get(mode);
+      read.onsuccess = () => {
+        const value = read.result;
+        value.entries.find(entry => entry.seed === seed).artRevision = 0;
+        store.put(value, mode);
+      };
+      transaction.oncomplete = () => { db.close(); resolve(); };
+      transaction.onerror = transaction.onabort = () => { db.close(); reject(transaction.error); };
+    };
+  }), { mode, seed });
 }
 async function download(page, mode, format, background) {
   await page.locator('#settings').click();
@@ -97,6 +121,17 @@ try {
     await page.reload();
     await ready(page);
     assert.equal(generations, originalGenerations, 'Reload must reuse the cached drawing');
+    if (projects[mode].artRevision) {
+      await retireSavedRevision(page, mode, seed);
+      await page.goto(`${base}/${mode}/`);
+      await ready(page);
+      assert.equal(new URL(page.url()).searchParams.get('seed'), seed, 'An upgrade must preserve the latest seed');
+      assert.equal(generations, originalGenerations + 1, 'An old revision must regenerate exactly once');
+      await waitForSaved(page, mode, seed);
+      await page.reload();
+      await ready(page);
+      assert.equal(generations, originalGenerations + 1, 'The upgraded revision must stay cached');
+    }
     const exports = [];
     for (const [format, background] of [['png', false], ['png', true], ['svg', false], ['pdf', false]]) {
       exports.push(await download(page, mode, format, background));

@@ -6,25 +6,30 @@ const mix = (a, b, t) => a + (b - a) * t;
 const pick = (random, low, high) => mix(low, high, random());
 const gray = value => `#${Math.round(clamp(value, 0, 255)).toString(16).padStart(2, '0').repeat(3)}`;
 
-// A small, non-overturning Gerstner spectrum. All rows and all vessels sample
-// the same surface; random numbers choose the sea, never individual vertices.
+// The same bounded Gerstner field positions every crest and vessel. The
+// illustrative breakers below can curl; the boat-supporting field cannot fold.
 export function seaParameters(seed) {
   const random = randomSource(`${seed}:water`);
-  const roughness = pick(random, 0.3, 1.12);
+  const state = random();
+  const regime = state < 0.24 ? 'calm' : state < 0.48 ? 'wind sea' : state < 0.78 ? 'rolling swell' : 'breakers';
+  const ranges = {
+    calm: [0.18, 0.42, 330, 510], 'wind sea': [0.6, 1.05, 240, 410],
+    'rolling swell': [1.05, 1.55, 540, 820], breakers: [1.35, 1.9, 610, 900],
+  }[regime];
+  const roughness = pick(random, ranges[0], ranges[1]);
   const direction = pick(random, -0.6, 0.6);
   const steepness = pick(random, 0.32, 0.62);
   const waves = [1, 0.57, 0.29].map((ratio, index) => {
-    const wavelength = pick(random, 310, 490) * ratio;
+    const wavelength = pick(random, ranges[2], ranges[3]) * ratio;
     const k = TAU / wavelength;
     const angle = direction + pick(random, -0.3, 0.3);
     const amplitude = roughness * (index === 0 ? 27 : index === 1 ? 12 : 4.5);
     return { k, amplitude, dx: Math.cos(angle), dz: Math.sin(angle),
-      phase: random() * TAU, lateral: steepness / (wavesCount * k) };
+      phase: random() * TAU, lateral: steepness / (3 * k) };
   });
-  return { width: 1414, height: 1000, horizon: pick(random, 255, 355),
-    roughness, steepness, waves, texture: random() * TAU, wind: random() < 0.5 ? -1 : 1 };
+  return { width: 1414, height: 1000, horizon: pick(random, 260, 345),
+    regime, roughness, steepness, waves, texture: random() * TAU, wind: random() < 0.5 ? -1 : 1 };
 }
-const wavesCount = 3;
 
 function surfaceAtParameter(sea, u, depth) {
   const scale = 0.19 + depth * 0.81;
@@ -93,105 +98,196 @@ function inkStroke(paths, points, width, tone, phase = 0) {
   paths.push({ d: line([...left, ...right.reverse()], true), fill: gray(tone), stroke: gray(tone), width: 0.08 });
 }
 
-function wavePatches(sea, random, paths) {
-  const pen = makePen(paths), patches = [];
-  const bands = 20 + Math.floor(random() * 5);
-  const channel = { x: pick(random, 0.25, 0.75) * sea.width, bend: pick(random, -240, 240), width: pick(random, 90, 195) };
-  for (let band = 0; band < bands; band++) {
-    const count = 4 + Math.floor(random() * 4);
-    for (let slot = 0; slot < count; slot++) {
-      const depth = clamp((band + random()) / bands, 0.015, 0.99);
-      const x = mix(105, sea.width - 105, (slot + pick(random, 0.12, 0.88)) / count);
-      const openWater = channel.x + channel.bend * Math.sin(depth * 2.6);
-      if (Math.abs(x - openWater) < channel.width * (0.4 + depth) && random() < 0.68) continue;
-      const length = Math.min(pick(random, 66, 190) * (0.43 + depth * 0.92),
-        2 * Math.min(x - 55, sea.width - 55 - x));
-      const center = seaSurface(sea, x, depth);
-      const amplitude = length * pick(random, 0.055, 0.145) * sea.roughness * (0.45 + depth * 0.75);
-      patches.push({ x, y: center.y, depth, length, amplitude, tilt: clamp(center.slope * 0.17, -0.065, 0.065),
-        crest: pick(random, -0.03, 0.2), shoulder: pick(random, -0.08, 0.32), fall: pick(random, 0.07, 0.23),
-        layers: 1 + Math.floor(random() * (2 + depth * 3)),
-        curl: depth > 0.48 && sea.roughness > 0.7 && random() < 0.25, phase: random() * TAU });
-    }
-  }
-  // One or two long, low foreground swells break the short-wave rhythm.
-  for (let i = 0; i < 2; i++) {
-    const depth = pick(random, 0.76, 0.94), x = pick(random, 270, sea.width - 270);
-    const center = seaSurface(sea, x, depth), length = pick(random, 240, 370);
-    patches.push({ x, y: center.y, depth, length, amplitude: length * pick(random, 0.09, 0.16) * sea.roughness,
-      tilt: clamp(center.slope * 0.15, -0.06, 0.06), crest: pick(random, 0.06, 0.2),
-      shoulder: pick(random, 0, 0.28), fall: pick(random, 0.08, 0.2), layers: 4,
-      curl: sea.roughness > 0.75, phase: random() * TAU });
-  }
-  patches.sort((a, b) => a.y - b.y);
-  for (const patch of patches) {
-    const { x, y, length: L, amplitude: A, depth, crest } = patch;
-    const local = [
-      ...cubic([-0.5, 0], [-0.19, patch.shoulder], [crest - 0.18, -0.94], [crest, -1]),
-      ...cubic([crest, -1], [crest + patch.fall, -1.04], [0.38, -0.1], [0.5, -0.12]).slice(1),
+// Different profiles change the wave silhouette as well as its size. Only the
+// breaker has an overhanging lip; broad swells and low ripples keep open faces.
+function waveProfile(patch) {
+  const { crest: c, shoulder, fall, shape } = patch;
+  if (shape === 'ripple') return [
+    ...cubic([-0.5, 0], [-0.3, 0.32], [-0.16, -0.76], [0.04, -0.72]),
+    ...cubic([0.04, -0.72], [0.24, -0.68], [0.3, 0.3], [0.5, 0.04]).slice(1),
+  ];
+  if (shape === 'breaker') {
+    const head = patch.crest, reach = patch.reach, opening = patch.opening;
+    return [
+      ...cubic([-0.5, 0.04], [-0.25, patch.shoulder], [head - 0.22, -1.13], [head, -1]),
+      ...cubic([head, -1], [head + reach * 0.65, -1.02], [head + reach * 1.12, -opening - 0.1], [head + reach, -opening], 16).slice(1),
+      ...cubic([head + reach, -opening], [head + reach * 0.76, -opening + 0.07],
+        [head + reach * 0.65, -opening - 0.18], [head + reach * 0.28, -opening - 0.08], 12).slice(1),
+      ...cubic([head + reach * 0.28, -opening - 0.08], [head - reach * 0.25, -opening + 0.06],
+        [0.2, 0.08], [0.5, 0.1]).slice(1),
     ];
-    const project = ([u, v]) => {
-      const px = x + u * L * sea.wind;
-      const grain = (Math.sin(u * 31 + patch.phase) * 0.2 + Math.sin(u * 61 + patch.phase) * 0.08) * depth;
-      return [px, y + v * A + (px - x) * patch.tilt + grain];
-    };
-    const points = local.map(project);
-    const tone = mix(151, 52, depth), width = mix(0.46, 1.45, depth);
-    // Only a small wave face is opaque; broad open-water gaps stay untouched.
-    pen([...points, project([0.5, 0.32]), project([-0.5, 0.32])], 0.08, 255, '#ffffff');
-    inkStroke(paths, points, width, tone, patch.phase);
-    for (let j = 1; j <= patch.layers; j++) {
-      const trim = Math.min(13, 3 + j * 2);
-      const inset = local.slice(trim, -trim).map(([u, v], index, list) => {
-        const t = index / (list.length - 1);
-        const p = project([u, v]);
-        const feather = Math.sin(t * Math.PI) ** 0.6;
-        return [p[0], p[1] + j * (1.1 + depth * 1.3) * (0.6 + feather * 0.4)];
-      });
-      inkStroke(paths, inset, width * (0.5 - j * 0.045), tone + j * 14 + 7, patch.phase + j);
-    }
-    if (patch.curl) {
-      // Broken streaks suggest foam without drawing ornamental loops at each
-      // crest. The wet front of the wave stays distinct from its long shoulder.
-      for (let j = 0; j < 3; j++) {
-        const t = j / 3;
-        const a = project([crest - 0.09 - t * 0.14, -0.92 + t * 0.12]);
-        const b = [a[0] - sea.wind * (2 + depth * 2), a[1] + 4 + depth * 4];
-        inkStroke(paths, [a, b], width * 0.4, tone + 40, patch.phase);
-      }
-    }
   }
-  return patches;
+  if (shape === 'spilling') return [
+    ...cubic([-0.5, 0.03], [-0.23, patch.shoulder], [c - 0.12, -1.06], [c, -1]),
+    ...cubic([c, -1], [c + 0.045, -1.02], [c + 0.05, -0.68], [c + 0.14, -0.66], 16).slice(1),
+    ...cubic([c + 0.14, -0.66], [0.35, -0.35], [0.33, -0.03], [0.5, 0.08]).slice(1),
+  ];
+  if (shape === 'chop') return [
+    ...cubic([-0.5, 0.07], [-0.25, 0.13], [c - 0.14, -0.56], [c, -1]),
+    ...cubic([c, -1], [c + 0.02, -0.68], [0.26, 0.03], [0.5, 0.12]).slice(1),
+  ];
+  return [
+    ...cubic([-0.5, 0], [-0.23, shoulder], [c - (shape === 'swell' ? 0.29 : 0.18), -0.94], [c, -1]),
+    ...cubic([c, -1], [c + fall, -1.03], [0.36, -0.04], [0.5, 0.02]).slice(1),
+  ];
 }
 
-function boatLayout(sea, random) {
-  const count = 1 + Math.floor(random() * 3.7);
-  const boats = [];
-  const heroX = pick(random, 0.25, 0.75) * sea.width;
+function patchPoint(sea, patch, [u, v]) {
+  const px = patch.x + u * patch.length * sea.wind;
+  const grain = (Math.sin(u * 31 + patch.phase) * 0.2 + Math.sin(u * 61 + patch.phase) * 0.08) * patch.depth;
+  return [px, patch.y + v * patch.amplitude + (px - patch.x) * patch.tilt + grain];
+}
+
+function wavePatches(sea, random) {
+  const patches = [];
+  const channel = { x: pick(random, 0.22, 0.78) * sea.width, bend: pick(random, -260, 260), width: pick(random, 90, 190) };
+  const add = (x, depth, length, amplitude, shape, major = false) => {
+    const center = seaSurface(sea, x, depth);
+    const tilt = clamp(center.slope * 0.13, -0.065, 0.065);
+    amplitude = Math.min(amplitude, (925 - center.y - Math.abs(tilt * length / 2)) / 0.32);
+    const patch = { x, y: center.y, depth, length, amplitude, shape, major, tilt,
+      crest: pick(random, -0.05, 0.2), shoulder: pick(random, -0.12, 0.28), fall: pick(random, 0.07, 0.24),
+      reach: pick(random, 0.13, 0.27), opening: pick(random, 0.37, 0.76),
+      layers: major ? 5 + Math.floor(random() * 4) : 1 + Math.floor(random() * (2 + depth * 3)), phase: random() * TAU };
+    if (shape === 'breaker') patch.crest = pick(random, -0.09, 0.075);
+    patch.profile = waveProfile(patch);
+    if (shape === 'breaker' || shape === 'spilling') {
+      patch.profile = patch.profile.map(([u, v], i) => {
+        const foam = Math.sin(clamp((i - 20) / 25, 0, 1) * Math.PI);
+        return [u, v + foam * (Math.sin(i * 2.3 + patch.phase) + Math.sin(i * 4.1)) * 0.011];
+      });
+    }
+    const points = [...patch.profile, [0.5, 0.32], [-0.5, 0.32]].map(point => patchPoint(sea, patch, point));
+    patch.bounds = { left: Math.min(...points.map(p => p[0])) - 2, right: Math.max(...points.map(p => p[0])) + 2,
+      top: Math.min(...points.map(p => p[1])) - 2, bottom: Math.max(...points.map(p => p[1])) + 2 };
+    patches.push(patch);
+  };
+  const candidates = sea.regime === 'calm' ? 125 : 160;
+  for (let i = 0; i < candidates; i++) {
+    const depth = pick(random, 0.012, 0.98) ** 1.24;
+    const x = pick(random, 105, sea.width - 105);
+    const openWater = channel.x + channel.bend * Math.sin(depth * 2.6);
+    if (Math.abs(x - openWater) < channel.width * (0.4 + depth) && random() < 0.7) continue;
+    const length = Math.min(pick(random, 55, 190) * (0.38 + depth * 0.94), 2 * Math.min(x - 60, sea.width - 60 - x));
+    if (patches.some(p => Math.abs(p.depth - depth) < 0.023 && Math.abs(p.x - x) < (p.length + length) * 0.3)) continue;
+    const choice = random();
+    const shape = sea.regime === 'calm' ? (choice < 0.8 ? 'ripple' : 'swell')
+      : sea.regime === 'wind sea' ? (choice < 0.62 ? 'chop' : choice < 0.83 ? 'ripple' : 'shoulder')
+      : choice < 0.2 ? 'ripple' : choice < 0.38 ? 'chop' : 'swell';
+    const amplitude = length * pick(random, 0.045, 0.125) * sea.roughness * (0.42 + depth * 0.72);
+    add(x, depth, length, amplitude, shape);
+  }
+  const dramatic = sea.regime === 'breakers';
+  const count = sea.regime === 'calm' ? 1 : dramatic ? 1 + Math.floor(random() * 2.8) : 2 + Math.floor(random() * 2);
+  let primary;
   for (let i = 0; i < count; i++) {
-    for (let attempt = 0; attempt < 50; attempt++) {
-      const depth = i === 0 ? pick(random, 0.44, 0.67) : pick(random, 0.17, 0.55);
-      const length = i === 0 ? pick(random, 145, 205) : pick(random, 65, 145) * (0.6 + depth);
-      const x = i === 0 && attempt === 0 ? heroX : pick(random, 180, sea.width - 180);
+    const length = dramatic ? (i === 0 ? pick(random, 505, 690) : pick(random, 290, 480)) : pick(random, 310, 570);
+    const depth = dramatic ? (i === 0 ? pick(random, 0.81, 0.94) : pick(random, 0.66, 0.88)) : pick(random, 0.77, 0.96);
+    let x = pick(random, length / 2 + 75, sea.width - length / 2 - 75);
+    if (primary) {
+      // Major crests occupy different parts of the sea. A second curl should
+      // not repeat the first directly underneath it like a stack of symbols.
+      const sign = primary.x < sea.width / 2 ? 1 : -1;
+      x = clamp(primary.x + sign * (primary.length + length) * pick(random, 0.35, 0.47),
+        length / 2 + 75, sea.width - length / 2 - 75);
+      if (i === 2) x = clamp(sea.width - x + pick(random, -100, 100), length / 2 + 75, sea.width - length / 2 - 75);
+    }
+    const amplitude = dramatic ? (i === 0 ? pick(random, 165, 250) : pick(random, 65, 140)) : sea.regime === 'rolling swell'
+      ? pick(random, 65, 145) : sea.regime === 'wind sea' ? pick(random, 25, 55) : pick(random, 10, 22);
+    const shape = dramatic ? (i === 0 ? (random() < 0.75 ? 'breaker' : 'spilling') : (random() < 0.7 ? 'swell' : 'spilling'))
+      : sea.regime === 'wind sea' ? 'chop' : 'swell';
+    add(x, depth, length, amplitude, shape, true);
+    if (!primary) primary = patches.at(-1);
+  }
+  return patches.sort((a, b) => a.depth - b.depth);
+}
+
+function drawWave(sea, patch, paths) {
+  const pen = makePen(paths), { length: L, amplitude: A, depth, shape, profile: local } = patch;
+  const project = point => patchPoint(sea, patch, point);
+  const points = local.map(project);
+  const tone = mix(151, 48, depth), width = mix(0.46, patch.major ? 1.9 : 1.4, depth);
+  pen([...points, project([0.5, 0.32]), project([-0.5, 0.32])], 0.08, 255, '#ffffff');
+  inkStroke(paths, points, width, tone, patch.phase);
+  if (shape === 'breaker' || shape === 'spilling') {
+    // Long, unequal contour strokes sweep down the shoulder and stop before
+    // the foam. The lip itself is broken by short, uneven foamy marks.
+    for (let j = 0; j < patch.layers; j++) {
+      const t = j / patch.layers, end = -0.83 + t * 0.42;
+      const face = cubic([-0.43 + t * 0.18, 0.09 + t * 0.08], [-0.2 + t * 0.17, 0.08],
+        [patch.crest - 0.12 + t * 0.09, end - 0.02], [patch.crest - 0.05 + t * 0.05, end]);
+      inkStroke(paths, face.map(project), width * (0.48 - t * 0.2), tone + 25 + j * 10, patch.phase + j);
+    }
+    for (let j = 0; j < 14; j++) {
+      const index = 22 + Math.round(j * 1.4), point = local[index];
+      const flutter = Math.sin(j * 1.7 + patch.phase);
+      const a = project([point[0] - 0.004, point[1] + 0.015]);
+      const b = project([point[0] - 0.009 - flutter * 0.008, point[1] + 0.033 + (flutter + 1) * 0.014]);
+      inkStroke(paths, quadratic(a, [(a[0] + b[0]) / 2 - sea.wind * 2, a[1] + 2], b, 5),
+        width * (0.28 + (flutter + 1) * 0.07), tone + 20 + (j % 3) * 12, patch.phase);
+    }
+  } else {
+    for (let j = 1; j <= patch.layers; j++) {
+      const trim = Math.min(15, 3 + j * 2);
+      const inset = local.slice(trim, -trim).map(([u, v], index, list) => {
+        const t = index / (list.length - 1), p = project([u, v]);
+        return [p[0], p[1] + j * (1.1 + depth * (patch.major ? 3.2 : 1.3)) * (0.6 + Math.sin(t * Math.PI) ** 0.6 * 0.4)];
+      });
+      inkStroke(paths, inset, width * Math.max(0.14, 0.5 - j * 0.045), tone + j * 12 + 7, patch.phase + j);
+    }
+  }
+  // A few broken, low marks let large faces meet the surrounding water.
+  if (patch.major && A > 60) {
+    for (let j = 0; j < 4; j++) {
+      const side = j < 2 ? -1 : 1, shift = (j % 2) * 0.035;
+      const a = project([side * (0.32 + shift), 0.16 + shift]);
+      const b = project([side * (0.47 + shift), 0.13 + shift]);
+      inkStroke(paths, quadratic(a, [(a[0] + b[0]) / 2, a[1] + A * 0.025], b), width * 0.42, tone + 32, patch.phase);
+    }
+  }
+}
+
+function boatLayout(sea, random, crests) {
+  const requestedCount = 2 + Math.floor(random() * 6.8);
+  const arrangement = ['scattered', 'crossing', 'flotilla', 'procession'][Math.floor(random() * 4)];
+  const boats = [], fleetX = pick(random, 0.3, 0.7) * sea.width;
+  const fleetDirection = random() < 0.5 ? -1 : 1;
+  for (let i = 0; i < requestedCount; i++) {
+    for (let attempt = 0; attempt < 150; attempt++) {
+      const hero = i === 0 || (i === 1 && requestedCount > 5 && attempt < 20);
+      const depth = hero ? pick(random, 0.39, 0.65) : pick(random, 0.11, 0.57);
+      const length = hero ? pick(random, 132, 194) : pick(random, 61, 137) * (0.57 + depth);
+      let x = pick(random, 125, sea.width - 125);
+      if (attempt < 25 && arrangement === 'flotilla') x = fleetX + pick(random, -370, 370);
+      if (attempt < 30 && arrangement === 'procession') x = mix(190, sea.width - 190, (i + random()) / requestedCount);
+      if (attempt < 30 && arrangement === 'crossing') x = 250 + depth * 1200 + pick(random, -230, 230);
       const center = seaSurface(sea, x, depth);
       const bow = seaSurface(sea, x + length * 0.38, depth);
       const stern = seaSurface(sea, x - length * 0.38, depth);
-      const angle = clamp(Math.atan2(bow.y - stern.y, length * 0.76), -0.15, 0.15);
-      const kind = ['sail', 'sampan', 'skiff'][Math.floor(random() * 3)];
-      const height = length * (kind === 'sail' ? 0.92 : kind === 'sampan' ? 0.3 : 0.25);
-      const bounds = { left: x - length * 0.8, right: x + length * 0.8,
-        top: center.y - height - length * 0.14, bottom: center.y + length * 0.2 };
-      if (bounds.top < 85 || bounds.left < 80 || bounds.right > sea.width - 80) continue;
-      if (boats.some(other => bounds.left < other.bounds.right + 30 && bounds.right > other.bounds.left - 30
-        && bounds.top < other.bounds.bottom + 35 && bounds.bottom > other.bounds.top - 35)) continue;
+      const angle = clamp(Math.atan2(bow.y - stern.y, length * 0.76), -0.18, 0.18);
+      const kind = ['sail', 'sampan', 'skiff', 'cutter', 'lugger', 'fishing'][Math.floor(random() * 6)];
+      const height = length * (['sail', 'cutter', 'lugger'].includes(kind) ? 0.94 : kind === 'fishing' ? 0.45 : 0.33);
+      const bounds = { left: x - length * 0.82, right: x + length * 0.82,
+        top: center.y - height - length * 0.16, bottom: center.y + length * 0.21 };
+      if (bounds.top < 90 || bounds.left < 75 || bounds.right > sea.width - 75) continue;
+      if (boats.some(other => bounds.left < other.bounds.right + 24 && bounds.right > other.bounds.left - 24
+        && bounds.top < other.bounds.bottom + 22 && bounds.bottom > other.bounds.top - 22)) continue;
+      // Nearer crests may cover a meniscus, but must never slice a sail/cabin
+      // or make a far vessel appear on top of a tall foreground wave.
+      if (crests.some(patch => patch.depth > depth && patch.bounds.left < bounds.right + 4
+        && patch.bounds.right > bounds.left - 4 && patch.bounds.top < center.y + length * 0.012
+        && patch.bounds.bottom > bounds.top)) continue;
       boats.push({ x, y: center.y, depth, length, angle, kind, bounds,
-        freeboard: pick(random, 0.055, 0.082), heading: random() < 0.5 ? -1 : 1, wind: sea.wind, sailLean: pick(random, -0.12, 0.1),
-        mastHeight: pick(random, 0.63, 0.88), sailSpread: pick(random, 0.38, 0.55), canopy: pick(random, 0.3, 0.45),
-        battens: 4 + Math.floor(random() * 4), hullTone: pick(random, 48, 78) });
+        freeboard: pick(random, kind === 'fishing' ? 0.07 : 0.045, kind === 'fishing' ? 0.105 : 0.082),
+        bowRise: pick(random, 1.3, 2.3), sternRise: pick(random, 1.05, 1.65), beam: pick(random, 0.83, 1.04),
+        heading: arrangement === 'procession' ? fleetDirection : random() < 0.5 ? -1 : 1,
+        wind: sea.wind, sailLean: pick(random, -0.11, 0.09), mastHeight: pick(random, 0.64, 0.88),
+        sailSpread: pick(random, 0.36, 0.51), canopy: pick(random, 0.3, 0.49), canopyHeight: pick(random, 0.34, 0.49),
+        battens: 4 + Math.floor(random() * 4), hullTone: pick(random, 42, 75) });
       break;
     }
   }
-  return boats.sort((a, b) => a.depth - b.depth);
+  return { boats: boats.sort((a, b) => a.depth - b.depth), arrangement, requestedCount };
 }
 
 function drawBoat(sea, boat, paths) {
@@ -204,10 +300,10 @@ function drawBoat(sea, boat, paths) {
   const rim = boat.freeboard;
   // Build the visible hull only down to its waterline. Its submerged keel is
   // implicit rather than drawing a complete boat and letting waves cross it.
-  const deck = quadratic([-0.49, -rim * 1.4], [-0.08, -rim * 0.52], [0.51, -rim * 1.85]);
-  const bottom = quadratic([0.41, 0.003], [0.02, 0.035], [-0.39, 0.008]);
+  const deck = quadratic([-0.49, -rim * boat.sternRise], [-0.08, -rim * 0.45], [0.51, -rim * boat.bowRise]);
+  const bottom = quadratic([0.41 * boat.beam, 0.003], [0.02, 0.035], [-0.39 * boat.beam, 0.008]);
   mark([...deck, ...bottom], 0.95, boat.hullTone, '#ffffff');
-  stroke([-0.48, -rim * 1.15], [-0.08, -rim * 0.28], [0.49, -rim * 1.55], 0.65);
+  stroke([-0.48, -rim * (boat.sternRise - 0.25)], [-0.08, -rim * 0.2], [0.49, -rim * (boat.bowRise - 0.3)], 0.65);
   stroke([-0.405, -rim * 0.55], [0, 0.01], [0.43, -rim * 0.7], 0.6, boat.hullTone + 15);
   for (let j = 0; j < 8; j++) {
     const x = mix(-0.36, 0.35, j / 7);
@@ -234,13 +330,54 @@ function drawBoat(sea, boat, paths) {
     mark([[top[0], top[1] - 0.018], [-0.42, -rim * 1.1]], 0.38, boat.hullTone + 35);
     // A small pennant follows the same wind direction as the sail.
     mark([[top[0], top[1] - 0.025], [top[0] + wind * 0.12, top[1] - 0.01], [top[0], top[1] + 0.01]], 0.35, boat.hullTone, '#ffffff');
+  } else if (boat.kind === 'cutter' || boat.kind === 'lugger') {
+    const top = [-0.08 + boat.sailLean * 0.5, -boat.mastHeight];
+    const foot = [-0.08, -rim];
+    if (boat.kind === 'cutter') {
+      const clew = [-0.48, -rim - 0.055];
+      mark([...quadratic(top, [-0.3, -boat.mastHeight * 0.57], clew), foot], 0.8, boat.hullTone, '#ffffff');
+      const jibTop = [top[0] + 0.015, top[1] + 0.11], jibFoot = [0.46, -rim * 1.7];
+      mark([...quadratic(jibTop, [0.27, -boat.mastHeight * 0.36], jibFoot), [0.02, -rim - 0.065]], 0.75, boat.hullTone, '#ffffff');
+      for (let j = 1; j < 4; j++) {
+        const t = j / 4;
+        mark([[mix(top[0], clew[0], t), mix(top[1], clew[1], t)],
+          [mix(top[0], foot[0], t), mix(top[1], foot[1], t)]], 0.33, boat.hullTone + 38);
+      }
+      mark([clew, foot], 1.0);
+      mark([top, [0.5, -rim * boat.bowRise]], 0.3, boat.hullTone + 30);
+    } else {
+      const peak = [top[0] + 0.18, top[1] + 0.045], throat = [top[0] - 0.19, top[1] + 0.16];
+      const clew = [-boat.sailSpread, -rim - 0.07], tack = [0.2, -rim - 0.12];
+      mark([throat, peak, ...quadratic(peak, [0.35, -boat.mastHeight * 0.4], tack).slice(1), clew], 0.8, boat.hullTone, '#ffffff');
+      mark([[throat[0] - 0.04, throat[1] + 0.008], [peak[0] + 0.025, peak[1] - 0.008]], 1.0);
+      for (let j = 1; j < 4; j++) {
+        const t = j / 4;
+        stroke([mix(throat[0], clew[0], t), mix(throat[1], clew[1], t)],
+          [0.005, mix(top[1], tack[1], t) + 0.055], [mix(peak[0], tack[0], t), mix(peak[1], tack[1], t)], 0.32, boat.hullTone + 35);
+      }
+      mark([top, [-0.43, -rim]], 0.3, boat.hullTone + 28);
+    }
+    mark([foot, [top[0], top[1] - 0.035]], 1.05, boat.hullTone - 9);
+    const pennant = boat.wind * boat.heading;
+    mark([[top[0], top[1] - 0.025], [top[0] + pennant * 0.12, top[1] - 0.005], [top[0], top[1] + 0.01]], 0.35, boat.hullTone, '#ffffff');
+  } else if (boat.kind === 'fishing') {
+    const left = -boat.canopy * 0.65, right = boat.canopy * 0.42;
+    const roofY = -0.2 - boat.canopyHeight * 0.14;
+    mark([[left, -rim], [left, roofY], [right, roofY - 0.018], [right + 0.025, -rim]], 0.85, boat.hullTone, '#ffffff');
+    mark([[left - 0.035, roofY], [right + 0.055, roofY - 0.018]], 1.0);
+    for (let j = 0; j < 2; j++) {
+      const x = mix(left + 0.04, right - 0.07, j);
+      mark([[x, roofY + 0.035], [x + 0.055, roofY + 0.031], [x + 0.055, roofY + 0.09], [x, roofY + 0.092]], 0.4, boat.hullTone + 20, '#ffffff');
+    }
+    mark([[-0.27, -rim], [-0.27, -0.4], [0.34, -0.26]], 0.65);
+    mark([[-0.27, -0.4], [0.34, -rim * 1.2]], 0.32, boat.hullTone + 35);
   } else if (boat.kind === 'sampan') {
     const a = -boat.canopy * 0.65, b = boat.canopy * 0.55;
-    const roof = quadratic([a, -rim * 0.7], [-0.04, -0.44], [b, -rim * 0.8]);
+    const roof = quadratic([a, -rim * 0.7], [-0.04, -boat.canopyHeight], [b, -rim * 0.8]);
     mark([...roof, [a, -rim * 0.7]], 0.85, boat.hullTone, '#ffffff');
     for (let j = 1; j < 7; j++) {
       const shift = j * 0.007;
-      const inner = quadratic([a + shift, -rim * 0.72], [-0.04, -0.44 + shift * 2], [b - shift, -rim * 0.8]);
+      const inner = quadratic([a + shift, -rim * 0.72], [-0.04, -boat.canopyHeight + shift * 2], [b - shift, -rim * 0.8]);
       mark(inner, 0.4, boat.hullTone + 30 + j * 3);
     }
     mark([[a, -rim * 0.7], [a + 0.025, -0.17]], 0.55);
@@ -248,7 +385,7 @@ function drawBoat(sea, boat, paths) {
   }
   // A tiny rower/sculler makes the boats human-scaled. Geometry remains local
   // to the hull, so mast, canopy, figure and oar all share its roll angle.
-  const personX = boat.kind === 'sampan' ? 0.33 : -0.3;
+  const personX = ['sampan', 'fishing'].includes(boat.kind) ? 0.33 : -0.3;
   const figure = sampled(0, TAU, 12, t => [personX + Math.cos(t) * 0.017, -0.17 + Math.sin(t) * 0.02]);
   mark(figure, 0.4, boat.hullTone, gray(boat.hullTone));
   mark([[personX - 0.028, -0.178], [personX, -0.204], [personX + 0.031, -0.178]], 0.4, boat.hullTone, '#ffffff');
@@ -269,16 +406,24 @@ function drawBoat(sea, boat, paths) {
 
 export function buildSeascape(seed) {
   const sea = seaParameters(seed);
-  const random = randomSource(`${seed}:composition`);
   const paths = [];
-  const crests = wavePatches(sea, random, paths);
-  const boats = boatLayout(sea, random);
-  for (const boat of boats) drawBoat(sea, boat, paths);
-  return { sea, crests, boats, paths };
+  const crests = wavePatches(sea, randomSource(`${seed}:crests`));
+  const { boats, arrangement, requestedCount } = boatLayout(sea, randomSource(`${seed}:fleet`), crests);
+  const layers = [...crests.map(patch => ({ depth: patch.depth, patch })), ...boats.map(boat => ({ depth: boat.depth, boat }))];
+  layers.sort((a, b) => a.depth - b.depth);
+  for (const layer of layers) {
+    if (layer.patch) drawWave(sea, layer.patch, paths);
+    else {
+      const start = paths.length;
+      drawBoat(sea, layer.boat, paths);
+      layer.boat.pathRange = [start, paths.length];
+    }
+  }
+  return { sea, crests, boats, arrangement, requestedCount, paths };
 }
 
 export function generateSeascape(seed) {
   const { sea, paths } = buildSeascape(seed);
   return { ...drawing(paths, { width: sea.width, height: sea.height, whiteToAlpha: true, rounded: true }),
-    mode: 'seascapes', seed, artRevision: 1 };
+    mode: 'seascapes', seed, artRevision: 2 };
 }
