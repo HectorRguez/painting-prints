@@ -1,1 +1,0 @@
-export default {"published": "2016-01-10", "label": "Cityscapes", "title": "ln", "author": "Michael Fogleman", "source": "https://github.com/fogleman/ln", "ratio": 1.41421356237, "orientation": "landscape", "renderer": "lines"};

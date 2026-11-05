@@ -1,0 +1,31 @@
+[
+  {
+    "mode": "ribbons",
+    "seed": "browser-review-ribbons",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1621268
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1599601
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 117964
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 833389
+      }
+    ]
+  }
+]

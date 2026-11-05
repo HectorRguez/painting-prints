@@ -1,6 +1,6 @@
 # Bundled painting cache
 
-The app ships ten generated paintings per style (40 total) in `public/cache/`. Landscapes load a pre-rendered 4096 × 1024 PNG directly, fetching their compressed SVG source only when an export needs it. Flowers load direct transparent PNG previews. Compressed originals are fetched separately for export. Opening a style automatically shows a random cached painting. Every click on Create generates a fresh painting; returning to an already opened style reuses its decoded preview immediately. The last displayed painting is also restored after a reload. Generation, decompression, preview rendering, and pixel-based centering run in cancellable workers. Fresh paintings and their landscape previews persist in IndexedDB where available.
+The app ships ten generated paintings each for Flowers and Landscapes (20 total) in `public/cache/`. Landscapes load a pre-rendered 4096 × 1024 PNG directly, fetching their compressed SVG source only when an export needs it. Flowers load direct transparent PNG previews. Compressed originals are fetched separately for export. Opening a style automatically shows a random cached painting. Every click on Create generates a fresh painting; returning to an already opened style reuses its decoded preview immediately. The last displayed painting is also restored after a reload. Generation, decompression, preview rendering, and pixel-based centering run in cancellable workers. Fresh paintings and their landscape previews persist in IndexedDB where available.
 
 To rebuild the starter collection, install dependencies and run `npm run prepare-generators`. Serve the repository with a static HTTP server, open `scripts/cache/bake.html`, and choose **Prepare paintings**. Keep that page open until **Save painting cache** becomes available. Extract the downloaded ZIP into `public/cache/`, run `node scripts/cache/measure-ink.mjs` to precompute centering, then rebuild the landscape and direct previews as described below before `npm run build`. The baker uses the same per-style workers as the app, without iframe wrappers. Seeds are recorded in the manifest and full painting payloads; artwork credits and export backgrounds are preserved.
 
@@ -13,15 +13,4 @@ Each landscape also includes a 2048-pixel-wide `cropPreviewAsset` containing exa
 Prepare lightweight first-load previews for Flowers with `node scripts/cache/prepare-direct-previews.mjs`. This extracts the original transparent PNG pixels while retaining the separate compressed print source and measured ink offsets. Run this after replacing the cached flowers; no browser rendering is needed.
 
 
-The two additional styles use their native canvas renderer directly during baking.
-To rebuild just those twenty previews and vector sources, open
-`bake.html?styles=cityscapes,buildings` on the same
-static server. The ZIP includes a merged manifest, preserving existing styles.
-Extract it into `public/cache/` and rebuild. These previews are 2400 pixels wide,
-with transparent paper and measured ink offsets; no separate rasterization step
-is needed for these styles.
-
-Optionally run `python scripts/cache/optimize-png.py cityscapes buildings`
-(requires Pillow) before building. It converts grayscale previews to PNG's
-grayscale-plus-alpha encoding, checks every decoded pixel, and keeps only smaller
-files. This reduces transfer size without changing resolution or transparency.
+The eight newer styles generate on demand and use the same local cache. The baker defaults to the two bundled styles. To explicitly prepare another style for review, use a query such as `bake.html?styles=leaves,snowflakes`. This is optional; new styles do not require starter assets.

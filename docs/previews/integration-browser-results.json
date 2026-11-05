@@ -1,0 +1,234 @@
+[
+  {
+    "mode": "leaves",
+    "seed": "browser-review-leaves",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1188540
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1180261
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 462518
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 692099
+      }
+    ]
+  },
+  {
+    "mode": "snowflakes",
+    "seed": "browser-review-snowflakes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1842284
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1778473
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 123453
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 1010965
+      }
+    ]
+  },
+  {
+    "mode": "seascapes",
+    "seed": "browser-review-seascapes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 696068
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 912369
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 628923
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 254257
+      }
+    ]
+  },
+  {
+    "mode": "ribbons",
+    "seed": "browser-review-ribbons",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1621268
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1599601
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 117964
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 833389
+      }
+    ]
+  },
+  {
+    "mode": "interference",
+    "seed": "browser-review-interference",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 3819450
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 3559104
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 114979
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 1915910
+      }
+    ]
+  },
+  {
+    "mode": "dunes",
+    "seed": "browser-review-dunes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 398208
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 512480
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 123951
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 143819
+      }
+    ]
+  },
+  {
+    "mode": "brushwork",
+    "seed": "browser-review-brushwork",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 3138988
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 3080882
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 383754
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 1812518
+      }
+    ]
+  },
+  {
+    "mode": "folds",
+    "seed": "browser-review-folds",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 2017955
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 2013546
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 846027
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 969744
+      }
+    ]
+  }
+]

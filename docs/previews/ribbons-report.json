@@ -1,0 +1,5287 @@
+{
+  "mode": "ribbons",
+  "count": 48,
+  "start": 0,
+  "unique": 48,
+  "uniquePngs": 48,
+  "generationMs": {
+    "max": 144.18652499999985,
+    "mean": 57.56467954166673
+  },
+  "svgBytes": {
+    "max": 220212,
+    "mean": 126357.04166666667
+  },
+  "records": [
+    {
+      "seed": "ribbons-review-00",
+      "sha256": "7f90cadbbbd65b65086d1332483a1b440d0abec310a554df03c374a216dfd501",
+      "generationMs": 113.84440500000001,
+      "svgBytes": 130087,
+      "paths": 80,
+      "label": "sweep · 16 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": -1.7966933106195735,
+          "anisotropy": 1.213393835432362,
+          "drift": {
+            "speed": 0.5695264822570607,
+            "angle": 0.021354277106001976
+          },
+          "harmonics": [
+            {
+              "frequency": 0.782252815249376,
+              "angle": 1.5610708532556004,
+              "amplitude": 0.034445344790583476,
+              "phase": 2.1127257828919968
+            },
+            {
+              "frequency": 0.6433428871404612,
+              "angle": -1.1928679281029793,
+              "amplitude": 0.04802198399944852,
+              "phase": 5.352965248146026
+            },
+            {
+              "frequency": 1.3798752561758738,
+              "angle": -2.4424105431512992,
+              "amplitude": 0.04693281104555354,
+              "phase": 4.496549316973492
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.1942573778796941,
+                0.22712107724510133
+              ],
+              "radius": 0.45086819762364033,
+              "circulation": -1.0566770150326192
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 18,
+          "width": 0.051025867429561916,
+          "widthVariation": 0.33757393239066,
+          "spacing": 0.026111050214851276,
+          "taper": 0.23561557694338262,
+          "taperPower": 1.065313380630687,
+          "maxLength": 2.8157400758704174,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.008081238833256066,
+            -0.027450626015197488
+          ],
+          "radii": [
+            0.9297831789590418,
+            0.6041686480469071
+          ],
+          "angle": -1.6021676520009147,
+          "seedBias": 0.7807093223789707
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.23702505772933363,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 630,
+        "rejectedShort": 4,
+        "rejectedGeometry": 0,
+        "count": 16,
+        "target": 18,
+        "totalLength": 17.016587237625995,
+        "maxIntegrationError": 4.8660930156771144e-11
+      },
+      "pngSha256": "834e799d8e2a60acf75c6ffb538b2a620d95ede351c26d2fe3c7ca6ea9f3b331",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08492013888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 322,
+        "top": 156,
+        "right": 870,
+        "bottom": 1017
+      }
+    },
+    {
+      "seed": "ribbons-review-01",
+      "sha256": "56c8727f5eec4855070779f3e0476ee6f95556c496c47f3087a7be46a34aefd8",
+      "generationMs": 62.570900999999935,
+      "svgBytes": 112770,
+      "paths": 60,
+      "label": "sweep · 12 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 2.1209032769803065,
+          "anisotropy": 1.0155450107180515,
+          "drift": {
+            "speed": 0.6145487740403042,
+            "angle": 0.02722118915989996
+          },
+          "harmonics": [
+            {
+              "frequency": 0.6201137237250804,
+              "angle": -2.5836971685120713,
+              "amplitude": 0.07139214469934815,
+              "phase": 2.235296747207506
+            },
+            {
+              "frequency": 1.1109041130554398,
+              "angle": 1.1080200327047072,
+              "amplitude": 0.06322859985909114,
+              "phase": 1.3510496100335294
+            },
+            {
+              "frequency": 1.4028583283582703,
+              "angle": 2.585005186973433,
+              "amplitude": 0.04146225879085251,
+              "phase": 1.7989955691693118
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.365051809232682,
+                0.3394930148497224
+              ],
+              "radius": 0.5007723082555459,
+              "circulation": -0.4520880485419184
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 20,
+          "width": 0.052313542990013964,
+          "widthVariation": 0.22067247636150567,
+          "spacing": 0.027142567013856027,
+          "taper": 0.1977736041788012,
+          "taperPower": 1.1682922695297748,
+          "maxLength": 2.7698039223905653,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.010827226734254514,
+            -0.01586067143594846
+          ],
+          "radii": [
+            0.8328610420599579,
+            0.6934485227544792
+          ],
+          "angle": 2.0370516698364276,
+          "seedBias": 0.7682092849863693
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.23361814278410747,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 700,
+        "rejectedShort": 13,
+        "rejectedGeometry": 0,
+        "count": 12,
+        "target": 20,
+        "totalLength": 14.869471237247291,
+        "maxIntegrationError": 1.1174311567679448e-12
+      },
+      "pngSha256": "c7254013ef6ebd2566bcd776db3ee2c8b1a12e9713319c671d1f2addd55fb0d4",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08148263888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 274,
+        "top": 220,
+        "right": 937,
+        "bottom": 962
+      }
+    },
+    {
+      "seed": "ribbons-review-02",
+      "sha256": "6abc681cf7ce8ab98e4d8bf3dbd426fd108a8083a77712532c18c9c43ed3efef",
+      "generationMs": 60.388616999999954,
+      "svgBytes": 116985,
+      "paths": 95,
+      "label": "confluence · 19 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -2.6399614469565362,
+          "anisotropy": 0.8630356041365304,
+          "drift": {
+            "speed": 0.25015607774257664,
+            "angle": -0.0915205187164247
+          },
+          "harmonics": [
+            {
+              "frequency": 0.5451787756057456,
+              "angle": -1.5305451803673693,
+              "amplitude": 0.051320322690298785,
+              "phase": 4.337512088365988
+            },
+            {
+              "frequency": 0.5842103343759664,
+              "angle": 1.8639752435135701,
+              "amplitude": 0.0332787581292602,
+              "phase": 3.1073710542256743
+            },
+            {
+              "frequency": 2.042344497756567,
+              "angle": 2.255858104699148,
+              "amplitude": 0.0254133599170018,
+              "phase": 1.7195646253516734
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.013588910177350033,
+                -0.45599691402167086
+              ],
+              "radius": 0.3889064914803021,
+              "circulation": -2.2911452571395783
+            },
+            {
+              "center": [
+                -0.03922768388874828,
+                0.45599691402167086
+              ],
+              "radius": 0.27023539451649414,
+              "circulation": 2.7444743441883475
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.047293113900814206,
+          "widthVariation": 0.3064675621921197,
+          "spacing": 0.021297830119729043,
+          "taper": 0.1895502744615078,
+          "taperPower": 1.0191334512084722,
+          "maxLength": 4.040556565322913,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.02184585414128378,
+            -0.001004666425287723
+          ],
+          "radii": [
+            0.7041321399807929,
+            0.8862981863785535
+          ],
+          "angle": -2.5247186433009716,
+          "seedBias": 0.6575732602272183
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.25716754721244794,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 83,
+        "rejectedShort": 2,
+        "rejectedGeometry": 0,
+        "count": 19,
+        "target": 19,
+        "totalLength": 14.871848280963826,
+        "maxIntegrationError": 7.976267597606726e-11
+      },
+      "pngSha256": "076e59918710039fa75e77304c5781b60e84e259803f3da0e303c47e7554e7e3",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.06357083333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 235,
+        "top": 211,
+        "right": 945,
+        "bottom": 958
+      }
+    },
+    {
+      "seed": "ribbons-review-03",
+      "sha256": "791fd8b6b6914b867acdd89145bfb727cfd776384697f4649f9808a076a6b3f7",
+      "generationMs": 144.18652499999985,
+      "svgBytes": 116201,
+      "paths": 72,
+      "label": "confluence · 24 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -1.5305547434628535,
+          "anisotropy": 1.091388031328097,
+          "drift": {
+            "speed": 0.2555989564582706,
+            "angle": 0.018609339138492942
+          },
+          "harmonics": [
+            {
+              "frequency": 0.9664356037741527,
+              "angle": 2.009320009477902,
+              "amplitude": 0.06592927281744779,
+              "phase": 1.5998703709426787
+            },
+            {
+              "frequency": 1.1074276441469555,
+              "angle": 2.5252271928886074,
+              "amplitude": 0.02061545040148,
+              "phase": 3.801256846771269
+            },
+            {
+              "frequency": 1.9679487104911824,
+              "angle": 0.24482920063321334,
+              "amplitude": 0.018212646257597956,
+              "phase": 1.6173340111048173
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.016001385496929282,
+                -0.3462348104151897
+              ],
+              "radius": 0.4205461516231298,
+              "circulation": 1.9793991275597365
+            },
+            {
+              "center": [
+                0.12120317656081167,
+                0.3462348104151897
+              ],
+              "radius": 0.3230643616640009,
+              "circulation": -2.632602608529851
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 26,
+          "width": 0.04712959673721344,
+          "widthVariation": 0.35814823204651475,
+          "spacing": 0.018884291985072195,
+          "taper": 0.16243657214567064,
+          "taperPower": 1.0639913959428668,
+          "maxLength": 3.775015211896971,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            0.006483095290604979,
+            -0.002520329928956927
+          ],
+          "radii": [
+            0.7349990278482437,
+            0.8824263665359467
+          ],
+          "angle": -1.462843343315326,
+          "seedBias": 0.6022061811294407
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.31179414823884144,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 910,
+        "rejectedShort": 31,
+        "rejectedGeometry": 0,
+        "count": 24,
+        "target": 26,
+        "totalLength": 22.11561849395538,
+        "maxIntegrationError": 2.499596673111037e-9
+      },
+      "pngSha256": "f25eab603898c2fac6af1524fe2f7f6910ca4c9fb215c0d2194526dd3b0bea5f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08407361111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 207,
+        "top": 258,
+        "right": 1006,
+        "bottom": 939
+      }
+    },
+    {
+      "seed": "ribbons-review-04",
+      "sha256": "a831394a04b83c437193871690b3647bb11760ff5e1a297b3d45d63949657623",
+      "generationMs": 100.6745249999999,
+      "svgBytes": 169942,
+      "paths": 60,
+      "label": "eddy · 15 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": -0.7411466294462947,
+          "anisotropy": 1.1295097744674423,
+          "drift": {
+            "speed": 0.06125322006177157,
+            "angle": 0.08258910826407373
+          },
+          "harmonics": [
+            {
+              "frequency": 0.888722958555445,
+              "angle": 2.438109202657488,
+              "amplitude": 0.04957494925765787,
+              "phase": 1.961841205097981
+            },
+            {
+              "frequency": 1.1647957622143439,
+              "angle": -3.101528574885816,
+              "amplitude": 0.02307099258507758,
+              "phase": 1.7805100031941468
+            },
+            {
+              "frequency": 1.626006737620337,
+              "angle": -2.819536041199182,
+              "amplitude": 0.027098409852915218,
+              "phase": 1.1289868993845777
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.17278060000389817,
+                0.11502401689067482
+              ],
+              "radius": 0.4729782585054636,
+              "circulation": -2.208664921671152
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.0373912978055887,
+          "widthVariation": 0.20629379354417324,
+          "spacing": 0.031596597825642676,
+          "taper": 0.13865540159866213,
+          "taperPower": 1.2498078973963855,
+          "maxLength": 4.603121111937798,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.014654199569486083,
+            -0.014760759563650937
+          ],
+          "radii": [
+            0.9064785515144467,
+            0.8840952943265439
+          ],
+          "angle": -0.5902705273154346,
+          "seedBias": 0.5989244000520557
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.15840617985930294,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 665,
+        "rejectedShort": 4,
+        "rejectedGeometry": 0,
+        "count": 15,
+        "target": 19,
+        "totalLength": 27.049081375204253,
+        "maxIntegrationError": 2.120860615873878e-9
+      },
+      "pngSha256": "8bed9fd2d306afbd5cdf90f3bce4dd150ffab6a80285af8888be623628855c2f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.11277708333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 184,
+        "top": 178,
+        "right": 1013,
+        "bottom": 1008
+      }
+    },
+    {
+      "seed": "ribbons-review-05",
+      "sha256": "b9c1d2f8fada4e7419fd3355aa4dedec29a68ff9f4f4da3f3b93bedf9235516a",
+      "generationMs": 52.775644000000284,
+      "svgBytes": 122257,
+      "paths": 115,
+      "label": "confluence · 23 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 2.5638513988618206,
+          "anisotropy": 1.1937107519363055,
+          "drift": {
+            "speed": 0.19577298250049352,
+            "angle": 0.08361729197204112
+          },
+          "harmonics": [
+            {
+              "frequency": 0.7420784277375787,
+              "angle": -2.688863594555844,
+              "amplitude": 0.06800031150341966,
+              "phase": 6.05500527438247
+            },
+            {
+              "frequency": 1.1911015053238951,
+              "angle": 1.565682676167965,
+              "amplitude": 0.052065173703401045,
+              "phase": 4.653141254604811
+            },
+            {
+              "frequency": 1.8864309740276077,
+              "angle": 2.1514902183406157,
+              "amplitude": 0.02484337785863318,
+              "phase": 5.315486618210653
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.06276008072309197,
+                -0.3893128447793424
+              ],
+              "radius": 0.31903550921939317,
+              "circulation": -2.4729453625157474
+            },
+            {
+              "center": [
+                -0.06178392602596432,
+                0.3893128447793424
+              ],
+              "radius": 0.36697475062683227,
+              "circulation": 2.8697123796213417
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.0616271145362407,
+          "widthVariation": 0.23793815081939101,
+          "spacing": 0.027419161376077684,
+          "taper": 0.18487015020102263,
+          "taperPower": 1.225906228693202,
+          "maxLength": 3.2171319691929967,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.019948539664037528,
+            0.019915347481146456
+          ],
+          "radii": [
+            0.7379270257428288,
+            0.9343585952185094
+          ],
+          "angle": 2.539354560131992,
+          "seedBias": 0.8364143177634105
+        },
+        "style": {
+          "palette": [
+            "#685873",
+            "#b17c73",
+            "#7b9997"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.19972664229338988,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 332,
+        "rejectedShort": 15,
+        "rejectedGeometry": 0,
+        "count": 23,
+        "target": 23,
+        "totalLength": 15.241909931297602,
+        "maxIntegrationError": 4.97452359934842e-9
+      },
+      "pngSha256": "f8aa75e2f1c5281383e2f2e7104c0adb908bb26960085c5060f9fc3c30d6950b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09181944444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 242,
+        "top": 205,
+        "right": 982,
+        "bottom": 1010
+      }
+    },
+    {
+      "seed": "ribbons-review-06",
+      "sha256": "13c7ed25e3e27bcf89e81534d27f3af62188904b4ef261b12d683b24721afd3a",
+      "generationMs": 63.217977999999675,
+      "svgBytes": 77490,
+      "paths": 36,
+      "label": "eddy · 12 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": -0.5703551261746425,
+          "anisotropy": 1.284747674735263,
+          "drift": {
+            "speed": 0.07324233460705729,
+            "angle": 0.07002578293904663
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8477048674947583,
+              "angle": -1.49155787227521,
+              "amplitude": 0.03842544398445171,
+              "phase": 1.5973063524610172
+            },
+            {
+              "frequency": 1.526679881666787,
+              "angle": 0.7152081673366619,
+              "amplitude": 0.03203767770765505,
+              "phase": 1.7647922635957742
+            },
+            {
+              "frequency": 1.549240122756455,
+              "angle": -0.49366829629465014,
+              "amplitude": 0.009910208536748543,
+              "phase": 3.679494457759024
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.12999810911715032,
+                -0.039778610784560436
+              ],
+              "radius": 0.4470659459941089,
+              "circulation": -2.0187728706747294
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.062498638278339055,
+          "widthVariation": 0.32317217913456264,
+          "spacing": 0.032417155901901425,
+          "taper": 0.16492212709970772,
+          "taperPower": 1.1424386190250515,
+          "maxLength": 4.369965041126124,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.014206035833340139,
+            -0.022814434696920217
+          ],
+          "radii": [
+            0.869600656395778,
+            0.7480057269334793
+          ],
+          "angle": -0.5807694334597426,
+          "seedBias": 0.5567901331698523
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.31243187487125396,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 805,
+        "rejectedShort": 12,
+        "rejectedGeometry": 0,
+        "count": 12,
+        "target": 23,
+        "totalLength": 15.11506022805088,
+        "maxIntegrationError": 1.7131034998043419e-9
+      },
+      "pngSha256": "f3e202478c944895c5b255ef558aed21950510541a1b382020e57f460d4f9b90",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08578819444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 205,
+        "top": 224,
+        "right": 969,
+        "bottom": 949
+      }
+    },
+    {
+      "seed": "ribbons-review-07",
+      "sha256": "950cdc40c90ab8a29eb565373d2ad57494228220ebafe607e3bb900b67b30c76",
+      "generationMs": 65.43420800000013,
+      "svgBytes": 130611,
+      "paths": 42,
+      "label": "eddy · 14 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": -1.6427545314572398,
+          "anisotropy": 0.9896955043659545,
+          "drift": {
+            "speed": 0.07528358620591462,
+            "angle": 0.006434402987360949
+          },
+          "harmonics": [
+            {
+              "frequency": 0.660061470780056,
+              "angle": 2.043681418459938,
+              "amplitude": 0.025875642400642395,
+              "phase": 4.332168010586555
+            },
+            {
+              "frequency": 1.0423337768641068,
+              "angle": 1.1827954196740018,
+              "amplitude": 0.025261046532929567,
+              "phase": 4.015668511957752
+            },
+            {
+              "frequency": 1.474177595131332,
+              "angle": -1.7193980823687753,
+              "amplitude": 0.014243142595660178,
+              "phase": 3.583411516821723
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.014081102702766662,
+                0.19047605339437723
+              ],
+              "radius": 0.449515059730038,
+              "circulation": -3.225075503066182
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.048161667976528405,
+          "widthVariation": 0.19823100532870738,
+          "spacing": 0.01922229671641253,
+          "taper": 0.16276688484475016,
+          "taperPower": 0.9546019264962524,
+          "maxLength": 4.62248257973697,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.008247758985962719,
+            -0.01622119928011671
+          ],
+          "radii": [
+            0.8943334580212832,
+            0.9041979096457362
+          ],
+          "angle": -1.6618052610113863,
+          "seedBias": 0.6117079665651546
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.28237825819989665,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 805,
+        "rejectedShort": 7,
+        "rejectedGeometry": 0,
+        "count": 14,
+        "target": 23,
+        "totalLength": 25.63175363542877,
+        "maxIntegrationError": 8.239217211505997e-11
+      },
+      "pngSha256": "6f3585e1c89742b2a4e5433189fd8325e293edda4a36284c7f096fbab7b3f42b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.14485208333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 169,
+        "top": 175,
+        "right": 1013,
+        "bottom": 1000
+      }
+    },
+    {
+      "seed": "ribbons-review-08",
+      "sha256": "1406c60835dccaba4f87f281394d1fdbd6e8734906ac9f75867fd2dadef9c091",
+      "generationMs": 51.703285999999935,
+      "svgBytes": 89115,
+      "paths": 57,
+      "label": "confluence · 19 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 2.425911716480372,
+          "anisotropy": 1.1761762377107516,
+          "drift": {
+            "speed": 0.22873355198651554,
+            "angle": 0.024362488230690357
+          },
+          "harmonics": [
+            {
+              "frequency": 0.9411708680097945,
+              "angle": -2.034365452263981,
+              "amplitude": 0.03636649315012619,
+              "phase": 4.6271573293900286
+            },
+            {
+              "frequency": 1.3522932922339532,
+              "angle": -2.074264263649625,
+              "amplitude": 0.035188830403300626,
+              "phase": 2.08500887321717
+            },
+            {
+              "frequency": 0.8981072279799265,
+              "angle": -2.7085763161955394,
+              "amplitude": 0.037866165066952825,
+              "phase": 0.05286974527710497
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.11169418129138647,
+                -0.3881122895819135
+              ],
+              "radius": 0.2741109122056514,
+              "circulation": 1.6081147504970432
+            },
+            {
+              "center": [
+                0.0905952884349972,
+                0.3881122895819135
+              ],
+              "radius": 0.4091509355651215,
+              "circulation": -2.732170124119148
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 26,
+          "width": 0.05550456669880077,
+          "widthVariation": 0.3909354241192341,
+          "spacing": 0.03470530292624608,
+          "taper": 0.22200560220517218,
+          "taperPower": 1.3456883285194636,
+          "maxLength": 3.299314129538834,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.013910329167265447,
+            0.031541486745700245
+          ],
+          "radii": [
+            0.852071872986853,
+            0.8514571566833183
+          ],
+          "angle": 2.606231825441686,
+          "seedBias": 0.8465486474335193
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.19732566081220282,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 910,
+        "rejectedShort": 23,
+        "rejectedGeometry": 0,
+        "count": 19,
+        "target": 26,
+        "totalLength": 17.0773169113309,
+        "maxIntegrationError": 3.461630733360424e-9
+      },
+      "pngSha256": "2d5774de57a2848d60eff6b11450b2d29410d46c332b0c8b0e854e7a6889b833",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09365,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 201,
+        "top": 220,
+        "right": 945,
+        "bottom": 998
+      }
+    },
+    {
+      "seed": "ribbons-review-09",
+      "sha256": "a3e914a0021be10003716234828e1827dc2e4915e165037ca4804957671085ed",
+      "generationMs": 46.190070000000105,
+      "svgBytes": 126571,
+      "paths": 65,
+      "label": "sweep · 13 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 0.12871413330029835,
+          "anisotropy": 0.8181070965016262,
+          "drift": {
+            "speed": 0.6263227776158602,
+            "angle": 0.09541247664019467
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8929906732751988,
+              "angle": -0.16021589146354254,
+              "amplitude": 0.08328865687944928,
+              "phase": 1.077756448904967
+            },
+            {
+              "frequency": 1.4028868076758227,
+              "angle": -0.6217009745581823,
+              "amplitude": 0.03844407560924689,
+              "phase": 4.975495425995662
+            },
+            {
+              "frequency": 1.6244969801895786,
+              "angle": -2.6092159794044036,
+              "amplitude": 0.019577043742174283,
+              "phase": 0.92529519652184
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.15431249677203596,
+                -0.06556585663929582
+              ],
+              "radius": 0.5025255388347433,
+              "circulation": -0.6471612601540984
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.04856776185333729,
+          "widthVariation": 0.18598843902815132,
+          "spacing": 0.031133302021538842,
+          "taper": 0.16882148012518883,
+          "taperPower": 1.360552568314597,
+          "maxLength": 3.151716564712115,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.03196825113147497,
+            -0.03307583441026509
+          ],
+          "radii": [
+            0.843761901455,
+            0.6879797091009096
+          ],
+          "angle": 0.16025988260697713,
+          "seedBias": 0.7915666048880666
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.16718346845824272,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 805,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 13,
+        "target": 23,
+        "totalLength": 16.731411830686763,
+        "maxIntegrationError": 4.652260802885967e-13
+      },
+      "pngSha256": "73ed89ea995faee307834f0dc7406609e62d4a608fc29aa169dd6959af019949",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09456944444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 199,
+        "top": 274,
+        "right": 973,
+        "bottom": 893
+      }
+    },
+    {
+      "seed": "ribbons-review-10",
+      "sha256": "246dff25e4b2703d7f0ac71dd0699dcbe54cf90df767ba2496c752dfb44908aa",
+      "generationMs": 48.910571000000346,
+      "svgBytes": 96058,
+      "paths": 48,
+      "label": "sweep · 16 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 1.1074503621642142,
+          "anisotropy": 1.3305188476922922,
+          "drift": {
+            "speed": 0.6485608472488821,
+            "angle": -0.05935893137939274
+          },
+          "harmonics": [
+            {
+              "frequency": 0.623317398200743,
+              "angle": 1.5847806489094731,
+              "amplitude": 0.07048584197182209,
+              "phase": 1.501041987738116
+            },
+            {
+              "frequency": 0.7137583132990403,
+              "angle": 2.9806023196276126,
+              "amplitude": 0.06429057661832001,
+              "phase": 1.8409052463041573
+            },
+            {
+              "frequency": 1.2237017543788535,
+              "angle": -0.6858300556661043,
+              "amplitude": 0.01558428182906937,
+              "phase": 4.71472851262417
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.2447728980332613,
+                0.4742877222597599
+              ],
+              "radius": 0.5034033023286612,
+              "circulation": -0.8271391958929599
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 17,
+          "width": 0.051405342030338946,
+          "widthVariation": 0.21690097874961795,
+          "spacing": 0.022368052540346982,
+          "taper": 0.24994376335293056,
+          "taperPower": 0.8299285313114524,
+          "maxLength": 4.307415067404509,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            0.006364706656895577,
+            0.02688165465835482
+          ],
+          "radii": [
+            0.8592033801507204,
+            0.7011183958686888
+          ],
+          "angle": 1.2859910080765038,
+          "seedBias": 0.6580990650458262
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.33134179225191474,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 595,
+        "rejectedShort": 2,
+        "rejectedGeometry": 0,
+        "count": 16,
+        "target": 17,
+        "totalLength": 18.78489957408632,
+        "maxIntegrationError": 1.6831821086329186e-11
+      },
+      "pngSha256": "34fad6474f93bcab14d9a1ff6b5ba4214b414b80d5995567acc25f012e20f5ee",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09497569444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 280,
+        "top": 221,
+        "right": 932,
+        "bottom": 1006
+      }
+    },
+    {
+      "seed": "ribbons-review-11",
+      "sha256": "dd928828b1d6b9a0cb9eb7f7e215ad2f4bfd18715008f442f8b4b72ef5e1745d",
+      "generationMs": 76.40940800000044,
+      "svgBytes": 107342,
+      "paths": 84,
+      "label": "confluence · 21 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -1.6814465261284097,
+          "anisotropy": 0.9897654791129753,
+          "drift": {
+            "speed": 0.1984477197006345,
+            "angle": -0.07141142338514328
+          },
+          "harmonics": [
+            {
+              "frequency": 0.6175248906714841,
+              "angle": 0.03768853966181229,
+              "amplitude": 0.09986055593471976,
+              "phase": 1.9648205679661175
+            },
+            {
+              "frequency": 1.1812950824637662,
+              "angle": -0.8776118015856156,
+              "amplitude": 0.050119034588957834,
+              "phase": 5.243803708398303
+            },
+            {
+              "frequency": 1.8822349130082876,
+              "angle": 1.6128837748088989,
+              "amplitude": 0.0446243091049837,
+              "phase": 1.0090400736321157
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.005292552779428666,
+                -0.34496207104530185
+              ],
+              "radius": 0.28500026651425286,
+              "circulation": -2.6876010396517813
+            },
+            {
+              "center": [
+                0.11464401895646006,
+                0.34496207104530185
+              ],
+              "radius": 0.2868593243183568,
+              "circulation": 2.7161116214469074
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.06309162663528696,
+          "widthVariation": 0.33774219622835516,
+          "spacing": 0.01909882230241783,
+          "taper": 0.2017043558973819,
+          "taperPower": 0.8321552038658411,
+          "maxLength": 3.4339826609240847,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.027518223843071614,
+            -0.002077646623365584
+          ],
+          "radii": [
+            0.827300692088902,
+            0.8507573860231786
+          ],
+          "angle": -1.7730833814699039,
+          "seedBias": 0.6885111756622792
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2081997560127638,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 875,
+        "rejectedShort": 62,
+        "rejectedGeometry": 0,
+        "count": 21,
+        "target": 25,
+        "totalLength": 16.12591859463032,
+        "maxIntegrationError": 3.0197975098051646e-8
+      },
+      "pngSha256": "fead41b28b4e1cc8db04f6d07162b14f7e571db2777248ddef5a0a3f34c5b984",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10634444444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 196,
+        "top": 217,
+        "right": 971,
+        "bottom": 979
+      }
+    },
+    {
+      "seed": "ribbons-review-12",
+      "sha256": "296507129e011e04055cfbc220a2a5cc55ccfbae3662616459262d453884641a",
+      "generationMs": 53.50719600000048,
+      "svgBytes": 167226,
+      "paths": 85,
+      "label": "sweep · 17 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 0.5910652668237004,
+          "anisotropy": 1.1949533080798576,
+          "drift": {
+            "speed": 0.8151755136204883,
+            "angle": -0.06887160940095782
+          },
+          "harmonics": [
+            {
+              "frequency": 0.41250570269767195,
+              "angle": 1.4934389815795344,
+              "amplitude": 0.06583939146948979,
+              "phase": 0.8695723074855595
+            },
+            {
+              "frequency": 0.7286061117256759,
+              "angle": 0.43736050481483524,
+              "amplitude": 0.05548906220744054,
+              "phase": 3.8871850135443227
+            },
+            {
+              "frequency": 1.3655955760739744,
+              "angle": -2.069893800276569,
+              "amplitude": 0.04943961550015957,
+              "phase": 1.8737609219835003
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.24121411610394716,
+                0.3365624083671719
+              ],
+              "radius": 0.752627705805935,
+              "circulation": 0.476317909732461
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.04041594543727115,
+          "widthVariation": 0.2470772427460179,
+          "spacing": 0.02110438828682527,
+          "taper": 0.18236770981922745,
+          "taperPower": 1.0266227680258453,
+          "maxLength": 3.8614564956165855,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.018163849345874044,
+            -0.02168539675185457
+          ],
+          "radii": [
+            0.8424947486072778,
+            0.6706117306370288
+          ],
+          "angle": 0.6416809072739694,
+          "seedBias": 0.6250842477660626
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.31974395174533127,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 665,
+        "rejectedShort": 2,
+        "rejectedGeometry": 0,
+        "count": 17,
+        "target": 19,
+        "totalLength": 21.995970530852194,
+        "maxIntegrationError": 8.042976140776861e-13
+      },
+      "pngSha256": "c69ea671a10f836e2bbfce2e62ec188f5780e213d5e3767b6a7662e1e94c3451",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10050486111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 227,
+        "top": 247,
+        "right": 954,
+        "bottom": 929
+      }
+    },
+    {
+      "seed": "ribbons-review-13",
+      "sha256": "e15549651e6454d97951e7d229d1676b1ed98a6776d7137e4318bf2eb0f377a6",
+      "generationMs": 97.4173980000005,
+      "svgBytes": 220212,
+      "paths": 110,
+      "label": "eddy · 22 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": 0.32896936844893343,
+          "anisotropy": 0.8316908232052811,
+          "drift": {
+            "speed": 0.08527632481418551,
+            "angle": -0.008737816335633392
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8802004901692271,
+              "angle": 2.561832020392316,
+              "amplitude": 0.03343695977062453,
+              "phase": 1.3193703808893353
+            },
+            {
+              "frequency": 1.1640790158614982,
+              "angle": -2.904104662610286,
+              "amplitude": 0.030340175208208777,
+              "phase": 4.187486673582417
+            },
+            {
+              "frequency": 0.8387998410081491,
+              "angle": 2.3875537557459143,
+              "amplitude": 0.01592639746231726,
+              "phase": 1.5374743152565074
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.19912080001085997,
+                -0.14631139608100058
+              ],
+              "radius": 0.572912601637654,
+              "circulation": -2.194573277235031
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.03681209272006527,
+          "widthVariation": 0.3070294227777049,
+          "spacing": 0.023666219025617465,
+          "taper": 0.23614162946119904,
+          "taperPower": 1.2068148026242853,
+          "maxLength": 4.899235439673066,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.02552872391184792,
+            -0.03394573155557737
+          ],
+          "radii": [
+            0.8583756255544721,
+            0.8689887174777687
+          ],
+          "angle": 0.2169524134308899,
+          "seedBias": 0.6304658793611453
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.13738695609848944,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 875,
+        "rejectedShort": 8,
+        "rejectedGeometry": 0,
+        "count": 22,
+        "target": 25,
+        "totalLength": 29.173996130612025,
+        "maxIntegrationError": 4.192260534394913e-9
+      },
+      "pngSha256": "bdc39c11eb6e47f3543bfa12e9f65a30c7ba58744eb5634f961ed178d2c31c39",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.12965347222222223,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 214,
+        "top": 185,
+        "right": 1020,
+        "bottom": 985
+      }
+    },
+    {
+      "seed": "ribbons-review-14",
+      "sha256": "4d79546a25a49bec7f301245116f308627a9564a5810db282b18a1f34726dc04",
+      "generationMs": 55.1027039999999,
+      "svgBytes": 121388,
+      "paths": 54,
+      "label": "eddy · 18 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": 2.157646067899316,
+          "anisotropy": 1.294431820267346,
+          "drift": {
+            "speed": 0.08311780230142177,
+            "angle": 0.048973391670733696
+          },
+          "harmonics": [
+            {
+              "frequency": 0.5396662520710379,
+              "angle": -0.5984526066732001,
+              "amplitude": 0.03692761398095173,
+              "phase": 3.0099106208474273
+            },
+            {
+              "frequency": 1.016639741274994,
+              "angle": 2.6472737552006684,
+              "amplitude": 0.018406353884881058,
+              "phase": 3.7881224347102864
+            },
+            {
+              "frequency": 0.832541160613764,
+              "angle": -1.545419086873849,
+              "amplitude": 0.02111916272537201,
+              "phase": 1.8056163253160946
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.1356766943819821,
+                0.07622904488816856
+              ],
+              "radius": 0.6380763154709712,
+              "circulation": 3.3012037746608254
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 26,
+          "width": 0.03611476141028107,
+          "widthVariation": 0.3603135380381718,
+          "spacing": 0.029542526399018245,
+          "taper": 0.1661648207437247,
+          "taperPower": 1.0680368119850754,
+          "maxLength": 5.335394523176364,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.03459046785486863,
+            -0.005881100078113377
+          ],
+          "radii": [
+            0.8690250239986926,
+            0.7623615239746869
+          ],
+          "angle": 2.092268990718424,
+          "seedBias": 0.8434418199351057
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.28182493589119983,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 910,
+        "rejectedShort": 1,
+        "rejectedGeometry": 0,
+        "count": 18,
+        "target": 26,
+        "totalLength": 23.66662861221244,
+        "maxIntegrationError": 8.438551503727363e-9
+      },
+      "pngSha256": "e5b1a01806ad635aad6dd4c4aa1fb44a1a69247c6174227c90345e5a58adc15a",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09889097222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 216,
+        "top": 202,
+        "right": 950,
+        "bottom": 992
+      }
+    },
+    {
+      "seed": "ribbons-review-15",
+      "sha256": "0ef0d391380933c16d97c8a889c3edf755cefe0795b796eb8e4367c63c03165d",
+      "generationMs": 56.36115900000004,
+      "svgBytes": 148484,
+      "paths": 100,
+      "label": "confluence · 20 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -1.1748526537173465,
+          "anisotropy": 0.828240282740444,
+          "drift": {
+            "speed": 0.20907726801931859,
+            "angle": -0.09969845581799747
+          },
+          "harmonics": [
+            {
+              "frequency": 0.4728468214161694,
+              "angle": 2.6514336476083136,
+              "amplitude": 0.04884178452775814,
+              "phase": 1.7302444569066684
+            },
+            {
+              "frequency": 0.5428216370305745,
+              "angle": -1.987573338704632,
+              "amplitude": 0.028054169662451996,
+              "phase": 3.2962905204626054
+            },
+            {
+              "frequency": 1.7827956944773906,
+              "angle": 3.0780717163049314,
+              "amplitude": 0.038467754784505814,
+              "phase": 5.6129885412398925
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.06634819745086133,
+                -0.42427639793837446
+              ],
+              "radius": 0.41149389934260394,
+              "circulation": 2.118640391016379
+            },
+            {
+              "center": [
+                -0.00008827596902846735,
+                0.42427639793837446
+              ],
+              "radius": 0.39388312556315214,
+              "circulation": -2.2189332148060203
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.053336549347732215,
+          "widthVariation": 0.24125897244084626,
+          "spacing": 0.027104043782455848,
+          "taper": 0.22314374124631287,
+          "taperPower": 0.8550226599909365,
+          "maxLength": 2.714930346864276,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.0020746018202044067,
+            0.002258850769139828
+          ],
+          "radii": [
+            0.8464475163817405,
+            0.8627930902177467
+          ],
+          "angle": -1.2064410733372941,
+          "seedBias": 0.6132366846082733
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.21240715454099698,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 735,
+        "rejectedShort": 27,
+        "rejectedGeometry": 0,
+        "count": 20,
+        "target": 21,
+        "totalLength": 18.43685631216671,
+        "maxIntegrationError": 9.56298614921682e-9
+      },
+      "pngSha256": "617812fade865c5f46b0807af36b5e2e99f86b602c93c95dd711112bb07e701f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.11027777777777778,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 203,
+        "top": 216,
+        "right": 985,
+        "bottom": 991
+      }
+    },
+    {
+      "seed": "ribbons-review-16",
+      "sha256": "e7e8c628aadbab0fb833201911589af73b79f87547df7e25529766969774165f",
+      "generationMs": 53.006438000000344,
+      "svgBytes": 104469,
+      "paths": 72,
+      "label": "meander · 24 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": -0.024597722559591695,
+          "anisotropy": 1.0343531471677125,
+          "drift": {
+            "speed": 0.4302489968761802,
+            "angle": 0.09221562300808728
+          },
+          "harmonics": [
+            {
+              "frequency": 1.085280039231293,
+              "angle": -0.27190221003256737,
+              "amplitude": 0.6911348643363453,
+              "phase": 4.271097471324892
+            },
+            {
+              "frequency": 1.1621874287701213,
+              "angle": 0.3410920000337696,
+              "amplitude": 0.03394115734069298,
+              "phase": 0.061012929547701523
+            },
+            {
+              "frequency": 1.1446225636953022,
+              "angle": -1.5817530902052148,
+              "amplitude": 0.0369306792417774,
+              "phase": 2.253790343140008
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.04642003761371598,
+          "widthVariation": 0.42256119624711574,
+          "spacing": 0.03259804407926277,
+          "taper": 0.18115432682447136,
+          "taperPower": 1.2468804172705859,
+          "maxLength": 2.7738415968138725,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            0.02920952109619976,
+            0.021492179210763428
+          ],
+          "radii": [
+            0.8830337285250425,
+            0.8679396473057568
+          ],
+          "angle": 0.15125161289481265,
+          "seedBias": 0.5825566625222565
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.13080941844033078,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 875,
+        "rejectedShort": 28,
+        "rejectedGeometry": 0,
+        "count": 24,
+        "target": 25,
+        "totalLength": 20.317057237575895,
+        "maxIntegrationError": 1.1310310423639162e-10
+      },
+      "pngSha256": "3a7100cef600f3012e78674a2efb02ae71c23a98da71ff3995041dfacae0645c",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09829375,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 204,
+        "top": 207,
+        "right": 1024,
+        "bottom": 1017
+      }
+    },
+    {
+      "seed": "ribbons-review-17",
+      "sha256": "aca6f05c8363c50e6bfc341914060158ec6ed8fbde5e87d2a7e47bba8e97d080",
+      "generationMs": 49.27226100000007,
+      "svgBytes": 188376,
+      "paths": 130,
+      "label": "meander · 26 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": 2.4173649423700674,
+          "anisotropy": 1.0185310072731228,
+          "drift": {
+            "speed": 0.4549048664048314,
+            "angle": -0.043740860559046274
+          },
+          "harmonics": [
+            {
+              "frequency": 0.7342904501711018,
+              "angle": -0.2355470800772309,
+              "amplitude": 0.5842410881188698,
+              "phase": 6.052314853927087
+            },
+            {
+              "frequency": 1.0285243003617506,
+              "angle": -2.055671075180123,
+              "amplitude": 0.026647626461150747,
+              "phase": 5.863762512833821
+            },
+            {
+              "frequency": 0.8218918710539583,
+              "angle": -1.8773601378710032,
+              "amplitude": 0.04060969030542765,
+              "phase": 0.7530408336876437
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 26,
+          "width": 0.03583841339452193,
+          "widthVariation": 0.23842196601442991,
+          "spacing": 0.0188010091742035,
+          "taper": 0.22749742438085377,
+          "taperPower": 1.2436767690815032,
+          "maxLength": 4.245873491326347,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.019429949410259724,
+            0.0009900575014762589
+          ],
+          "radii": [
+            0.8914135436527431,
+            0.7877409386634827
+          ],
+          "angle": 2.4046543336418376,
+          "seedBias": 0.8055173632223158
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.1402133829309605,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 174,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 26,
+        "target": 26,
+        "totalLength": 24.816469757790145,
+        "maxIntegrationError": 8.62271703714848e-12
+      },
+      "pngSha256": "c995c159962d566ed28bde91c2cbc18f4867c77d6ee07fa2be3322f3e0b3a5d9",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.1066451388888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 209,
+        "top": 209,
+        "right": 979,
+        "bottom": 991
+      }
+    },
+    {
+      "seed": "ribbons-review-18",
+      "sha256": "6a9ed96f79cdca941a251cd52060c59f56f94ae8f773921c226d4c69d93cb340",
+      "generationMs": 45.96694000000025,
+      "svgBytes": 120836,
+      "paths": 57,
+      "label": "meander · 19 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": 1.8336190818690197,
+          "anisotropy": 0.8574093048577197,
+          "drift": {
+            "speed": 0.42275912333279847,
+            "angle": 0.07823141170665623
+          },
+          "harmonics": [
+            {
+              "frequency": 1.0463151046074928,
+              "angle": -0.1742817227728665,
+              "amplitude": 0.7159054171526804,
+              "phase": 5.125173595229348
+            },
+            {
+              "frequency": 1.542663912762655,
+              "angle": -0.9884567723692843,
+              "amplitude": 0.06473837852633248,
+              "phase": 0.5151285935393128
+            },
+            {
+              "frequency": 1.9569073829543777,
+              "angle": 3.0956986283651426,
+              "amplitude": 0.018436766325612555,
+              "phase": 5.136367468401954
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.04330149217974395,
+          "widthVariation": 0.3871482348581776,
+          "spacing": 0.020075256172567606,
+          "taper": 0.130242144940421,
+          "taperPower": 1.0590382770635187,
+          "maxLength": 3.6465487306704745,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            0.0001344735664315505,
+            0.010103218082804233
+          ],
+          "radii": [
+            0.9238966248556971,
+            0.8138066167011857
+          ],
+          "angle": 1.877589587389721,
+          "seedBias": 0.5851756012998521
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.24109694318845867,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 183,
+        "rejectedShort": 4,
+        "rejectedGeometry": 0,
+        "count": 19,
+        "target": 19,
+        "totalLength": 23.743004753473606,
+        "maxIntegrationError": 2.098958840696834e-11
+      },
+      "pngSha256": "b91f425eed025b115fdd63dc5fc9839774177a57b0504b0e8744f1a3f0036049",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10310972222222223,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 217,
+        "top": 181,
+        "right": 981,
+        "bottom": 1028
+      }
+    },
+    {
+      "seed": "ribbons-review-19",
+      "sha256": "b7cf79897d043afa67a735c88391cf874bc83051ae2e49778ad63b0d33ea4282",
+      "generationMs": 51.383334000000104,
+      "svgBytes": 174945,
+      "paths": 95,
+      "label": "sweep · 19 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 0.44016802893662677,
+          "anisotropy": 1.0814804470748642,
+          "drift": {
+            "speed": 0.6978568542283028,
+            "angle": 0.06917214421555401
+          },
+          "harmonics": [
+            {
+              "frequency": 0.48762802476994693,
+              "angle": -1.1202619959801874,
+              "amplitude": 0.0647209699265659,
+              "phase": 1.4129372417075141
+            },
+            {
+              "frequency": 1.321637446504319,
+              "angle": 0.5823737120998449,
+              "amplitude": 0.051015961767795194,
+              "phase": 4.091320890520124
+            },
+            {
+              "frequency": 0.9550993583723902,
+              "angle": 0.36932495844981217,
+              "amplitude": 0.017627162917051464,
+              "phase": 1.5649456390216954
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.044594073202461004,
+                0.15287942928262055
+              ],
+              "radius": 0.5552680127439089,
+              "circulation": 0.8554165510926397
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.04663864267757163,
+          "widthVariation": 0.22426949176006017,
+          "spacing": 0.018427160127088428,
+          "taper": 0.24441075686365366,
+          "taperPower": 0.8615136998239905,
+          "maxLength": 3.1168522440595554,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.005208691712468863,
+            -0.00195739542134106
+          ],
+          "radii": [
+            0.8558493654802442,
+            0.7163145813229495
+          ],
+          "angle": 0.25793942050719487,
+          "seedBias": 0.6216466438956559
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2569724446791224,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 875,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 19,
+        "target": 25,
+        "totalLength": 22.76159016656591,
+        "maxIntegrationError": 2.419032168960358e-12
+      },
+      "pngSha256": "e7c82e182bf420130dfc42e2a4ad399ecd6af2cca5ee600a0c0981df6f5cb309",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.12110833333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 204,
+        "top": 262,
+        "right": 989,
+        "bottom": 932
+      }
+    },
+    {
+      "seed": "ribbons-review-20",
+      "sha256": "28d6e3439b9a9e40dda75f1a2978f9d964d374750f4a0c59644025e7a2c0ed7a",
+      "generationMs": 48.79568600000039,
+      "svgBytes": 115068,
+      "paths": 90,
+      "label": "meander · 18 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": -2.0949868727494727,
+          "anisotropy": 1.2288267093827017,
+          "drift": {
+            "speed": 0.3989662448689342,
+            "angle": 0.025668565975502128
+          },
+          "harmonics": [
+            {
+              "frequency": 1.0661439182353207,
+              "angle": 0.1290445596445352,
+              "amplitude": 0.707979259933345,
+              "phase": 1.4236676112304754
+            },
+            {
+              "frequency": 0.7935787353711203,
+              "angle": 0.43358611326484864,
+              "amplitude": 0.026913321534326923,
+              "phase": 3.4898554011368366
+            },
+            {
+              "frequency": 1.1870860049442855,
+              "angle": -1.0337071940995517,
+              "amplitude": 0.031703875088715,
+              "phase": 0.5799733561153835
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 22,
+          "width": 0.06227335641393438,
+          "widthVariation": 0.3663829612359405,
+          "spacing": 0.03285299666319043,
+          "taper": 0.24787220093421639,
+          "taperPower": 1.351510300254449,
+          "maxLength": 4.29648166273255,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.009431855129078029,
+            -0.010003318896051498
+          ],
+          "radii": [
+            0.8341190997883677,
+            0.7813263534381987
+          ],
+          "angle": -2.2694543764945814,
+          "seedBias": 0.5586588367819787
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.17421371800126506,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 770,
+        "rejectedShort": 37,
+        "rejectedGeometry": 0,
+        "count": 18,
+        "target": 22,
+        "totalLength": 14.922441907777634,
+        "maxIntegrationError": 9.898676030487316e-10
+      },
+      "pngSha256": "3b063f92c57fc3d985739ee557d55f9663d81fbbea7b8dec9536830380927d11",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.0754486111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 236,
+        "top": 223,
+        "right": 975,
+        "bottom": 957
+      }
+    },
+    {
+      "seed": "ribbons-review-21",
+      "sha256": "bbf9d920bb162687c520f963e988f3ce6bd1aa0c83f7a21bf089ae7e8dd840c8",
+      "generationMs": 49.9659619999984,
+      "svgBytes": 114231,
+      "paths": 40,
+      "label": "eddy · 10 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": -2.3860677835406356,
+          "anisotropy": 1.2376314377877862,
+          "drift": {
+            "speed": 0.09476403433829546,
+            "angle": 0.031135587580502028
+          },
+          "harmonics": [
+            {
+              "frequency": 0.6318036527605727,
+              "angle": 2.269790766787591,
+              "amplitude": 0.016478533825720662,
+              "phase": 0.26216456921232584
+            },
+            {
+              "frequency": 1.0119058999774277,
+              "angle": 1.8430429046262065,
+              "amplitude": 0.03234145627046625,
+              "phase": 1.8548677431439091
+            },
+            {
+              "frequency": 1.446183733785292,
+              "angle": 0.45664387316452837,
+              "amplitude": 0.012084214308415542,
+              "phase": 2.7886905919738396
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.15890099890530113,
+                -0.09533288460224867
+              ],
+              "radius": 0.4019143954850733,
+              "circulation": -2.282112329825759
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 17,
+          "width": 0.05641967554809526,
+          "widthVariation": 0.2886419232562184,
+          "spacing": 0.0343840246796608,
+          "taper": 0.19455662105232477,
+          "taperPower": 1.2339634226635097,
+          "maxLength": 4.411486985813826,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.029935836130753162,
+            -0.019456470175646248
+          ],
+          "radii": [
+            0.8325579227413982,
+            0.9003393171168864
+          ],
+          "angle": -2.5186486407057935,
+          "seedBias": 0.6236236579716206
+        },
+        "style": {
+          "palette": [
+            "#685873",
+            "#b17c73",
+            "#7b9997"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.33013994329608976,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 595,
+        "rejectedShort": 13,
+        "rejectedGeometry": 0,
+        "count": 10,
+        "target": 17,
+        "totalLength": 18.178480074425305,
+        "maxIntegrationError": 1.7236516475367941e-9
+      },
+      "pngSha256": "02eeae2840c733834989d083b58432bfeb0bf2b1f3ad02de67c357b70b92e196",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08023402777777777,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 188,
+        "top": 193,
+        "right": 982,
+        "bottom": 996
+      }
+    },
+    {
+      "seed": "ribbons-review-22",
+      "sha256": "d40d85ae338120535b14c914b97ae26bf79f1c129b7a4304658b1c455d246bc1",
+      "generationMs": 41.54959699999927,
+      "svgBytes": 135067,
+      "paths": 65,
+      "label": "sweep · 13 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 1.1033446796489148,
+          "anisotropy": 1.0063769604312256,
+          "drift": {
+            "speed": 0.7363056874834001,
+            "angle": -0.09471747404895724
+          },
+          "harmonics": [
+            {
+              "frequency": 0.7116022157715634,
+              "angle": 0.43743588752054174,
+              "amplitude": 0.06391545848455281,
+              "phase": 5.682702968965635
+            },
+            {
+              "frequency": 1.5145008206984496,
+              "angle": -2.697641183491941,
+              "amplitude": 0.05759856526662286,
+              "phase": 4.019551488602173
+            },
+            {
+              "frequency": 1.6745234094676562,
+              "angle": 1.4057387645820478,
+              "amplitude": 0.04320144067751244,
+              "phase": 3.6925204500353157
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.22508069267496467,
+                0.35839283536188304
+              ],
+              "radius": 0.7344039243180305,
+              "circulation": 0.7224225962068886
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.06494472757913172,
+          "widthVariation": 0.41049774261657146,
+          "spacing": 0.030309622982749716,
+          "taper": 0.13783000086434186,
+          "taperPower": 1.036213134881109,
+          "maxLength": 4.310371410497464,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.01912664143601433,
+            0.002005670608486977
+          ],
+          "radii": [
+            0.9227804773580283,
+            0.6971425857022405
+          ],
+          "angle": 1.1878307633352665,
+          "seedBias": 0.8488151482772082
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.3017787733324803,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 735,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 13,
+        "target": 21,
+        "totalLength": 17.679981972981484,
+        "maxIntegrationError": 3.4160877733619574e-13
+      },
+      "pngSha256": "8d928e91eabf32ac9cf08528e3f05d67bfd9b2f948612116fce6e33b3f1f44f1",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.11273194444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 271,
+        "top": 184,
+        "right": 946,
+        "bottom": 1012
+      }
+    },
+    {
+      "seed": "ribbons-review-23",
+      "sha256": "42930ede28301487e463d1b36050ca377ce1a3a529d9fafefc9ef82202ff0221",
+      "generationMs": 43.94351900000038,
+      "svgBytes": 122154,
+      "paths": 56,
+      "label": "sweep · 14 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 0.039270811375494485,
+          "anisotropy": 1.2734897925518454,
+          "drift": {
+            "speed": 0.64849323972594,
+            "angle": -0.009426419483497733
+          },
+          "harmonics": [
+            {
+              "frequency": 0.962360573222395,
+              "angle": -0.5973616150347336,
+              "amplitude": 0.06733652545372025,
+              "phase": 0.9447308809761105
+            },
+            {
+              "frequency": 1.3581103973352584,
+              "angle": -1.018636315914125,
+              "amplitude": 0.04430922205016639,
+              "phase": 1.9748685183892984
+            },
+            {
+              "frequency": 0.790658603272168,
+              "angle": -1.4793328027777095,
+              "amplitude": 0.04829532381554601,
+              "phase": 3.7180512085796016
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.3941474789753556,
+                0.27543012076057494
+              ],
+              "radius": 0.49174957431387156,
+              "circulation": -0.36769358189776546
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.048610950147267434,
+          "widthVariation": 0.19516824496444313,
+          "spacing": 0.025076182438991963,
+          "taper": 0.2189369023218751,
+          "taperPower": 1.267418411048129,
+          "maxLength": 3.9961748850764707,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.019626648186240346,
+            0.018240929173771292
+          ],
+          "radii": [
+            0.9007258342206478,
+            0.675859998583328
+          ],
+          "angle": -0.15798966285187435,
+          "seedBias": 0.6284571200143546
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.20044045345159245,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 735,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 14,
+        "target": 21,
+        "totalLength": 19.44798811346268,
+        "maxIntegrationError": 2.9123377632200385e-12
+      },
+      "pngSha256": "d0871086bdd273909d7006b7fa7f2aec67e79075c7b7786378410ea889df61ba",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.11869444444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 175,
+        "top": 302,
+        "right": 1005,
+        "bottom": 909
+      }
+    },
+    {
+      "seed": "ribbons-review-24",
+      "sha256": "f0e70708254bf6e836136bd3e40a12ad51a074591bacb94cfbd5ae6784ae77a1",
+      "generationMs": 50.95667399999911,
+      "svgBytes": 140493,
+      "paths": 70,
+      "label": "sweep · 14 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 1.2100517369061619,
+          "anisotropy": 0.9193075482267887,
+          "drift": {
+            "speed": 0.7194854943314567,
+            "angle": 0.06029734490439295
+          },
+          "harmonics": [
+            {
+              "frequency": 0.3549780277186073,
+              "angle": -2.263068921538613,
+              "amplitude": 0.05514710569404997,
+              "phase": 3.9656690690059744
+            },
+            {
+              "frequency": 0.83106619786995,
+              "angle": 2.846983752003653,
+              "amplitude": 0.021230527960384885,
+              "phase": 3.244227113687021
+            },
+            {
+              "frequency": 1.7686279576225208,
+              "angle": 1.3089787646768087,
+              "amplitude": 0.018405958614312115,
+              "phase": 4.220853681555089
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.2556810979731381,
+                -0.36771954130381346
+              ],
+              "radius": 0.5280767155927606,
+              "circulation": -0.08986013447865848
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.04929601352894679,
+          "widthVariation": 0.4370692886179313,
+          "spacing": 0.0334944899615366,
+          "taper": 0.23919137911871075,
+          "taperPower": 1.3306815861724317,
+          "maxLength": 3.442205568915233,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.006479158962611111,
+            0.016328462555538867
+          ],
+          "radii": [
+            0.9019710505101829,
+            0.7165046943980269
+          ],
+          "angle": 1.0770499141141683,
+          "seedBias": 0.7063886436400935
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2453796886303462,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 665,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 14,
+        "target": 19,
+        "totalLength": 18.787494952933397,
+        "maxIntegrationError": 8.553440210234577e-14
+      },
+      "pngSha256": "8c55edaec74d17cbb014c80a8f3e3de5e39b599b35c69591ec2a7fabee8826f2",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08983472222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 246,
+        "top": 210,
+        "right": 951,
+        "bottom": 1009
+      }
+    },
+    {
+      "seed": "ribbons-review-25",
+      "sha256": "0e23d1066909e942da8fb0bfb13f4429edc7f5f935d57fc88816e086abb9b120",
+      "generationMs": 114.60686800000076,
+      "svgBytes": 169370,
+      "paths": 105,
+      "label": "confluence · 21 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 2.7934546783257304,
+          "anisotropy": 1.026583336479962,
+          "drift": {
+            "speed": 0.2144495538622141,
+            "angle": 0.09878141283988953
+          },
+          "harmonics": [
+            {
+              "frequency": 0.9863757220678963,
+              "angle": 1.5136452756870762,
+              "amplitude": 0.09240314940689132,
+              "phase": 0.2367756405758251
+            },
+            {
+              "frequency": 0.7131106446747435,
+              "angle": 2.410388511339427,
+              "amplitude": 0.01717197468193869,
+              "phase": 5.461652417688612
+            },
+            {
+              "frequency": 1.4750562651932704,
+              "angle": -1.5755552388055407,
+              "amplitude": 0.03108826299721841,
+              "phase": 2.579921390115745
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.04098978862166405,
+                -0.43878345313714817
+              ],
+              "radius": 0.40500380694633353,
+              "circulation": 2.393246266897768
+            },
+            {
+              "center": [
+                0.005659826262854051,
+                0.43878345313714817
+              ],
+              "radius": 0.293785118276719,
+              "circulation": -1.6310874028597027
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.03920997441280633,
+          "widthVariation": 0.33202370584476737,
+          "spacing": 0.028350734857376665,
+          "taper": 0.24365478686988354,
+          "taperPower": 1.2555351804476231,
+          "maxLength": 3.1276148035656663,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.023231839106883853,
+            0.01661377111915499
+          ],
+          "radii": [
+            0.7472964155301451,
+            0.9374465972185134
+          ],
+          "angle": 2.8034816970739542,
+          "seedBias": 0.6622884369222447
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.24431639192625879,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 875,
+        "rejectedShort": 31,
+        "rejectedGeometry": 0,
+        "count": 21,
+        "target": 25,
+        "totalLength": 21.94678301592596,
+        "maxIntegrationError": 5.509729325592749e-9
+      },
+      "pngSha256": "6d1d32574ab204fb261f18620d5c0447455ff8cf343a8503a24782537c07804f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08448819444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 251,
+        "top": 178,
+        "right": 953,
+        "bottom": 1038
+      }
+    },
+    {
+      "seed": "ribbons-review-26",
+      "sha256": "e94426cc8c0f6bc327544f3ecce565fdf9fad0b520ddbe71a2eb7a3ae94cd37c",
+      "generationMs": 33.0514490000005,
+      "svgBytes": 104435,
+      "paths": 50,
+      "label": "sweep · 10 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": -3.1387457667312426,
+          "anisotropy": 1.221186930697877,
+          "drift": {
+            "speed": 0.7733990862499922,
+            "angle": -0.03778665363788605
+          },
+          "harmonics": [
+            {
+              "frequency": 0.6428116078022867,
+              "angle": -1.9059937646793497,
+              "amplitude": 0.06687459845561536,
+              "phase": 5.250275627259701
+            },
+            {
+              "frequency": 0.8684006022429094,
+              "angle": -3.011736866335025,
+              "amplitude": 0.024004422562817734,
+              "phase": 2.1887362428384667
+            },
+            {
+              "frequency": 1.6995711753959768,
+              "angle": -2.4774432867028295,
+              "amplitude": 0.04083906771265902,
+              "phase": 2.2861564693762233
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.2675653106998652,
+                -0.45819592056795955
+              ],
+              "radius": 0.6592418298823759,
+              "circulation": -0.4898406013380736
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 24,
+          "width": 0.053946759330574426,
+          "widthVariation": 0.278783323825337,
+          "spacing": 0.03170692139863968,
+          "taper": 0.23914946597069503,
+          "taperPower": 0.844907063106075,
+          "maxLength": 3.3804647172801197,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.02347198432078585,
+            -0.027756813268642877
+          ],
+          "radii": [
+            0.93510756845586,
+            0.6184193828934804
+          ],
+          "angle": -3.208483261747549,
+          "seedBias": 0.6014671953162178
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2894778547435999,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 840,
+        "rejectedShort": 4,
+        "rejectedGeometry": 0,
+        "count": 10,
+        "target": 24,
+        "totalLength": 13.662971114358763,
+        "maxIntegrationError": 1.2793604210012388e-12
+      },
+      "pngSha256": "a00b798d7e8675b18fb05e8dd4734a8e1e2ab74b92386dc941659ed9b5f6e416",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08659444444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 155,
+        "top": 324,
+        "right": 1019,
+        "bottom": 868
+      }
+    },
+    {
+      "seed": "ribbons-review-27",
+      "sha256": "2b5828e3e2b7e688d3b908947abfcd3286a3316a1d16b1d5bdddb8ac55ce8368",
+      "generationMs": 40.98405400000047,
+      "svgBytes": 89751,
+      "paths": 66,
+      "label": "confluence · 22 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 3.0845226247368744,
+          "anisotropy": 1.1161053774296308,
+          "drift": {
+            "speed": 0.25044824603945015,
+            "angle": -0.08172101774252952
+          },
+          "harmonics": [
+            {
+              "frequency": 0.46196140570100397,
+              "angle": -0.0695626543637724,
+              "amplitude": 0.0367710633086972,
+              "phase": 1.6309684529540478
+            },
+            {
+              "frequency": 0.5706077070569153,
+              "angle": -3.080634949199584,
+              "amplitude": 0.01893026436834286,
+              "phase": 2.4059211647536527
+            },
+            {
+              "frequency": 1.2237223156623078,
+              "angle": 1.45335734493277,
+              "amplitude": 0.030579537843004805,
+              "phase": 4.684776900493587
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.13718105955049395,
+                -0.4130098058888689
+              ],
+              "radius": 0.2616347563941963,
+              "circulation": -2.020237823482603
+            },
+            {
+              "center": [
+                0.09946670411154626,
+                0.4130098058888689
+              ],
+              "radius": 0.26485204957425595,
+              "circulation": 2.6853807691019025
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 26,
+          "width": 0.057345408683177085,
+          "widthVariation": 0.3214134991075843,
+          "spacing": 0.033777644600486385,
+          "taper": 0.1700526771787554,
+          "taperPower": 1.28977359123528,
+          "maxLength": 3.7481908572604885,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.008509704663883896,
+            0.0003431881009601026
+          ],
+          "radii": [
+            0.8131447770446538,
+            0.8938001222442835
+          ],
+          "angle": 2.902337248953282,
+          "seedBias": 0.6410358611727134
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.19129420616431161,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 910,
+        "rejectedShort": 7,
+        "rejectedGeometry": 0,
+        "count": 22,
+        "target": 26,
+        "totalLength": 17.266776084670585,
+        "maxIntegrationError": 8.456508278568028e-9
+      },
+      "pngSha256": "4e9e38a6bfdbb52c331831ba2a63ff130ffac9390f18ad60c955d5aa9e410186",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09501875,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 219,
+        "top": 186,
+        "right": 975,
+        "bottom": 1009
+      }
+    },
+    {
+      "seed": "ribbons-review-28",
+      "sha256": "d0fe80c72d08fd619154196131c411cbd1e9cece38961eefd41624b434ae9902",
+      "generationMs": 40.076891000000614,
+      "svgBytes": 99046,
+      "paths": 40,
+      "label": "eddy · 10 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": -2.694331215767071,
+          "anisotropy": 0.8640006911708042,
+          "drift": {
+            "speed": 0.041280197123996915,
+            "angle": 0.04813030324876308
+          },
+          "harmonics": [
+            {
+              "frequency": 0.4183756478363648,
+              "angle": -1.910482229950516,
+              "amplitude": 0.04003884454636137,
+              "phase": 5.055529661137092
+            },
+            {
+              "frequency": 0.8313127409789014,
+              "angle": 2.320800048923225,
+              "amplitude": 0.026281336296621407,
+              "phase": 3.3024447959214522
+            },
+            {
+              "frequency": 0.89696353805135,
+              "angle": -1.5454992781912822,
+              "amplitude": 0.026605059472203728,
+              "phase": 4.166062056909708
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.07324899788945916,
+                -0.13765271790325642
+              ],
+              "radius": 0.6293084421427921,
+              "circulation": 1.9520667042583226
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.0623183082183823,
+          "widthVariation": 0.3013694631680846,
+          "spacing": 0.03278775119152852,
+          "taper": 0.17775281042791902,
+          "taperPower": 1.1979801397770644,
+          "maxLength": 5.0280470562400295,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.007101578977890315,
+            -0.0006855864101089557
+          ],
+          "radii": [
+            0.9046933050453663,
+            0.7771417598612607
+          ],
+          "angle": -2.5361549412625584,
+          "seedBias": 0.651094443583861
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.28794436537893486,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 665,
+        "rejectedShort": 1,
+        "rejectedGeometry": 0,
+        "count": 10,
+        "target": 19,
+        "totalLength": 15.567909670640335,
+        "maxIntegrationError": 2.4947674702484703e-9
+      },
+      "pngSha256": "47c3a96e534d007486bd12b70e30e44a93e28bec99a1e02e415c7f81c8ab1e53",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08510902777777778,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 213,
+        "top": 234,
+        "right": 985,
+        "bottom": 960
+      }
+    },
+    {
+      "seed": "ribbons-review-29",
+      "sha256": "3824fb50429ef8c345d24c14688bb02b186d95b56e5e5f956017991925080a78",
+      "generationMs": 42.55294800000047,
+      "svgBytes": 96442,
+      "paths": 76,
+      "label": "confluence · 19 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -1.5820006232588173,
+          "anisotropy": 1.1440106012043545,
+          "drift": {
+            "speed": 0.1588481594249606,
+            "angle": -0.006362974923104045
+          },
+          "harmonics": [
+            {
+              "frequency": 0.43263247698778284,
+              "angle": 1.977278460875933,
+              "amplitude": 0.04076909914147109,
+              "phase": 0.5730665131719371
+            },
+            {
+              "frequency": 1.4483061929920222,
+              "angle": -3.0319633121391085,
+              "amplitude": 0.04231206421197082,
+              "phase": 5.766289738278657
+            },
+            {
+              "frequency": 2.0355263048456984,
+              "angle": 0.6349203675303894,
+              "amplitude": 0.039755314341164194,
+              "phase": 3.5185076245598066
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.04262931633275002,
+                -0.38229342202423144
+              ],
+              "radius": 0.28679649884579705,
+              "circulation": -2.4697026760783047
+            },
+            {
+              "center": [
+                -0.12455812969710678,
+                0.38229342202423144
+              ],
+              "radius": 0.3307864694320597,
+              "circulation": 1.9183201258070768
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.06030295375967398,
+          "widthVariation": 0.4026897226227447,
+          "spacing": 0.03162325838650577,
+          "taper": 0.18937175752595067,
+          "taperPower": 0.8802791135851294,
+          "maxLength": 2.722273693885654,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.033576234271749855,
+            0.025662124131340537
+          ],
+          "radii": [
+            0.7211249708011745,
+            0.9154747828841209
+          ],
+          "angle": -1.4529639923824549,
+          "seedBias": 0.6553366099251434
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.231235339473933,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 114,
+        "rejectedShort": 10,
+        "rejectedGeometry": 0,
+        "count": 19,
+        "target": 19,
+        "totalLength": 14.449045067897474,
+        "maxIntegrationError": 1.8431065199168626e-8
+      },
+      "pngSha256": "f1615640e5254dfcbd7929e3ca577dc0268b6c19f91f1425cfd279db6fd3d4f3",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08242430555555555,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 165,
+        "top": 281,
+        "right": 981,
+        "bottom": 946
+      }
+    },
+    {
+      "seed": "ribbons-review-30",
+      "sha256": "2a72dd851a3843e1f75c113032a2fea6cd2970e36156efd6c6e4f368a8f08557",
+      "generationMs": 42.46114200000011,
+      "svgBytes": 126518,
+      "paths": 85,
+      "label": "meander · 17 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": -2.7138473621786194,
+          "anisotropy": 0.8856052285758779,
+          "drift": {
+            "speed": 0.36344943318516015,
+            "angle": -0.01224484406411648
+          },
+          "harmonics": [
+            {
+              "frequency": 1.0513878683443183,
+              "angle": -0.28789496859535574,
+              "amplitude": 0.5164805534854531,
+              "phase": 4.3771937910053245
+            },
+            {
+              "frequency": 0.6454579750890844,
+              "angle": 0.7406513263463612,
+              "amplitude": 0.06264441035843145,
+              "phase": 4.398616842355689
+            },
+            {
+              "frequency": 1.7684352019464133,
+              "angle": 2.176056220447495,
+              "amplitude": 0.038942044434952555,
+              "phase": 1.3544706893123561
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.06249365223338828,
+          "widthVariation": 0.19866983037441968,
+          "spacing": 0.029221198438433932,
+          "taper": 0.18940873658284546,
+          "taperPower": 1.0026433958671988,
+          "maxLength": 2.8765046902233737,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.01685353291919455,
+            -0.010666982166003435
+          ],
+          "radii": [
+            0.9496225507743656,
+            0.7564306948706508
+          ],
+          "angle": -2.9020708824724513,
+          "seedBias": 0.565815027221106
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.308979539105203,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 735,
+        "rejectedShort": 9,
+        "rejectedGeometry": 0,
+        "count": 17,
+        "target": 21,
+        "totalLength": 16.238804631087007,
+        "maxIntegrationError": 2.2911934814961937e-11
+      },
+      "pngSha256": "7c2c817a22444b49e4f07b6e0fcde02b8cf64ad093cc718d1354f99f4433b339",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10370694444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 164,
+        "top": 246,
+        "right": 1024,
+        "bottom": 943
+      }
+    },
+    {
+      "seed": "ribbons-review-31",
+      "sha256": "c64b6753dc9671fa4f340ee539a3e542b0c396f28e297127b5781238e15a7764",
+      "generationMs": 39.557056999999986,
+      "svgBytes": 92806,
+      "paths": 51,
+      "label": "meander · 17 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": -2.151192979719434,
+          "anisotropy": 1.0119326782296412,
+          "drift": {
+            "speed": 0.3351352341473103,
+            "angle": -0.08726928168907762
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8241221237229184,
+              "angle": 0.12200475088320673,
+              "amplitude": 0.5476799748209304,
+              "phase": 3.4429176277501714
+            },
+            {
+              "frequency": 1.4170995473925725,
+              "angle": -1.9232286498043514,
+              "amplitude": 0.043091143846201406,
+              "phase": 1.9673874435267877
+            },
+            {
+              "frequency": 0.9456573987356387,
+              "angle": 0.3922459691561966,
+              "amplitude": 0.012526333704590798,
+              "phase": 5.186663251743212
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 17,
+          "width": 0.05777615782339126,
+          "widthVariation": 0.43538877105806023,
+          "spacing": 0.028573306968202816,
+          "taper": 0.196898640608415,
+          "taperPower": 1.337430388526991,
+          "maxLength": 2.811451952531934,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.031044193115085366,
+            -0.027982191857881845
+          ],
+          "radii": [
+            0.8840664970967919,
+            0.9139286447688938
+          ],
+          "angle": -2.1558906906470097,
+          "seedBias": 0.6714914684882387
+        },
+        "style": {
+          "palette": [
+            "#685873",
+            "#b17c73",
+            "#7b9997"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.34746307350695127,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 86,
+        "rejectedShort": 1,
+        "rejectedGeometry": 0,
+        "count": 17,
+        "target": 17,
+        "totalLength": 18.269914968598727,
+        "maxIntegrationError": 3.007375522351213e-11
+      },
+      "pngSha256": "e353b2a11d9a90906c4fa81d219d272b9a2c16542152545a1e3db33d16eba668",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09893125,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 170,
+        "top": 179,
+        "right": 1000,
+        "bottom": 998
+      }
+    },
+    {
+      "seed": "ribbons-review-32",
+      "sha256": "01af44a43272648851f2c4ecfa8ea54c02717ceeef57d9829c84dcbb1d9c6413",
+      "generationMs": 45.755787000000055,
+      "svgBytes": 132973,
+      "paths": 84,
+      "label": "meander · 21 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": 0.7778154376721997,
+          "anisotropy": 1.2762428463902324,
+          "drift": {
+            "speed": 0.42742087490856645,
+            "angle": -0.007863380992785093
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8719550589914434,
+              "angle": -0.2480307798832655,
+              "amplitude": 0.7298252032860182,
+              "phase": 3.965606128418532
+            },
+            {
+              "frequency": 0.7670927117241081,
+              "angle": -0.4936590111536012,
+              "amplitude": 0.04270699944269533,
+              "phase": 0.2594377601326397
+            },
+            {
+              "frequency": 1.0499442258733325,
+              "angle": -0.20573968869528247,
+              "amplitude": 0.031115115061402323,
+              "phase": 0.0770780668394394
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.036158816078677776,
+          "widthVariation": 0.3680482308147475,
+          "spacing": 0.027373171988641844,
+          "taper": 0.1795581119414419,
+          "taperPower": 0.9046278866939247,
+          "maxLength": 3.7880847285501664,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            0.03065677406499162,
+            0.01585930183762685
+          ],
+          "radii": [
+            0.9209752766508609,
+            0.8173738656751812
+          ],
+          "angle": 0.6283384008160848,
+          "seedBias": 0.5940376013051719
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.3450508657982573,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 112,
+        "rejectedShort": 5,
+        "rejectedGeometry": 0,
+        "count": 21,
+        "target": 21,
+        "totalLength": 20.644758301073207,
+        "maxIntegrationError": 3.25108697109956e-10
+      },
+      "pngSha256": "c3d0b801c90ee33053f9e06e90f1a784625f1efeb7d4a03f10b1a826f08fff5c",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08004097222222223,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 255,
+        "top": 208,
+        "right": 1030,
+        "bottom": 1008
+      }
+    },
+    {
+      "seed": "ribbons-review-33",
+      "sha256": "e83848f0fcee2bf2d467bc97a41cbe69dddacd6e76f25074be968dd019436209",
+      "generationMs": 48.61876200000006,
+      "svgBytes": 92504,
+      "paths": 45,
+      "label": "sweep · 15 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": 1.3982753998058044,
+          "anisotropy": 0.9398530459729955,
+          "drift": {
+            "speed": 0.625317828077823,
+            "angle": 0.08414603434503079
+          },
+          "harmonics": [
+            {
+              "frequency": 0.7480448205955326,
+              "angle": -1.1876870154285992,
+              "amplitude": 0.03603679182706401,
+              "phase": 2.776164173055355
+            },
+            {
+              "frequency": 0.6444451235217274,
+              "angle": 0.47506494785908693,
+              "amplitude": 0.06488657941032823,
+              "phase": 1.6781230556696678
+            },
+            {
+              "frequency": 2.0384320483950433,
+              "angle": 2.637641620223584,
+              "amplitude": 0.014955049092532136,
+              "phase": 2.003475337223842
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.13352159480564296,
+                0.2908960431814194
+              ],
+              "radius": 0.5037128943949938,
+              "circulation": 1.0287225480191409
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.0637684656586498,
+          "widthVariation": 0.27660539336036893,
+          "spacing": 0.024959025700576603,
+          "taper": 0.22724926844239235,
+          "taperPower": 1.1174495432525873,
+          "maxLength": 3.587966882274486,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.017681068708188835,
+            0.031462459680624305
+          ],
+          "radii": [
+            0.9079611108358949,
+            0.7623746185167692
+          ],
+          "angle": 1.2010596530901396,
+          "seedBias": 0.71580391805619
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.3166212464030832,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 875,
+        "rejectedShort": 2,
+        "rejectedGeometry": 0,
+        "count": 15,
+        "target": 25,
+        "totalLength": 18.209222049758658,
+        "maxIntegrationError": 2.828193214840216e-12
+      },
+      "pngSha256": "a17e153a0e5e71e48e6ff8e4b63e4bf0c3b93d806453657b30ee136e6b264db5",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10513680555555556,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 234,
+        "top": 207,
+        "right": 945,
+        "bottom": 1025
+      }
+    },
+    {
+      "seed": "ribbons-review-34",
+      "sha256": "5706022fae0c205cf2e682f69ca01ccd524d37c35ecae202526d46eb602f7111",
+      "generationMs": 40.06946500000049,
+      "svgBytes": 85653,
+      "paths": 42,
+      "label": "sweep · 14 ribbons",
+      "parameters": {
+        "family": "sweep",
+        "field": {
+          "angle": -2.209816479817808,
+          "anisotropy": 0.9370831481763162,
+          "drift": {
+            "speed": 0.5565229977946728,
+            "angle": -0.026669116830453282
+          },
+          "harmonics": [
+            {
+              "frequency": 0.5923235262278468,
+              "angle": -3.135021720044036,
+              "amplitude": 0.0812009678920731,
+              "phase": 3.125383434959346
+            },
+            {
+              "frequency": 1.495976969964104,
+              "angle": 0.6386194319655569,
+              "amplitude": 0.032424013134247316,
+              "phase": 0.2548918416797464
+            },
+            {
+              "frequency": 1.315137116397964,
+              "angle": 2.349876281596453,
+              "amplitude": 0.03333995699940716,
+              "phase": 0.4827495819206555
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.21324040996842086,
+                -0.46711319126188755
+              ],
+              "radius": 0.6164916899520905,
+              "circulation": 0.9772869892418385
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 17,
+          "width": 0.0507116878265515,
+          "widthVariation": 0.37539873231668025,
+          "spacing": 0.023971411033300683,
+          "taper": 0.18286710581742227,
+          "taperPower": 1.1424046393483878,
+          "maxLength": 4.351498690457084,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.033412648697849365,
+            -0.034614360430277887
+          ],
+          "radii": [
+            0.8463424335699528,
+            0.6169883564440534
+          ],
+          "angle": -2.2056458788410134,
+          "seedBias": 0.7006115794181824
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.21049467894714324,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 595,
+        "rejectedShort": 3,
+        "rejectedGeometry": 0,
+        "count": 14,
+        "target": 17,
+        "totalLength": 16.899914714637877,
+        "maxIntegrationError": 1.7086239400438513e-12
+      },
+      "pngSha256": "ea3249b50814a88f7c665dfd1bd14026ec88ea9b753d1386ff6614863ce51f2f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.07627291666666666,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 262,
+        "top": 230,
+        "right": 910,
+        "bottom": 942
+      }
+    },
+    {
+      "seed": "ribbons-review-35",
+      "sha256": "4009bed360624866ee2fb7dc0eddb77cf21a426d083f36fa92d10a7af71b1604",
+      "generationMs": 59.07574399999976,
+      "svgBytes": 138832,
+      "paths": 60,
+      "label": "eddy · 12 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": 0.7877484129747767,
+          "anisotropy": 0.8203527500270866,
+          "drift": {
+            "speed": 0.03750056852120907,
+            "angle": 0.025606592884287238
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8302503917366266,
+              "angle": 0.17038900623174946,
+              "amplitude": 0.03903113180655056,
+              "phase": 0.4736231528539665
+            },
+            {
+              "frequency": 1.2927422325115183,
+              "angle": -2.3386490290220325,
+              "amplitude": 0.03188839818971853,
+              "phase": 0.9632150849745438
+            },
+            {
+              "frequency": 1.9092061441624537,
+              "angle": -2.80999035882891,
+              "amplitude": 0.008914465831330745,
+              "phase": 3.850802477905677
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.17424264140427115,
+                0.11715271584689618
+              ],
+              "radius": 0.6220676989061757,
+              "circulation": 2.607394175976515
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.04679274815833197,
+          "widthVariation": 0.27685311319772155,
+          "spacing": 0.03377605240279809,
+          "taper": 0.14336457580327988,
+          "taperPower": 1.1251263063866646,
+          "maxLength": 4.362916512601077,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.005741752160247415,
+            0.01076026451773942
+          ],
+          "radii": [
+            0.8649284120742231,
+            0.7240637595765294
+          ],
+          "angle": 0.8443687169818599,
+          "seedBias": 0.5786168484715746
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2616184026747942,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 735,
+        "rejectedShort": 8,
+        "rejectedGeometry": 0,
+        "count": 12,
+        "target": 21,
+        "totalLength": 17.88365151095843,
+        "maxIntegrationError": 6.073138625812367e-9
+      },
+      "pngSha256": "da921196d329418f8e580983ea928e05aebb76dab6e4865ca54cfcf18a7ca6e6",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10845694444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 242,
+        "top": 231,
+        "right": 967,
+        "bottom": 975
+      }
+    },
+    {
+      "seed": "ribbons-review-36",
+      "sha256": "07935b0af752c22003295ba15b0632394dd27ae6ba9451a3067e02a50e2117ae",
+      "generationMs": 54.35064700000112,
+      "svgBytes": 155600,
+      "paths": 115,
+      "label": "confluence · 23 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -2.5985496052328196,
+          "anisotropy": 1.234211657603737,
+          "drift": {
+            "speed": 0.125507736466825,
+            "angle": 0.04997038636356593
+          },
+          "harmonics": [
+            {
+              "frequency": 0.5260579312685877,
+              "angle": 2.0667244277566246,
+              "amplitude": 0.03280707609374076,
+              "phase": 1.7374151517548913
+            },
+            {
+              "frequency": 0.7536921498621814,
+              "angle": -2.61273992669381,
+              "amplitude": 0.049683052770948664,
+              "phase": 0.7046997561334414
+            },
+            {
+              "frequency": 1.2495624791819135,
+              "angle": -1.1934154910254584,
+              "amplitude": 0.022185016371076928,
+              "phase": 3.6106178519947867
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.11013620356097817,
+                -0.36063263766467574
+              ],
+              "radius": 0.3310117864958011,
+              "circulation": -1.5093637957703323
+            },
+            {
+              "center": [
+                0.04856423065066337,
+                0.36063263766467574
+              ],
+              "radius": 0.38039580058772116,
+              "circulation": 2.3637105816509574
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.05214745827484876,
+          "widthVariation": 0.30271995449438693,
+          "spacing": 0.0191426737899892,
+          "taper": 0.2319675165321678,
+          "taperPower": 1.0312330233398825,
+          "maxLength": 2.8167388415895402,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.0054453243990428765,
+            0.02882006350671873
+          ],
+          "radii": [
+            0.8062952471151947,
+            0.9106818497180938
+          ],
+          "angle": -2.731363619563326,
+          "seedBias": 0.7151841911487281
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.17329332821303978,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 95,
+        "rejectedShort": 5,
+        "rejectedGeometry": 0,
+        "count": 23,
+        "target": 23,
+        "totalLength": 19.94774780842867,
+        "maxIntegrationError": 1.5409624048692026e-9
+      },
+      "pngSha256": "d5b027b735d34bdfe41580b3f1729e7f6bcdc3487dec8100232d8a6ccfa85559",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10224444444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 221,
+        "top": 200,
+        "right": 982,
+        "bottom": 1028
+      }
+    },
+    {
+      "seed": "ribbons-review-37",
+      "sha256": "4dc6954becd839970f57bb473e8cb1d75b257bdcccd279b43116aefe3c8977a9",
+      "generationMs": 59.96709699999883,
+      "svgBytes": 185120,
+      "paths": 100,
+      "label": "eddy · 20 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": 2.150293565980956,
+          "anisotropy": 1.332093987846747,
+          "drift": {
+            "speed": 0.05377479368355126,
+            "angle": 0.055719927605241554
+          },
+          "harmonics": [
+            {
+              "frequency": 0.4526556707569398,
+              "angle": -1.6539699943748596,
+              "amplitude": 0.05492878505436238,
+              "phase": 4.528519135776197
+            },
+            {
+              "frequency": 0.819636471142876,
+              "angle": -1.8394547381589565,
+              "amplitude": 0.010019736819473718,
+              "phase": 0.024103566387432336
+            },
+            {
+              "frequency": 1.8530128874536604,
+              "angle": 1.3709735565630181,
+              "amplitude": 0.009725134723848897,
+              "phase": 2.9857657577455354
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.045870216097682714,
+                0.14224939569830897
+              ],
+              "radius": 0.47965727495029564,
+              "circulation": -2.8654174044728276
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 20,
+          "width": 0.03794418129138649,
+          "widthVariation": 0.2874209086177871,
+          "spacing": 0.025648337061982603,
+          "taper": 0.20863756336271763,
+          "taperPower": 1.0542388356290757,
+          "maxLength": 4.96802483855281,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.017918174171354623,
+            -0.03294779821997509
+          ],
+          "radii": [
+            0.896086403876543,
+            0.8298431731387973
+          ],
+          "angle": 2.1328830782993284,
+          "seedBias": 0.6598048966843635
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2503675266378559,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 135,
+        "rejectedShort": 4,
+        "rejectedGeometry": 0,
+        "count": 20,
+        "target": 20,
+        "totalLength": 24.191370470247996,
+        "maxIntegrationError": 4.7878395810732495e-9
+      },
+      "pngSha256": "1176818738b8c9097edd9e0a0f254728ee7ee0e476a10a6f8fd84e69f3055d1b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.10488958333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 196,
+        "top": 171,
+        "right": 990,
+        "bottom": 995
+      }
+    },
+    {
+      "seed": "ribbons-review-38",
+      "sha256": "74e374e0be9d8997f4a90aa9abde2bc33b0972fe0a5406acd21a36023234555b",
+      "generationMs": 59.684549000001425,
+      "svgBytes": 134778,
+      "paths": 60,
+      "label": "meander · 20 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": 1.1023028464466655,
+          "anisotropy": 0.9228321631788277,
+          "drift": {
+            "speed": 0.33517325107008217,
+            "angle": -0.009103799937292933
+          },
+          "harmonics": [
+            {
+              "frequency": 0.6860766459372826,
+              "angle": -0.04111379957757888,
+              "amplitude": 0.5003993824124336,
+              "phase": 1.595953115201825
+            },
+            {
+              "frequency": 0.9634515546151671,
+              "angle": 0.05949706992606396,
+              "amplitude": 0.02043066568827878,
+              "phase": 6.173672890919305
+            },
+            {
+              "frequency": 1.1006128122936933,
+              "angle": -2.020654723625671,
+              "amplitude": 0.04459142324049026,
+              "phase": 3.4841386113295942
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 22,
+          "width": 0.04391305924858898,
+          "widthVariation": 0.3281063275085762,
+          "spacing": 0.025711658859159797,
+          "taper": 0.18478948147967458,
+          "taperPower": 1.2919392542913555,
+          "maxLength": 4.367570066219196,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.00791796129429713,
+            0.014489313729573045
+          ],
+          "radii": [
+            0.9192347869463264,
+            0.9000114764645696
+          ],
+          "angle": 0.9854360602274859,
+          "seedBias": 0.6015678548486904
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.2778112280764617,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 770,
+        "rejectedShort": 5,
+        "rejectedGeometry": 0,
+        "count": 20,
+        "target": 22,
+        "totalLength": 26.77850208481573,
+        "maxIntegrationError": 2.981436910915915e-12
+      },
+      "pngSha256": "f478cb6f365b33705d6532d67a120c269c5aeaa9bbf53ebd5cf6ed5b84020d3f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.11354930555555555,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 171,
+        "top": 196,
+        "right": 1018,
+        "bottom": 1033
+      }
+    },
+    {
+      "seed": "ribbons-review-39",
+      "sha256": "989434e588694594078f5498d6f6edf3d0a6c8f9a70796471ea3478202dd2135",
+      "generationMs": 58.984448999999586,
+      "svgBytes": 113644,
+      "paths": 60,
+      "label": "confluence · 15 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 0.19318776818883965,
+          "anisotropy": 0.8568930478766561,
+          "drift": {
+            "speed": 0.16598302237689494,
+            "angle": 0.022459453251212833
+          },
+          "harmonics": [
+            {
+              "frequency": 0.7016769157839007,
+              "angle": -1.9885584077595693,
+              "amplitude": 0.09720337667968126,
+              "phase": 4.1131450374348715
+            },
+            {
+              "frequency": 0.8059933148045093,
+              "angle": 0.5086148908117347,
+              "amplitude": 0.01905751459222908,
+              "phase": 5.133765504751152
+            },
+            {
+              "frequency": 1.9325583504326642,
+              "angle": 1.254783207465744,
+              "amplitude": 0.026428854840924033,
+              "phase": 4.404854625567255
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.04857498540077358,
+                -0.43232272841501984
+              ],
+              "radius": 0.3586897035804577,
+              "circulation": 2.121529285144061
+            },
+            {
+              "center": [
+                -0.11118872738443314,
+                0.43232272841501984
+              ],
+              "radius": 0.26137813518522307,
+              "circulation": -1.7925422967877238
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 26,
+          "width": 0.05476267564110458,
+          "widthVariation": 0.40556989652104675,
+          "spacing": 0.03140822842763737,
+          "taper": 0.226127457767725,
+          "taperPower": 1.1011832813732325,
+          "maxLength": 3.209526007180102,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.01467289095045999,
+            0.008013004285749047
+          ],
+          "radii": [
+            0.8544989609718323,
+            0.8815073377685622
+          ],
+          "angle": 0.3073456631876285,
+          "seedBias": 0.7286984940757975
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.18258215018548068,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 910,
+        "rejectedShort": 26,
+        "rejectedGeometry": 0,
+        "count": 15,
+        "target": 26,
+        "totalLength": 17.54592100189302,
+        "maxIntegrationError": 4.3087451007806626e-7
+      },
+      "pngSha256": "c2e794abe5500e26e0eb1642ec2861482929129b2b7fbbd7f6f8e894197078b7",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08885416666666666,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 199,
+        "top": 196,
+        "right": 984,
+        "bottom": 1015
+      }
+    },
+    {
+      "seed": "ribbons-review-40",
+      "sha256": "ee2f90f4080d53914efb4b1ded30ab88e61764231620b7de7aa6bcd34ffa681b",
+      "generationMs": 46.57325600000149,
+      "svgBytes": 141572,
+      "paths": 105,
+      "label": "confluence · 21 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -0.9553446793348437,
+          "anisotropy": 1.116533860145137,
+          "drift": {
+            "speed": 0.13533451594412327,
+            "angle": -0.04891237919218838
+          },
+          "harmonics": [
+            {
+              "frequency": 0.6879266030271538,
+              "angle": 0.26269989043631803,
+              "amplitude": 0.05356013873242774,
+              "phase": 0.8380417078923827
+            },
+            {
+              "frequency": 1.14933957553003,
+              "angle": 1.7423821741027377,
+              "amplitude": 0.04125314036306615,
+              "phase": 0.4124134359549962
+            },
+            {
+              "frequency": 1.0664533896872308,
+              "angle": -0.962302243111016,
+              "amplitude": 0.024293639179086314,
+              "phase": 3.9190768602763213
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.07140294662676751,
+                -0.34797467985656116
+              ],
+              "radius": 0.30195704056415706,
+              "circulation": 2.470334996841848
+            },
+            {
+              "center": [
+                -0.049299430567771196,
+                0.34797467985656116
+              ],
+              "radius": 0.3690598081122153,
+              "circulation": -2.2837248199153692
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 21,
+          "width": 0.04545587715459988,
+          "widthVariation": 0.311611161865294,
+          "spacing": 0.01815889078960754,
+          "taper": 0.24896321767009794,
+          "taperPower": 1.028181368391961,
+          "maxLength": 4.104813608690165,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.0019494776520878054,
+            0.027996202900540085
+          ],
+          "radii": [
+            0.7102660632506013,
+            0.8912707700161263
+          ],
+          "angle": -1.0000582499780601,
+          "seedBias": 0.7850581019185483
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.15038876713719218,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 141,
+        "rejectedShort": 13,
+        "rejectedGeometry": 0,
+        "count": 21,
+        "target": 21,
+        "totalLength": 18.31586583321914,
+        "maxIntegrationError": 1.1528350056673272e-10
+      },
+      "pngSha256": "1b9ac7a816b9d0794404f59e50c625e598fbe13101397a503cd72f1be091023b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08599513888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 207,
+        "top": 260,
+        "right": 989,
+        "bottom": 967
+      }
+    },
+    {
+      "seed": "ribbons-review-41",
+      "sha256": "4d60508258521f6ea4a4dd4058eec656b836f09c32df8e5b4701650bd274ddb3",
+      "generationMs": 65.13004000000001,
+      "svgBytes": 76427,
+      "paths": 51,
+      "label": "confluence · 17 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 2.118293416497713,
+          "anisotropy": 1.3062717418535614,
+          "drift": {
+            "speed": 0.10165668237954378,
+            "angle": 0.06187980603426696
+          },
+          "harmonics": [
+            {
+              "frequency": 0.7686320182867348,
+              "angle": 0.4899695580902148,
+              "amplitude": 0.060902977775549524,
+              "phase": 4.605390931166459
+            },
+            {
+              "frequency": 0.865183713522274,
+              "angle": -1.7901729545405707,
+              "amplitude": 0.03749660544951136,
+              "phase": 0.9337089562687055
+            },
+            {
+              "frequency": 1.3822336413629819,
+              "angle": -1.7617454616671016,
+              "amplitude": 0.02738227155641653,
+              "phase": 2.26125368597248
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.06268388140015303,
+                -0.46478946254821496
+              ],
+              "radius": 0.37172076985938474,
+              "circulation": 1.5089629223570227
+            },
+            {
+              "center": [
+                -0.1463369212578982,
+                0.46478946254821496
+              ],
+              "radius": 0.38299792451085524,
+              "circulation": -1.6867560994345694
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.05263067231047899,
+          "widthVariation": 0.2238535917457193,
+          "spacing": 0.030766039240173997,
+          "taper": 0.14925056463107467,
+          "taperPower": 1.191895620431751,
+          "maxLength": 2.9177620510570708,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.01055221279617399,
+            0.016562566324137155
+          ],
+          "radii": [
+            0.7011699743196368,
+            0.8749699665000662
+          ],
+          "angle": 1.9379685180237947,
+          "seedBias": 0.5992941156029702
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.20247497863136232,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 805,
+        "rejectedShort": 33,
+        "rejectedGeometry": 0,
+        "count": 17,
+        "target": 23,
+        "totalLength": 14.395568958994925,
+        "maxIntegrationError": 5.783899863830084e-9
+      },
+      "pngSha256": "f2ca5204c32397f48f7a898a05222aa89d5a20bbf33c05b1d2f5a389b0a9da7a",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08223958333333334,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 201,
+        "top": 276,
+        "right": 992,
+        "bottom": 940
+      }
+    },
+    {
+      "seed": "ribbons-review-42",
+      "sha256": "7b51fe2969c0273283f1a7b0eed290cb398d548017152754c499e783d3b0bc38",
+      "generationMs": 47.409262999999555,
+      "svgBytes": 133616,
+      "paths": 69,
+      "label": "meander · 23 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": -1.7169106725181709,
+          "anisotropy": 0.8276145354844631,
+          "drift": {
+            "speed": 0.391822553165257,
+            "angle": -0.08465833235532046
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8418042218312621,
+              "angle": -0.037295807199552666,
+              "amplitude": 0.6297187606897205,
+              "phase": 5.480151913569728
+            },
+            {
+              "frequency": 1.4624353386595612,
+              "angle": 0.02204241136633822,
+              "amplitude": 0.042828956157124294,
+              "phase": 5.716385257728159
+            },
+            {
+              "frequency": 1.8151345812692308,
+              "angle": 0.015317116556528898,
+              "amplitude": 0.027538245311006907,
+              "phase": 2.366230981578211
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.04279757916694507,
+          "widthVariation": 0.20522778936196118,
+          "spacing": 0.018980206893524153,
+          "taper": 0.19558344551362097,
+          "taperPower": 1.3391960096079856,
+          "maxLength": 3.7738361118128525,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            -0.028261948816943917,
+            0.029487367130350328
+          ],
+          "radii": [
+            0.9377254401892423,
+            0.8018354285880924
+          ],
+          "angle": -1.569442710238255,
+          "seedBias": 0.7516295237932354
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.18818942109122871,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 305,
+        "rejectedShort": 3,
+        "rejectedGeometry": 0,
+        "count": 23,
+        "target": 23,
+        "totalLength": 26.384980183512432,
+        "maxIntegrationError": 2.0698119561935023e-12
+      },
+      "pngSha256": "4106f52f1ae917b242bff4951fe7665678be3b4369216e24346d08988dc89500",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.14084444444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 213,
+        "top": 178,
+        "right": 959,
+        "bottom": 1049
+      }
+    },
+    {
+      "seed": "ribbons-review-43",
+      "sha256": "fccefc598be9116e606e173347e63f2f8a7d327d24c3c1da515f3c08cc7bba79",
+      "generationMs": 43.180365000000165,
+      "svgBytes": 87352,
+      "paths": 27,
+      "label": "eddy · 9 ribbons",
+      "parameters": {
+        "family": "eddy",
+        "field": {
+          "angle": 0.69665208578424,
+          "anisotropy": 0.8636287426110357,
+          "drift": {
+            "speed": 0.06257327787578107,
+            "angle": -0.09794954238459469
+          },
+          "harmonics": [
+            {
+              "frequency": 0.4977484286995605,
+              "angle": 2.3402510954802453,
+              "amplitude": 0.04785978188505398,
+              "phase": 3.2954474729577212
+            },
+            {
+              "frequency": 1.3965115961042467,
+              "angle": -1.3476305759141776,
+              "amplitude": 0.01748612245176143,
+              "phase": 5.516368570390283
+            },
+            {
+              "frequency": 2.098907008051174,
+              "angle": -0.4334634051592774,
+              "amplitude": 0.011927491711539917,
+              "phase": 0.655439519835445
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                -0.1630295136012137,
+                -0.10154371466487647
+              ],
+              "radius": 0.6344078533118591,
+              "circulation": 3.396799134090543
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 19,
+          "width": 0.05305990490596742,
+          "widthVariation": 0.3223171124095097,
+          "spacing": 0.029897906553000213,
+          "taper": 0.15561299653723837,
+          "taperPower": 0.8386201803106815,
+          "maxLength": 4.665683600539341,
+          "minLength": 0.32,
+          "stripes": 2
+        },
+        "composition": {
+          "center": [
+            0.03157962826779112,
+            -0.025011585350148382
+          ],
+          "radii": [
+            0.9030379125569016,
+            0.7240114347077906
+          ],
+          "angle": 0.7097495294021203,
+          "seedBias": 0.609096876741387
+        },
+        "style": {
+          "palette": [
+            "#374f6a",
+            "#7e9c9a",
+            "#c29764"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.31777444080449635,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 665,
+        "rejectedShort": 0,
+        "rejectedGeometry": 0,
+        "count": 9,
+        "target": 19,
+        "totalLength": 17.25308391074151,
+        "maxIntegrationError": 3.242868818252253e-9
+      },
+      "pngSha256": "2369daffe2e91edc7c9211f139cbaa45c9ed8c8ad014b42c5db12d29acec5a33",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.04604305555555555,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 235,
+        "top": 213,
+        "right": 1006,
+        "bottom": 949
+      }
+    },
+    {
+      "seed": "ribbons-review-44",
+      "sha256": "e753679303148f91ab1a267aca6f86f505270dd7512a64f4ea012b48c58956bf",
+      "generationMs": 57.11355000000185,
+      "svgBytes": 154572,
+      "paths": 125,
+      "label": "confluence · 25 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": -2.284486197288401,
+          "anisotropy": 0.8445477632340044,
+          "drift": {
+            "speed": 0.123477272503078,
+            "angle": 0.024148961808532474
+          },
+          "harmonics": [
+            {
+              "frequency": 0.8550183866056613,
+              "angle": 2.757406685719288,
+              "amplitude": 0.0848159664485138,
+              "phase": 4.767334438180695
+            },
+            {
+              "frequency": 0.8515422566933557,
+              "angle": -1.8889103895910633,
+              "amplitude": 0.04803064646354566,
+              "phase": 3.4247830128963863
+            },
+            {
+              "frequency": 1.9443858381465542,
+              "angle": -0.6278871752782731,
+              "amplitude": 0.02879400824895129,
+              "phase": 4.250372356246374
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.021579888579435658,
+                -0.45159022889100014
+              ],
+              "radius": 0.31455592401092874,
+              "circulation": -2.059187024924904
+            },
+            {
+              "center": [
+                0.14418453611433504,
+                0.45159022889100014
+              ],
+              "radius": 0.4233635363704525,
+              "circulation": 2.1116262020077556
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 25,
+          "width": 0.04991023424547166,
+          "widthVariation": 0.30366996322758494,
+          "spacing": 0.018835048254346475,
+          "taper": 0.17128567050211133,
+          "taperPower": 1.3096954049076883,
+          "maxLength": 3.8615828582318503,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            -0.0010626849369145958,
+            -0.03198577791219578
+          ],
+          "radii": [
+            0.8069145521149039,
+            0.8508456746581942
+          ],
+          "angle": -2.1300665705271733,
+          "seedBias": 0.6362382941413671
+        },
+        "style": {
+          "palette": [
+            "#495e53",
+            "#9c765a",
+            "#b3ac86"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.33960628661792724,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 184,
+        "rejectedShort": 13,
+        "rejectedGeometry": 0,
+        "count": 25,
+        "target": 25,
+        "totalLength": 19.7525134009735,
+        "maxIntegrationError": 3.3601594044410325e-9
+      },
+      "pngSha256": "d60ee1a2975b5d005b61f4a8463bfd6ad5379ad17f8a8d7f33338613e9e04851",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09744305555555556,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 214,
+        "top": 205,
+        "right": 988,
+        "bottom": 961
+      }
+    },
+    {
+      "seed": "ribbons-review-45",
+      "sha256": "a93a3619602b428c7aa5dc990ac46c7eb73e10d269a5d3db12b5e272bd0a2a95",
+      "generationMs": 36.180036999998265,
+      "svgBytes": 96321,
+      "paths": 68,
+      "label": "confluence · 17 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 1.6269709064173314,
+          "anisotropy": 1.2967388088000007,
+          "drift": {
+            "speed": 0.14585596561431885,
+            "angle": 0.08685420714318753
+          },
+          "harmonics": [
+            {
+              "frequency": 0.3670784393441863,
+              "angle": -0.9455750593166696,
+              "amplitude": 0.05848610083921813,
+              "phase": 5.0862371747425765
+            },
+            {
+              "frequency": 1.3274664301093435,
+              "angle": 1.9950430964328811,
+              "amplitude": 0.0632447157908852,
+              "phase": 2.518346603473012
+            },
+            {
+              "frequency": 1.9687019194127062,
+              "angle": 0.4729247850212861,
+              "amplitude": 0.022096627001883466,
+              "phase": 2.0452264589085027
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.10783100612461569,
+                -0.47598001351347197
+              ],
+              "radius": 0.4234389780764468,
+              "circulation": -2.0236942020710558
+            },
+            {
+              "center": [
+                0.0033361576963216177,
+                0.47598001351347197
+              ],
+              "radius": 0.4177111457963474,
+              "circulation": 2.7084813273511825
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 17,
+          "width": 0.046816148573998365,
+          "widthVariation": 0.2958158902544528,
+          "spacing": 0.03137929456355051,
+          "taper": 0.13302904247306288,
+          "taperPower": 0.8275046457070858,
+          "maxLength": 2.786624739854597,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            -0.034189674954395746,
+            -0.03010052680037916
+          ],
+          "radii": [
+            0.7544713474810123,
+            0.9023604235379025
+          ],
+          "angle": 1.7013724261442933,
+          "seedBias": 0.594182175793685
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.14584418539889157,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 75,
+        "rejectedShort": 1,
+        "rejectedGeometry": 0,
+        "count": 17,
+        "target": 17,
+        "totalLength": 14.598857502486242,
+        "maxIntegrationError": 9.16328886868386e-9
+      },
+      "pngSha256": "c7f52dc4d6bb24702bb06f30368a8da3628be4b15b029473ef76fd2b270a49c9",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.0800576388888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 170,
+        "top": 237,
+        "right": 909,
+        "bottom": 933
+      }
+    },
+    {
+      "seed": "ribbons-review-46",
+      "sha256": "420abab190bc5abfa50afc863ffd6a3fadb2091786d2a6a71bb54721ac38167f",
+      "generationMs": 64.46875699999873,
+      "svgBytes": 163431,
+      "paths": 92,
+      "label": "confluence · 23 ribbons",
+      "parameters": {
+        "family": "confluence",
+        "field": {
+          "angle": 2.0672102672395036,
+          "anisotropy": 0.9815970954368822,
+          "drift": {
+            "speed": 0.1810881020128727,
+            "angle": 0.055051642982289206
+          },
+          "harmonics": [
+            {
+              "frequency": 0.5486698058433831,
+              "angle": -0.5369731876600543,
+              "amplitude": 0.055135915119899445,
+              "phase": 4.327653822826801
+            },
+            {
+              "frequency": 1.1575328441953754,
+              "angle": -1.8514809371098435,
+              "amplitude": 0.054968200453246636,
+              "phase": 1.9131569591465802
+            },
+            {
+              "frequency": 1.246951600124594,
+              "angle": 0.7885210487695877,
+              "amplitude": 0.049531207577092576,
+              "phase": 0.5199509654733175
+            }
+          ],
+          "vortices": [
+            {
+              "center": [
+                0.1007924215402454,
+                -0.45543397636618466
+              ],
+              "radius": 0.36315249927109106,
+              "circulation": 2.6919054687488826
+            },
+            {
+              "center": [
+                0.01755033151712268,
+                0.45543397636618466
+              ],
+              "radius": 0.4053015018138103,
+              "circulation": -1.5225127066485584
+            }
+          ]
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 23,
+          "width": 0.03642636765725911,
+          "widthVariation": 0.24240241423249245,
+          "spacing": 0.02292325358139351,
+          "taper": 0.2317491231393069,
+          "taperPower": 1.2128445149399338,
+          "maxLength": 3.589092448377051,
+          "minLength": 0.32,
+          "stripes": 3
+        },
+        "composition": {
+          "center": [
+            0.03097547418670729,
+            0.010219569643959404
+          ],
+          "radii": [
+            0.7978072433546185,
+            0.9296524323290214
+          ],
+          "angle": 2.0737087323677468,
+          "seedBias": 0.7774317286908626
+        },
+        "style": {
+          "palette": [
+            "#3b686d",
+            "#b76d51",
+            "#c6ac77"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.1778808727255091,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 178,
+        "rejectedShort": 9,
+        "rejectedGeometry": 0,
+        "count": 23,
+        "target": 23,
+        "totalLength": 25.79164191947506,
+        "maxIntegrationError": 1.7827069876283547e-9
+      },
+      "pngSha256": "f5b4505e2f9cf2a092d06f4975c6ba4ba342cbd9473dbbbd01a2d340d1326b54",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.11465069444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 194,
+        "top": 216,
+        "right": 1030,
+        "bottom": 984
+      }
+    },
+    {
+      "seed": "ribbons-review-47",
+      "sha256": "f83e06703d3e8e9e591624bc85c594c203231751baf446decf69a951a11cfc26",
+      "generationMs": 39.71743499999866,
+      "svgBytes": 125997,
+      "paths": 85,
+      "label": "meander · 17 ribbons",
+      "parameters": {
+        "family": "meander",
+        "field": {
+          "angle": 1.6699157297558855,
+          "anisotropy": 1.131012784037739,
+          "drift": {
+            "speed": 0.3724940897524357,
+            "angle": 0.01153855212032795
+          },
+          "harmonics": [
+            {
+              "frequency": 1.0153639470925555,
+              "angle": 0.24248826219700276,
+              "amplitude": 0.5995664374390617,
+              "phase": 3.8820414008922097
+            },
+            {
+              "frequency": 0.6147336310357787,
+              "angle": 1.055596693953655,
+              "amplitude": 0.04567902523946638,
+              "phase": 1.3720184443382166
+            },
+            {
+              "frequency": 1.6832957528473345,
+              "angle": 0.6914511018738128,
+              "amplitude": 0.048877092968905356,
+              "phase": 0.3688896832674251
+            }
+          ],
+          "vortices": []
+        },
+        "integration": {
+          "step": 0.013,
+          "minStep": 0.00025,
+          "tolerance": 0.000002,
+          "minSpeed": 0.00001,
+          "maxSteps": 1600
+        },
+        "ribbon": {
+          "count": 17,
+          "width": 0.03712980742566288,
+          "widthVariation": 0.2546021100506186,
+          "spacing": 0.029139991349307823,
+          "taper": 0.15813027179799974,
+          "taperPower": 1.0350829103961587,
+          "maxLength": 2.791516918758862,
+          "minLength": 0.32,
+          "stripes": 4
+        },
+        "composition": {
+          "center": [
+            0.012185689446050675,
+            -0.004200191963464023
+          ],
+          "radii": [
+            0.9152389353048056,
+            0.8588883305341006
+          ],
+          "angle": 1.7331035448185872,
+          "seedBias": 0.6864727061707526
+        },
+        "style": {
+          "palette": [
+            "#685873",
+            "#b17c73",
+            "#7b9997"
+          ],
+          "ink": "#35434a",
+          "outlineFraction": 0.23013025276362895,
+          "lineWidth": 0.65
+        }
+      },
+      "metrics": {
+        "attempts": 67,
+        "rejectedShort": 4,
+        "rejectedGeometry": 0,
+        "count": 17,
+        "target": 17,
+        "totalLength": 16.360592580925516,
+        "maxIntegrationError": 2.2777760267235912e-10
+      },
+      "pngSha256": "9580df334e21224256b9875446e9aefdf4d19504a7451d0fb9de70d3ff1f4162",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.07055208333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 208,
+        "top": 169,
+        "right": 1007,
+        "bottom": 1019
+      }
+    }
+  ]
+}
