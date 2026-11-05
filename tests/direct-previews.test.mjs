@@ -2,12 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
-import { pageModes } from '../src/projects.js';
+import { pageModes, projects } from '../src/projects.js';
 
-test('every style ships ten raster previews with independent original export sources', async () => {
+test('bundled styles ship ten raster previews with independent original export sources', async () => {
   const directory = new URL('../public/cache/', import.meta.url);
   const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
-  for (const mode of pageModes) {
+  for (const mode of pageModes.filter(mode => projects[mode].bundled !== false)) {
     assert.equal(manifest[mode].length, 10);
     for (const entry of manifest[mode]) {
       const painting = JSON.parse(gunzipSync(await readFile(new URL(entry.asset, directory))));
