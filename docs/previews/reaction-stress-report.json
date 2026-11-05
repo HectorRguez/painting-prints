@@ -1,0 +1,357 @@
+{
+  "maxRSSMB": 129.93359375,
+  "results": [
+    {
+      "seed": "reaction-stress-largest",
+      "overrides": {
+        "size": 224,
+        "duration": 2600,
+        "dt": 0.75,
+        "spread": 0.14,
+        "feed": 0.038,
+        "kill": 0.0608
+      },
+      "ms": 4254.924016,
+      "habit": "labyrinth",
+      "metrics": {
+        "minU": 0.26451872530479975,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.40066305595959795,
+        "coverage": 0.24631297831632654,
+        "varianceV": 0.013189859353744459,
+        "boundaryActivity": 0.000004119553004864692,
+        "steps": 3467,
+        "elapsed": 2600.25,
+        "stoppedAtBoundary": false,
+        "contours": 130,
+        "nuclei": 17
+      },
+      "arrayBufferMB": 1.1662397384643555,
+      "rssMB": 82.82421875
+    },
+    {
+      "seed": "reaction-stress-fine-time",
+      "overrides": {
+        "size": 128,
+        "duration": 2100,
+        "dt": 0.2,
+        "spread": 0.14,
+        "seedRadius": 4,
+        "seedElongation": 1.2,
+        "feed": 0.036,
+        "kill": 0.0636
+      },
+      "ms": 3363.091407,
+      "habit": "coral fronts",
+      "metrics": {
+        "minU": 0.2652443080461461,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.4003741410333681,
+        "coverage": 0.1522216796875,
+        "varianceV": 0.009658581576213417,
+        "boundaryActivity": 0.00859439079971541,
+        "steps": 9888,
+        "elapsed": 1977.6000000000033,
+        "stoppedAtBoundary": true,
+        "contours": 85,
+        "nuclei": 13
+      },
+      "arrayBufferMB": 2.7912397384643555,
+      "rssMB": 96.2578125
+    },
+    {
+      "seed": "reaction-stress-sparse",
+      "overrides": {
+        "nuclei": 3,
+        "spread": 0.06,
+        "clusterCount": 1,
+        "seedRadius": 3,
+        "seedElongation": 1,
+        "noise": 0,
+        "feedGradient": 0
+      },
+      "ms": 1947.5017799999987,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.26678715950067106,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.39720259725990986,
+        "coverage": 0.059400826446280995,
+        "varianceV": 0.004334535753816496,
+        "boundaryActivity": 2.0944677880347087e-14,
+        "steps": 3111,
+        "elapsed": 2333.25,
+        "stoppedAtBoundary": false,
+        "contours": 72,
+        "nuclei": 3
+      },
+      "arrayBufferMB": 3.9728803634643555,
+      "rssMB": 112.61328125
+    },
+    {
+      "seed": "reaction-stress-many",
+      "overrides": {
+        "nuclei": 24,
+        "spread": 0.29,
+        "clusterCount": 3,
+        "clusterSeparation": 0.85,
+        "seedRadius": 3,
+        "seedElongation": 2.3,
+        "aspect": 0.35
+      },
+      "ms": 1088.146431000001,
+      "habit": "labyrinth",
+      "metrics": {
+        "minU": 0.26713326682282984,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.4034240144440998,
+        "coverage": 0.17558755165289255,
+        "varianceV": 0.01120205192956979,
+        "boundaryActivity": 0.021601119345624146,
+        "steps": 1632,
+        "elapsed": 1224,
+        "stoppedAtBoundary": true,
+        "contours": 30,
+        "nuclei": 24
+      },
+      "arrayBufferMB": 1.4357709884643555,
+      "rssMB": 125.89453125
+    },
+    {
+      "seed": "reaction-stress-high-contour",
+      "overrides": {
+        "threshold": 0.24,
+        "contourSpacing": 0.09,
+        "contourCount": 4,
+        "feed": 0.053,
+        "kill": 0.062
+      },
+      "ms": 2175.5614049999986,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.28838703485080597,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.433756745181136,
+        "coverage": 0.17432851239669422,
+        "varianceV": 0.0158216967802814,
+        "boundaryActivity": 9.611120741809675e-8,
+        "steps": 3482,
+        "elapsed": 2611.5,
+        "stoppedAtBoundary": false,
+        "contours": 27,
+        "nuclei": 12
+      },
+      "arrayBufferMB": 2.6174116134643555,
+      "rssMB": 126.19921875
+    },
+    {
+      "seed": "reaction-stress-low-contour",
+      "overrides": {
+        "threshold": 0.08,
+        "contourSpacing": 0.025,
+        "contourCount": 4,
+        "feed": 0.038,
+        "kill": 0.0608
+      },
+      "ms": 1273.0208860000002,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.27136035778835277,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.3959820860773203,
+        "coverage": 0.2794744318181818,
+        "varianceV": 0.012409579873074662,
+        "boundaryActivity": 0.00922305777220301,
+        "steps": 2016,
+        "elapsed": 1512,
+        "stoppedAtBoundary": true,
+        "contours": 46,
+        "nuclei": 14
+      },
+      "arrayBufferMB": 3.7990522384643555,
+      "rssMB": 126.30859375
+    },
+    {
+      "seed": "reaction-independent-197",
+      "overrides": {},
+      "ms": 1588.2970270000005,
+      "habit": "coral fronts",
+      "metrics": {
+        "minU": 0.28514149523635557,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.43091349126430595,
+        "coverage": 0.20919421487603307,
+        "varianceV": 0.014647344840716264,
+        "boundaryActivity": 0.00012729967171660952,
+        "steps": 2541,
+        "elapsed": 1905.75,
+        "stoppedAtBoundary": false,
+        "contours": 34,
+        "nuclei": 9
+      },
+      "arrayBufferMB": 4.9806928634643555,
+      "rssMB": 126.30859375
+    },
+    {
+      "seed": "reaction-independent-198",
+      "overrides": {},
+      "ms": 2304.0229390000004,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.2687698527657152,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.4013995171731939,
+        "coverage": 0.13316761363636365,
+        "varianceV": 0.00874581726193345,
+        "boundaryActivity": 0.00035348752573675175,
+        "steps": 3725,
+        "elapsed": 2793.75,
+        "stoppedAtBoundary": false,
+        "contours": 179,
+        "nuclei": 11
+      },
+      "arrayBufferMB": 6.1623334884643555,
+      "rssMB": 128.25
+    },
+    {
+      "seed": "reaction-independent-199",
+      "overrides": {},
+      "ms": 1580.003557,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.2634663095232285,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.3914564402357742,
+        "coverage": 0.09549328512396695,
+        "varianceV": 0.005687519312427241,
+        "boundaryActivity": 1.5928890387513995e-9,
+        "steps": 2542,
+        "elapsed": 1906.5,
+        "stoppedAtBoundary": false,
+        "contours": 125,
+        "nuclei": 14
+      },
+      "arrayBufferMB": 0.7267866134643555,
+      "rssMB": 127.08984375
+    },
+    {
+      "seed": "reaction-independent-200",
+      "overrides": {},
+      "ms": 2329.424143,
+      "habit": "coral fronts",
+      "metrics": {
+        "minU": 0.2979456971853621,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.4251546930365375,
+        "coverage": 0.1467264979338843,
+        "varianceV": 0.011226150733229441,
+        "boundaryActivity": 1.2289199315396555e-11,
+        "steps": 3781,
+        "elapsed": 2835.75,
+        "stoppedAtBoundary": false,
+        "contours": 18,
+        "nuclei": 15
+      },
+      "arrayBufferMB": 1.9084272384643555,
+      "rssMB": 127.08984375
+    },
+    {
+      "seed": "reaction-independent-201",
+      "overrides": {},
+      "ms": 1864.132873999999,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.26446666178075284,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.3921112132671905,
+        "coverage": 0.06101497933884298,
+        "varianceV": 0.004200338105935461,
+        "boundaryActivity": 0.013096269712005398,
+        "steps": 2976,
+        "elapsed": 2232,
+        "stoppedAtBoundary": true,
+        "contours": 60,
+        "nuclei": 16
+      },
+      "arrayBufferMB": 3.0900678634643555,
+      "rssMB": 127.21484375
+    },
+    {
+      "seed": "reaction-independent-202",
+      "overrides": {},
+      "ms": 1673.5663429999986,
+      "habit": "labyrinth",
+      "metrics": {
+        "minU": 0.25889116932904205,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.3900077990897948,
+        "coverage": 0.22130036157024793,
+        "varianceV": 0.011679487748250242,
+        "boundaryActivity": 0.023622634248367236,
+        "steps": 2688,
+        "elapsed": 2016,
+        "stoppedAtBoundary": true,
+        "contours": 49,
+        "nuclei": 11
+      },
+      "arrayBufferMB": 4.2717084884643555,
+      "rssMB": 127.21484375
+    },
+    {
+      "seed": "reaction-independent-203",
+      "overrides": {},
+      "ms": 2323.6867380000003,
+      "habit": "dividing spots",
+      "metrics": {
+        "minU": 0.2622356922491159,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.3963409692408657,
+        "coverage": 0.12787319214876033,
+        "varianceV": 0.007671353643070512,
+        "boundaryActivity": 5.547293234141089e-8,
+        "steps": 3717,
+        "elapsed": 2787.75,
+        "stoppedAtBoundary": false,
+        "contours": 183,
+        "nuclei": 19
+      },
+      "arrayBufferMB": 5.4533491134643555,
+      "rssMB": 127.1640625
+    },
+    {
+      "seed": "reaction-independent-204",
+      "overrides": {},
+      "ms": 1330.2547029999987,
+      "habit": "labyrinth",
+      "metrics": {
+        "minU": 0.2606097084563529,
+        "maxU": 1,
+        "minV": 0,
+        "maxV": 0.4156518335106905,
+        "coverage": 0.35608212809917356,
+        "varianceV": 0.01612557281081258,
+        "boundaryActivity": 0.011742948377506283,
+        "steps": 2112,
+        "elapsed": 1584,
+        "stoppedAtBoundary": true,
+        "contours": 89,
+        "nuclei": 11
+      },
+      "arrayBufferMB": 6.1623334884643555,
+      "rssMB": 127.1640625
+    }
+  ]
+}
