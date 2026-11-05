@@ -1,0 +1,31 @@
+[
+  {
+    "mode": "seascapes",
+    "seed": "browser-review-seascapes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 696068
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 912369
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 628923
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 254257
+      }
+    ]
+  }
+]
