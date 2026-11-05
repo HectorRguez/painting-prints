@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { brushFamilies, brushRanges, brushParameters, brushStrokes, gestureAt, pressureAt, simplifyTrace, bristleGeometry, buildBrushwork, generateBrushwork } from '../src/generators/brushwork/generate.js';
+import { brushPalettes, tintColor, pigmentColor } from '../src/generators/brushwork/palettes.js';
+import project from '../src/generators/brushwork/project.js';
 const close = (a,b,e=1e-7) => assert.ok(Math.abs(a-b)<=e, `${a} != ${b}`);
 const digest = x => createHash('sha256').update(JSON.stringify(x)).digest('hex');
 
@@ -13,7 +15,48 @@ test('seeded Unicode and empty seeds reproduce parameters and vector artwork', (
   for (const [key,[lo,hi]] of Object.entries(brushRanges)) for (const value of [lo-1,hi+1,NaN,Infinity]) assert.throws(()=>brushParameters('x',{[key]:value}),RangeError);
   for (const key of ['strokeCount','samples','bristles']) assert.throws(()=>brushParameters('x',{[key]:brushRanges[key][0]+.5}),RangeError);
   assert.throws(()=>brushParameters('x',{family:'glyph'}),RangeError);
+  for (const palette of ['missing', '__proto__', null, 7]) assert.throws(()=>brushParameters('x',{palette}),RangeError);
   assert.throws(()=>brushParameters('x',{unknown:1}),RangeError);
+});
+
+test('palette and continuous color controls preserve every trajectory, pressure frame, bristle gap and path', () => {
+  const seed = 'colors are separate 雨', base = buildBrushwork(seed, { family: 'crossing' });
+  const geometry = scene => ({ strokes: scene.strokes, fit: scene.fit,
+    frames: scene.geometry.map(g => g.frames),
+    bands: scene.geometry.map(g => g.bands.map(({color, ...band}) => band)),
+    paths: scene.paths.map(path => path.d) });
+  const colors = new Set();
+  for (const palette of Object.keys(brushPalettes)) {
+    const colored = buildBrushwork(seed, { family: 'crossing', palette, hueShift: 12, saturation: 1.1 });
+    assert.deepEqual(geometry(colored), geometry(base), palette);
+    colors.add(colored.paths[0].fill);
+  }
+  assert.equal(colors.size, Object.keys(brushPalettes).length);
+  for (const controls of [{hueShift:-180}, {hueShift:180}, {saturation:0}, {saturation:1.4}]) {
+    assert.deepEqual(geometry(buildBrushwork(seed, {family:'crossing', ...controls})), geometry(base));
+  }
+  assert.equal(generateBrushwork(seed).artRevision, 2);
+  assert.equal(project.artRevision, 2);
+});
+
+test('hue and saturation transforms obey analytic color cases; density and accents stay bounded', () => {
+  tintColor([255,0,0],120,1).forEach((v,i)=>close(v,[0,255,0][i]));
+  tintColor([255,0,0],240,1).forEach((v,i)=>close(v,[0,0,255][i]));
+  tintColor([255,0,0],0,0).forEach(v=>close(v,127.5));
+  assert.deepEqual(tintColor([32,32,32],140,1.4),[32,32,32]);
+  for (const [palette, pair] of Object.entries(brushPalettes)) {
+    const p = brushParameters('color algebra', {palette,hueShift:0,saturation:1});
+    tintColor(pair.ink,0,1).forEach((v,i)=>close(v,pair.ink[i]));
+    const hex = rgb => '#' + rgb.map(x=>x.toString(16).padStart(2,'0')).join('');
+    assert.equal(pigmentColor(p,1,0,0),hex(pair.ink));
+    assert.equal(pigmentColor(p,1,1,0),hex(pair.accent));
+    assert.equal(pigmentColor(p,0,0,0),'#f5f2eb');
+    for (const hueShift of [-180,0,180]) for (const saturation of [0,1.4]) {
+      const color=pigmentColor({...p,hueShift,saturation},.35,.7,.18);
+      assert.match(color,/^#[0-9a-f]{6}$/);
+      assert.equal(pigmentColor({...p,hueShift:-180,saturation},1,0,0),pigmentColor({...p,hueShift:180,saturation},1,0,0));
+    }
+  }
 });
 
 test('analytic trajectories agree with independent finite differences and exact circles', () => {
@@ -70,10 +113,10 @@ test('dryness removes contact while pigment changes only color, and continuous c
 });
 
 test('48 default compositions have unique geometry, valid bounded fill paths and all families',()=>{
-  const hashes=new Set(), families=new Set();
+  const hashes=new Set(), families=new Set(), palettes=new Set();
   for(let i=0;i<48;i++) {
     const seed=`brushwork-review-${String(i).padStart(2,'0')}`, s=buildBrushwork(seed);
-    families.add(s.parameters.family); hashes.add(digest(s.paths)); assert.ok(s.paths.length>=40);
+    families.add(s.parameters.family); palettes.add(s.parameters.palette); hashes.add(digest(s.paths)); assert.ok(s.paths.length>=40);
     for(const g of s.geometry) for(const b of g.bands) for(const [x,y] of b.points) {
       const px=s.fit.x+x*s.fit.scale, py=s.fit.y+y*s.fit.scale;
       assert.ok(Number.isFinite(px)&&Number.isFinite(py)&&px>=74.999&&px<=925.001&&py>=74.999&&py<=925.001);
@@ -81,6 +124,7 @@ test('48 default compositions have unique geometry, valid bounded fill paths and
     assert.ok(JSON.stringify(s.paths).length<1_500_000);
   }
   assert.equal(hashes.size,48); assert.deepEqual([...families].sort(),[...brushFamilies].sort());
+  assert.deepEqual([...palettes].sort(),Object.keys(brushPalettes).sort());
 });
 
 import { brushworkStressCases } from '../scripts/art-review/brushwork-cases.mjs';

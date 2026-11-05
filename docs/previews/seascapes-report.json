@@ -1,11 +1,12 @@
 {
-  "artRevision": 4,
+  "artRevision": 5,
   "count": 48,
   "unique": 48,
   "uniquePngs": 48,
-  "meanBoats": 1.7708333333333333,
-  "meanGenerationMs": 47.87125,
-  "maximumGenerationMs": 119.45,
+  "uniqueCropPngs": 48,
+  "meanBoats": 1.7916666666666667,
+  "meanGenerationMs": 251.36458333333334,
+  "maximumGenerationMs": 389.65,
   "regimes": {
     "wind sea": 11,
     "calm": 15,
@@ -13,19 +14,19 @@
     "rolling swell": 8
   },
   "boatCounts": {
-    "0": 6,
-    "1": 10,
+    "0": 5,
+    "1": 11,
     "2": 22,
     "3": 9,
     "4": 1
   },
   "boatFamilies": {
-    "skiff": 20,
-    "fishing": 21,
-    "sampan": 12,
-    "cutter": 11,
+    "fishing": 18,
+    "sampan": 16,
+    "skiff": 22,
     "lugger": 9,
-    "sail": 12
+    "sail": 11,
+    "cutter": 10
   },
   "arrangements": {
     "procession": 11,
@@ -33,29 +34,49 @@
     "scattered": 17,
     "crossing": 9
   },
-  "maximumWaveHeight": 348.58008360490203,
+  "maximumWaveHeight": 223.66882837959565,
   "records": [
     {
       "seed": "seascape-review-00",
       "filename": "seascape-review-00.svg",
-      "sha256": "117535946a3d67e559e01313df9a5095cb8294460486d84cbfb075e358953d12",
-      "pngSha256": "9f6d81ce4049d0783fc1f7120427bf297488030b5ce05278ff0b3e455fe4c047",
-      "inkFraction": 0.02987057991513437,
+      "overrides": {},
+      "sha256": "ff2c508d590cad15bc17a69b11e205a60ad3fea103b582ab67554613a55cdfbe",
+      "pngSha256": "3c06b0a3e4be990bada9ce2f0bfb85b2de26470fc01a7e306f380e3c8eb8f753",
+      "cropPngSha256": "a2a081190b438533016ac3cd5ae6aa25464141262ed2a312ccfda2956ebdf54c",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0273171875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 335,
-        "right": 1353,
-        "bottom": 827
+        "left": 50,
+        "top": 268,
+        "right": 3151,
+        "bottom": 682
       },
-      "generationMs": 91.78,
-      "svgBytes": 621430,
-      "paths": 490,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.02860079575596817,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 85,
+        "bounds": {
+          "left": 0,
+          "top": 268,
+          "right": 1130,
+          "bottom": 661
+        }
+      },
+      "generationMs": 385.09,
+      "svgBytes": 1368682,
+      "paths": 1020,
       "regime": "wind sea",
       "roughness": 0.6446964592672885,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 338.2814323552884,
         "regime": "wind sea",
         "roughness": 0.6446964592672885,
@@ -97,9 +118,9 @@
       "requestedBoats": 0,
       "maximumWaveHeight": 51.456527907866985,
       "waveShapes": {
-        "shoulder": 19,
-        "ripple": 22,
-        "chop": 70
+        "chop": 175,
+        "ripple": 54,
+        "shoulder": 60
       },
       "breakingWaves": [],
       "boats": []
@@ -107,24 +128,44 @@
     {
       "seed": "seascape-review-01",
       "filename": "seascape-review-01.svg",
-      "sha256": "53e9f3b793bbed83479346f29796157f640d5591e0063a48780c22f5268f7e6f",
-      "pngSha256": "e3dff9086ff1bce1f4f2c7d7ddf8fda3a561a0a6f35479c179cce0a2e0d6c805",
-      "inkFraction": 0.020062942008486562,
+      "overrides": {},
+      "sha256": "78e5dd652b10a72f4a132c54bb45cea44cd897a80a3d09b2c12e24d0b854ee26",
+      "pngSha256": "bceb440c709ddca927d93fc4955fa46a62d69653dadddd3a63d1eea4cff4bd9e",
+      "cropPngSha256": "34d0895bf50e11bf05386ff938ace1fac41c787690b5da5dabe3f7e048f87296",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0225046875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 85,
-        "top": 341,
-        "right": 1353,
-        "bottom": 836
+        "left": 48,
+        "top": 271,
+        "right": 3151,
+        "bottom": 681
       },
-      "generationMs": 36.34,
-      "svgBytes": 469116,
-      "paths": 368,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.0184946949602122,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 57,
+        "bounds": {
+          "left": 0,
+          "top": 271,
+          "right": 1130,
+          "bottom": 667
+        }
+      },
+      "generationMs": 192.15,
+      "svgBytes": 1106624,
+      "paths": 826,
       "regime": "calm",
       "roughness": 0.38752676809206604,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 341.4463194599375,
         "regime": "calm",
         "roughness": 0.38752676809206604,
@@ -164,10 +205,10 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 0,
-      "maximumWaveHeight": 13.810634634457529,
+      "maximumWaveHeight": 17.635567317251116,
       "waveShapes": {
-        "ripple": 70,
-        "swell": 17
+        "swell": 64,
+        "ripple": 175
       },
       "breakingWaves": [],
       "boats": []
@@ -175,24 +216,44 @@
     {
       "seed": "seascape-review-02",
       "filename": "seascape-review-02.svg",
-      "sha256": "1fea08d9a206bdcf656ad462f3f0dcfb9d5a55ebaf9835d99b8a15a1fc8ad32a",
-      "pngSha256": "db88a6270627d6f189c27df13fbacde3c73ca081857a7a62930c55a4b1d0d1f8",
-      "inkFraction": 0.03651060820367751,
+      "overrides": {},
+      "sha256": "89ded2be47d617400f5d86acfa6da72d2d6e6675a119a75b5200691c667cd81c",
+      "pngSha256": "e7854c743e71a38d17be2dc67ebb2657e353d3996e0f1704f5ff744421affd0f",
+      "cropPngSha256": "504cf1504d842fdd581492694f34ff718b479e23c4c62c554210b464365a5475",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020259765625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 102,
-        "top": 289,
-        "right": 1353,
-        "bottom": 817
+        "left": 48,
+        "top": 228,
+        "right": 3151,
+        "bottom": 697
       },
-      "generationMs": 88.84,
-      "svgBytes": 510931,
-      "paths": 456,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.021937444739168876,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 52,
+        "bounds": {
+          "left": 0,
+          "top": 228,
+          "right": 1130,
+          "bottom": 651
+        }
+      },
+      "generationMs": 182.46,
+      "svgBytes": 851750,
+      "paths": 686,
       "regime": "breakers",
       "roughness": 1.517592560464982,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 296.63742596050724,
         "regime": "breakers",
         "roughness": 1.517592560464982,
@@ -232,77 +293,93 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 2,
-      "maximumWaveHeight": 285.43750090524554,
+      "maximumWaveHeight": 164.4726570986677,
       "waveShapes": {
-        "swell": 35,
-        "ripple": 9,
-        "chop": 10,
+        "swell": 110,
+        "chop": 25,
+        "ripple": 38,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 869.9414827092551,
-          "amplitude": 285.43750090524554,
+          "length": 926.5769401541911,
+          "amplitude": 164.4726570986677,
           "phase": 3.0328650007151996,
           "parameters": {
-            "curl": 0.7245761831942945,
-            "crestPosition": -0.1370553886704147,
-            "shoulderWidth": 0.3210842084209435,
-            "shoulderLift": 0.18848971358500421,
-            "overhang": 0.30244279245845973,
-            "lipDrop": 0.34378544930135835,
-            "hollow": 0.3100105235120281,
-            "lipRatio": 0.02829985993844457,
-            "flowBundles": 6,
-            "flowSpread": 1.0117769269645214,
-            "foamClusters": 6,
-            "foamScale": 1.0100470502511598,
-            "sprayCount": 23,
-            "lipThickness": 8.077841296798093
+            "curl": 0.10359557250980288,
+            "crestPosition": -0.07420462121372112,
+            "shoulderWidth": 0.3110842084209435,
+            "shoulderLift": 0.04565980905666947,
+            "overhang": 0.059147597486153246,
+            "lipDrop": 0.09178138790652156,
+            "flowLines": 3,
+            "flowSpread": 0.9111739989137277,
+            "foamMarks": 2,
+            "foamScale": 0.9985408690292389
           }
         }
       ],
       "boats": [
         {
-          "kind": "skiff",
-          "x": 528.5669532947242,
-          "y": 336.2530271416652,
-          "angle": 0.022164761312803257,
-          "length": 55.73614492039425,
-          "depth": 0.17654403679072858
+          "kind": "fishing",
+          "x": 1953.3362245681303,
+          "y": 408.97351822486064,
+          "angle": 0.10500361731281319,
+          "length": 91.90407837468565,
+          "depth": 0.26279450438916685
         },
         {
-          "kind": "skiff",
-          "x": 248.08975745625787,
-          "y": 387.25288749640936,
-          "angle": 0.18,
-          "length": 58.28598511470614,
-          "depth": 0.2509993028640747
+          "kind": "sampan",
+          "x": 1641.4325340446624,
+          "y": 447.7593334101277,
+          "angle": -0.16491522211233417,
+          "length": 72.60783336528434,
+          "depth": 0.42922074140980837
         }
       ]
     },
     {
       "seed": "seascape-review-03",
       "filename": "seascape-review-03.svg",
-      "sha256": "924457ffc5e2af19e3f7514826652d27a55d978788bab52a445535da6ed923c9",
-      "pngSha256": "4ff2940fecc9adcf17f72cd4a4b3bddcb83eff55a5e30acba3d4ba0434288c95",
-      "inkFraction": 0.04542220650636492,
+      "overrides": {},
+      "sha256": "ee0aee3f9a2ec61ac82957698f30f3ae2de7c0b0be090eda8db2ee760813de7e",
+      "pngSha256": "b39af8b282260f8827d40b2a814b66ff0f948aeea09630ab9f3a5751aaa363d5",
+      "cropPngSha256": "2947ec889f9e28c754bd7d6ac5d2835dcb9363dff93ca68e7ef0a6eeef7697c8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0200390625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 90,
-        "top": 264,
-        "right": 1351,
-        "bottom": 887
+        "left": 60,
+        "top": 205,
+        "right": 3151,
+        "bottom": 707
       },
-      "generationMs": 76.92,
-      "svgBytes": 516914,
-      "paths": 498,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023414014146772768,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 42,
+        "bounds": {
+          "left": 0,
+          "top": 219,
+          "right": 1130,
+          "bottom": 707
+        }
+      },
+      "generationMs": 182.66,
+      "svgBytes": 828115,
+      "paths": 659,
       "regime": "breakers",
       "roughness": 1.718694544956088,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 268.81482570199296,
         "regime": "breakers",
         "roughness": 1.718694544956088,
@@ -342,77 +419,93 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 2,
-      "maximumWaveHeight": 286.6567121259868,
+      "maximumWaveHeight": 165.61566761811264,
       "waveShapes": {
-        "chop": 8,
-        "ripple": 11,
-        "swell": 25,
+        "swell": 107,
+        "ripple": 40,
+        "chop": 24,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 930.5872325133532,
-          "amplitude": 286.6567121259868,
+          "length": 1019.5670898538083,
+          "amplitude": 165.61566761811264,
           "phase": 4.879792937385728,
           "parameters": {
-            "curl": 0.7883677402511239,
-            "crestPosition": -0.1534658011980355,
-            "shoulderWidth": 0.3477949643484317,
-            "shoulderLift": 0.1980332603584975,
-            "overhang": 0.295166763078887,
-            "lipDrop": 0.5054099489795044,
-            "hollow": 0.25118412922602146,
-            "lipRatio": 0.03032403416954912,
-            "flowBundles": 7,
-            "flowSpread": 1.0153481860458853,
-            "foamClusters": 9,
-            "foamScale": 0.8815728359040804,
-            "sprayCount": 32,
-            "lipThickness": 8.69258793343903
+            "curl": 0.15371751019731164,
+            "crestPosition": -0.097794589222176,
+            "shoulderWidth": 0.3377949643484317,
+            "shoulderLift": 0.052022173572331666,
+            "overhang": 0.05672225435962901,
+            "lipDrop": 0.16783997599035502,
+            "flowLines": 2,
+            "flowSpread": 0.9468947206391023,
+            "foamMarks": 3,
+            "foamScale": 1.0018889244180174
           }
         }
       ],
       "boats": [
         {
           "kind": "fishing",
-          "x": 431.52944546826177,
-          "y": 344.5616044919845,
+          "x": 1724.5009292806533,
+          "y": 344.56768703945596,
           "angle": -0.18,
           "length": 60.47052978535888,
           "depth": 0.19125647813081742
         },
         {
-          "kind": "fishing",
-          "x": 730.049023476243,
-          "y": 403.0277204991954,
-          "angle": 0.0941140898090913,
-          "length": 64.16741606333323,
-          "depth": 0.31298448925837874
+          "kind": "skiff",
+          "x": 2074.7122525242194,
+          "y": 463.65787375929415,
+          "angle": -0.023117543695419848,
+          "length": 106.54761009242115,
+          "depth": 0.43039950288832185
         }
       ]
     },
     {
       "seed": "seascape-review-04",
       "filename": "seascape-review-04.svg",
-      "sha256": "0252bbdc206b5cf0e4bf2073f1347d10cb9fc325776b7e84c800c3e837e5c4b4",
-      "pngSha256": "314822d5d29f515f091a7b35942fbd2885b4d167e42e3ca39c80bd5fbd53b3be",
-      "inkFraction": 0.04162871287128713,
+      "overrides": {},
+      "sha256": "a53e38153608c9264263b8ba7af9d17c4953402e2a0d0a9c1a76ed516ff6cba5",
+      "pngSha256": "a17dbb10becebf62c863a37d4e6d3b378f1cae8b2d9064f8399a0dca97223646",
+      "cropPngSha256": "dbb65f89c5e8939080c1e69578d75cd0dbf9d65170baa2e0e77c3c59431080b7",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0196453125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 62,
-        "top": 325,
-        "right": 1326,
-        "bottom": 834
+        "left": 71,
+        "top": 258,
+        "right": 3116,
+        "bottom": 667
       },
-      "generationMs": 56.54,
-      "svgBytes": 519968,
-      "paths": 451,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.021474358974358974,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 63,
+        "bounds": {
+          "left": 0,
+          "top": 266,
+          "right": 1130,
+          "bottom": 667
+        }
+      },
+      "generationMs": 180.39,
+      "svgBytes": 821943,
+      "paths": 646,
       "regime": "breakers",
       "roughness": 1.4327865197323264,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 334.2430053744465,
         "regime": "breakers",
         "roughness": 1.4327865197323264,
@@ -452,42 +545,38 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 1,
-      "maximumWaveHeight": 301.27648619934916,
+      "maximumWaveHeight": 179.32170581188984,
       "waveShapes": {
-        "swell": 35,
-        "ripple": 8,
-        "chop": 8,
+        "swell": 108,
+        "ripple": 34,
+        "chop": 27,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 850.6115527637303,
-          "amplitude": 301.27648619934916,
+          "length": 896.9377142377198,
+          "amplitude": 179.32170581188984,
           "phase": 3.9392284997644214,
           "parameters": {
-            "curl": 0.9116224817931652,
-            "crestPosition": -0.12136152483522891,
-            "shoulderWidth": 0.2819319664454088,
-            "shoulderLift": 0.20350637518800793,
-            "overhang": 0.29222113081719725,
-            "lipDrop": 0.34251265186583624,
-            "hollow": 0.34967451239936054,
-            "lipRatio": 0.031332592735067014,
-            "flowBundles": 9,
-            "flowSpread": 1.0195197132974865,
-            "foamClusters": 6,
-            "foamScale": 1.04420626393985,
-            "sprayCount": 28,
-            "lipThickness": 9.439773442736245
+            "curl": 0.2505605214089155,
+            "crestPosition": -0.05164469195064158,
+            "shoulderWidth": 0.2719319664454088,
+            "shoulderLift": 0.055670916792005296,
+            "overhang": 0.05574037693906576,
+            "lipDrop": 0.09118242440745235,
+            "flowLines": 3,
+            "flowSpread": 0.9646928129717709,
+            "foamMarks": 4,
+            "foamScale": 1.0057997312163935
           }
         }
       ],
       "boats": [
         {
           "kind": "sampan",
-          "x": 380.6263531692325,
-          "y": 413.72721754910225,
+          "x": 1673.5991345280436,
+          "y": 413.7365305649775,
           "angle": -0.18,
           "length": 60.46330820466897,
           "depth": 0.21603754347190263
@@ -497,24 +586,44 @@
     {
       "seed": "seascape-review-05",
       "filename": "seascape-review-05.svg",
-      "sha256": "8f1d84e56c08fa9c047dab89c89714df8add1e5483e635dec8e9207ba7a60f97",
-      "pngSha256": "3b58d9ce4374195b4c21012d77161db0cbec0d2a49049dc6533fbe1f12f54ed1",
-      "inkFraction": 0.059964639321074965,
+      "overrides": {},
+      "sha256": "b7203b18e98e1be0c55d93524ca44452fe6d4b3940eb2604af00e18b0ec6d915",
+      "pngSha256": "16bea5b2d26c4e48441e6b65533dbcf5a65e2f8971c0448707bbd8e514fa172e",
+      "cropPngSha256": "e8134e930503c2889fefcbcffc6fe7a374bd695f90b4c5f0616d9ae6cb257936",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020376953125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 279,
-        "right": 1353,
-        "bottom": 837
+        "left": 100,
+        "top": 222,
+        "right": 3093,
+        "bottom": 643
       },
-      "generationMs": 119.45,
-      "svgBytes": 799064,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.021755083996463306,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 55,
+        "bounds": {
+          "left": 0,
+          "top": 222,
+          "right": 1130,
+          "bottom": 643
+        }
+      },
+      "generationMs": 190.21,
+      "svgBytes": 874668,
       "paths": 703,
       "regime": "breakers",
       "roughness": 1.5041842245263979,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 291.6562011698261,
         "regime": "breakers",
         "roughness": 1.5041842245263979,
@@ -554,11 +663,11 @@
       },
       "arrangement": "procession",
       "requestedBoats": 2,
-      "maximumWaveHeight": 348.58008360490203,
+      "maximumWaveHeight": 223.66882837959565,
       "waveShapes": {
-        "swell": 37,
-        "ripple": 5,
-        "chop": 10,
+        "ripple": 31,
+        "swell": 117,
+        "chop": 28,
         "spilling": 1,
         "breaker": 1
       },
@@ -569,85 +678,97 @@
           "amplitude": 106.42268292605877,
           "phase": 4.125728605248123,
           "parameters": {
-            "curl": 0.30702555450610813,
-            "crestPosition": -0.12376825205981731,
-            "shoulderWidth": 0.2846746958605945,
-            "shoulderLift": 0.20129124532453715,
-            "overhang": 0.28204607157269496,
-            "lipDrop": 0.4089095276105218,
-            "hollow": 0.2638222808483988,
-            "lipRatio": 0.02801878167432733,
-            "flowBundles": 7,
-            "flowSpread": 1.082541384473443,
-            "foamClusters": 6,
-            "foamScale": 0.96324732293142,
-            "sprayCount": 18,
-            "lipThickness": 2.9818339181014033
+            "curl": 0.14536626946646722,
+            "crestPosition": -0.055104362335987395,
+            "shoulderWidth": 0.2746746958605945,
+            "shoulderLift": 0.054194163549691435,
+            "overhang": 0.05234869052423165,
+            "lipDrop": 0.12242801299318672,
+            "flowLines": 2,
+            "flowSpread": 0.9062137942528352,
+            "foamMarks": 2,
+            "foamScale": 1.0648825479438528
           }
         },
         {
           "shape": "breaker",
-          "length": 960.6604768591933,
-          "amplitude": 348.58008360490203,
+          "length": 1065.679397850763,
+          "amplitude": 223.66882837959565,
           "phase": 5.011578294569115,
           "parameters": {
-            "curl": 0.7952475741319358,
-            "crestPosition": -0.09753746623173357,
-            "shoulderWidth": 0.3113183857291006,
-            "shoulderLift": 0.26626946808770297,
-            "overhang": 0.26733556657563895,
-            "lipDrop": 0.473864476995077,
-            "hollow": 0.28988911462947725,
-            "lipRatio": 0.03855437997262925,
-            "flowBundles": 9,
-            "flowSpread": 0.9293530552834273,
-            "foamClusters": 9,
-            "foamScale": 0.9765941272722557,
-            "sprayCount": 19,
-            "lipThickness": 13.439288994194264
+            "curl": 0.15912309396080673,
+            "crestPosition": -0.01739760770811699,
+            "shoulderWidth": 0.3013183857291006,
+            "shoulderLift": 0.09751297872513531,
+            "overhang": 0.04744518885854632,
+            "lipDrop": 0.1529950479976833,
+            "flowLines": 2,
+            "flowSpread": 1.0921361171640456,
+            "foamMarks": 4,
+            "foamScale": 0.921268489328213
           }
         }
       ],
       "boats": [
         {
-          "kind": "skiff",
-          "x": 369.32930474635214,
-          "y": 345.63289348465827,
-          "angle": 0.13823162987639748,
-          "length": 55.204367537585554,
-          "depth": 0.2272559288702905
+          "kind": "sampan",
+          "x": 2433.9766042030747,
+          "y": 387.8349522876461,
+          "angle": -0.18,
+          "length": 80.5084220226647,
+          "depth": 0.29147473040968175
         },
         {
-          "kind": "skiff",
-          "x": 753.3807570766658,
-          "y": 349.70708207132935,
-          "angle": -0.03927825464996382,
-          "length": 57.934525449107916,
-          "depth": 0.23594824427738786
+          "kind": "fishing",
+          "x": 1559.7123499963905,
+          "y": 472.90029741600466,
+          "angle": 0.18,
+          "length": 70.03702845036565,
+          "depth": 0.39971538882702584
         }
       ]
     },
     {
       "seed": "seascape-review-06",
       "filename": "seascape-review-06.svg",
-      "sha256": "2f4ccd9acae2bfd00c17fdc1b5c59d83b31493b554baf369ddcc4b98199752ca",
-      "pngSha256": "7f3a0421aa49352486a3b93719cef0e56ad539d0ba32d83bd1dba707241a92c7",
-      "inkFraction": 0.022176096181046677,
+      "overrides": {},
+      "sha256": "78ce23a326382daeb5545a777351a4b9825e7a7abacf7969bcb0fb823aa35d91",
+      "pngSha256": "0fd8e9b0cc942d28414188dec798dfa4a04dc59f5ff01dc97e08709f4564278f",
+      "cropPngSha256": "a0b022024f7bddd5dc566ed7454c34c9e9a090d3337a8ee26371d307d01adb81",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02196328125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 108,
-        "top": 342,
-        "right": 1353,
-        "bottom": 828
+        "left": 48,
+        "top": 273,
+        "right": 3147,
+        "bottom": 677
       },
-      "generationMs": 24.57,
-      "svgBytes": 439911,
-      "paths": 346,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.019992263483642796,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 30,
+        "bounds": {
+          "left": 0,
+          "top": 274,
+          "right": 1130,
+          "bottom": 676
+        }
+      },
+      "generationMs": 224.01,
+      "svgBytes": 1113957,
+      "paths": 833,
       "regime": "calm",
       "roughness": 0.3839785090461373,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 343.8028444722295,
         "regime": "calm",
         "roughness": 0.3839785090461373,
@@ -689,8 +810,8 @@
       "requestedBoats": 0,
       "maximumWaveHeight": 19.900767259299755,
       "waveShapes": {
-        "ripple": 68,
-        "swell": 16
+        "ripple": 182,
+        "swell": 57
       },
       "breakingWaves": [],
       "boats": []
@@ -698,24 +819,44 @@
     {
       "seed": "seascape-review-07",
       "filename": "seascape-review-07.svg",
-      "sha256": "b131484b12736cb32a02c50c8e618422599d2c3f902972795fe946a3d3aeb4e1",
-      "pngSha256": "1f963aa69816ec6de811615166c322411d4c19628c6c09388de4df8b86e2f78d",
-      "inkFraction": 0.04785148514851485,
+      "overrides": {},
+      "sha256": "11c7f0e4b86a82eada5450d4689b6ebce3d3d1d2f59d1807e1d2a0c1730a6fa7",
+      "pngSha256": "b06c1b7232ea4e549a3857c3e26fbf6120ddbb80d142c56a83477de702872e18",
+      "cropPngSha256": "cd1aac39f4eae62435c250dfaf1926782d1dc06e71d9e3c8d1c92392c7316d1a",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02022578125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 91,
-        "top": 320,
-        "right": 1348,
-        "bottom": 873
+        "left": 81,
+        "top": 261,
+        "right": 3132,
+        "bottom": 666
       },
-      "generationMs": 73.85,
-      "svgBytes": 603826,
-      "paths": 489,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.022713306808134395,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 38,
+        "bounds": {
+          "left": 0,
+          "top": 264,
+          "right": 1130,
+          "bottom": 666
+        }
+      },
+      "generationMs": 197.73,
+      "svgBytes": 857731,
+      "paths": 648,
       "regime": "breakers",
       "roughness": 1.4922602555132471,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 331.9408913643565,
         "regime": "breakers",
         "roughness": 1.4922602555132471,
@@ -755,34 +896,30 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 0,
-      "maximumWaveHeight": 292.38871432840824,
+      "maximumWaveHeight": 170.98941968288273,
       "waveShapes": {
-        "swell": 30,
-        "chop": 17,
-        "ripple": 13,
+        "swell": 123,
+        "chop": 29,
+        "ripple": 31,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 855.2612470276654,
-          "amplitude": 292.38871432840824,
+          "length": 904.0672454424202,
+          "amplitude": 170.98941968288273,
           "phase": 2.067270277602033,
           "parameters": {
-            "curl": 0.997230680147186,
-            "crestPosition": -0.08458370927721262,
-            "shoulderWidth": 0.3203502985346131,
-            "shoulderLift": 0.20220220408402384,
-            "overhang": 0.23954893839079888,
-            "lipDrop": 0.3565509291086346,
-            "hollow": 0.28988442723639307,
-            "lipRatio": 0.027467314740410073,
-            "flowBundles": 9,
-            "flowSpread": 0.9725621957331897,
-            "foamClusters": 8,
-            "foamScale": 1.0523997661075555,
-            "sprayCount": 21,
-            "lipThickness": 8.031132843002238
+            "curl": 0.3178241058299318,
+            "crestPosition": 0.0012234179140068607,
+            "shoulderWidth": 0.3103502985346131,
+            "shoulderLift": 0.054801469389349225,
+            "overhang": 0.03818297946359962,
+            "lipDrop": 0.09778867252171039,
+            "flowLines": 2,
+            "flowSpread": 0.8964820248307661,
+            "foamMarks": 4,
+            "foamScale": 0.9617770584998653
           }
         }
       ],
@@ -791,24 +928,44 @@
     {
       "seed": "seascape-review-08",
       "filename": "seascape-review-08.svg",
-      "sha256": "f99c9acd3a288ae4fe5a4d97fbe38cf40ef9afe18abdce354bd5b98ed5a0f144",
-      "pngSha256": "2c5b3c87536bd57a720591ed66c4cbdb16aa5dbc7d18f6a548f68d79ef24d2aa",
-      "inkFraction": 0.019871994342291373,
+      "overrides": {},
+      "sha256": "9375e46f2d0a063715500744053f53bae489e9d01862105ce100fdf7dae651ee",
+      "pngSha256": "df8a02e8c98f395456eaa252dbe91ab4479f843999f94f4b0b527c9b15c8bf83",
+      "cropPngSha256": "a2dcdf99ce734ca5a465184d1216aa4460be1abd89a46b49ba2b90ef58e6dade",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.024649609375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 286,
-        "right": 1341,
-        "bottom": 829
+        "left": 53,
+        "top": 228,
+        "right": 3151,
+        "bottom": 666
       },
-      "generationMs": 30.65,
-      "svgBytes": 474248,
-      "paths": 396,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.022601679929266136,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 42,
+        "bounds": {
+          "left": 0,
+          "top": 228,
+          "right": 1130,
+          "bottom": 661
+        }
+      },
+      "generationMs": 224.7,
+      "svgBytes": 1180993,
+      "paths": 908,
       "regime": "calm",
       "roughness": 0.21006226167082787,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 286.2285744131077,
         "regime": "calm",
         "roughness": 0.21006226167082787,
@@ -850,24 +1007,24 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 18.735195567831397,
       "waveShapes": {
-        "swell": 21,
-        "ripple": 70
+        "ripple": 204,
+        "swell": 43
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "skiff",
-          "x": 900.1788831490558,
-          "y": 402.88707979929984,
-          "angle": -0.06634783299165876,
+          "x": 2193.218782318028,
+          "y": 402.8847041288812,
+          "angle": -0.06643820578500227,
           "length": 86.09291167504655,
           "depth": 0.30515021014492955
         },
         {
           "kind": "skiff",
-          "x": 383.523319958942,
-          "y": 546.4035711891132,
-          "angle": 0.003304061989702413,
+          "x": 1676.4565090813496,
+          "y": 546.4020079647323,
+          "angle": 0.003397128133212719,
           "length": 118.14160748152062,
           "depth": 0.5532805902324617
         }
@@ -876,24 +1033,44 @@
     {
       "seed": "seascape-review-09",
       "filename": "seascape-review-09.svg",
-      "sha256": "4ef21a480be3bd13e723ec42b0339a2d5754fde2cb29262b23eb1073c794e8ae",
-      "pngSha256": "1cac0638cc315f612137aab1450e5c7926e71838b7905bb90b874784377b5bf1",
-      "inkFraction": 0.028978076379066478,
+      "overrides": {},
+      "sha256": "31413430f3f87225541f9d2435f23fefa2603051a9a3815888011538dfcea72e",
+      "pngSha256": "f66caaaf75fd446936ac4343a446cea07d1e2c70e96cda3a292eb589714d7d1b",
+      "cropPngSha256": "3673db448dda23ccb79bedd3fe4cd6b42be6741916b496e99960caf15add56ad",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.027950390625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 308,
-        "right": 1353,
-        "bottom": 843
+        "left": 48,
+        "top": 246,
+        "right": 3151,
+        "bottom": 681
       },
-      "generationMs": 42.2,
-      "svgBytes": 610714,
-      "paths": 519,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.027467948717948717,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 53,
+        "bounds": {
+          "left": 0,
+          "top": 249,
+          "right": 1130,
+          "bottom": 672
+        }
+      },
+      "generationMs": 308.62,
+      "svgBytes": 1376984,
+      "paths": 1068,
       "regime": "wind sea",
       "roughness": 0.8277261670678854,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 313.6293493316043,
         "regime": "wind sea",
         "roughness": 0.8277261670678854,
@@ -933,53 +1110,73 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 2,
-      "maximumWaveHeight": 46.20312896789983,
+      "maximumWaveHeight": 47.54212510213256,
       "waveShapes": {
-        "chop": 66,
-        "shoulder": 24,
-        "ripple": 16
+        "chop": 190,
+        "ripple": 52,
+        "shoulder": 50
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "sampan",
-          "x": 577.4856110610067,
-          "y": 368.80117845668366,
-          "angle": 0.012848848402347875,
-          "length": 49.669431153360385,
-          "depth": 0.16904132190160454
+          "x": 2277.9498139607813,
+          "y": 423.86966774533875,
+          "angle": 0.12412230491829095,
+          "length": 100.79853572027226,
+          "depth": 0.3132644659746438
         },
         {
-          "kind": "fishing",
-          "x": 422.9710973514243,
-          "y": 535.78345802703,
-          "angle": -0.18,
-          "length": 124.479800760746,
-          "depth": 0.4937668978795409
+          "kind": "sampan",
+          "x": 1845.313066297872,
+          "y": 529.3605878942735,
+          "angle": -0.031200621207316828,
+          "length": 135.1978296050802,
+          "depth": 0.5205790804047138
         }
       ]
     },
     {
       "seed": "seascape-review-10",
       "filename": "seascape-review-10.svg",
-      "sha256": "ae217325b2c379237580c12b102e2ec107931b5a992c02fb6e89f49c2f57e112",
-      "pngSha256": "ede40f1867f386d472065ac43138ca1f01db28da183847be3046699f40a26542",
-      "inkFraction": 0.031803394625176805,
+      "overrides": {},
+      "sha256": "6968bcc18a7a04a5c3b26ed327e0ffa3a951af8bfe5e436e56866eb3a6b0a8f3",
+      "pngSha256": "5f254e881ce5a3b68dbe06a03390ee436c3141df643484d0536508ddcc430b2c",
+      "cropPngSha256": "2f62b2ecc939d7273ff4dad54435ea365267367aa0726bb38d0e64332718dfc2",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.026640625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 324,
-        "right": 1353,
-        "bottom": 854
+        "left": 48,
+        "top": 262,
+        "right": 3151,
+        "bottom": 680
       },
-      "generationMs": 38.08,
-      "svgBytes": 618112,
-      "paths": 545,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.028514588859416445,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 106,
+        "bounds": {
+          "left": 0,
+          "top": 262,
+          "right": 1130,
+          "bottom": 680
+        }
+      },
+      "generationMs": 330.25,
+      "svgBytes": 1381222,
+      "paths": 1083,
       "regime": "wind sea",
       "roughness": 1.0034007763140835,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 336.22715846286155,
         "regime": "wind sea",
         "roughness": 1.0034007763140835,
@@ -1021,59 +1218,79 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 51.074466260615736,
       "waveShapes": {
-        "chop": 66,
-        "ripple": 20,
-        "shoulder": 24
+        "ripple": 67,
+        "chop": 171,
+        "shoulder": 49
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "fishing",
-          "x": 1062.4303762186319,
-          "y": 354.10939950787656,
-          "angle": -0.08625932220832482,
+          "x": 2355.43964541114,
+          "y": 354.1014316657378,
+          "angle": -0.08603359554633373,
           "length": 60.528715203941466,
           "depth": 0.11196277368348091
         },
         {
-          "kind": "cutter",
-          "x": 685.9701128993183,
-          "y": 373.76939017743035,
-          "angle": 0.10705640348646314,
-          "length": 54.406871723351664,
-          "depth": 0.17044161743950098
+          "kind": "lugger",
+          "x": 1946.660826206832,
+          "y": 508.03178609633636,
+          "angle": 0.04593035041222585,
+          "length": 114.0104827103205,
+          "depth": 0.42084374440833927
         },
         {
-          "kind": "cutter",
-          "x": 893.2091371472925,
-          "y": 588.3583842420599,
-          "angle": -0.020675821573951755,
-          "length": 161.47718575689942,
-          "depth": 0.5633677723258734
+          "kind": "skiff",
+          "x": 2329.917837801083,
+          "y": 548.3112838146674,
+          "angle": 0.18,
+          "length": 93.3415761025133,
+          "depth": 0.5310183893889189
         }
       ]
     },
     {
       "seed": "seascape-review-11",
       "filename": "seascape-review-11.svg",
-      "sha256": "c812e96f89e3231e82464a953cfc840108daf286c87757d688d58eaf6288ac8e",
-      "pngSha256": "379ea4defa5b7f2b0e536750fc95ddc50f789b2cc1cc21cb1ee1e1ae52ebb82c",
-      "inkFraction": 0.034199434229137196,
+      "overrides": {},
+      "sha256": "cd61264a5ecdbb1c32969db8b21b99c234614eb465050be76e0ddf321c9fbbae",
+      "pngSha256": "eb94f07b0176a6dd3ff18e8d35273c8b378aa967d8c10a1b6898831b7403d278",
+      "cropPngSha256": "062a9d1210f1910cf7c32e8f0f037e700453c22e627fce079c2986e0db21121b",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.03158984375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 91,
-        "top": 309,
-        "right": 1353,
-        "bottom": 865
+        "left": 48,
+        "top": 251,
+        "right": 3151,
+        "bottom": 703
       },
-      "generationMs": 37.82,
-      "svgBytes": 600531,
-      "paths": 554,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.03276193633952255,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 112,
+        "bounds": {
+          "left": 0,
+          "top": 251,
+          "right": 1130,
+          "bottom": 691
+        }
+      },
+      "generationMs": 280.15,
+      "svgBytes": 1470694,
+      "paths": 1190,
       "regime": "rolling swell",
       "roughness": 1.2001988610252738,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 321.657406311715,
         "regime": "rolling swell",
         "roughness": 1.2001988610252738,
@@ -1115,40 +1332,40 @@
       "requestedBoats": 4,
       "maximumWaveHeight": 105.05753338336945,
       "waveShapes": {
-        "ripple": 22,
-        "chop": 28,
-        "swell": 52
+        "ripple": 72,
+        "swell": 168,
+        "chop": 57
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "fishing",
-          "x": 318.4376331595704,
-          "y": 357.83659074271657,
-          "angle": 0.064424414759279,
+          "x": 1611.3308519730228,
+          "y": 357.817363347133,
+          "angle": 0.063649472928314,
           "length": 59.72407991487986,
           "depth": 0.15283090599812565
         },
         {
           "kind": "lugger",
-          "x": 533.9665796849877,
-          "y": 493.7342965530814,
+          "x": 1826.8597984984401,
+          "y": 493.70512518146774,
           "angle": 0.18,
           "length": 154.42689346848056,
           "depth": 0.41286277545616035
         },
         {
           "kind": "fishing",
-          "x": 1012.0647986494005,
-          "y": 501.5373528492706,
+          "x": 2304.9580174628527,
+          "y": 501.55763743806426,
           "angle": -0.18,
           "length": 130.28214114716226,
           "depth": 0.46672084405086933
         },
         {
           "kind": "sail",
-          "x": 780.0740452287719,
-          "y": 542.161537811701,
+          "x": 2072.967264042224,
+          "y": 542.1299055795492,
           "angle": 0.18,
           "length": 105.67124612650309,
           "depth": 0.5593615424772724
@@ -1158,24 +1375,44 @@
     {
       "seed": "seascape-review-12",
       "filename": "seascape-review-12.svg",
-      "sha256": "858c6453dfffbd07a070b6c409b89b6ce91cee361ece73ccf7b99acc293ad5aa",
-      "pngSha256": "96e1d844c49cd9b4b414a884dffb8de346b19ac1babe35913ca08781b8d3f55d",
-      "inkFraction": 0.02287057991513437,
+      "overrides": {},
+      "sha256": "0f2951e0472c37f4f111e5e11f4f93821de9687dd6c66c7375408ab0d2e6c844",
+      "pngSha256": "a1b5fedf5aae32efea75998fbdea1d0ceaa574b0376a2cb310fb8438e3eff114",
+      "cropPngSha256": "1f6a90f031429f5146e0b3c01711c3abc2eac5bb4373f2faadf3e98b3a7cb580",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02441484375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 301,
-        "right": 1353,
-        "bottom": 827
+        "left": 48,
+        "top": 239,
+        "right": 3151,
+        "bottom": 666
       },
-      "generationMs": 36.1,
-      "svgBytes": 444921,
-      "paths": 363,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.022243589743589743,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 56,
+        "bounds": {
+          "left": 0,
+          "top": 240,
+          "right": 1130,
+          "bottom": 665
+        }
+      },
+      "generationMs": 219.9,
+      "svgBytes": 1153865,
+      "paths": 875,
       "regime": "calm",
       "roughness": 0.20552063478156923,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 300.1887869427446,
         "regime": "calm",
         "roughness": 0.20552063478156923,
@@ -1217,16 +1454,16 @@
       "requestedBoats": 1,
       "maximumWaveHeight": 18.56341667380184,
       "waveShapes": {
-        "ripple": 69,
-        "swell": 13
+        "swell": 57,
+        "ripple": 186
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "skiff",
-          "x": 291.5398441502824,
-          "y": 481.07244839177986,
-          "angle": 0.006278273051515337,
+          "x": 1584.5125570775792,
+          "y": 481.0738931740244,
+          "angle": 0.006226634963580266,
           "length": 137.05760732432827,
           "depth": 0.44285839885473255
         }
@@ -1235,24 +1472,44 @@
     {
       "seed": "seascape-review-13",
       "filename": "seascape-review-13.svg",
-      "sha256": "adef98a8211725688bb20c3725674c32eac6188126743cd43827f783609e07ca",
-      "pngSha256": "64ffe7c643267d013d79a087f1cdc0ef53f7cabc0ff089b4301ce29826ff53a1",
-      "inkFraction": 0.04818246110325318,
+      "overrides": {},
+      "sha256": "e1edcf4570e418079b91522c42af92de7033f00c7baab010e29e3bec03826e6a",
+      "pngSha256": "103ce67af0da59432d10485eceaf9f1d1b9995b64befcdf14c7892eb4dccb795",
+      "cropPngSha256": "768a6e83588c98dcf2cb7ff2f0199bea018fe9f730fa78a5b59918a54d0e12a1",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.019976953125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 97,
-        "top": 260,
-        "right": 1353,
-        "bottom": 851
+        "left": 71,
+        "top": 208,
+        "right": 3151,
+        "bottom": 679
       },
-      "generationMs": 74.49,
-      "svgBytes": 602402,
-      "paths": 549,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.022126436781609197,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 45,
+        "bounds": {
+          "left": 0,
+          "top": 209,
+          "right": 1130,
+          "bottom": 678
+        }
+      },
+      "generationMs": 162.54,
+      "svgBytes": 807973,
+      "paths": 627,
       "regime": "breakers",
       "roughness": 1.7496218601590954,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 272.27139807888307,
         "regime": "breakers",
         "roughness": 1.7496218601590954,
@@ -1292,69 +1549,85 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 1,
-      "maximumWaveHeight": 321.39609610661864,
+      "maximumWaveHeight": 198.18384009995498,
       "waveShapes": {
-        "ripple": 10,
-        "swell": 36,
-        "chop": 10,
+        "swell": 119,
+        "chop": 22,
+        "ripple": 26,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 895.7623004959896,
-          "amplitude": 321.39609610661864,
+          "length": 966.1688607605174,
+          "amplitude": 198.18384009995498,
           "phase": 5.058107943070026,
           "parameters": {
-            "curl": 0.8059219008777291,
-            "crestPosition": -0.09413826959207654,
-            "shoulderWidth": 0.285824445206672,
-            "shoulderLift": 0.27421181347221135,
-            "overhang": 0.27830785054946316,
-            "lipDrop": 0.40562452922808007,
-            "hollow": 0.34901572058442976,
-            "lipRatio": 0.035364419782767074,
-            "flowBundles": 8,
-            "flowSpread": 0.8170838215947152,
-            "foamClusters": 9,
-            "foamScale": 1.1442102969042025,
-            "sprayCount": 26,
-            "lipThickness": 11.365986459257012
+            "curl": 0.16751006497535856,
+            "crestPosition": -0.012511262538610027,
+            "shoulderWidth": 0.275824445206672,
+            "shoulderLift": 0.1028078756481409,
+            "overhang": 0.051102616849821064,
+            "lipDrop": 0.12088213140144945,
+            "flowLines": 3,
+            "flowSpread": 1.0358427020488308,
+            "foamMarks": 3,
+            "foamScale": 0.8160160827450454
           }
         }
       ],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 146.85829016566277,
-          "y": 392.2713591946234,
-          "angle": -0.03159848846188674,
-          "length": 67.87851745605597,
-          "depth": 0.3244229008257389
+          "kind": "skiff",
+          "x": 2307.969391749587,
+          "y": 407.9718082366037,
+          "angle": -0.18,
+          "length": 65.82903935411765,
+          "depth": 0.3122110839746892
         }
       ]
     },
     {
       "seed": "seascape-review-14",
       "filename": "seascape-review-14.svg",
-      "sha256": "775bd91542080d2818cee57a0469a01089433238861733139327b20d04bf583f",
-      "pngSha256": "b03138798a992c6199c51f88c7f84e8c70da6c33078756373798b89d376ba5c8",
-      "inkFraction": 0.03292786421499293,
+      "overrides": {},
+      "sha256": "d40e5c3db9f36cfc80db9b02c96e66e307f5a89be3df9531553e0f7f90d1dadc",
+      "pngSha256": "1b0a61e2bbb543215c3c62196edf7b87ccf05ebb03a17f5cf468da6004472312",
+      "cropPngSha256": "928e3b3a374324c396ae799dd6c789b36d8f7c0a7ebcf6eaa080fa4bc501c07c",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.028505859375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 291,
-        "right": 1353,
-        "bottom": 856
+        "left": 48,
+        "top": 231,
+        "right": 3151,
+        "bottom": 685
       },
-      "generationMs": 40.16,
-      "svgBytes": 602335,
-      "paths": 498,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.029082670203359858,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 87,
+        "bounds": {
+          "left": 0,
+          "top": 231,
+          "right": 1130,
+          "bottom": 676
+        }
+      },
+      "generationMs": 294.52,
+      "svgBytes": 1421385,
+      "paths": 1090,
       "regime": "rolling swell",
       "roughness": 1.126724024489522,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 295.06357271806337,
         "regime": "rolling swell",
         "roughness": 1.126724024489522,
@@ -1396,43 +1669,63 @@
       "requestedBoats": 1,
       "maximumWaveHeight": 130.96951166167855,
       "waveShapes": {
-        "ripple": 24,
-        "swell": 61,
-        "chop": 21
+        "swell": 184,
+        "ripple": 64,
+        "chop": 53
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "sampan",
-          "x": 261.042063199915,
-          "y": 507.5915680591561,
-          "angle": 0.18,
-          "length": 135.23542015254498,
-          "depth": 0.4946516701485962
+          "kind": "fishing",
+          "x": 2417.576741534147,
+          "y": 507.90817203032674,
+          "angle": 0.12979816804700883,
+          "length": 121.49953778181225,
+          "depth": 0.5117473056120798
         }
       ]
     },
     {
       "seed": "seascape-review-15",
       "filename": "seascape-review-15.svg",
-      "sha256": "dcd0684c8303305b791eb40c7b3aca397244f822ee2537d57b20e23bdc61ff27",
-      "pngSha256": "b96a4a9cafd5515d8d613b7dcbb52771384d152c38dca2d342039d4801ed670b",
-      "inkFraction": 0.01947100424328147,
+      "overrides": {},
+      "sha256": "da1f258ad9ee11ee4d92414d5ccc48c044fa4e77f2c444d12fd2b6f25c1efb35",
+      "pngSha256": "904a2a306179041f661dcfa9d2fac17c8a57bae4fea9e9076569db906519d9b9",
+      "cropPngSha256": "9943408cfb0644c28da531c5ec9ff6703fc720055b1b506ec26212a7bd7ff468",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.023755859375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 267,
-        "right": 1338,
-        "bottom": 833
+        "left": 48,
+        "top": 215,
+        "right": 3151,
+        "bottom": 671
       },
-      "generationMs": 26.03,
-      "svgBytes": 414472,
-      "paths": 344,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.02012709991158267,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 65,
+        "bounds": {
+          "left": 0,
+          "top": 215,
+          "right": 1130,
+          "bottom": 671
+        }
+      },
+      "generationMs": 260.68,
+      "svgBytes": 1127241,
+      "paths": 862,
       "regime": "calm",
       "roughness": 0.36590522350743415,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 268.88946240535006,
         "regime": "calm",
         "roughness": 0.36590522350743415,
@@ -1474,16 +1767,16 @@
       "requestedBoats": 1,
       "maximumWaveHeight": 19.813847286626697,
       "waveShapes": {
-        "swell": 18,
-        "ripple": 58
+        "ripple": 187,
+        "swell": 50
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "fishing",
-          "x": 990.499454235658,
-          "y": 480.0911100357721,
-          "angle": 0.14710410227881948,
+          "x": 2283.3926730491103,
+          "y": 480.0582825386303,
+          "angle": 0.1470403770630838,
           "length": 112.9861056599766,
           "depth": 0.47144583688117564
         }
@@ -1492,24 +1785,44 @@
     {
       "seed": "seascape-review-16",
       "filename": "seascape-review-16.svg",
-      "sha256": "99c1a047660f5e856d6630cc2b5fd54c0330b68b413312f379a999a405f7c496",
-      "pngSha256": "4cbc1825c1d5b26914e4111bddaf8faffb1f05806d053c3fc9f3c4cdbbcedad7",
-      "inkFraction": 0.020896039603960397,
+      "overrides": {},
+      "sha256": "1847b96541e9cf825b7f972ef7d0e954186c9bd8e8a70bc9077769575889b6c2",
+      "pngSha256": "ec47a2ca4c1f73eee39cdc0f32767a70f1ad4c007ef15c19b723126efd0ad655",
+      "cropPngSha256": "7d60275ed2d729e00afee3fb789fdf29dabb74c3a97b0520f51438678bedd0f1",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.023948046875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 286,
-        "right": 1353,
-        "bottom": 835
+        "left": 49,
+        "top": 229,
+        "right": 3151,
+        "bottom": 676
       },
-      "generationMs": 34.02,
-      "svgBytes": 447098,
-      "paths": 363,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.01902077807250221,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 57,
+        "bounds": {
+          "left": 0,
+          "top": 229,
+          "right": 1130,
+          "bottom": 676
+        }
+      },
+      "generationMs": 321.74,
+      "svgBytes": 1142107,
+      "paths": 867,
       "regime": "calm",
       "roughness": 0.298787395991385,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 286.95800019428134,
         "regime": "calm",
         "roughness": 0.298787395991385,
@@ -1549,18 +1862,18 @@
       },
       "arrangement": "procession",
       "requestedBoats": 1,
-      "maximumWaveHeight": 10.301296821795404,
+      "maximumWaveHeight": 16.71435566013679,
       "waveShapes": {
-        "ripple": 65,
-        "swell": 19
+        "ripple": 179,
+        "swell": 62
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "skiff",
-          "x": 996.453430144582,
-          "y": 537.1065196530529,
-          "angle": -0.06073007236553086,
+          "x": 2289.51321385971,
+          "y": 537.0964588454184,
+          "angle": -0.06067682206685531,
           "length": 154.27007316891104,
           "depth": 0.5479400136042386
         }
@@ -1569,24 +1882,44 @@
     {
       "seed": "seascape-review-17",
       "filename": "seascape-review-17.svg",
-      "sha256": "e53e25539c2dd5b1ba254d3fa5f7fcf29b5e3fe5faa56a228075e6e6a21c2a20",
-      "pngSha256": "bc7ca1a7f9ec10db51d80dea38082f5b170cc0e4e5a3b078407d9765cb48ac67",
-      "inkFraction": 0.044403818953323904,
+      "overrides": {},
+      "sha256": "3ddb924dbe1eb888192be569a72b5e23cc4847480b5391acd7636da6f1caf73a",
+      "pngSha256": "763ca9a65b5a31dfa3c8c4987250c10143a87367a20191aeeaf7c1208eeeca94",
+      "cropPngSha256": "c5a10017f124d37821ef0b8a4264546fbfc3a42f23fbf4f61c09e81f4eee4dbe",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020782421875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 65,
-        "top": 331,
-        "right": 1321,
-        "bottom": 921
+        "left": 48,
+        "top": 266,
+        "right": 3149,
+        "bottom": 710
       },
-      "generationMs": 62.52,
-      "svgBytes": 528521,
-      "paths": 471,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023900309460654287,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 50,
+        "bounds": {
+          "left": 0,
+          "top": 267,
+          "right": 1130,
+          "bottom": 710
+        }
+      },
+      "generationMs": 185.79,
+      "svgBytes": 895282,
+      "paths": 727,
       "regime": "breakers",
       "roughness": 1.7292257856810465,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 344.75098776398227,
         "regime": "breakers",
         "roughness": 1.7292257856810465,
@@ -1626,85 +1959,101 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 3,
-      "maximumWaveHeight": 260.75723178389694,
+      "maximumWaveHeight": 198.1665370054543,
       "waveShapes": {
-        "swell": 35,
-        "ripple": 8,
-        "chop": 8,
+        "chop": 32,
+        "swell": 112,
+        "ripple": 37,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 879.8380315117538,
-          "amplitude": 260.75723178389694,
+          "length": 941.7516483180225,
+          "amplitude": 198.1665370054543,
           "phase": 5.387710465389502,
           "parameters": {
-            "curl": 0.8304223339259624,
-            "crestPosition": -0.08835074232891202,
-            "shoulderWidth": 0.3553975693555549,
-            "shoulderLift": 0.24964035728015005,
-            "overhang": 0.29380467472830785,
-            "lipDrop": 0.36901834970340136,
-            "hollow": 0.3438744882121682,
-            "lipRatio": 0.03252394731203094,
-            "flowBundles": 8,
-            "flowSpread": 1.1016529648751021,
-            "foamClusters": 7,
-            "foamScale": 0.8206698177731596,
-            "sprayCount": 27,
-            "lipThickness": 8.480854467770504
+            "curl": 0.18676040522754195,
+            "crestPosition": -0.004191692097811034,
+            "shoulderWidth": 0.3453975693555549,
+            "shoulderLift": 0.08642690485343336,
+            "overhang": 0.05626822490943596,
+            "lipDrop": 0.10365569397807121,
+            "flowLines": 3,
+            "flowSpread": 0.9857167172711343,
+            "foamMarks": 3,
+            "foamScale": 1.0827996545704082
           }
         }
       ],
       "boats": [
         {
-          "kind": "skiff",
-          "x": 1190.4635012365877,
-          "y": 441.85367433388717,
-          "angle": -0.18,
-          "length": 56.99889437805693,
-          "depth": 0.29470297850668425
+          "kind": "fishing",
+          "x": 2323.174319890554,
+          "y": 436.66887392693087,
+          "angle": 0.16501026896670581,
+          "length": 62.20584753053684,
+          "depth": 0.29965300697833297
         },
         {
           "kind": "skiff",
-          "x": 535.3043609049171,
-          "y": 438.9645970304853,
-          "angle": -0.18,
-          "length": 83.37026759295209,
-          "depth": 0.30944256342947485
+          "x": 2461.0325204061746,
+          "y": 540.765608177014,
+          "angle": 0.11574865865248157,
+          "length": 96.3682460310074,
+          "depth": 0.41905925206840033
         },
         {
-          "kind": "sampan",
-          "x": 920.5146436469629,
-          "y": 475.3539254909093,
-          "angle": -0.13377074608961237,
-          "length": 83.74274758474148,
-          "depth": 0.40574182000011205
+          "kind": "skiff",
+          "x": 2100.220540807809,
+          "y": 593.2539855730404,
+          "angle": -0.18,
+          "length": 94.07063146875652,
+          "depth": 0.5400149144046008
         }
       ]
     },
     {
       "seed": "seascape-review-18",
       "filename": "seascape-review-18.svg",
-      "sha256": "46f7b8c2bda18254d986c893d42523a09607b3c346cd9a29e4d565bfa519eed3",
-      "pngSha256": "97d1af2d072431d098129efc399ae403bef5b5395b15de5054111f448c8bce07",
-      "inkFraction": 0.031516973125884015,
+      "overrides": {},
+      "sha256": "49b71519ef9c92667a7062bff5b8282c63bd99d9d053a0ec1a12b0d20f6b8064",
+      "pngSha256": "42ec30b62ddd5b7fb009353c0f26824e8864d27f6ed33f9ce26fc76168dfd2ba",
+      "cropPngSha256": "9c91decc055d0727a19dd5a6c8d206ee4b49d5114f7dcfb387a894571b0b5d69",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.025487890625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 338,
-        "right": 1353,
-        "bottom": 852
+        "left": 48,
+        "top": 267,
+        "right": 3151,
+        "bottom": 703
       },
-      "generationMs": 38.73,
-      "svgBytes": 634700,
-      "paths": 556,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.027574049513704686,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 60,
+        "bounds": {
+          "left": 0,
+          "top": 275,
+          "right": 1130,
+          "bottom": 703
+        }
+      },
+      "generationMs": 320.4,
+      "svgBytes": 1411689,
+      "paths": 1119,
       "regime": "rolling swell",
       "roughness": 1.3979276947909967,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 343.9856604801025,
         "regime": "rolling swell",
         "roughness": 1.3979276947909967,
@@ -1746,59 +2095,79 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 144.21507811173797,
       "waveShapes": {
-        "swell": 64,
-        "ripple": 25,
-        "chop": 23
+        "ripple": 65,
+        "swell": 182,
+        "chop": 47
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 1064.6618466358632,
-          "y": 452.3976975160846,
-          "angle": -0.18,
-          "length": 68.93673379901756,
-          "depth": 0.293032857212238
+          "kind": "sail",
+          "x": 1639.348143678147,
+          "y": 424.8311988028436,
+          "angle": -0.13362671516389715,
+          "length": 51.763342450028006,
+          "depth": 0.23315718706231564
         },
         {
-          "kind": "fishing",
-          "x": 868.7376973805949,
-          "y": 455.6944916120456,
-          "angle": 0.037635312492899774,
-          "length": 111.23595538266403,
-          "depth": 0.3479360647173598
+          "kind": "cutter",
+          "x": 1839.5040265358869,
+          "y": 447.901582601272,
+          "angle": 0.18,
+          "length": 89.30461728112637,
+          "depth": 0.34336415448691693
         },
         {
           "kind": "lugger",
-          "x": 503.5748997852206,
-          "y": 470.9758807022729,
-          "angle": -0.18,
-          "length": 163.89006567373872,
-          "depth": 0.3959604005841538
+          "x": 2057.083389038208,
+          "y": 525.3759743356588,
+          "angle": 0.08841820019011573,
+          "length": 122.04191641556099,
+          "depth": 0.40745815746486186
         }
       ]
     },
     {
       "seed": "seascape-review-19",
       "filename": "seascape-review-19.svg",
-      "sha256": "c5735e7c3359fe19cca8159c0664dd4e8aa6eb3e8fcd0cd784c9858035d8dab3",
-      "pngSha256": "e8f28f2019e3d41e6115f41f99fd36614f56eb1d18b094aa8dc59f1fce5d7ebd",
-      "inkFraction": 0.031297736916548795,
+      "overrides": {},
+      "sha256": "ed4162bb5daa3aa961e6e8dd552ca9519766151dc405cc3c51cd0e99b8e844df",
+      "pngSha256": "21776f68f673e2ed5c87792b956f028c9196b282e62d393bdf63c66a1ccc3e59",
+      "cropPngSha256": "7dfaecaeca59c14190e7cb902de0c6b17171a05f56eb70d1d3519032e12382b8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0293953125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 259,
-        "right": 1353,
-        "bottom": 861
+        "left": 48,
+        "top": 203,
+        "right": 3117,
+        "bottom": 693
       },
-      "generationMs": 37.42,
-      "svgBytes": 550817,
-      "paths": 470,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.030405614500442088,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 66,
+        "bounds": {
+          "left": 0,
+          "top": 205,
+          "right": 1130,
+          "bottom": 688
+        }
+      },
+      "generationMs": 312.13,
+      "svgBytes": 1454073,
+      "paths": 1138,
       "regime": "rolling swell",
       "roughness": 1.0810254110954702,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 261.25544220325537,
         "regime": "rolling swell",
         "roughness": 1.0810254110954702,
@@ -1840,51 +2209,71 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 139.43968802690506,
       "waveShapes": {
-        "ripple": 16,
-        "swell": 62,
-        "chop": 18
+        "ripple": 56,
+        "swell": 208,
+        "chop": 39
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "sail",
-          "x": 1122.2615944622084,
-          "y": 449.2878313296706,
-          "angle": -0.18,
-          "length": 102.89520970407149,
-          "depth": 0.42291325797326856
+          "kind": "cutter",
+          "x": 2075.7647507350066,
+          "y": 365.6530438991502,
+          "angle": 0.022615440452278594,
+          "length": 61.13243987091387,
+          "depth": 0.25623829710762946
         },
         {
-          "kind": "skiff",
-          "x": 652.7274641981348,
-          "y": 555.655966269448,
-          "angle": -0.18,
-          "length": 114.7080985577777,
-          "depth": 0.5899361064704135
+          "kind": "sail",
+          "x": 1615.9218845531277,
+          "y": 503.0585264326265,
+          "angle": 0.12333251332052264,
+          "length": 146.28853011038154,
+          "depth": 0.508874742416665
         }
       ]
     },
     {
       "seed": "seascape-review-20",
       "filename": "seascape-review-20.svg",
-      "sha256": "dd50418a3bae0dfd40f145b92acb8289a043dd5bb8687b286287b5317fb050ad",
-      "pngSha256": "044137ed25ef1ca5ec76a471eacd13393d7edf5b49ce010fdcbbc609c8603cf2",
-      "inkFraction": 0.02583239038189533,
+      "overrides": {},
+      "sha256": "e3be7a9ddcd21d0743b6ac64b0671f00e1429388beb985df049008eaff455bb5",
+      "pngSha256": "f8af99a627dd7f37c53c2146b32c1190833e5845b227869baeb2e74806e08067",
+      "cropPngSha256": "3c275f271ab39f9ada35059b00c20ccc8dfbdfaa1745c3d4addc118d18030194",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0255609375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 267,
-        "right": 1353,
-        "bottom": 842
+        "left": 48,
+        "top": 214,
+        "right": 3151,
+        "bottom": 673
       },
-      "generationMs": 29.81,
-      "svgBytes": 517279,
-      "paths": 429,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.024122458001768345,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 52,
+        "bounds": {
+          "left": 0,
+          "top": 214,
+          "right": 1130,
+          "bottom": 662
+        }
+      },
+      "generationMs": 249.5,
+      "svgBytes": 1154237,
+      "paths": 883,
       "regime": "calm",
       "roughness": 0.1865384029224515,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 267.16087414301,
         "regime": "calm",
         "roughness": 0.1865384029224515,
@@ -1924,18 +2313,18 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 1,
-      "maximumWaveHeight": 11.317695514298975,
+      "maximumWaveHeight": 13.704568815417588,
       "waveShapes": {
-        "swell": 25,
-        "ripple": 66
+        "swell": 58,
+        "ripple": 186
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "cutter",
-          "x": 1222.2322236793116,
-          "y": 565.0813236355444,
-          "angle": 0.034945564748257295,
+          "x": 2515.3267547930436,
+          "y": 565.0782346432876,
+          "angle": 0.0348530887954915,
           "length": 141.51659603836015,
           "depth": 0.6029874694952742
         }
@@ -1944,24 +2333,44 @@
     {
       "seed": "seascape-review-21",
       "filename": "seascape-review-21.svg",
-      "sha256": "329c551fc8d5d652709a5e8a438686343265bf9e4b0ad6b27ffc25dd2a992295",
-      "pngSha256": "6eab0d55fd5d4342fe0aad009a8e47fbdc32562bb59addc72b38e90bd5a14556",
-      "inkFraction": 0.025115275813295614,
+      "overrides": {},
+      "sha256": "a32d9b2cd793aca503ab0d5f5ab0b48df0b3dbd07f0668ed814833afca31bfdd",
+      "pngSha256": "5b63cf63f88dc2f2b8dfa25453deedf917a872541ab16eb0a3fcd76e1bf70f6d",
+      "cropPngSha256": "529a4d501a7ba5f257b554e33539d427b4cb56581721b9ffbbf4705911fcf7ca",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.023055859375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 328,
-        "right": 1353,
-        "bottom": 850
+        "left": 70,
+        "top": 262,
+        "right": 3151,
+        "bottom": 671
       },
-      "generationMs": 30.44,
-      "svgBytes": 505719,
-      "paths": 428,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.019157824933687003,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 40,
+        "bounds": {
+          "left": 0,
+          "top": 262,
+          "right": 1130,
+          "bottom": 670
+        }
+      },
+      "generationMs": 222.36,
+      "svgBytes": 1148392,
+      "paths": 888,
       "regime": "calm",
       "roughness": 0.3518197369761765,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 329.32431743014604,
         "regime": "calm",
         "roughness": 0.3518197369761765,
@@ -2003,24 +2412,24 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 21.23768047709018,
       "waveShapes": {
-        "ripple": 71,
-        "swell": 22
+        "swell": 64,
+        "ripple": 177
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "skiff",
-          "x": 1151.7615863475949,
-          "y": 483.4063622588894,
-          "angle": 0.012258447407208484,
+          "x": 2444.7786866074584,
+          "y": 483.40674040710087,
+          "angle": 0.012306995986475387,
           "length": 146.57229750603437,
           "depth": 0.4068922869162634
         },
         {
           "kind": "fishing",
-          "x": 674.6058698585257,
-          "y": 507.55608169636145,
-          "angle": 0.054554352791346176,
+          "x": 1967.6229701183893,
+          "y": 507.5567266289114,
+          "angle": 0.05447727651961426,
           "length": 72.98565744837633,
           "depth": 0.43689374665264036
         }
@@ -2029,24 +2438,44 @@
     {
       "seed": "seascape-review-22",
       "filename": "seascape-review-22.svg",
-      "sha256": "5f95497dbdd2f5c266e82d9ab549a6faf9943d83410caa38400a0fe376e82409",
-      "pngSha256": "869f677e612968eaf57c6fb4949c388f99db588a006892eed62ff355bc7589c3",
-      "inkFraction": 0.03467043847241867,
+      "overrides": {},
+      "sha256": "eee4fb75f0654300e4a9aa6a46bd7f076957ebd76ea9794c2adf85598808fa22",
+      "pngSha256": "d78da9f8af1bafb45ec02243bfbf6ee489066eba2e128613a91a0462e2203b29",
+      "cropPngSha256": "44e5f9db41ebfdf0ef1cc90292cd9f2dff77808888be0719927b8a3031990cde",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.03008046875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 331,
-        "right": 1353,
-        "bottom": 832
+        "left": 48,
+        "top": 259,
+        "right": 3151,
+        "bottom": 684
       },
-      "generationMs": 38.31,
-      "svgBytes": 608015,
-      "paths": 519,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.031020114942528737,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 115,
+        "bounds": {
+          "left": 0,
+          "top": 263,
+          "right": 1130,
+          "bottom": 684
+        }
+      },
+      "generationMs": 269.01,
+      "svgBytes": 1424498,
+      "paths": 1115,
       "regime": "rolling swell",
       "roughness": 1.086631772411056,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 334.6629972732626,
         "regime": "rolling swell",
         "roughness": 1.086631772411056,
@@ -2088,51 +2517,71 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 125.72329837828875,
       "waveShapes": {
-        "swell": 65,
-        "ripple": 22,
-        "chop": 23
+        "ripple": 43,
+        "chop": 53,
+        "swell": 198
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "sail",
-          "x": 803.4639264186844,
-          "y": 460.9406238996339,
-          "angle": -0.09194272211526984,
-          "length": 84.71384296105902,
-          "depth": 0.36856693381443617
+          "kind": "sampan",
+          "x": 1864.2724901558713,
+          "y": 521.829132651706,
+          "angle": 0.18,
+          "length": 117.13284875279207,
+          "depth": 0.4437478485377505
         },
         {
-          "kind": "fishing",
-          "x": 1041.9388096667826,
-          "y": 551.655881586888,
-          "angle": 0.18,
-          "length": 119.69235557038337,
-          "depth": 0.5324056729581207
+          "kind": "sail",
+          "x": 2257.5694485548765,
+          "y": 611.6269121667528,
+          "angle": 0.005428191367189277,
+          "length": 125.14620950026438,
+          "depth": 0.6396533525176347
         }
       ]
     },
     {
       "seed": "seascape-review-23",
       "filename": "seascape-review-23.svg",
-      "sha256": "be29a18bfec38084a42ff080c95dcbd78839499f30e1aec4556473922a019e05",
-      "pngSha256": "2bc45f127bf2df18e62b39f3470603b76b57e4a52159783a14cb24878099d309",
-      "inkFraction": 0.030698019801980198,
+      "overrides": {},
+      "sha256": "31e34bf9f6695786efdb33ddb4b6adcfff1300890ec6168b8a7d944fea215e14",
+      "pngSha256": "f5a7ee13d3834a84bcfd1e8f02be57c0ec589c364ccd5b218e3727228337edab",
+      "cropPngSha256": "048adaf4fe99ee1061338ad7e507f89102235f932f0fa3a1f550c002cb2e6628",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.027662890625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 296,
-        "right": 1353,
-        "bottom": 853
+        "left": 48,
+        "top": 235,
+        "right": 3147,
+        "bottom": 675
       },
-      "generationMs": 44.7,
-      "svgBytes": 632735,
-      "paths": 533,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.03227674624226348,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 99,
+        "bounds": {
+          "left": 0,
+          "top": 236,
+          "right": 1130,
+          "bottom": 675
+        }
+      },
+      "generationMs": 242.64,
+      "svgBytes": 1345470,
+      "paths": 1043,
       "regime": "wind sea",
       "roughness": 0.6147127159754745,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 297.5533783098217,
         "regime": "wind sea",
         "roughness": 0.6147127159754745,
@@ -2174,51 +2623,71 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 44.451466095633805,
       "waveShapes": {
-        "chop": 70,
-        "ripple": 29,
-        "shoulder": 16
+        "ripple": 64,
+        "chop": 175,
+        "shoulder": 45
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "sampan",
-          "x": 643.2515312284231,
-          "y": 464.327585441496,
-          "angle": -0.12838057573754974,
-          "length": 72.73571352362667,
-          "depth": 0.40589582059998064
+          "kind": "fishing",
+          "x": 1707.1629146618934,
+          "y": 463.6329289347466,
+          "angle": 0.13962531072206816,
+          "length": 125.11657425062731,
+          "depth": 0.39608221626374873
         },
         {
-          "kind": "fishing",
-          "x": 908.0653664031997,
-          "y": 504.31585360295594,
-          "angle": 0.18,
-          "length": 136.04644204350188,
-          "depth": 0.4829360251314938
+          "kind": "cutter",
+          "x": 2395.5566333945435,
+          "y": 476.9483920685838,
+          "angle": 0.049408068617760946,
+          "length": 102.17478108026653,
+          "depth": 0.4485633867979049
         }
       ]
     },
     {
       "seed": "seascape-review-24",
       "filename": "seascape-review-24.svg",
-      "sha256": "cc43f125b9a8126972bd31f3a28a0d302345ed94b5a0e2b9fdc2ed822ff2a7ab",
-      "pngSha256": "7a85feb21b29d258d7e89c9a46dde19f85e30a2b5650a4f9c71a63e8dd07df2f",
-      "inkFraction": 0.03407213578500707,
+      "overrides": {},
+      "sha256": "c187077b9d3706bf54e3f2b5195e424650063a17e83ffb02aff08bfa9b27a7c2",
+      "pngSha256": "84be25ce61943de29432f3de20847a4b693d796251e39b064f03a36abe75f49b",
+      "cropPngSha256": "1ee09fc20b84643ab4914171710568d7f3bcea3243a8f72cb873018c6547bdff",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02786875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 316,
-        "right": 1353,
-        "bottom": 860
+        "left": 48,
+        "top": 251,
+        "right": 3151,
+        "bottom": 673
       },
-      "generationMs": 39.99,
-      "svgBytes": 683959,
-      "paths": 578,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.029234084880636606,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 89,
+        "bounds": {
+          "left": 0,
+          "top": 251,
+          "right": 1130,
+          "bottom": 659
+        }
+      },
+      "generationMs": 288.99,
+      "svgBytes": 1454809,
+      "paths": 1125,
       "regime": "wind sea",
       "roughness": 0.8322739172028377,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 319.9411247577518,
         "regime": "wind sea",
         "roughness": 0.8322739172028377,
@@ -2260,51 +2729,71 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 48.94783822353929,
       "waveShapes": {
-        "ripple": 20,
-        "shoulder": 14,
-        "chop": 86
+        "chop": 197,
+        "ripple": 57,
+        "shoulder": 50
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "sail",
-          "x": 765.6504467315972,
-          "y": 482.1065311598437,
-          "angle": -0.11580198088859546,
-          "length": 93.98431579957582,
-          "depth": 0.39856829671189187
+          "kind": "lugger",
+          "x": 1775.038957582775,
+          "y": 353.5008214347427,
+          "angle": -0.18,
+          "length": 44.30719491863167,
+          "depth": 0.1350843946682289
         },
         {
           "kind": "cutter",
-          "x": 994.7394218826666,
-          "y": 601.3113367717133,
-          "angle": -0.18,
-          "length": 144.15082854405046,
-          "depth": 0.5979992108047009
+          "x": 2004.154531510535,
+          "y": 556.697852249463,
+          "angle": -0.034450224023795,
+          "length": 121.63940753461793,
+          "depth": 0.5308919511782005
         }
       ]
     },
     {
       "seed": "seascape-review-25",
       "filename": "seascape-review-25.svg",
-      "sha256": "54131b3993b474b2747cd0ad7828ebc51733ef79ef1454f9f1c4a8849ca42ce4",
-      "pngSha256": "decb766b38a573f408eda7c6fb0ae09a9c049a64024dd07c305de136f4531225",
-      "inkFraction": 0.049207213578500705,
+      "overrides": {},
+      "sha256": "bb02779aa846592df1df80b02d29ee372cfe20f3c25868d25cf006670489d552",
+      "pngSha256": "dadf8d655fc3e2fb4bca6c2aa993a21f1f99323012647278e4bd57485283dbc6",
+      "cropPngSha256": "77a27d4a660b4fc2bd72708d414a08ef178193ee43988d29eb09db6c28517c89",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0201296875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 62,
-        "top": 262,
-        "right": 1353,
-        "bottom": 845
+        "left": 48,
+        "top": 206,
+        "right": 3136,
+        "bottom": 652
       },
-      "generationMs": 59.67,
-      "svgBytes": 538913,
-      "paths": 466,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023729000884173297,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 69,
+        "bounds": {
+          "left": 0,
+          "top": 206,
+          "right": 1130,
+          "bottom": 633
+        }
+      },
+      "generationMs": 207.3,
+      "svgBytes": 833171,
+      "paths": 662,
       "regime": "breakers",
       "roughness": 1.5253418737323954,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 265.10459029697813,
         "regime": "breakers",
         "roughness": 1.5253418737323954,
@@ -2344,77 +2833,93 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 2,
-      "maximumWaveHeight": 327.3766033910215,
+      "maximumWaveHeight": 203.79056567908265,
       "waveShapes": {
-        "chop": 13,
-        "swell": 36,
-        "ripple": 6,
+        "swell": 122,
+        "ripple": 24,
+        "chop": 27,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 850.9096854995005,
-          "amplitude": 327.3766033910215,
+          "length": 897.3948510992341,
+          "amplitude": 203.79056567908265,
           "phase": 3.603538495899761,
           "parameters": {
-            "curl": 0.8212600694131106,
-            "crestPosition": -0.09141670972108841,
-            "shoulderWidth": 0.36493371847085654,
-            "shoulderLift": 0.23761768556199966,
-            "overhang": 0.2948784182127565,
-            "lipDrop": 0.4885058188484982,
-            "hollow": 0.29047862542793157,
-            "lipRatio": 0.03636701878765598,
-            "flowBundles": 6,
-            "flowSpread": 0.9014764457941056,
-            "foamClusters": 6,
-            "foamScale": 0.9883375492761842,
-            "sprayCount": 18,
-            "lipThickness": 11.905711086160279
+            "curl": 0.1795614831103012,
+            "crestPosition": -0.008599020224064585,
+            "shoulderWidth": 0.35493371847085653,
+            "shoulderLift": 0.07841179037466645,
+            "overhang": 0.05662613940425217,
+            "lipDrop": 0.15988509122282268,
+            "flowLines": 2,
+            "flowSpread": 1.0535356256645174,
+            "foamMarks": 2,
+            "foamScale": 0.895134167931974
           }
         }
       ],
       "boats": [
         {
-          "kind": "sampan",
-          "x": 650.666275546886,
-          "y": 315.4963891694632,
-          "angle": -0.03750040916439983,
-          "length": 72.36467907699019,
-          "depth": 0.18782107502222062
+          "kind": "fishing",
+          "x": 2123.5032571285074,
+          "y": 427.27098631806524,
+          "angle": 0.18,
+          "length": 94.6193233445841,
+          "depth": 0.4219876020960509
         },
         {
-          "kind": "fishing",
-          "x": 1097.9326268760487,
-          "y": 328.62794472767223,
-          "angle": 0.15359513623045584,
-          "length": 82.79045070924917,
-          "depth": 0.22952928159385919
+          "kind": "skiff",
+          "x": 2335.832725475041,
+          "y": 511.9057535859682,
+          "angle": 0.10921167952116728,
+          "length": 72.60359596768056,
+          "depth": 0.5182548340223729
         }
       ]
     },
     {
       "seed": "seascape-review-26",
       "filename": "seascape-review-26.svg",
-      "sha256": "3f888b131851b6176e53bd0f042b8141d083acb0a2f3e3d3ab8e5bc3a0e13f48",
-      "pngSha256": "8c64ce117494a5df37992c2746b337323309b4347f4cd4b9c83a201d8d5bfe7e",
-      "inkFraction": 0.05694978783592645,
+      "overrides": {},
+      "sha256": "0981beb117bbfa5a4f4b02b4918da87e104f671a0a34014e3c4efe58297e7bd5",
+      "pngSha256": "4afc2e4a0dff552258b1d5705389cb92d2e971e0b2537fee98a5161543f6b8fc",
+      "cropPngSha256": "3b014b960df047f2be559d50b81cfe8fa80e0e7dc515a55edb835c67ac58d304",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.019118359375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 309,
-        "right": 1353,
-        "bottom": 890
+        "left": 51,
+        "top": 245,
+        "right": 3151,
+        "bottom": 714
       },
-      "generationMs": 64.21,
-      "svgBytes": 641876,
-      "paths": 568,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.019141246684350133,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 56,
+        "bounds": {
+          "left": 0,
+          "top": 250,
+          "right": 1130,
+          "bottom": 714
+        }
+      },
+      "generationMs": 172.43,
+      "svgBytes": 822736,
+      "paths": 626,
       "regime": "breakers",
       "roughness": 1.487377999466844,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 315.61180749326013,
         "regime": "breakers",
         "roughness": 1.487377999466844,
@@ -2454,34 +2959,30 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 0,
-      "maximumWaveHeight": 346.62979980930686,
+      "maximumWaveHeight": 221.84043732122518,
       "waveShapes": {
-        "swell": 41,
-        "ripple": 12,
-        "chop": 6,
+        "ripple": 39,
+        "swell": 110,
+        "chop": 22,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 864.6570973959751,
-          "amplitude": 346.62979980930686,
+          "length": 918.4742160071619,
+          "amplitude": 221.84043732122518,
           "phase": 2.2332058218034985,
           "parameters": {
-            "curl": 0.9746051682345569,
-            "crestPosition": -0.12785665664821863,
-            "shoulderWidth": 0.3451911268406548,
-            "shoulderLift": 0.25898452975787223,
-            "overhang": 0.31321074746781963,
-            "lipDrop": 0.44770058704540133,
-            "hollow": 0.3342207518406212,
-            "lipRatio": 0.03662225775746629,
-            "flowBundles": 9,
-            "flowSpread": 1.0985512167960407,
-            "foamClusters": 9,
-            "foamScale": 0.955862563487608,
-            "sprayCount": 23,
-            "lipThickness": 12.694365875035375
+            "curl": 0.3000469178985804,
+            "crestPosition": -0.06098144393181429,
+            "shoulderWidth": 0.3351911268406548,
+            "shoulderLift": 0.09265635317191481,
+            "overhang": 0.06273691582260654,
+            "lipDrop": 0.14068262919783592,
+            "flowLines": 3,
+            "flowSpread": 1.058039842778817,
+            "foamMarks": 4,
+            "foamScale": 1.079891765746288
           }
         }
       ],
@@ -2490,24 +2991,44 @@
     {
       "seed": "seascape-review-27",
       "filename": "seascape-review-27.svg",
-      "sha256": "b18f4d867923af3171079edcac9bd8907133a3b7c9ff5c22429e95aa1d612e6d",
-      "pngSha256": "bf142fac9ac8552f2920fe6f2bd5390b7f3aae7500d361937ad5cb6a91664c8f",
-      "inkFraction": 0.0252001414427157,
+      "overrides": {},
+      "sha256": "8864dd6d165fea8ee2cb9f26928046d44e306d16ab375c40eb042e9aaa0298d2",
+      "pngSha256": "68c862490f1ae30a085aa0657f44254070058de10cb022ed2176b3c90d06871d",
+      "cropPngSha256": "be466c9dd0b0d1a71ee028b06cfbedeb6bbf1b2be0f91d77ba499c4e2dfea85a",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0249,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 343,
-        "right": 1332,
-        "bottom": 857
+        "left": 55,
+        "top": 275,
+        "right": 3151,
+        "bottom": 679
       },
-      "generationMs": 30.52,
-      "svgBytes": 508766,
-      "paths": 439,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.02398872679045093,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 64,
+        "bounds": {
+          "left": 0,
+          "top": 276,
+          "right": 1130,
+          "bottom": 650
+        }
+      },
+      "generationMs": 268.53,
+      "svgBytes": 1215758,
+      "paths": 947,
       "regime": "calm",
       "roughness": 0.398644176274538,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 344.9797988589853,
         "regime": "calm",
         "roughness": 0.398644176274538,
@@ -2547,52 +3068,72 @@
       },
       "arrangement": "flotilla",
       "requestedBoats": 2,
-      "maximumWaveHeight": 11.294818031601608,
+      "maximumWaveHeight": 14.623584161745384,
       "waveShapes": {
-        "ripple": 74,
-        "swell": 18
+        "ripple": 193,
+        "swell": 65
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "sail",
-          "x": 375.72222446557134,
-          "y": 514.0627652749827,
-          "angle": 0.030050462272975042,
-          "length": 155.34508413542062,
-          "depth": 0.4305001463228837
+          "kind": "sampan",
+          "x": 1814.2443714660399,
+          "y": 382.6251149018641,
+          "angle": -0.0571561128997033,
+          "length": 91.13837235222414,
+          "depth": 0.13269490513484924
         },
         {
-          "kind": "cutter",
-          "x": 645.1893457956612,
-          "y": 550.8223855321155,
-          "angle": -0.11330424007245775,
-          "length": 138.0361541350431,
-          "depth": 0.5071938112936913
+          "kind": "sail",
+          "x": 1766.048803268633,
+          "y": 627.7964708301155,
+          "angle": 0.08822260142366566,
+          "length": 132.8773969965987,
+          "depth": 0.6457008425658569
         }
       ]
     },
     {
       "seed": "seascape-review-28",
       "filename": "seascape-review-28.svg",
-      "sha256": "6c41ab57ea8e84e4b02794da8db28c824acdb5b78654f96df8768bc2a4ea5a52",
-      "pngSha256": "45f0c681808e6c99b7b4b2307acf2060a1e2c169a69248a422479741132541c3",
-      "inkFraction": 0.04403323903818954,
+      "overrides": {},
+      "sha256": "8e79bbff11b3d83442306f94915752e854af5ce390dda558347f8e29bec24d25",
+      "pngSha256": "8dad9a3379f9bba3a70db4e5844c3e629073c5104f3fa9dbe0d2e30aeaebf20e",
+      "cropPngSha256": "d7b54d4c3a3a0627ddea3de65a4b0d1af403d2acaffcd8f341a6aa87b759c8f9",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021081640625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 71,
-        "top": 304,
-        "right": 1351,
-        "bottom": 861
+        "left": 72,
+        "top": 239,
+        "right": 3151,
+        "bottom": 688
       },
-      "generationMs": 80.08,
-      "svgBytes": 561401,
-      "paths": 462,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.021591511936339524,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 25,
+        "bounds": {
+          "left": 0,
+          "top": 250,
+          "right": 1130,
+          "bottom": 688
+        }
+      },
+      "generationMs": 211.98,
+      "svgBytes": 873803,
+      "paths": 678,
       "regime": "breakers",
       "roughness": 1.70944952161517,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 311.9681753893383,
         "regime": "breakers",
         "roughness": 1.70944952161517,
@@ -2632,60 +3173,85 @@
       },
       "arrangement": "procession",
       "requestedBoats": 1,
-      "maximumWaveHeight": 335.9744371846318,
+      "maximumWaveHeight": 211.85103486059234,
       "waveShapes": {
-        "swell": 43,
-        "ripple": 6,
-        "chop": 10,
+        "swell": 112,
+        "chop": 33,
+        "ripple": 36,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 962.1911472221836,
-          "amplitude": 335.9744371846318,
+          "length": 1068.0264257406816,
+          "amplitude": 211.85103486059234,
           "phase": 0.4781391268366953,
           "parameters": {
-            "curl": 0.8734151242580265,
-            "crestPosition": -0.08259849956259131,
-            "shoulderWidth": 0.3500363397598267,
-            "shoulderLift": 0.22355397091247142,
-            "overhang": 0.28080164645100014,
-            "lipDrop": 0.3516668203775771,
-            "hollow": 0.30830744351260364,
-            "lipRatio": 0.034783667361130935,
-            "flowBundles": 9,
-            "flowSpread": 0.8459665051102638,
-            "foamClusters": 8,
-            "foamScale": 0.9300258032977581,
-            "sprayCount": 39,
-            "lipThickness": 11.686423064873413
+            "curl": 0.22054045477416367,
+            "crestPosition": 0.004077156878774982,
+            "shoulderWidth": 0.34003633975982667,
+            "shoulderLift": 0.06903598060831427,
+            "overhang": 0.05193388215033338,
+            "lipDrop": 0.09549026841297746,
+            "flowLines": 3,
+            "flowSpread": 1.0255941299023108,
+            "foamMarks": 4,
+            "foamScale": 0.8430935985408724
           }
         }
       ],
-      "boats": []
+      "boats": [
+        {
+          "kind": "skiff",
+          "x": 2384.8287524029406,
+          "y": 415.94376947646526,
+          "angle": -0.05473661876745133,
+          "length": 60.430697909886035,
+          "depth": 0.33900458130985495
+        }
+      ]
     },
     {
       "seed": "seascape-review-29",
       "filename": "seascape-review-29.svg",
-      "sha256": "022455ee7f0deaeb0a2578ad9c6911e11d08a6e57f12f1065acb41e48ca44487",
-      "pngSha256": "836472f8eb9e5db8159318d3e4c28ea1b0a7787932077de82ecb78049c24353e",
-      "inkFraction": 0.023524752475247525,
+      "overrides": {},
+      "sha256": "cc607682d8776bf25707e112f08b5f11b06bc6975788e52dab48ac310a1eefb3",
+      "pngSha256": "acaccd2d22d8f29b0b5a2bda471ff74432455e2505628e6b1e4087316dbe8936",
+      "cropPngSha256": "b6ee4ad52846df8b295331bd3d8496c475a4afcc346cbdffe07f92aec532aa28",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0244875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 287,
-        "right": 1339,
-        "bottom": 817
+        "left": 48,
+        "top": 229,
+        "right": 3145,
+        "bottom": 671
       },
-      "generationMs": 27.85,
-      "svgBytes": 499731,
-      "paths": 413,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.026157161803713528,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 80,
+        "bounds": {
+          "left": 0,
+          "top": 229,
+          "right": 1130,
+          "bottom": 663
+        }
+      },
+      "generationMs": 275.13,
+      "svgBytes": 1157043,
+      "paths": 883,
       "regime": "calm",
       "roughness": 0.3031819855235517,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 287.52705850987695,
         "regime": "calm",
         "roughness": 0.3031819855235517,
@@ -2727,16 +3293,16 @@
       "requestedBoats": 1,
       "maximumWaveHeight": 20.61230781301856,
       "waveShapes": {
-        "ripple": 72,
-        "swell": 22
+        "ripple": 188,
+        "swell": 56
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "lugger",
-          "x": 596.0133107835427,
-          "y": 499.33606672850834,
-          "angle": -0.011122684087488687,
+          "x": 1888.9929477416777,
+          "y": 499.3362400597226,
+          "angle": -0.011057282041890985,
           "length": 118.43903533415869,
           "depth": 0.4759952854178846
         }
@@ -2745,24 +3311,44 @@
     {
       "seed": "seascape-review-30",
       "filename": "seascape-review-30.svg",
-      "sha256": "3dcb70a20b4d14db095d439444b7d0f59b5bd66be3f6a715fdc574e8279d04a7",
-      "pngSha256": "558070aa35215dcdd6e35b8d2a60d61e15f6fbef6c343283888ff5ab7c87c3da",
-      "inkFraction": 0.055285714285714285,
+      "overrides": {},
+      "sha256": "f202ffbd7df6aac1b8ee94f24c8a6eb635cbe3bc327f729ee4e1fae466f37f95",
+      "pngSha256": "985c23e3713ec763ae843216230ec38ffce20693a6c40c2ab094164b5d971649",
+      "cropPngSha256": "97f433b5139eeb1d62ae205916d1399f9c49808a14b85ba24e3ca2657415078a",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020746875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 65,
-        "top": 256,
-        "right": 1353,
-        "bottom": 895
+        "left": 62,
+        "top": 203,
+        "right": 3151,
+        "bottom": 680
       },
-      "generationMs": 94.66,
-      "svgBytes": 784794,
-      "paths": 714,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.022010389036251105,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 57,
+        "bounds": {
+          "left": 0,
+          "top": 204,
+          "right": 1130,
+          "bottom": 680
+        }
+      },
+      "generationMs": 168.68,
+      "svgBytes": 849604,
+      "paths": 679,
       "regime": "breakers",
       "roughness": 1.7050263881916181,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 266.67996836593375,
         "regime": "breakers",
         "roughness": 1.7050263881916181,
@@ -2802,11 +3388,11 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 2,
-      "maximumWaveHeight": 327.0153874345124,
+      "maximumWaveHeight": 203.45192571985535,
       "waveShapes": {
-        "swell": 33,
-        "ripple": 10,
-        "chop": 7,
+        "chop": 32,
+        "swell": 96,
+        "ripple": 42,
         "spilling": 1,
         "breaker": 1
       },
@@ -2817,85 +3403,97 @@
           "amplitude": 105.69418463855982,
           "phase": 3.951366884051135,
           "parameters": {
-            "curl": 0.3222142394538969,
-            "crestPosition": -0.15428632168099285,
-            "shoulderWidth": 0.35145408315118404,
-            "shoulderLift": 0.2241164683084935,
-            "overhang": 0.3058758335420862,
-            "lipDrop": 0.3695569373550825,
-            "hollow": 0.30354391601867975,
-            "lipRatio": 0.03606370995100588,
-            "flowBundles": 6,
-            "flowSpread": 0.8232922291755677,
-            "foamClusters": 9,
-            "foamScale": 0.9013747340184637,
-            "sprayCount": 23,
-            "lipThickness": 3.8117244183130823
+            "curl": 0.15079079980496318,
+            "crestPosition": -0.09897408741642721,
+            "shoulderWidth": 0.34145408315118403,
+            "shoulderLift": 0.069410978872329,
+            "overhang": 0.06029194451402873,
+            "lipDrop": 0.10390914699062705,
+            "flowLines": 3,
+            "flowSpread": 1.0481831167824567,
+            "foamMarks": 2,
+            "foamScale": 0.8218364648520947
           }
         },
         {
           "shape": "breaker",
-          "length": 885.8047725446522,
-          "amplitude": 327.0153874345124,
+          "length": 950.9006512351334,
+          "amplitude": 203.45192571985535,
           "phase": 1.8375447157417133,
           "parameters": {
-            "curl": 0.9427252739761025,
-            "crestPosition": -0.13932789308950305,
-            "shoulderWidth": 0.36727424351964144,
-            "shoulderLift": 0.26353813980706037,
-            "overhang": 0.3157759361038916,
-            "lipDrop": 0.434292121573817,
-            "hollow": 0.2863032874185592,
-            "lipRatio": 0.03619538598740474,
-            "flowBundles": 9,
-            "flowSpread": 1.1138655830919744,
-            "foamClusters": 8,
-            "foamScale": 1.0512342891772277,
-            "sprayCount": 22,
-            "lipThickness": 11.836448172012881
+            "curl": 0.27499842955265197,
+            "crestPosition": -0.07747134631616064,
+            "shoulderWidth": 0.35727424351964143,
+            "shoulderLift": 0.0956920932047069,
+            "overhang": 0.0635919787012972,
+            "lipDrop": 0.13437276309356094,
+            "flowLines": 2,
+            "flowSpread": 1.0505068115424365,
+            "foamMarks": 4,
+            "foamScale": 1.094248984148726
           }
         }
       ],
       "boats": [
         {
           "kind": "skiff",
-          "x": 683.4188086874783,
-          "y": 323.1409389630864,
-          "angle": 0.18,
-          "length": 49.80958617468898,
-          "depth": 0.17190087780356408
-        },
-        {
-          "kind": "skiff",
-          "x": 946.5137361194938,
-          "y": 336.4730901617695,
-          "angle": 0.04945378626261125,
+          "x": 2239.557680382273,
+          "y": 336.4731066267148,
+          "angle": 0.04923667432193233,
           "length": 79.51680943231523,
           "depth": 0.21198039108887315
+        },
+        {
+          "kind": "fishing",
+          "x": 2244.7275517018134,
+          "y": 450.15144095652477,
+          "angle": 0.15882984942484546,
+          "length": 80.34450978792538,
+          "depth": 0.4828003422170877
         }
       ]
     },
     {
       "seed": "seascape-review-31",
       "filename": "seascape-review-31.svg",
-      "sha256": "3fd3633520e8f6a29f2b13bf046c7c54cb2af6c36fcd892116dd33c92c92bc4e",
-      "pngSha256": "7939b44f972f6a43f0786c3d1eea74b1eb5115df41e793104175bf8d9b70cfce",
-      "inkFraction": 0.028607496463932108,
+      "overrides": {},
+      "sha256": "ad78857da066c379aa37f311b5a6dd89691d0c9bbad0acdac37198fec5cfecc1",
+      "pngSha256": "efada133766e4ec46e3925bb75b13a9d893b569b21442f58d07e24b2c9dd0656",
+      "cropPngSha256": "fb3af1c17a3b21335b3634f2c3b61083e7e843f2579b9c8bfc6b52837f494b7c",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.028437109375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 66,
-        "top": 288,
-        "right": 1343,
-        "bottom": 827
+        "left": 48,
+        "top": 228,
+        "right": 3151,
+        "bottom": 683
       },
-      "generationMs": 32.44,
-      "svgBytes": 562751,
-      "paths": 479,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.031126215738284703,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 77,
+        "bounds": {
+          "left": 0,
+          "top": 228,
+          "right": 1130,
+          "bottom": 683
+        }
+      },
+      "generationMs": 296.83,
+      "svgBytes": 1435430,
+      "paths": 1112,
       "regime": "wind sea",
       "roughness": 0.7413273294107057,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 289.88942683674395,
         "regime": "wind sea",
         "roughness": 0.7413273294107057,
@@ -2935,53 +3533,73 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 2,
-      "maximumWaveHeight": 40.53244140697643,
+      "maximumWaveHeight": 43.720187686383724,
       "waveShapes": {
-        "ripple": 19,
-        "chop": 64,
-        "shoulder": 20
+        "chop": 194,
+        "shoulder": 49,
+        "ripple": 62
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 166.068256364204,
-          "y": 375.92472752628197,
-          "angle": 0.18,
-          "length": 95.5642889220568,
-          "depth": 0.24158904601819814
+          "kind": "lugger",
+          "x": 1755.1858057537847,
+          "y": 522.647243771132,
+          "angle": 0.004975718039896137,
+          "length": 114.09642582320373,
+          "depth": 0.529950356897898
         },
         {
-          "kind": "lugger",
-          "x": 979.9202885758132,
-          "y": 486.485764607337,
-          "angle": 0.15684040061516527,
-          "length": 154.85937342001125,
-          "depth": 0.4321860146569088
+          "kind": "cutter",
+          "x": 2278.4261549962475,
+          "y": 582.2498706935577,
+          "angle": 0.15287956305660128,
+          "length": 147.58116802712902,
+          "depth": 0.6112498016934842
         }
       ]
     },
     {
       "seed": "seascape-review-32",
       "filename": "seascape-review-32.svg",
-      "sha256": "4aa21d4397a48237ad28bfc4be27a8c128a34d0cdf0931d7d7b2b1e3347f5d41",
-      "pngSha256": "450ec936b19cf7127eb255c40b7eb1cbbecfb8b4bbe1417fd97939117fa8aad6",
-      "inkFraction": 0.028294200848656293,
+      "overrides": {},
+      "sha256": "f7551b27ec101bb563552ef84a2e070ca875723ee3f7c93291a002e36972be4a",
+      "pngSha256": "8a9420bdb8b6ffcf767ec71e721dad29fdcedaba7e83189ccea77eb64936611c",
+      "cropPngSha256": "b0c1212418999a7c336948e26c026e24e1b024a2683055e764afc85156a36305",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02620390625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 74,
-        "top": 342,
-        "right": 1353,
-        "bottom": 871
+        "left": 62,
+        "top": 267,
+        "right": 3146,
+        "bottom": 695
       },
-      "generationMs": 34.07,
-      "svgBytes": 584701,
-      "paths": 498,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.031970601237842615,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 70,
+        "bounds": {
+          "left": 0,
+          "top": 267,
+          "right": 1130,
+          "bottom": 690
+        }
+      },
+      "generationMs": 265.82,
+      "svgBytes": 1341038,
+      "paths": 1034,
       "regime": "wind sea",
       "roughness": 0.8716295719379559,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 341.54623646405526,
         "regime": "wind sea",
         "roughness": 0.8716295719379559,
@@ -3023,24 +3641,24 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 54.10482731182128,
       "waveShapes": {
-        "ripple": 26,
-        "chop": 63,
-        "shoulder": 15
+        "ripple": 66,
+        "chop": 161,
+        "shoulder": 55
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "sampan",
-          "x": 298.00448142457753,
-          "y": 371.76792751430537,
-          "angle": 0.09433804470567832,
+          "x": 1590.9294418596874,
+          "y": 371.74610602791006,
+          "angle": 0.09365208250882276,
           "length": 63.167127929478916,
           "depth": 0.13474293979816138
         },
         {
           "kind": "fishing",
-          "x": 370.4867813382298,
-          "y": 529.3257659089261,
+          "x": 1663.425040305966,
+          "y": 529.3930639980213,
           "angle": -0.18,
           "length": 122.41621803399175,
           "depth": 0.5013052740879357
@@ -3050,24 +3668,44 @@
     {
       "seed": "seascape-review-33",
       "filename": "seascape-review-33.svg",
-      "sha256": "a0d9dfc2cfbfaf856a1f7b0be4b639b6805ed0567578ee00ab14957f74dfc3db",
-      "pngSha256": "3c608a82dd271fcc24b9f9b9949ee0dea0604d95259e47a9e7e963e33b26e5f8",
-      "inkFraction": 0.04547029702970297,
+      "overrides": {},
+      "sha256": "2d78c88d924203e17df2028ac129977d0b3bcaa281831f3d8f2372f728a83a04",
+      "pngSha256": "dc2411af743adb5c528831a0e7b428e60720382e2391ed9106ac158088546d3f",
+      "cropPngSha256": "44f7b9543cbaf0e833ed029402a1e6b19c47a06c315b14ad8350afcff771eceb",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02094453125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 80,
-        "top": 288,
-        "right": 1353,
-        "bottom": 792
+        "left": 57,
+        "top": 229,
+        "right": 3151,
+        "bottom": 672
       },
-      "generationMs": 69.66,
-      "svgBytes": 591297,
-      "paths": 524,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.019934792219274976,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 38,
+        "bounds": {
+          "left": 0,
+          "top": 229,
+          "right": 1130,
+          "bottom": 620
+        }
+      },
+      "generationMs": 169.56,
+      "svgBytes": 875525,
+      "paths": 687,
       "regime": "breakers",
       "roughness": 1.6151301450096072,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 298.82084752083756,
         "regime": "breakers",
         "roughness": 1.6151301450096072,
@@ -3107,69 +3745,85 @@
       },
       "arrangement": "procession",
       "requestedBoats": 1,
-      "maximumWaveHeight": 327.5710332021117,
+      "maximumWaveHeight": 203.97284362697974,
       "waveShapes": {
-        "ripple": 13,
-        "chop": 6,
-        "swell": 40,
+        "chop": 31,
+        "swell": 114,
+        "ripple": 34,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 829.1036683297716,
-          "amplitude": 327.5710332021117,
+          "length": 863.9589581056498,
+          "amplitude": 203.97284362697974,
           "phase": 5.48365526150966,
           "parameters": {
-            "curl": 0.994052664488554,
-            "crestPosition": -0.0964711169525981,
-            "shoulderWidth": 0.3672677364596166,
-            "shoulderLift": 0.1830430637486279,
-            "overhang": 0.3060139103094116,
-            "lipDrop": 0.4496229643351399,
-            "hollow": 0.3244735153159126,
-            "lipRatio": 0.029351105033420026,
-            "flowBundles": 6,
-            "flowSpread": 0.9438905514031649,
-            "foamClusters": 8,
-            "foamScale": 0.9035856491071173,
-            "sprayCount": 32,
-            "lipThickness": 9.6145718014211
+            "curl": 0.315327093526721,
+            "crestPosition": -0.015864730619359765,
+            "shoulderWidth": 0.35726773645961657,
+            "shoulderLift": 0.04202870916575194,
+            "overhang": 0.0603379701031372,
+            "lipDrop": 0.14158727733418347,
+            "flowLines": 3,
+            "flowSpread": 0.9297253829427063,
+            "foamMarks": 2,
+            "foamScale": 0.9348973919404671
           }
         }
       ],
       "boats": [
         {
           "kind": "sampan",
-          "x": 669.496541895438,
-          "y": 354.008963827171,
-          "angle": -0.0655162666496262,
-          "length": 79.29563805638504,
-          "depth": 0.17327248070389034
+          "x": 1877.8884719700268,
+          "y": 452.03037125679344,
+          "angle": -0.016695686503284138,
+          "length": 94.62820299045333,
+          "depth": 0.43453358056023716
         }
       ]
     },
     {
       "seed": "seascape-review-34",
       "filename": "seascape-review-34.svg",
-      "sha256": "1089fa87919081ebdd4c87c13d827bf3489f3f9fa19f17bf94bc4b3f8eccf591",
-      "pngSha256": "c709b6e5de7d4dc849d27efb77223564f2a11e812c8ab593accbef384c7328fb",
-      "inkFraction": 0.030201555869872703,
+      "overrides": {},
+      "sha256": "18db8fc3c51dc3b5a6651b632627021c024b3ab92516308898a403f9eb0c6f2b",
+      "pngSha256": "68c412dda0222080f0ad43f0174fe651ac2dc5a9770b92631f3d4eca2d2a8f8a",
+      "cropPngSha256": "58d06af32d730483f069b5f7adff2271add01f2bbc7a69fde183846f7874193f",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0285046875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 326,
-        "right": 1344,
-        "bottom": 868
+        "left": 48,
+        "top": 260,
+        "right": 3151,
+        "bottom": 702
       },
-      "generationMs": 34.54,
-      "svgBytes": 594361,
-      "paths": 509,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.03246131741821397,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 33,
+        "bounds": {
+          "left": 0,
+          "top": 261,
+          "right": 1114,
+          "bottom": 688
+        }
+      },
+      "generationMs": 261.27,
+      "svgBytes": 1441960,
+      "paths": 1115,
       "regime": "rolling swell",
       "roughness": 1.4779549202183262,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 338.81032548029907,
         "regime": "rolling swell",
         "roughness": 1.4779549202183262,
@@ -3209,53 +3863,73 @@
       },
       "arrangement": "crossing",
       "requestedBoats": 2,
-      "maximumWaveHeight": 92.32925532385707,
+      "maximumWaveHeight": 93.29432656988502,
       "waveShapes": {
-        "swell": 67,
-        "chop": 18,
-        "ripple": 20
+        "chop": 54,
+        "ripple": 68,
+        "swell": 180
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "lugger",
-          "x": 935.356784068048,
-          "y": 539.6110663282307,
-          "angle": -0.18,
-          "length": 148.08362953178585,
-          "depth": 0.48575323448050767
+          "kind": "sail",
+          "x": 1950.6617932552354,
+          "y": 498.677758204477,
+          "angle": 0.18,
+          "length": 154.9533696915023,
+          "depth": 0.4382565422728658
         },
         {
-          "kind": "sail",
-          "x": 644.9083807263523,
-          "y": 522.330706032818,
-          "angle": 0.18,
-          "length": 127.52821048043363,
-          "depth": 0.5006608419772237
+          "kind": "skiff",
+          "x": 2263.412960273202,
+          "y": 485.25211874203376,
+          "angle": -0.18,
+          "length": 63.45935817154323,
+          "depth": 0.4518562796199694
         }
       ]
     },
     {
       "seed": "seascape-review-35",
       "filename": "seascape-review-35.svg",
-      "sha256": "3e8a82f325a43eceec0b68fffc7f9e59302c90f17e93b1e8a4825b5e626cf7f3",
-      "pngSha256": "9b81d417b14d043e53c1bee672df8509020707dd18b0b8a03fc8927ab35de4bf",
-      "inkFraction": 0.023356435643564356,
+      "overrides": {},
+      "sha256": "2c0ac21bd7197a1ddf06a6873e1cee582139ef2419aca8624f1bdbe35c7fa905",
+      "pngSha256": "ff905f65f8c4eb6fbea11898478ca263100e6e4d2cf33040cc08705244707b6e",
+      "cropPngSha256": "51ae59e2f9bdc62be2c7a136a43fc0369ad085b8051066d1235f87d49bea2ef8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.025056640625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 271,
-        "right": 1353,
-        "bottom": 841
+        "left": 57,
+        "top": 216,
+        "right": 3151,
+        "bottom": 668
       },
-      "generationMs": 27,
-      "svgBytes": 455241,
-      "paths": 416,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.024256189213085765,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 57,
+        "bounds": {
+          "left": 0,
+          "top": 216,
+          "right": 1130,
+          "bottom": 646
+        }
+      },
+      "generationMs": 245.38,
+      "svgBytes": 1215806,
+      "paths": 962,
       "regime": "calm",
       "roughness": 0.25697533719241616,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 291.2785677157808,
         "regime": "calm",
         "roughness": 0.25697533719241616,
@@ -3297,58 +3971,78 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 18.9353920025751,
       "waveShapes": {
-        "ripple": 68,
-        "swell": 13
+        "ripple": 189,
+        "swell": 65
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "cutter",
-          "x": 521.9861834812909,
-          "y": 325.2492094909795,
-          "angle": 0.039727478221112104,
+          "x": 1814.8794022947434,
+          "y": 325.25254418395525,
+          "angle": 0.03943436575462874,
           "length": 76.9853304147669,
           "depth": 0.1282800092548132
         },
         {
-          "kind": "cutter",
-          "x": 529.7864278322086,
-          "y": 469.4497743704784,
-          "angle": -0.08366492922859803,
-          "length": 80.58710778486228,
-          "depth": 0.4196758848428726
+          "kind": "skiff",
+          "x": 2294.9830597173304,
+          "y": 490.7728584534252,
+          "angle": -0.08816648471165843,
+          "length": 68.71165154989323,
+          "depth": 0.45780062395613635
         },
         {
-          "kind": "lugger",
-          "x": 1097.8581893686205,
-          "y": 551.9640263902804,
-          "angle": -0.08886313703371973,
-          "length": 152.32679190440103,
-          "depth": 0.565232861628756
+          "kind": "sampan",
+          "x": 2006.7579863741876,
+          "y": 490.63817650083257,
+          "angle": 0.016738615036764694,
+          "length": 131.51667235651985,
+          "depth": 0.45785981547087434
         }
       ]
     },
     {
       "seed": "seascape-review-36",
       "filename": "seascape-review-36.svg",
-      "sha256": "3e834ac2559a62af689d037e253965d839bb4deb4bb6ac451e19e378af44ab7c",
-      "pngSha256": "fbaeda7cddd3a4581fe62acbf58b334d3b6480eead02f0cc7b39e9be4fc5b0f9",
-      "inkFraction": 0.028855728429985857,
+      "overrides": {},
+      "sha256": "53347f129a8c9f29eeb28b58b03f09de07b1c31d853e80930d51508103a94140",
+      "pngSha256": "1207bff5dc293a4c3a03319ec6e2d807cd8469c222581b5e35dfa8d8b6cb7e6c",
+      "cropPngSha256": "00895f5f432e0448b03d012a10fee92eba2905be54927c1ebab35f3ec74cfba8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0261078125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 296,
-        "right": 1353,
-        "bottom": 849
+        "left": 48,
+        "top": 236,
+        "right": 3139,
+        "bottom": 681
       },
-      "generationMs": 33.45,
-      "svgBytes": 586780,
-      "paths": 492,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.025461980548187445,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 75,
+        "bounds": {
+          "left": 0,
+          "top": 236,
+          "right": 1130,
+          "bottom": 666
+        }
+      },
+      "generationMs": 286.16,
+      "svgBytes": 1411623,
+      "paths": 1089,
       "regime": "wind sea",
       "roughness": 0.9133338524959982,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 299.21551181934774,
         "regime": "wind sea",
         "roughness": 0.9133338524959982,
@@ -3390,25 +4084,25 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 47.21338376868516,
       "waveShapes": {
-        "ripple": 18,
-        "chop": 73,
-        "shoulder": 16
+        "chop": 183,
+        "shoulder": 46,
+        "ripple": 69
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "lugger",
-          "x": 1214.5357509725727,
-          "y": 404.74785599700397,
+          "x": 2507.640577413006,
+          "y": 404.75620935052433,
           "angle": 0.18,
           "length": 73.96986769607365,
           "depth": 0.2850487502431497
         },
         {
           "kind": "skiff",
-          "x": 243.58689854247496,
-          "y": 557.2700269111369,
-          "angle": -0.1457723070129709,
+          "x": 1536.491185194631,
+          "y": 557.2649375476059,
+          "angle": -0.14659228744188293,
           "length": 152.08723959280178,
           "depth": 0.5934413355402649
         }
@@ -3417,24 +4111,44 @@
     {
       "seed": "seascape-review-37",
       "filename": "seascape-review-37.svg",
-      "sha256": "1b04f29d3ea9e1bc5fe3b34b5119e075d2683d4751137e663940e1fb8eabd94d",
-      "pngSha256": "0e8128dc804eecf2311ea55bc6b069ab6e4cff47df2edd1874a86d9f49f4bf6e",
-      "inkFraction": 0.028704384724186703,
+      "overrides": {},
+      "sha256": "a2deebfe6ff71ecc6614865f7826ace2de2aec23906fcdf9d24c5c92d4e8513c",
+      "pngSha256": "3679e7514cb39403401a61304d141ddb4bda40e6d5a7d4345d486df518ac55fd",
+      "cropPngSha256": "82020de44f37464cb61ecc5f9f7408cd395e4a8fdb490848ef4177b4b0fc48b1",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.028835546875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 262,
-        "right": 1353,
-        "bottom": 855
+        "left": 48,
+        "top": 208,
+        "right": 3151,
+        "bottom": 684
       },
-      "generationMs": 37.29,
-      "svgBytes": 552651,
-      "paths": 471,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.02738395225464191,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 76,
+        "bounds": {
+          "left": 0,
+          "top": 211,
+          "right": 1130,
+          "bottom": 684
+        }
+      },
+      "generationMs": 389.65,
+      "svgBytes": 1398388,
+      "paths": 1086,
       "regime": "wind sea",
       "roughness": 0.805592182232067,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 266.01407369133085,
         "regime": "wind sea",
         "roughness": 0.805592182232067,
@@ -3476,51 +4190,71 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 51.48354406701401,
       "waveShapes": {
-        "chop": 68,
-        "ripple": 24,
-        "shoulder": 10
+        "chop": 190,
+        "ripple": 52,
+        "shoulder": 51
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 313.1546825878322,
-          "y": 341.271321831566,
-          "angle": -0.18,
-          "length": 50.55017264397367,
-          "depth": 0.1988727442966774
-        },
-        {
           "kind": "sail",
-          "x": 644.7785932170227,
-          "y": 421.93032713491,
+          "x": 1937.6718120304752,
+          "y": 421.97575950416797,
           "angle": -0.18,
           "length": 147.00619485834613,
           "depth": 0.39135912962723524
+        },
+        {
+          "kind": "fishing",
+          "x": 2099.303469530295,
+          "y": 546.0905958397741,
+          "angle": -0.1409116195495057,
+          "length": 79.19390235000758,
+          "depth": 0.5463861788017675
         }
       ]
     },
     {
       "seed": "seascape-review-38",
       "filename": "seascape-review-38.svg",
-      "sha256": "f7e2dd97de9d19fc51fa2f6d2520b5901065bf678a85d4a2e6f9f0496933768b",
-      "pngSha256": "de4accb99d84ecc39a3ba277d2b3cac7911ac540cf8936d1583ce94e51f31fcc",
-      "inkFraction": 0.024994342291371995,
+      "overrides": {},
+      "sha256": "40051c66d5c0a4975c074ac8d67c47b08008101fbeffff07a7a74efd7157bdf5",
+      "pngSha256": "e05d39de2e6282c47c53fba06ea2f9c960226c1b9bec1604b822f72bf5c4c92a",
+      "cropPngSha256": "2aef1dab4956f6368ce5590fe036b5d14c3db1f6c82e01c73662c01426c4d650",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.025430859375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 291,
-        "right": 1353,
-        "bottom": 846
+        "left": 48,
+        "top": 233,
+        "right": 3151,
+        "bottom": 673
       },
-      "generationMs": 28.42,
-      "svgBytes": 496905,
-      "paths": 422,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.02570291777188329,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 51,
+        "bounds": {
+          "left": 0,
+          "top": 234,
+          "right": 1130,
+          "bottom": 673
+        }
+      },
+      "generationMs": 270.37,
+      "svgBytes": 1214049,
+      "paths": 939,
       "regime": "calm",
       "roughness": 0.24862672917544842,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 292.09827134851366,
         "regime": "calm",
         "roughness": 0.24862672917544842,
@@ -3560,26 +4294,26 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 2,
-      "maximumWaveHeight": 11.830868296325207,
+      "maximumWaveHeight": 16.957817878574133,
       "waveShapes": {
-        "swell": 20,
-        "ripple": 68
+        "swell": 57,
+        "ripple": 192
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "sampan",
-          "x": 248.0489314775914,
-          "y": 320.7914954690488,
-          "angle": 0.03478032235939439,
+          "x": 1540.9647264266223,
+          "y": 320.783171988742,
+          "angle": 0.03404553118746514,
           "length": 44.38079141461218,
           "depth": 0.11408322168048471
         },
         {
           "kind": "skiff",
-          "x": 644.6076216092333,
-          "y": 503.9043501262016,
-          "angle": 0.01337640892332135,
+          "x": 1937.5961743030546,
+          "y": 503.9036914160346,
+          "angle": 0.013400594590002615,
           "length": 116.63825991004705,
           "depth": 0.4758973806584254
         }
@@ -3588,24 +4322,44 @@
     {
       "seed": "seascape-review-39",
       "filename": "seascape-review-39.svg",
-      "sha256": "e571b1dcd65edb7caf8828b3709f5417869818712df03b1814187df306d86f39",
-      "pngSha256": "e2d34aa6cf356a5155a8e3b022f345aba15d741df918fd581283339916170583",
-      "inkFraction": 0.023769448373408768,
+      "overrides": {},
+      "sha256": "b0e1b360ae9ecc778b77d47032bad66e28082c1cc6352fd8b901cf5fc4d5fd0d",
+      "pngSha256": "e9f59fea98049ae9abb8cec721ab48fc2f4cfcdfe12ef7e87230de858e342444",
+      "cropPngSha256": "cd844d0daef5340d4e4027f9762266d73483d849cf38beb523aec7f11acfebff",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.024302734375,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 276,
-        "right": 1327,
-        "bottom": 835
+        "left": 58,
+        "top": 220,
+        "right": 3151,
+        "bottom": 665
       },
-      "generationMs": 26.12,
-      "svgBytes": 476828,
-      "paths": 408,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023502431476569406,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 40,
+        "bounds": {
+          "left": 0,
+          "top": 221,
+          "right": 1130,
+          "bottom": 665
+        }
+      },
+      "generationMs": 227.1,
+      "svgBytes": 1181014,
+      "paths": 915,
       "regime": "calm",
       "roughness": 0.23815664062276481,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 275.6997523782775,
         "regime": "calm",
         "roughness": 0.23815664062276481,
@@ -3647,24 +4401,24 @@
       "requestedBoats": 2,
       "maximumWaveHeight": 20.596311026252806,
       "waveShapes": {
-        "ripple": 71,
-        "swell": 18
+        "ripple": 192,
+        "swell": 56
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "sail",
-          "x": 543.399354747869,
-          "y": 347.3377290215316,
-          "angle": 0.024266803446659685,
+          "x": 1836.4076239836313,
+          "y": 347.3382749754382,
+          "angle": 0.02430504476937716,
           "length": 73.74128055891093,
           "depth": 0.2168013641051948
         },
         {
           "kind": "skiff",
-          "x": 814.6367141114547,
-          "y": 461.28709717209557,
-          "angle": -0.04840610859653575,
+          "x": 2107.644983347217,
+          "y": 461.2864909181982,
+          "angle": -0.04841172541349938,
           "length": 154.84990298002958,
           "depth": 0.4247396611701697
         }
@@ -3673,24 +4427,44 @@
     {
       "seed": "seascape-review-40",
       "filename": "seascape-review-40.svg",
-      "sha256": "59209a2c0d928c0f85fb46fb67ff4227c5e1f4e99df76f20a707ca51a31a5f79",
-      "pngSha256": "db00987ef3b5d3b2bd059b8da840e435ef9933b1d3328d37045fd01337dfb561",
-      "inkFraction": 0.04846463932107496,
+      "overrides": {},
+      "sha256": "f147a3f5cad3fd4cc0801c428d055a06275e4912dcbd8046326daa25b00736fb",
+      "pngSha256": "069c20b3730323692ba76d7b297f7bc5171237d9ea4425afbbdff4a1f5054596",
+      "cropPngSha256": "2364723b95f75e40a49458c9463fc0d1f677f08c52ab48468a7378f2339feeb7",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02093125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 255,
-        "right": 1341,
-        "bottom": 854
+        "left": 48,
+        "top": 203,
+        "right": 3151,
+        "bottom": 683
       },
-      "generationMs": 78.88,
-      "svgBytes": 628251,
-      "paths": 583,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023743368700265253,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 56,
+        "bounds": {
+          "left": 0,
+          "top": 205,
+          "right": 1130,
+          "bottom": 683
+        }
+      },
+      "generationMs": 255.03,
+      "svgBytes": 871522,
+      "paths": 696,
       "regime": "breakers",
       "roughness": 1.7075365604367108,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 266.7359280423261,
         "regime": "breakers",
         "roughness": 1.7075365604367108,
@@ -3730,77 +4504,93 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 2,
-      "maximumWaveHeight": 289.21573605388403,
+      "maximumWaveHeight": 168.01475255051628,
       "waveShapes": {
-        "chop": 8,
-        "ripple": 11,
-        "swell": 45,
+        "chop": 34,
+        "swell": 112,
+        "ripple": 30,
         "breaker": 1
       },
       "breakingWaves": [
         {
           "shape": "breaker",
-          "length": 868.4901020070538,
-          "amplitude": 289.21573605388403,
+          "length": 924.3514897441491,
+          "amplitude": 168.01475255051628,
           "phase": 1.5356801998386846,
           "parameters": {
-            "curl": 0.8972450226079672,
-            "crestPosition": -0.107574725728482,
-            "shoulderWidth": 0.2874040894163773,
-            "shoulderLift": 0.2559936229046434,
-            "overhang": 0.29157905934844164,
-            "lipDrop": 0.3988070803601295,
-            "hollow": 0.287767025269568,
-            "lipRatio": 0.027791799096623434,
-            "flowBundles": 8,
-            "flowSpread": 0.8451436593383551,
-            "foamClusters": 8,
-            "foamScale": 0.9917328025680034,
-            "sprayCount": 22,
-            "lipThickness": 8.037825631991616
+            "curl": 0.23926394633483142,
+            "crestPosition": -0.03182616823469289,
+            "shoulderWidth": 0.2774040894163773,
+            "shoulderLift": 0.09066241526976226,
+            "overhang": 0.055526353116147224,
+            "lipDrop": 0.1176739201694727,
+            "flowLines": 2,
+            "flowSpread": 0.9022082193521783,
+            "foamMarks": 3,
+            "foamScale": 0.8423221806297079
           }
         }
       ],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 1059.1376489261165,
-          "y": 343.84350899374346,
-          "angle": -0.18,
-          "length": 79.92655902177601,
-          "depth": 0.20207798395305873
-        },
-        {
           "kind": "sampan",
-          "x": 804.1319174813107,
-          "y": 369.04570056062835,
+          "x": 2097.149738549009,
+          "y": 369.0538591029013,
           "angle": 0.18,
           "length": 80.06338633464081,
           "depth": 0.30835490550845857
+        },
+        {
+          "kind": "skiff",
+          "x": 2335.4693251679128,
+          "y": 463.9023290494119,
+          "angle": 0.17814335678366292,
+          "length": 90.72902490871174,
+          "depth": 0.4142752874456346
         }
       ]
     },
     {
       "seed": "seascape-review-41",
       "filename": "seascape-review-41.svg",
-      "sha256": "22aeeab4e90f94dc8d5e98e2ca71104b35eec80decfbcf7f7c42bde2cd6071f0",
-      "pngSha256": "77fd70d0269a207cba9edf312192aba7b3475f396644ada0472dbcff8ecdaf5e",
-      "inkFraction": 0.04869589816124469,
+      "overrides": {},
+      "sha256": "e23ab1c0e3335ab1ceb94709c03b977e989e1df2acf16d5ae2535183b968b260",
+      "pngSha256": "ab2f3a72c9fa3153bcc6c2521b194ee0596dd314d09d315239885923f3be8184",
+      "cropPngSha256": "1741bac6911c4ee549c1f0c05aaf74db918a712790f08ebedc53c95b6e78a532",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02068203125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 65,
-        "top": 273,
-        "right": 1353,
-        "bottom": 825
+        "left": 48,
+        "top": 215,
+        "right": 3151,
+        "bottom": 655
       },
-      "generationMs": 89.46,
-      "svgBytes": 748766,
-      "paths": 665,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.025141467727674623,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 41,
+        "bounds": {
+          "left": 0,
+          "top": 223,
+          "right": 1130,
+          "bottom": 655
+        }
+      },
+      "generationMs": 243.66,
+      "svgBytes": 931348,
+      "paths": 744,
       "regime": "breakers",
       "roughness": 1.5879051706404426,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 280.1198041427415,
         "regime": "breakers",
         "roughness": 1.5879051706404426,
@@ -3840,11 +4630,11 @@
       },
       "arrangement": "scattered",
       "requestedBoats": 2,
-      "maximumWaveHeight": 312.07561580464244,
+      "maximumWaveHeight": 189.4458898168523,
       "waveShapes": {
-        "swell": 35,
-        "ripple": 12,
-        "chop": 13,
+        "chop": 36,
+        "swell": 118,
+        "ripple": 36,
         "spilling": 1,
         "breaker": 1
       },
@@ -3855,58 +4645,50 @@
           "amplitude": 90.41455985978246,
           "phase": 2.0357430544237833,
           "parameters": {
-            "curl": 0.3986728778947145,
-            "crestPosition": -0.13007028859108685,
-            "shoulderWidth": 0.3558580951928161,
-            "shoulderLift": 0.22395510259084403,
-            "overhang": 0.24599260853370652,
-            "lipDrop": 0.5028150132414885,
-            "hollow": 0.25023672471288594,
-            "lipRatio": 0.03852037606039084,
-            "flowBundles": 6,
-            "flowSpread": 1.116113278567791,
-            "foamClusters": 9,
-            "foamScale": 1.079133732500486,
-            "sprayCount": 28,
-            "lipThickness": 3.482802847133539
+            "curl": 0.17809745639096947,
+            "crestPosition": -0.06416353984968737,
+            "shoulderWidth": 0.3458580951928161,
+            "shoulderLift": 0.06930340172722935,
+            "overhang": 0.04033086951123551,
+            "lipDrop": 0.16661882976070047,
+            "flowLines": 2,
+            "flowSpread": 1.0915360481245444,
+            "foamMarks": 2,
+            "foamScale": 1.096356198657304
           }
         },
         {
           "shape": "breaker",
-          "length": 899.6337844338268,
-          "amplitude": 312.07561580464244,
+          "length": 972.1051361318678,
+          "amplitude": 189.4458898168523,
           "phase": 5.704327987860187,
           "parameters": {
-            "curl": 0.9717192664463072,
-            "crestPosition": -0.11984520684927702,
-            "shoulderWidth": 0.3360887181432918,
-            "shoulderLift": 0.182115904642269,
-            "overhang": 0.2881176725542173,
-            "lipDrop": 0.3497983755334281,
-            "hollow": 0.31843181685544547,
-            "lipRatio": 0.026456270625349134,
-            "flowBundles": 9,
-            "flowSpread": 0.8907002318650484,
-            "foamClusters": 5,
-            "foamScale": 0.9246736449305899,
-            "sprayCount": 23,
-            "lipThickness": 8.256356947300103
+            "curl": 0.2977794236363843,
+            "crestPosition": -0.04946498484583572,
+            "shoulderWidth": 0.32608871814329177,
+            "shoulderLift": 0.04141060309484601,
+            "overhang": 0.054372557518072434,
+            "lipDrop": 0.09461100025102497,
+            "flowLines": 3,
+            "flowSpread": 0.8786400698591024,
+            "foamMarks": 4,
+            "foamScale": 0.8850314673734829
           }
         }
       ],
       "boats": [
         {
           "kind": "fishing",
-          "x": 688.7476496649906,
-          "y": 385.26862269630385,
-          "angle": -0.024141385044297036,
+          "x": 1981.7443008546365,
+          "y": 385.2687097211671,
+          "angle": -0.024097763761142855,
           "length": 76.54558424601396,
           "depth": 0.23427143979817627
         },
         {
           "kind": "sampan",
-          "x": 916.8288048356771,
-          "y": 388.28500566733396,
+          "x": 2209.867302720131,
+          "y": 388.2939467405413,
           "angle": 0.18,
           "length": 60.60804108600064,
           "depth": 0.3316030209697783
@@ -3916,24 +4698,44 @@
     {
       "seed": "seascape-review-42",
       "filename": "seascape-review-42.svg",
-      "sha256": "66e0e43782f0a7594e8ab04eebf796d94a21c8155c0525dfb8230ba3da8df36c",
-      "pngSha256": "3fd59d2d932c8b1c078f8310925ac321aef6a50a5574de64249c97120d49e336",
-      "inkFraction": 0.0311987270155587,
+      "overrides": {},
+      "sha256": "c9bf98b0e0e4a53772b0b1deb1d9ea76db042162df677089825f66e1565d1c70",
+      "pngSha256": "26a24bc567fa26aa5b7605ea9f22f16e11888c6f9b6f0cf160baa513a6567896",
+      "cropPngSha256": "2003951850d9c5a08ddba89fa42958b22f98033c4ce96ee14622cf8dc17b0063",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02868125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 83,
-        "top": 233,
-        "right": 1353,
-        "bottom": 839
+        "left": 48,
+        "top": 194,
+        "right": 3151,
+        "bottom": 713
       },
-      "generationMs": 40.21,
-      "svgBytes": 586260,
-      "paths": 520,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.027728779840848806,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 58,
+        "bounds": {
+          "left": 0,
+          "top": 194,
+          "right": 1130,
+          "bottom": 690
+        }
+      },
+      "generationMs": 298.17,
+      "svgBytes": 1438408,
+      "paths": 1136,
       "regime": "rolling swell",
       "roughness": 1.4126575241796673,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 262.91830026661046,
         "regime": "rolling swell",
         "roughness": 1.4126575241796673,
@@ -3975,59 +4777,79 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 88.14650865271688,
       "waveShapes": {
-        "swell": 63,
-        "chop": 20,
-        "ripple": 21
+        "ripple": 59,
+        "chop": 61,
+        "swell": 178
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "sail",
-          "x": 1204.5787451993674,
-          "y": 321.6047644788609,
-          "angle": -0.007791714797411719,
-          "length": 100.09868545423875,
-          "depth": 0.19923301057890058
+          "x": 1738.7519805301247,
+          "y": 325.9024194172289,
+          "angle": 0.00893597963774395,
+          "length": 96.01233351976515,
+          "depth": 0.17195510222110896
         },
         {
-          "kind": "cutter",
-          "x": 951.3830239586532,
-          "y": 352.84494791239115,
-          "angle": -0.18,
-          "length": 63.21275361491541,
-          "depth": 0.275919935000129
+          "kind": "fishing",
+          "x": 2371.2293058422974,
+          "y": 363.0731429363104,
+          "angle": -0.02174308592746904,
+          "length": 64.1131536634563,
+          "depth": 0.23219773542601613
         },
         {
-          "kind": "lugger",
-          "x": 493.5648344475776,
-          "y": 509.54743501532243,
+          "kind": "skiff",
+          "x": 1837.0826876058989,
+          "y": 462.0504975922996,
           "angle": -0.18,
-          "length": 152.47428361093625,
-          "depth": 0.5190876083169133
+          "length": 136.24180659186095,
+          "depth": 0.46820562531705945
         }
       ]
     },
     {
       "seed": "seascape-review-43",
       "filename": "seascape-review-43.svg",
-      "sha256": "191ff5bdfc82f2becf308b779a933a333ebf61ebccdd97f21e949c97ba433500",
-      "pngSha256": "ff5075c9489f7dfe8db3cb2be38054944d6e9851d2ca994bcc5f0f44cda22160",
-      "inkFraction": 0.02454101838755304,
+      "overrides": {},
+      "sha256": "69c7ad8dc774b18a16d6cb3605d3cea636edef51f542573828c00b18393f3813",
+      "pngSha256": "65296bb26d9e02b74effc97cca194e592bbe384c8862873e9f0e470dcc088653",
+      "cropPngSha256": "e67530f35922b2cbcfb22d9bf2764e9dc09ca4a625958df226743c3caae0243c",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02364140625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 61,
-        "top": 267,
-        "right": 1347,
-        "bottom": 822
+        "left": 48,
+        "top": 213,
+        "right": 3151,
+        "bottom": 670
       },
-      "generationMs": 28.34,
-      "svgBytes": 493382,
-      "paths": 439,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023931255526083113,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 89,
+        "bounds": {
+          "left": 0,
+          "top": 214,
+          "right": 1130,
+          "bottom": 670
+        }
+      },
+      "generationMs": 214.35,
+      "svgBytes": 1148003,
+      "paths": 916,
       "regime": "calm",
       "roughness": 0.29667363395914437,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 268.0112923588604,
         "regime": "calm",
         "roughness": 0.29667363395914437,
@@ -4069,58 +4891,78 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 16.539993785321712,
       "waveShapes": {
-        "ripple": 71,
-        "swell": 20
+        "swell": 58,
+        "ripple": 183
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "cutter",
-          "x": 297.73086589667946,
-          "y": 344.26194793026747,
-          "angle": 0.00132804013270182,
+          "x": 2337.2956990329258,
+          "y": 328.7277511216451,
+          "angle": 0.17359156154420258,
+          "length": 48.29443869316752,
+          "depth": 0.18828214427456258
+        },
+        {
+          "kind": "cutter",
+          "x": 1590.6557761307743,
+          "y": 344.256509845328,
+          "angle": 0.001733117053056199,
           "length": 84.22586647392052,
           "depth": 0.21441277315840124
         },
         {
-          "kind": "sail",
-          "x": 489.480066630058,
-          "y": 507.1727678243096,
-          "angle": 0.07656821408064175,
-          "length": 112.63044657026394,
-          "depth": 0.5158260286040603
-        },
-        {
-          "kind": "skiff",
-          "x": 987.9741648212075,
-          "y": 550.7379493451224,
-          "angle": 0.034744840686592254,
-          "length": 155.17095013475046,
-          "depth": 0.5772129737585783
+          "kind": "fishing",
+          "x": 1582.1339924274791,
+          "y": 453.2357474056877,
+          "angle": -0.10732450223356109,
+          "length": 111.33512518880889,
+          "depth": 0.4302028578799218
         }
       ]
     },
     {
       "seed": "seascape-review-44",
       "filename": "seascape-review-44.svg",
-      "sha256": "979028b1a93bc0ec3838bc6b5d6a93cc0eb258a572f6d67470f6b3b79ade4a98",
-      "pngSha256": "a3294368832116f4e575f8569886132a8b064f2f844eef037d2728be2ca88845",
-      "inkFraction": 0.02977864214992928,
+      "overrides": {},
+      "sha256": "3b34ee5a09db0b7fe1207c3a0f504859471bda6f185a9187a1692eac79230aba",
+      "pngSha256": "8939ef7a7cf7561fd8b64535c31922022f976bd3ab2f2756c767b2d39ba40c89",
+      "cropPngSha256": "451b0d2c0323a2fd3c9129995eeee2abe6d1469714e21a094311eefc94293da3",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.029726953125,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 65,
-        "top": 299,
-        "right": 1353,
-        "bottom": 863
+        "left": 67,
+        "top": 239,
+        "right": 3146,
+        "bottom": 693
       },
-      "generationMs": 32.93,
-      "svgBytes": 577005,
-      "paths": 511,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.03514367816091954,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 87,
+        "bounds": {
+          "left": 0,
+          "top": 239,
+          "right": 1130,
+          "bottom": 689
+        }
+      },
+      "generationMs": 305.5,
+      "svgBytes": 1491126,
+      "paths": 1183,
       "regime": "rolling swell",
       "roughness": 1.107324846740812,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 305.8587276074104,
         "regime": "rolling swell",
         "roughness": 1.107324846740812,
@@ -4162,59 +5004,79 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 121.5644121170044,
       "waveShapes": {
-        "swell": 65,
-        "chop": 19,
-        "ripple": 17
+        "swell": 197,
+        "chop": 44,
+        "ripple": 64
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 671.9632958155125,
-          "y": 358.8492014425653,
-          "angle": 0.18,
-          "length": 75.46781280360346,
-          "depth": 0.19523798329755665
-        },
-        {
-          "kind": "skiff",
-          "x": 511.43860476464033,
-          "y": 387.0403243132829,
-          "angle": -0.18,
-          "length": 57.15978399938857,
-          "depth": 0.2434377584327012
-        },
-        {
           "kind": "sail",
-          "x": 981.9746827436612,
-          "y": 601.8106563700306,
-          "angle": 0.04022553170861854,
-          "length": 150.65593276917934,
-          "depth": 0.644475090019405
+          "x": 2049.186146585259,
+          "y": 470.71351982690703,
+          "angle": -0.18,
+          "length": 74.53911160920134,
+          "depth": 0.38395568814128633
+        },
+        {
+          "kind": "lugger",
+          "x": 1817.5968725904706,
+          "y": 448.4409733068008,
+          "angle": 0.05157920232947072,
+          "length": 129.5727799798516,
+          "depth": 0.38695222207345065
+        },
+        {
+          "kind": "sampan",
+          "x": 2244.4590706676127,
+          "y": 507.27188862447935,
+          "angle": 0.02405870504138198,
+          "length": 115.06399008445442,
+          "depth": 0.496405561901629
         }
       ]
     },
     {
       "seed": "seascape-review-45",
       "filename": "seascape-review-45.svg",
-      "sha256": "188e7a2a8ca2b171fa8a95cc660e5f4fbe80fcd965cd216d370e0f1f590916de",
-      "pngSha256": "add158a8d301a29bb4072952e79bde88211d621100d5dfa7d76f8ff5a1dc2c32",
-      "inkFraction": 0.029032531824611033,
+      "overrides": {},
+      "sha256": "121e31a3ca4dca2efc036bb398c0640e218d93cf92f0dc555d48631d84189745",
+      "pngSha256": "1ccdb985ea739d84c636b4adf0e38b22d892ef8917d05f82b9cd51662481f3ad",
+      "cropPngSha256": "892390d2ef149acd79b5acc3193d4f9ca2c2f710be1f7154568cf21fdf160cb2",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02957421875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 291,
-        "right": 1353,
-        "bottom": 842
+        "left": 53,
+        "top": 231,
+        "right": 3151,
+        "bottom": 675
       },
-      "generationMs": 32.83,
-      "svgBytes": 584091,
-      "paths": 521,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.03411472148541114,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 91,
+        "bounds": {
+          "left": 0,
+          "top": 232,
+          "right": 1130,
+          "bottom": 675
+        }
+      },
+      "generationMs": 266.64,
+      "svgBytes": 1442114,
+      "paths": 1137,
       "regime": "wind sea",
       "roughness": 0.7770798666402697,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 294.48042657924816,
         "regime": "wind sea",
         "roughness": 0.7770798666402697,
@@ -4256,59 +5118,79 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 45.06507684011012,
       "waveShapes": {
-        "chop": 70,
-        "shoulder": 13,
-        "ripple": 21
+        "shoulder": 47,
+        "chop": 192,
+        "ripple": 60
       },
       "breakingWaves": [],
       "boats": [
         {
-          "kind": "fishing",
-          "x": 1136.1849522478878,
-          "y": 325.3578639821295,
-          "angle": -0.18,
-          "length": 63.452070415290514,
-          "depth": 0.11484399999957531
-        },
-        {
           "kind": "sampan",
-          "x": 328.8233668310568,
-          "y": 484.16877044417555,
-          "angle": 0.1305507359929038,
+          "x": 1621.7452582244528,
+          "y": 484.13882058727995,
+          "angle": 0.1305056213727775,
           "length": 113.62643520580605,
           "depth": 0.45343240326736123
         },
         {
           "kind": "lugger",
-          "x": 683.5853333974568,
-          "y": 521.4055784859396,
-          "angle": -0.11445698889658804,
+          "x": 1976.5804973319202,
+          "y": 521.4079882766076,
+          "angle": -0.11441750754970906,
           "length": 139.15043913901252,
           "depth": 0.49623779959045344
+        },
+        {
+          "kind": "sampan",
+          "x": 2475.2541843324116,
+          "y": 554.797105263713,
+          "angle": -0.09758834103041021,
+          "length": 120.21035952756579,
+          "depth": 0.5490943372342736
         }
       ]
     },
     {
       "seed": "seascape-review-46",
       "filename": "seascape-review-46.svg",
-      "sha256": "99f5c891ce2cf4247fad06372804129a3a4823817fddb4f2c637c2f7351e97d6",
-      "pngSha256": "799474dfc07ec6c928b6a5b5913992067b1a6c591c79ef70ed3e00acdde4f480",
-      "inkFraction": 0.025354314002828855,
+      "overrides": {},
+      "sha256": "261de7d543df0e3e4d5f89fff00deb576fc9b4738fea08374070f30359a29fb8",
+      "pngSha256": "4f560b7148c72becfad1782086c259545cf413f6af33d2f710bd3603353fa3ab",
+      "cropPngSha256": "3ee6b435e6abf51a6e2727bae8550befd33fa13d28df4f43e30cc4344159c7fb",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0251890625,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 334,
-        "right": 1353,
-        "bottom": 842
+        "left": 48,
+        "top": 266,
+        "right": 3151,
+        "bottom": 676
       },
-      "generationMs": 27.59,
-      "svgBytes": 508602,
-      "paths": 411,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.023282493368700266,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 53,
+        "bounds": {
+          "left": 0,
+          "top": 268,
+          "right": 1130,
+          "bottom": 672
+        }
+      },
+      "generationMs": 263.72,
+      "svgBytes": 1180457,
+      "paths": 892,
       "regime": "calm",
       "roughness": 0.24609239587560294,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 334.5061299938243,
         "regime": "calm",
         "roughness": 0.24609239587560294,
@@ -4350,16 +5232,16 @@
       "requestedBoats": 1,
       "maximumWaveHeight": 20.948114561848342,
       "waveShapes": {
-        "ripple": 73,
-        "swell": 19
+        "swell": 64,
+        "ripple": 190
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "skiff",
-          "x": 698.8881986625493,
-          "y": 537.0474096221604,
-          "angle": -0.05057577975256571,
+          "x": 1991.8867103674088,
+          "y": 537.047499246313,
+          "angle": -0.0505757394646709,
           "length": 110.81185938138515,
           "depth": 0.49423600525595246
         }
@@ -4368,24 +5250,44 @@
     {
       "seed": "seascape-review-47",
       "filename": "seascape-review-47.svg",
-      "sha256": "2c48d6e9a8480505cffe6001ecd7885a51757d9bfc3859688a344d78bf00e6fb",
-      "pngSha256": "6419a9db5a4a4791e1e24494d749d42982e078fad7f3e2e754b8a52bc16cdf5a",
-      "inkFraction": 0.028338755304101838,
+      "overrides": {},
+      "sha256": "eae4ada92dc3dc1693b253413062366c420f13065baf10bde59cccff46e8e935",
+      "pngSha256": "71e4fd900c4714de2d35a54cd808a34436cdfe09fce49aaeed543fca5a667123",
+      "cropPngSha256": "fef11822eb44949c077ca6fcefd9704decaa18fe408ee6b8b2c48d0ad5308b73",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.029054296875,
       "edgeInk": 0,
+      "horizontalEdgeInk": 0,
       "bounds": {
-        "left": 60,
-        "top": 336,
-        "right": 1341,
-        "bottom": 854
+        "left": 48,
+        "top": 270,
+        "right": 3133,
+        "bottom": 700
       },
-      "generationMs": 37.84,
-      "svgBytes": 553484,
-      "paths": 499,
+      "crop": {
+        "width": 1131,
+        "height": 800,
+        "inkFraction": 0.02998452696728559,
+        "edgeInk": 0,
+        "horizontalEdgeInk": 104,
+        "bounds": {
+          "left": 0,
+          "top": 273,
+          "right": 1130,
+          "bottom": 688
+        }
+      },
+      "generationMs": 273.62,
+      "svgBytes": 1455135,
+      "paths": 1141,
       "regime": "wind sea",
       "roughness": 0.9666794242453762,
       "parameters": {
-        "width": 1414,
+        "width": 4000,
         "height": 1000,
+        "printWidth": 1414.213562373095,
+        "outputScale": 0.8,
         "horizon": 343.81154232425615,
         "regime": "wind sea",
         "roughness": 0.9666794242453762,
@@ -4427,35 +5329,35 @@
       "requestedBoats": 3,
       "maximumWaveHeight": 46.59424228826538,
       "waveShapes": {
-        "shoulder": 12,
-        "chop": 65,
-        "ripple": 20
+        "chop": 189,
+        "shoulder": 56,
+        "ripple": 59
       },
       "breakingWaves": [],
       "boats": [
         {
           "kind": "sail",
-          "x": 712.7450510249473,
-          "y": 378.6836313563728,
-          "angle": -0.0026364841148435463,
+          "x": 2005.7462376078588,
+          "y": 378.6840952952744,
+          "angle": -0.002653254722411954,
           "length": 44.636418199720566,
           "depth": 0.12315160660073161
         },
         {
-          "kind": "cutter",
-          "x": 417.2938982951455,
-          "y": 492.522852000573,
-          "angle": 0.15904276094810565,
-          "length": 110.96262675663456,
-          "depth": 0.43048950742930175
+          "kind": "skiff",
+          "x": 2174.399506516232,
+          "y": 405.8578889390886,
+          "angle": 0.18,
+          "length": 53.61751290641448,
+          "depth": 0.20064097473397852
         },
         {
           "kind": "cutter",
-          "x": 1055.024131399269,
-          "y": 508.7311914173006,
-          "angle": 0.021345857330137885,
-          "length": 135.65732134953078,
-          "depth": 0.45957983492873605
+          "x": 1710.2340623932305,
+          "y": 492.4933282130645,
+          "angle": 0.15842387120524076,
+          "length": 110.96262675663456,
+          "depth": 0.43048950742930175
         }
       ]
     }

@@ -9,14 +9,16 @@ export async function reviewArt({ mode, generate, parameters, describe = () => '
   const args = process.argv.slice(2);
   const option = (key, fallback) => { const i = args.indexOf(key); return i < 0 ? fallback : args[i + 1]; };
   const count = Number(option('--count', 48)), start = Number(option('--start', 0));
+  const digits = Number(option('--digits', 2));
+  if (!Number.isInteger(digits) || digits < 1 || digits > 8) throw Error('Invalid seed padding');
   if (![count, start].every(Number.isInteger) || count < 1 || count > 512 || start < 0) throw Error('Invalid sample range');
   const output = resolve(option('--out', `.artifacts/review/${mode}`)), raster = args.includes('--raster');
   const rasterWidth = Number(option('--width', 1200));
   if (!Number.isInteger(rasterWidth) || rasterWidth < 300 || rasterWidth > 3200) throw Error('Invalid raster width');
-  const prefix = option('--prefix', `${mode}-review`), records = [], panels = [];
+  const prefix = option('--prefix', `${mode}-review`), records = [], panels = [], cropPanels = [];
   const cols = 6, cw = 360, ch = 350, height = Math.ceil(count / cols) * ch;
   await mkdir(output, { recursive: true });
-  let canvas, render, grid, ctx;
+  let canvas, render, grid, ctx, cropGrid, cropContext;
   if (raster) {
     canvas = await import('canvas');
     const { Path2D, applyPath2DToCanvasRenderingContext } = await import('path2d');
@@ -35,19 +37,25 @@ export async function reviewArt({ mode, generate, parameters, describe = () => '
   }
   const hash = bytes => createHash('sha256').update(bytes).digest('hex');
   for (let i = 0; i < count; i++) {
-    const number = start + i, seed = `${prefix}-${String(number).padStart(2, '0')}`;
+    const number = start + i, seed = `${prefix}-${String(number).padStart(digits, '0')}`;
     const begun = performance.now(), painting = await generate(seed);
     const generationMs = performance.now() - begun;
     const label = String(await describe(painting, seed));
     if (!painting.svg || /NaN|Infinity|<image|<script|<foreignObject/.test(painting.svg)) throw Error(`${seed}: invalid vector geometry`);
     const paths = [...painting.svg.matchAll(/<path\b([^>]+)>/g)];
     if (!paths.length) throw Error(`${seed}: empty drawing`);
-    const svg = artworkSvg(painting, true);
+    const panoramic = painting.previewWidth > painting.width;
+    const svg = artworkSvg(painting, true, true);
     await writeFile(resolve(output, `${seed}.svg`), svg);
     const x = i % cols * cw, y = Math.floor(i / cols) * ch;
     const uri = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
     const safeLabel = label.replaceAll('&', '&amp;').replaceAll('<', '&lt;');
     panels.push(`<image x="${x + 8}" y="${y + 8}" width="${cw - 16}" height="${ch - 58}" href="${uri}"/><text x="${x + 12}" y="${y + ch - 29}" font-family="sans-serif" font-size="12">${seed}</text><text x="${x + 12}" y="${y + ch - 11}" font-family="sans-serif" font-size="11">${safeLabel}</text>`);
+    if (panoramic) {
+      const cropSvg = artworkSvg(painting, true);
+      await writeFile(resolve(output, `${seed}-crop.svg`), cropSvg);
+      cropPanels.push(`<image x="${x + 8}" y="${y + 8}" width="${cw - 16}" height="${ch - 58}" href="data:image/svg+xml;base64,${Buffer.from(cropSvg).toString('base64')}"/><text x="${x + 12}" y="${y + ch - 29}" font-family="sans-serif" font-size="12">${seed}</text>`);
+    }
     let pixels;
     if (raster) {
       const { preview } = await render(painting, { width: rasterWidth, measure: false, background: '#f5f2eb' });
@@ -72,6 +80,32 @@ export async function reviewArt({ mode, generate, parameters, describe = () => '
       ctx.fillStyle = '#30302e'; ctx.font = '12px sans-serif'; ctx.fillText(seed, x + 12, y + ch - 29);
       ctx.font = '11px sans-serif'; ctx.fillText(label, x + 12, y + ch - 11, cw - 24);
       if (examples.includes(number)) await writeFile(resolve(output, `${mode}-example-${String(number).padStart(2, '0')}.jpg`), specimen.toBuffer('image/jpeg', { quality: .94 }));
+      if (panoramic) {
+        if (!cropGrid) {
+          cropGrid = canvas.createCanvas(cols * cw, height); cropContext = cropGrid.getContext('2d');
+          cropContext.fillStyle = '#f5f2eb'; cropContext.fillRect(0, 0, cropGrid.width, cropGrid.height);
+        }
+        const cropped = await render(painting, { crop: true, width: rasterWidth, measure: false, background: '#f5f2eb' });
+        const cropBytes = Buffer.from(await cropped.preview.arrayBuffer());
+        await writeFile(resolve(output, `${seed}-crop.png`), cropBytes);
+        const cropImage = await canvas.loadImage(cropBytes), cropSpecimen = canvas.createCanvas(cropImage.width, cropImage.height);
+        const cc = cropSpecimen.getContext('2d'); cc.drawImage(cropImage, 0, 0);
+        const cropData = cc.getImageData(0, 0, cropImage.width, cropImage.height).data;
+        let cropInk = 0, verticalEdgeInk = 0;
+        for (let j = 0; j < cropData.length; j += 4) {
+          if (Math.abs(cropData[j] - 245) + Math.abs(cropData[j + 1] - 242) + Math.abs(cropData[j + 2] - 235) < 35) continue;
+          cropInk++;
+          const py = Math.floor(j / 4 / cropImage.width);
+          if (py < 2 || py >= cropImage.height - 2) verticalEdgeInk++;
+        }
+        const cropFraction = cropInk / (cropImage.width * cropImage.height);
+        if (cropFraction < .0001 || cropFraction > .9 || verticalEdgeInk) throw Error(`${seed}: blank, saturated or vertically clipped central crop`);
+        pixels.crop = { pngSha256: hash(cropBytes), width: cropImage.width, height: cropImage.height, inkFraction: cropFraction, verticalEdgeInk };
+        const cropScale = Math.min((cw - 16) / cropImage.width, (ch - 58) / cropImage.height);
+        cropContext.drawImage(cropImage, x + (cw - cropImage.width * cropScale) / 2, y + 8, cropImage.width * cropScale, cropImage.height * cropScale);
+        cropContext.fillStyle = '#30302e'; cropContext.font = '12px sans-serif'; cropContext.fillText(seed, x + 12, y + ch - 29);
+        if (examples.includes(number)) await writeFile(resolve(output, `${mode}-crop-example-${String(number).padStart(2, '0')}.jpg`), cropSpecimen.toBuffer('image/jpeg', { quality: .94 }));
+      }
     }
     records.push({ seed, sha256: hash(painting.svg), generationMs, svgBytes: Buffer.byteLength(painting.svg), paths: paths.length,
       label, parameters: parameters ? await parameters(seed) : painting.parameters,
@@ -88,6 +122,11 @@ export async function reviewArt({ mode, generate, parameters, describe = () => '
   if (raster) {
     await writeFile(resolve(output, 'contact-sheet.png'), grid.toBuffer('image/png'));
     await writeFile(resolve(output, `${mode}-contact.jpg`), grid.toBuffer('image/jpeg', { quality: .93 }));
+  }
+  if (cropPanels.length) {
+    await writeFile(resolve(output, 'crop-contact-sheet.svg'), `<svg xmlns="http://www.w3.org/2000/svg" width="${cw * cols}" height="${height}"><rect width="100%" height="100%" fill="#f5f2eb"/>${cropPanels.join('')}</svg>`);
+    if (cropGrid) await writeFile(resolve(output, `${mode}-crop-contact.jpg`), cropGrid.toBuffer('image/jpeg', { quality: .93 }));
+    if (raster && new Set(records.map(record => record.crop.pngSha256)).size !== count) throw Error('Duplicate central crops in review batch');
   }
   console.log(JSON.stringify({ output, ...report, records: undefined }, null, 2));
   return report;

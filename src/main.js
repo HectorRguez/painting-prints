@@ -37,7 +37,7 @@ const paintingAuthor = document.querySelector('#painting-author');
 const coarsePointer = matchMedia('(pointer: coarse)');
 const phoneLayout = matchMedia('(max-width: 720px)');
 const mobile = () => isMobileDevice(navigator, coarsePointer.matches);
-const useLandscapeCrop = mode => mode === 'landscapes' && (mobile() || phoneLayout.matches);
+const useLandscapeCrop = mode => projects[mode].panoramic && (mobile() || phoneLayout.matches);
 let storage;
 try { storage = localStorage; } catch { /* Preferences still work for this visit. */ }
 const exportSettings = loadSettings(storage, mobile());
@@ -57,6 +57,7 @@ let restoreSettingsFocus = false;
 function updateSelectedPage() {
   const project = projects[mode];
   stylePicker.value = mode;
+  paintingAuthor.closest('.credit').hidden = !project.showCredit;
   document.querySelector('#painting-author-name').textContent = project.author;
   const publication = document.querySelector('#painting-date');
   publication.dateTime = project.published;
@@ -82,7 +83,12 @@ function updateExportButton() {
   document.querySelector('#download-label').textContent = 'Download';
   download.title = file ? `Download ${file.name}` : '';
 }
-coarsePointer.addEventListener('change', updateExportButton);
+coarsePointer.addEventListener('change', () => {
+  updateExportButton();
+  if (busy) return;
+  if (projects[mode].panoramic) void showPage(mode, paintings.get(mode)?.seed);
+  else void prepareCurrentExport();
+});
 
 function setBusy(value, message = '') {
   busy = value;
@@ -137,10 +143,9 @@ function syncPaintingUrl(entry, action = 'replace') {
 
 function updateArtworkFrame(mode) {
   const frame = artwork.parentElement;
-  frame.className = `artwork-frame ${mode}${useLandscapeCrop(mode) ? ' landscape-crop' : ''}`;
-  // New generators use their declared page ratio. Legacy styles keep their
-  // specific CSS framing, including the panoramic landscape preview.
-  if (projects[mode].bundled === false) frame.style.setProperty('--ratio', projects[mode].ratio);
+  frame.className = `artwork-frame ${mode}${projects[mode].panoramic ? ' panoramic' : ''}${useLandscapeCrop(mode) ? ' landscape-crop' : ''}`;
+  // Panoramic styles share the original landscape framing and central crop.
+  if (!projects[mode].panoramic) frame.style.setProperty('--ratio', projects[mode].ratio);
   else frame.style.removeProperty('--ratio');
 }
 
@@ -318,7 +323,7 @@ window.addEventListener('popstate', () => {
   if (nextMode) void showPage(nextMode, seedFromSearch(location.search));
 });
 phoneLayout.addEventListener('change', () => {
-  if (!busy && mode === 'landscapes') void showPage(mode, paintings.get(mode)?.seed);
+  if (!busy && projects[mode].panoramic) void showPage(mode, paintings.get(mode)?.seed);
 });
 
 download.addEventListener('click', async () => {

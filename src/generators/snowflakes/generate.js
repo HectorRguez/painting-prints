@@ -119,6 +119,14 @@ function growthRidges(crystal) {
     const length = lengths[q];
     if (length < 4 || q - previous < 4) continue;
     if (length < Math.max(...lengths.slice(q - 2, q + 3))) continue;
+    // A ridge belongs to a narrow branch, not the broad solid plate between
+    // arms. Measure the branch's transverse width halfway along its ray;
+    // otherwise symmetric rays through plates resemble nested hexagon grids.
+    const middle = Math.floor(length / 2);
+    let left = 1, right = 1;
+    while (left <= length && solid(q - left, middle)) left++;
+    while (right <= length && solid(q + right, middle)) right++;
+    if (left + right - 1 > length * .5) continue;
     previous = q;
     const r = Math.max(1, length - .6);
     for (const sign of [-1, 1]) arms.push([[q * root3, 0], [(q + r / 2) * root3, sign * r * 1.5]]);
@@ -141,20 +149,13 @@ export function snowflakeGeometry(seed) {
   const tolerance = crystal.parameters.habit === 'sectored plate' ? 1.2 : .7;
   const paths = simplifyContours(outline, tolerance).map(points => ({ points: place(points), closed: true, width: 1.7, stroke: '#282c30', role: 'outline' }));
   for (const points of growthRidges(crystal)) paths.push({ points: place(points), closed: false, width: .9, stroke: '#626970', role: 'ridge' });
-  // Growth boundaries are a restrained illustration of the two changes in
-  // conditions. No independent polygons are stamped into the crystal.
-  for (const time of crystal.phaseTimes) {
-    for (const points of simplifyContours(crystalContours(crystal, time).filter(points => points.length > 24), tolerance)) {
-      paths.push({ points: place(points), closed: true, width: .6, stroke: '#93999d', role: 'growth boundary' });
-    }
-  }
   return { crystal, paths };
 }
 
 export function generateSnowflake(seed) {
   const { crystal, paths } = snowflakeGeometry(seed);
   return { ...drawing(paths.map(path => ({ d: line(path.points, path.closed), width: path.width, stroke: path.stroke })), { rounded: true }),
-    mode: 'snowflakes', seed, artRevision: 1,
+    mode: 'snowflakes', seed, artRevision: 2,
     snowflake: { habit: crystal.parameters.habit, steps: crystal.steps, radius: crystal.radius,
       parameters: crystal.parameters, contours: paths.filter(path => path.role === 'outline').length } };
 }

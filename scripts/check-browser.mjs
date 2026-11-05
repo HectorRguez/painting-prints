@@ -7,8 +7,9 @@ import { resolve, extname, sep } from 'node:path';
 import { chromium } from 'playwright';
 import { projects, pageModes } from '../src/projects.js';
 
+const external = process.argv.find(argument => argument.startsWith('--url='))?.slice(6);
 const root = resolve('dist');
-const output = resolve('.artifacts/browser');
+const output = resolve(external ? '.artifacts/deployment' : '.artifacts/browser');
 await mkdir(output, { recursive: true });
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css',
   '.png': 'image/png', '.svg': 'image/svg+xml', '.wasm': 'application/wasm',
@@ -23,8 +24,10 @@ const server = createServer(async (request, response) => {
     response.end(await readFile(path));
   } catch { response.writeHead(404).end(); }
 });
-await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-const base = `http://127.0.0.1:${server.address().port}`;
+if (!external) await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const base = external ? external.replace(/\/$/, '') : `http://127.0.0.1:${server.address().port}`;
+const basePath = new URL(base + '/').pathname;
+const cacheName = `painting-cache-v1:${basePath}`;
 let browser;
 const results = [];
 
@@ -44,20 +47,28 @@ async function assertArtworkFits(page, mode, label) {
     const image = art.querySelector('img');
     return { width: bounds.width, height: bounds.height, viewportWidth: viewport.width,
       viewportHeight: viewport.height, naturalRatio: image.naturalWidth / image.naturalHeight,
+      panoramic: art.parentElement.classList.contains('panoramic'),
+      cropped: art.parentElement.classList.contains('landscape-crop'),
       inside: bounds.left >= viewport.left - 1 && bounds.right <= viewport.right + 1
         && bounds.top >= viewport.top - 1 && bounds.bottom <= viewport.bottom + 1 };
   });
   assert.ok(layout.width > 0 && layout.height > 0, `${label}: artwork must have visible dimensions`);
-  assert.ok(layout.width <= layout.viewportWidth + 1 && layout.height <= layout.viewportHeight + 1
-    && layout.inside, `${label}: the complete new artwork must fit in the viewport`);
+  const wide = projects[mode].panoramic && !layout.cropped;
+  if (wide) {
+    assert.ok(layout.panoramic && layout.width >= layout.viewportWidth - 1, `${label}: panorama spans the viewport`);
+    assert.ok(layout.height <= layout.viewportHeight + 1, `${label}: panorama keeps its vertical margin`);
+  } else {
+    assert.ok(layout.width <= layout.viewportWidth + 1 && layout.height <= layout.viewportHeight + 1
+      && layout.inside, `${label}: the complete print composition fits in the viewport`);
+  }
   const ratio = layout.width / layout.height;
-  assert.ok(Math.abs(ratio - projects[mode].ratio) < .002, `${label}: preserve the generator's page ratio`);
+  assert.ok(Math.abs(ratio - (wide ? 4 : projects[mode].ratio)) < .002, `${label}: preserve the generator's page ratio`);
   assert.ok(Math.abs(ratio - layout.naturalRatio) < .002, `${label}: do not distort the preview image`);
 }
 async function waitForSaved(page, mode, seed, artRevision = projects[mode].artRevision) {
-  await page.waitForFunction(async ({ mode, seed, artRevision }) => {
+  await page.waitForFunction(async ({ mode, seed, artRevision, cacheName }) => {
     return new Promise(resolve => {
-      const request = indexedDB.open('painting-cache-v1:/');
+      const request = indexedDB.open(cacheName);
       request.onerror = () => resolve(false);
       request.onsuccess = () => {
         const db = request.result;
@@ -71,12 +82,12 @@ async function waitForSaved(page, mode, seed, artRevision = projects[mode].artRe
         read.onerror = () => { db.close(); resolve(false); };
       };
     });
-  }, { mode, seed, artRevision }, { timeout: 10_000 });
+  }, { mode, seed, artRevision, cacheName }, { timeout: 10_000 });
 }
 
 async function retireSavedRevision(page, mode, seed) {
-  await page.evaluate(({ mode, seed }) => new Promise((resolve, reject) => {
-    const request = indexedDB.open('painting-cache-v1:/');
+  await page.evaluate(({ mode, seed, cacheName }) => new Promise((resolve, reject) => {
+    const request = indexedDB.open(cacheName);
     request.onerror = () => reject(request.error);
     request.onsuccess = () => {
       const db = request.result;
@@ -91,7 +102,7 @@ async function retireSavedRevision(page, mode, seed) {
       transaction.oncomplete = () => { db.close(); resolve(); };
       transaction.onerror = transaction.onabort = () => { db.close(); reject(transaction.error); };
     };
-  }), { mode, seed });
+  }), { mode, seed, cacheName });
 }
 async function download(page, mode, format, background) {
   await page.locator('#settings').click();
@@ -140,13 +151,14 @@ async function download(page, mode, format, background) {
   return { format, background, bytes: bytes.length };
 }
 try {
-  for (const mode of ['cityscapes', 'buildings']) {
-    for (const path of [mode, `generators/${mode}`, `cache/${mode}`]) {
+  for (const mode of ['cityscapes', 'buildings', 'folds', 'interference']) {
+    for (const path of external ? [] : [mode, `generators/${mode}`, `cache/${mode}`]) {
       await assert.rejects(stat(resolve(root, path)), { code: 'ENOENT' });
     }
     assert.equal((await fetch(`${base}/${mode}/`)).status, 404);
   }
-  const manifest = JSON.parse(await readFile(resolve(root, 'cache/manifest.json'), 'utf8'));
+  const manifest = external ? await (await fetch(`${base}/cache/manifest.json`)).json()
+    : JSON.parse(await readFile(resolve(root, 'cache/manifest.json'), 'utf8'));
   assert.deepEqual(Object.keys(manifest).sort(), ['flowers', 'landscapes']);
   browser = await chromium.launch();
   // Exercise the combined app in one session: the independent per-style checks
@@ -163,7 +175,9 @@ try {
     await ready(gallery);
     assert.equal(await gallery.locator('.modes [aria-current="page"]').count(), 1);
     assert.equal(await gallery.locator('#painting-style').inputValue(), mode);
-    assert.equal(new URL(gallery.url()).pathname, `/${mode}/`);
+    assert.equal(new URL(gallery.url()).pathname, `${basePath}${mode}/`);
+    assert.equal(await gallery.locator('.credit').isVisible(), Boolean(projects[mode].showCredit), `${mode}: only adapted engines show credits and dates`);
+    await assertArtworkFits(gallery, mode, `${mode} combined desktop navigation`);
     displayedSeeds[mode] = new URL(gallery.url()).searchParams.get('seed');
     const visibleTab = await gallery.locator(`[data-mode="${mode}"]`).evaluate(link => {
       const r = link.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth;
@@ -175,7 +189,7 @@ try {
   for (const mode of pageModes) {
     await gallery.selectOption('#painting-style', mode);
     await ready(gallery);
-    assert.equal(new URL(gallery.url()).pathname, `/${mode}/`);
+    assert.equal(new URL(gallery.url()).pathname, `${basePath}${mode}/`);
     assert.equal(new URL(gallery.url()).searchParams.get('seed'), displayedSeeds[mode]);
     await assertArtworkFits(gallery, mode, `${mode}: shared-session phone switch`);
   }
@@ -183,7 +197,7 @@ try {
   await gallery.screenshot({ path: resolve(output, 'gallery-phone.png') });
   await writeFile(resolve(output, 'navigation.json'), JSON.stringify({ modes: pageModes, seeds: displayedSeeds, desktop: 'passed', phone: 'passed', retiredRoutes: 'absent' }, null, 2));
   await navigation.close();
-  console.log('Combined gallery: all ten styles navigate on desktop/phone; retired routes/assets are absent');
+  console.log('Combined gallery: all eight styles navigate on desktop/phone; retired routes/assets are absent');
   for (const mode of pageModes.filter(mode => projects[mode].bundled === false)) {
     const seed = `browser-review-${mode}`;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
@@ -204,6 +218,17 @@ try {
     await page.screenshot({ path: resolve(output, `${mode}-desktop.png`) });
     await waitForSaved(page, mode, seed);
     const originalGenerations = generations;
+    if (projects[mode].panoramic) {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.waitForSelector('.artwork-frame.landscape-crop');
+      await ready(page);
+      await assertArtworkFits(page, mode, `${mode}: desktop resized to central crop`);
+      await page.setViewportSize({ width: 1440, height: 1000 });
+      await page.waitForSelector('.artwork-frame.panoramic:not(.landscape-crop)');
+      await ready(page);
+      await assertArtworkFits(page, mode, `${mode}: restored full panorama`);
+      assert.equal(generations, originalGenerations, 'Changing preview crop must reuse the same source');
+    }
     await page.reload();
     await ready(page);
     assert.equal(generations, originalGenerations, 'Reload must reuse the cached drawing');
@@ -221,6 +246,15 @@ try {
     const exports = [];
     for (const [format, background] of [['png', false], ['png', true], ['svg', false], ['pdf', false]]) {
       exports.push(await download(page, mode, format, background));
+    }
+    if (projects[mode].panoramic) {
+      const originalSvg = await readFile(resolve(output, `${mode}-transparent.svg`), 'utf8');
+      const beforePan = await page.locator('#artwork').evaluate(art => art.style.transform);
+      await page.locator('#canvas-viewport').focus();
+      await page.keyboard.press('ArrowRight');
+      assert.notEqual(await page.locator('#artwork').evaluate(art => art.style.transform), beforePan, 'Wide scene must pan');
+      await download(page, mode, 'svg', false);
+      assert.equal(await readFile(resolve(output, `${mode}-transparent.svg`), 'utf8'), originalSvg, 'Panning must not change the fixed central export');
     }
     await page.locator('#regenerate').click();
     await ready(page);
@@ -265,5 +299,5 @@ try {
   throw error;
 } finally {
   try { await browser?.close(); }
-  finally { await new Promise(resolve => server.close(resolve)); }
+  finally { if (!external) await new Promise(resolve => server.close(resolve)); }
 }

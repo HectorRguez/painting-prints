@@ -1,68 +1,77 @@
 # Sea and Small Boats
 
-Seeded ink seascapes range from empty calm water to wind chop, rolling swells
-and large breaking waves. Revision 4 gives the large waves an asymmetric rising
-shoulder, pointed overhang, open concave face, tapered ink ribbons and thin
-forked foam. Longer neighboring swells connect the crest to the foreground,
-while a quieter distant gap leaves room for small working boats.
+Revision 5 draws a true **3200 × 800 panorama**, with a centered
+**800√2 × 800 print composition** matching Landscapes. Independently placed
+side swells extend the water field; the SVG is not a horizontally stretched
+version of a smaller scene. Boats and the main wave stay inside the print crop.
 
-The visual reference is Hokusai's
-[Under the Wave off Kanagawa](https://www.metmuseum.org/art/collection/search/45434).
-We interpret its sweeping water mass, hollow opening, flowing dark/light bands
-and irregular foam in this gallery's monochrome ink style. No reference image,
-traced outline or stored wave/boat symbol is used at runtime. See the
-[before/after comparison and reviewed galleries](../../../docs/seascapes-review.md).
+Large waves are deliberately simple: one broad shoulder, a short falling lip,
+an open face, two or three interior strokes and a few tiny broken foam marks.
+The previous dense ribbons, fine hatch field, branching foam and large hook
+are removed. Calm water, wind chop, rolling swells and empty seas remain.
+See the [review galleries and before/after](../../../docs/seascapes-review.md).
 
-## Water model and drawn geometry
+The earlier art reference,
+[Hokusai's Under the Wave off Kanagawa](https://www.metmuseum.org/art/collection/search/45434),
+now informs only the sweeping rise and short forward lip. The output is a
+restrained geometric interpretation in the gallery's ink style, without a
+traced outline, reference bitmap or stored boat symbol.
 
-The supporting sea sums three directional Gerstner components, following
+## Surface, projection and composition
+
+The supporting surface sums three directional Gerstner components, following
 Mark Finch's construction in
 [GPU Gems, chapter 1](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models).
 For each component, phase is `k*(dx*u + dz*distance) + phaseOffset`, horizontal
 motion is `lateral*dx*cos(phase)`, and height is `amplitude*sin(phase)`.
-The sum of `k*lateral` stays at or below 0.62, so the horizontal derivative
-remains positive. Six Newton steps invert screen x to its surface parameter;
-analytic tangents and the same field position every boat and its waterline.
+The sum of `k*lateral` is at most 0.62, keeping the horizontal derivative
+positive. Six Newton steps invert projected x; analytic tangents and the same
+field position the boats and their waterlines.
 
-Depth `d` controls perspective scale `s = 0.19 + 0.81*d`, represented distance
-`460*(1/s − 1)`, and projected base height
-`horizon + (855 − horizon)*d^1.35`. Fine distant crests, shorter marks and lower
-ink contrast establish depth. The shapes drawn over this field are an artistic
-interpretation, not a fluid simulation or a calculated breaking instability.
+Geometry uses a **4000 × 1000 logical world**. Depth `d` controls perspective
+scale `s = 0.19 + 0.81*d`, distance `460*(1/s − 1)`, and projected base height
+`horizon + (855 − horizon)*d^1.35`. A uniform 0.8 conversion is baked into every
+SVG coordinate and stroke width, producing the 3200 × 800 source. Wavelengths
+and boat proportions do not stretch when the scene becomes wide. The center
+1000√2 logical units receive a deliberate major wave and the sparse fleet;
+each side receives three independent larger swells and its own small marks.
 
-Small wave profiles use seeded cubic curves. Large waves use an asymmetric
-shoulder and rim followed by two returning face curves. Given span `L` and
-rise `A`, the peak is `(L*crestPosition, −A)` and the lip tip is:
+The painting returns `width: 800*Math.SQRT2`, `height: 800` and
+`previewWidth: 3200`. The project has `panoramic: true` and `ratio: Math.SQRT2`.
+Preview panning changes the viewed region; exports always use the center crop.
+Waves may cross the crop's left/right edges naturally, but vessels fit wholly
+inside it. Top/bottom margins and the full panorama's outer edges stay clear.
+
+Small wave profiles are seeded cubic curves. The larger spilling sheet uses
+an asymmetric cubic shoulder, short rim, tiny tucked tip and falling face.
+For span `L`, rise `A`, crest position `c`, projection `o` and curl `q`, the
+peak is `(L*c, −A)` and the rim ends at:
 
 ```js
-x = L * (crestPosition + overhang * (0.6 + 0.4 * curl));
-y = -A * (1 - lipDrop * curl);
-lipThickness = A * lipRatio;
+x = L * (c + o * (0.65 + q));
+y = A * (-1 + lipDrop);
 ```
 
-Hollow depth, shoulder entry and lip fall vary continuously. The face curves
-and their control relationships retain a simple silhouette over the supported
-ranges. Ink ribbons widen toward the crest; fine, uneven hatching fills the
-spaces between them. Only connected runs on the water sheet are retained,
-and clipped ribbon ends taper. White foam branches grow in the rim's local
-frame, fork, narrow and turn downward. Only exposed boundaries receive ink,
-so overlapping branches join without internal seams. Foam tongues interrupt
-the dark ribbons, and sparse spray varies in size and reach.
+The tip then tucks back by `L*o*(0.25 + q)` while dropping
+`A*(0.04 + 0.03*q)`. These short curves retain a simple silhouette across the
+supported ranges. Default lip reach is below 7% of the wave span. The main
+breaking wave spans 850–1080 logical units and rises 150–225, or roughly
+680–864 × 120–180 source units before local surface tilt. Larger neighboring
+swells join it to the sea. Sparse shoulder strokes stay inside the sheet;
+foam strokes that enter the small air opening below the tip are clipped out.
+White masks remove hidden background lines before white-to-alpha compositing.
 
-The primary storm crest spans 820–970 canvas units and nominally rises
-270–350 units in a 1414 × 1000 composition. The lower margin can reduce its
-height. Its off-center position, two larger neighboring swells, intermediate
-crests and fewer small background marks are generated together. Quiet sea
-states retain their more delicate wave patterns.
+This is an illustration, not a simulation of wave breaking, boat dynamics or
+fluid transport. Gerstner steepness controls the supporting field; `curl`
+controls the separate drawn sheet, without implying a physical relationship.
 
-## Boats and placement
+## Boats
 
-Default fleets now average about 1.5 requested boats under the seeded
-probabilities. The reviewed first 48 seeds contain **1.77 boats on average**,
-down from 5.48 in the previous review. Intentional empty seas are part of the
-composition. Before placement, the discrete probabilities are:
+Default fleets request about 1.5 boats on average. The reviewed 48 seeds
+actually place **86 vessels, averaging 1.79**, including five empty seas.
+Before collision/occlusion rejection, the probabilities are:
 
-| Boat count | Calm, wind sea, rolling swell | Breakers |
+| Count | Calm, wind sea, rolling swell | Breakers |
 | --- | ---: | ---: |
 | 0 | 15% | 20% |
 | 1 | 31% | 40% |
@@ -70,17 +79,13 @@ composition. Before placement, the discrete probabilities are:
 | 3 | 11% | 4% |
 | 4 | 2% | 0% |
 
-The six families are battened sailboats, cutters, luggers, covered sampans,
-open skiffs and small fishing boats. Storm scenes favor small skiffs, sampans
-and fishing boats, keeping tall rigs out of those compositions. Hull curves,
-freeboard, bow/stern rise, beam, rigging, canopy, heading and figure are all
-procedural. Default storm hull lengths stay below 130 canvas units.
-
-Boats and waves render in depth order. Placement bounds include rigs, figures,
-oars and wakes. It rejects vessel collisions and nearer wave faces that would
-cut a sail, figure or cabin. The hull stops at its waterline; a short meniscus
-and wake anchor it to the same Gerstner surface. A requested count can be
-reduced when the available clear water cannot fit it.
+Battened sailboats, cutters, luggers, sampans, skiffs and fishing boats derive
+from hull/rig/figure geometry. Breaker scenes use small skiffs, sampans and
+fishing boats, with default hull lengths below 130 logical units (104 source
+units). Placement bounds include rigs, figures, oars and wakes. Boats avoid
+one another, the crop edges and any nearer crest that would cut through their
+upper structures. Hulls stop at the waterline; short menisci and wakes follow
+the supporting field. Requested counts can decrease if clear water runs out.
 
 ## Public controls
 
@@ -90,83 +95,77 @@ import { seaParameters, buildSeascape, generateSeascape } from './generate.js';
 const defaults = seaParameters('sea-42');
 const painting = generateSeascape('sea-42', {
   regime: 'breakers', boatCount: 1, boatScale: 0.8,
-  breaker: { curl: 0.85, overhang: 0.3, hollow: 0.32, foamScale: 1.1 },
+  breaker: { curl: 0.25, overhang: 0.05, flowLines: 2, foamMarks: 3 },
 });
 ```
 
-All three functions accept scene overrides. Unknown controls, nonfinite values,
-unsupported categories and out-of-range values throw. Inputs remain reusable;
-overriding one scalar does not consume a different sequence of random values.
-Changing the sea state changes its relevant default wave ranges.
-`buildSeascape` also returns boats, crests, exact breaker parameters, placement
-bounds and paths. `generateSeascape` includes the resolved sea record as
-`parameters`; each breaker in the build result has its own resolved record.
+Unknown controls, nonfinite values, unsupported categories and out-of-range
+values throw. Inputs remain reusable. Overriding a scalar preserves unrelated
+seeded controls; changing the regime changes its relevant wave ranges.
+`buildSeascape` returns logical-world paths, crests, resolved breaker controls,
+boats and collision bounds. `generateSeascape` returns source-unit SVG paths
+and the resolved logical sea record as `parameters`.
 
-| Scene control | Seeded default | Override range / units | Effect |
+| Scene control | Seeded default | Allowed range / units | Effect |
 | --- | --- | --- | --- |
-| `regime` | Calm 24%, wind sea 24%, rolling swell 30%, breakers 22% | Those four strings | Wave scales, composition and vessel selection. |
-| `roughness` | Calm 0.18–0.42; wind sea 0.6–1.05; rolling swell 1.05–1.55; breakers 1.35–1.9 | 0.15–2, dimensionless | Supporting wave amplitudes and small drawn crests. |
-| `direction` | −0.6–0.6 | −0.9–0.9 radians | Primary direction of the Gerstner components; each gets a small angular variation. |
-| `steepness` | 0.32–0.62 | 0.1–0.62, dimensionless | Horizontal displacement; remains below the fold threshold. |
-| `horizon` | 260–345 | 240–370 canvas units | Height of the distant water and depth projection. |
-| `wind` | −1 or 1 | −1 or 1 | Mirrored crest direction, sail direction and storm composition. |
-| `boatCount` | Probabilities above | Integer 0–4 | Requested vessels, subject to collision and wave clearance. |
-| `boatScale` | 1 | 0.6–1.2 multiplier | Hull, rig, figure and placement-bound scale together. |
-| `breaker` | Seeded per wave | Object using the table below | Overrides shared across the scene's breaking/spilling crests. |
+| `regime` | Calm 24%, wind sea 24%, rolling swell 30%, breakers 22% | Those four strings | Scale, crest type, composition and vessel families. |
+| `roughness` | Calm .18–.42; wind sea .6–1.05; rolling 1.05–1.55; breakers 1.35–1.9 | .15–2, dimensionless | Supporting amplitudes and smaller crest relief. |
+| `direction` | −.6–.6 | −.9–.9 radians | Gerstner direction, with per-component angular variation. |
+| `steepness` | .32–.62 | .1–.62 | Horizontal displacement below the folding threshold. |
+| `horizon` | 260–345 | 240–370 logical units | Distant water height and projected depth. Multiply by .8 for source units. |
+| `wind` | −1 or 1 | −1 or 1 | Mirrors crests, sails and storm composition. |
+| `boatCount` | Probabilities above | Integer 0–4 | Requested count subject to visibility and clearances. |
+| `boatScale` | 1 | .6–1.2 | Scales hull, rig, figure, wake and collision bounds together. |
+| `breaker` | Seeded per crest | Object below | Shared overrides for the scene's spilling crests. |
 
-`breakingWave(patch, overrides)` is also exported by `breaker.js`. `patch`
-supplies positive `length` and `amplitude` in canvas units, a finite `phase`
-and `shape` (`breaker` or `spilling`). These are the individual sheet controls:
+`breakingWave(patch, overrides)` accepts positive `length` and `amplitude` in
+logical units, finite `phase`, and `shape` (`breaker` or `spilling`). Its points
+are normalized by span/rise; ink widths are logical units.
 
-| Breaker control | Seeded range | Allowed range / units | Effect |
+| Sheet control | Seeded range | Allowed range / units | Effect |
 | --- | --- | --- | --- |
-| `curl` | Breaker 0.72–1; spilling 0.18–0.46 | 0.18–1 | Coupled forward reach, lip drop and hollow. |
-| `crestPosition` | −0.155–−0.075 | −0.18–−0.035 of span | Peak displacement along the water sheet. |
-| `shoulderWidth` | 0.28–0.37 | 0.24–0.4 of span | Breadth of the rising back curve. |
-| `shoulderLift` | 0.18–0.3 | 0.05–0.4 of rise | Elevated shoulder entry that meets surrounding swells. |
-| `overhang` | 0.23–0.32 | 0.18–0.34 of span | Forward lip projection, coupled with curl. |
-| `lipDrop` | 0.34–0.51 | 0.24–0.55 of rise | Downward tip travel as curl increases. |
-| `hollow` | 0.25–0.35 | 0.2–0.38, dimensionless | Concavity of the returning face through a bounded control-point interpolation. |
-| `lipRatio` | 0.022–0.039 | 0.018–0.05 of rise | Thin outer-to-inner tip separation. |
-| `flowBundles` | Integer 6–9 | Integer 5–11 | Unequally spaced groups of dark ribbons and fine water strands. |
-| `flowSpread` | 0.8–1.12 | 0.7–1.2 multiplier | Sweep of the flow field within the same silhouette. |
-| `foamClusters` | Integer 5–9 | Integer 4–11 | Unequal groups of narrow forked fingers. |
-| `foamScale` | 0.8–1.15 | 0.65–1.3 multiplier | Foam bank, finger reach and spray displacement. |
-| `sprayCount` | Integer 18–39 | Integer 0–60 | Detached droplets; zero removes them. |
+| `curl` | Breaker .1–.32; spilling .1–.2 | 0–.45 | Short lip projection and tucked return, coupled with `overhang`. |
+| `crestPosition` | −.1–.015 | −.14–.06 of span | Peak displacement along the sheet. |
+| `shoulderWidth` | .27–.36 | .22–.4 of span | Rising shoulder breadth. |
+| `shoulderLift` | .04–.12 | .02–.2 of rise | Shoulder entry height. |
+| `overhang` | .035–.065 | .02–.09 of span | Lip reach; deliberately much smaller than revision 4. |
+| `lipDrop` | .09–.17 | .06–.22 of rise | Downward travel along the short rim. |
+| `flowLines` | Integer 2–3 | Integer 1–5 | Open interior shoulder strokes; no closed ink ribbons. |
+| `flowSpread` | .8–1.1 | .6–1.2 multiplier | Spacing of interior strokes within the same silhouette. |
+| `foamMarks` | Integer 2–4 | Integer 0–6 | Short broken rim strokes, possibly fewer after air-opening clipping. |
+| `foamScale` | .8–1.1 | .6–1.3 multiplier | Foam stroke lengths and offsets. |
 
-These controls are geometric art-direction choices. Curl is not derived from
-Gerstner steepness, and the drawing does not solve Navier–Stokes, wave impact,
-boat dynamics or fluid transport. The Met reference guides visual structure;
-GPU Gems guides only the bounded supporting surface.
+Revision 5 removes `hollow`, `lipRatio`, `flowBundles`, `foamClusters` and
+`sprayCount`; callers should use the simpler controls above. Old values are
+rejected rather than silently interpreted. The resolved sea record also
+contains fixed dimensions, `printWidth`, `outputScale`, random texture phase
+and the three wave components (`k`, amplitude, direction cosines, phase and
+lateral displacement). They are derived metadata, not extra public overrides.
 
-## Integration and reproducible review
+## Reproducible review
 
-The existing esbuild dependency bundles the pure JavaScript generator as a
-classic worker. There are no new runtime packages or network requests.
-Flat SVG paths support preview, SVG/PNG/PDF exports and browser caching.
-Art revision **4** travels through the worker and project metadata; older cached
-seascapes regenerate with their saved seed.
+The pure JavaScript generator uses the existing esbuild worker bundle, flat
+SVG paths, and no new runtime dependencies. Art revision **5** is present in
+the painting and project metadata; the shared worker transports it unchanged.
+Older cached seascapes regenerate from their saved seed.
 
 ```sh
 node --test tests/seascapes.test.mjs tests/breaker.test.mjs
 node scripts/art-review/seascapes.mjs --count 48 --raster --out /tmp/seascape-review
 node scripts/art-review/seascapes.mjs --stress --raster --out /tmp/seascape-stress
-node scripts/art-review/seascapes.mjs --seeds 2,7,25,33 --raster --out /tmp/seascape-detail
-node scripts/art-review/seascapes.mjs --count 4 --raster --out /tmp/empty-sea \
-  --overrides '{"regime":"calm","boatCount":0}'
+node scripts/art-review/seascapes.mjs --seeds 25,33 --raster --out /tmp/seascape-detail
 ```
 
-Omit `--raster` for a dependency-free SVG audit. Raster review uses optional
-local `canvas` and `path2d` packages to run the actual app renderer, including
-white-to-alpha compositing. It writes SVG/PNG specimens, contact sheets,
-JPEG examples and JSON records containing resolved parameters, hashes,
-performance, boat distributions and raster bounds. The stress command renders
-eight reproducible combinations of low/high controls.
+The audit writes full panorama and `-crop` SVG/PNG files, both contact sheets,
+JPEG examples and JSON with parameters, hashes, timing, geometry and separate
+raster bounds. It uses the application's line renderer, including masks and
+white-to-alpha compositing, through optional native `canvas`/`path2d` packages.
+Omit `--raster` for SVG-only review. Eight stress scenes exercise bounds and
+sparse/dense overrides. All 56 reviewed sources, panoramas and crops have
+unique hashes; this claim applies to the reviewed set, not all possible seeds.
 
-Thirteen tests cover determinism, validated overrides, continuous controls,
-256 boundary silhouettes, 64 independently seeded silhouettes, ribbon
-self-intersection/containment, 48 default scenes, sparse fleet probabilities,
-boat/foreground clearance, supporting surface inversion/tangents, parameter
-extremes, caching/shared links/vector export and exact worker parity. The
-[review document](../../../docs/seascapes-review.md) includes the actual metrics,
-before/after hero, full gallery, stress gallery and downloadable JSON reports.
+Fourteen tests cover determinism, control continuity, 64 shape-boundary
+combinations plus 64 seeded shapes, 128 interior-mark containment cases,
+48 full scenes, true side geometry, center-crop vessel bounds, boat/wave
+clearance, analytic supporting tangents/inversion, sparse fleet probabilities,
+scene extremes, caching, centered vector exports and exact worker parity.

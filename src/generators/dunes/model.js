@@ -163,9 +163,9 @@ export function makeTerrain(ridges, p) {
   return { sample, stossWidth, leeWidth };
 }
 
-export function terrainGrid(terrain, p, resolution = 164) {
-  const size = 1800, nx = resolution + 1, nz = Math.round(resolution * 0.78) + 1;
-  const x0 = -size / 2, z0 = -size * 0.39, dx = size / (nx - 1), dz = size * 0.78 / (nz - 1);
+export function terrainGrid(terrain, p, resolution = 164, { width = 1800, depth = 1404 } = {}) {
+  const nx = resolution + 1, nz = Math.round(resolution * depth / width) + 1;
+  const x0 = -width / 2, z0 = -depth / 2, dx = width / (nx - 1), dz = depth / (nz - 1);
   const heights = new Float64Array(nx * nz), owners = new Int16Array(nx * nz);
   for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) {
     const point = terrain.sample(x0 + i * dx, z0 + j * dz);

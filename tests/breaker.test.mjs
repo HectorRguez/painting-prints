@@ -4,9 +4,8 @@ import { breakingWave } from '../src/generators/seascapes/breaker.js';
 
 const patch = { length: 620, amplitude: 210, shape: 'breaker', phase: 2.712 };
 const controls = {
-  curl: [.18, 1], crestPosition: [-.18, -.035], shoulderWidth: [.24, .4],
-  shoulderLift: [.05, .4], overhang: [.18, .34], lipDrop: [.24, .55],
-  hollow: [.2, .38], lipRatio: [.018, .05],
+  curl: [0, .45], crestPosition: [-.14, .06], shoulderWidth: [.22, .4],
+  shoulderLift: [.02, .2], overhang: [.02, .09], lipDrop: [.06, .22],
 };
 const distance = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 const turn = (a, b, c) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
@@ -60,16 +59,15 @@ function checkGeometry(wave, label) {
 }
 
 test('breaker overrides reproduce geometry and replace shape defaults without selecting another template', () => {
-  const overrides = { curl: .61, crestPosition: -.12, shoulderWidth: .32, shoulderLift: .25,
-    overhang: .27, lipDrop: .42, hollow: .3, lipRatio: .03, flowBundles: 7, flowSpread: .95,
-    foamClusters: 7, foamScale: .95, sprayCount: 24 };
+  const overrides = { curl: .25, crestPosition: -.08, shoulderWidth: .32, shoulderLift: .12,
+    overhang: .05, lipDrop: .15, flowLines: 3, flowSpread: .95, foamMarks: 3, foamScale: .95 };
   const original = structuredClone({ patch, overrides });
   const first = breakingWave(patch, overrides);
   for (let i = 0; i < 100; i++) Math.random();
   assert.deepEqual(breakingWave(patch, overrides), first);
   for (const [name, value] of Object.entries(overrides)) assert.equal(first.parameters[name], value);
   assert.deepEqual(breakingWave({ ...patch, shape: 'spilling' }, overrides), first,
-    'The explicit curl must override the spilling/breaker default');
+    'The explicit controls must override the spilling/breaker defaults');
   assert.deepEqual({ patch, overrides }, original, 'Inputs must remain reusable');
   assert.notDeepEqual(breakingWave({ ...patch, phase: patch.phase + 1 }, overrides).foam, first.foam);
 });
@@ -87,8 +85,8 @@ test('continuous controls move the water sheet smoothly, including the spilling-
     }
   }
   let previous;
-  for (let i = 0; i <= 82; i++) {
-    const outline = breakingWave(patch, { curl: .18 + i * .01 }).outline;
+  for (let i = 0; i <= 45; i++) {
+    const outline = breakingWave(patch, { curl: i * .01 }).outline;
     if (previous) assert.ok(displacement(previous, outline) < .025, 'Curl must not jump between silhouette families');
     previous = outline;
   }
@@ -99,10 +97,10 @@ test('supported seeded waves and boundary parameter combinations have finite, co
     checkGeometry(breakingWave({ length: 340 + i * 7, amplitude: 65 + i * 3,
       shape: i % 2 ? 'spilling' : 'breaker', phase: i * .719 }), `seeded wave ${i}`);
   }
-  // Cover low-curl spilling, intermediate curls and full overhangs with both
+  // Cover low-curl spilling, intermediate curls and shallow spilling lips with both
   // endpoints of each independent normalized shape control.
   const entries = Object.entries(controls);
-  for (let i = 0; i < 256; i++) {
+  for (let i = 0; i < 64; i++) {
     const overrides = Object.fromEntries(entries.map(([name, range], bit) => [name, range[(i >> bit) & 1]]));
     checkGeometry(breakingWave({ ...patch, phase: i * .719 }, overrides), 'boundary combination ' + i);
   }
@@ -117,8 +115,8 @@ test('low-curl spilling regressions do not fold the returning face through the c
 
 
 test('breaker controls reject unsupported dimensions, values and discrete counts', () => {
-  for (const overrides of [null, [], { radiusX: 100 }, { curl: NaN }, { hollow: .9 },
-    { foamClusters: 6.5 }, { sprayCount: 100 }, { flowSpread: Infinity }]) {
+  for (const overrides of [null, [], { radiusX: 100 }, { curl: NaN }, { curl: .9 },
+    { foamMarks: 2.5 }, { flowLines: 12 }, { sprayCount: 1 }, { flowSpread: Infinity }]) {
     assert.throws(() => breakingWave(patch, overrides), RangeError);
   }
   assert.throws(() => breakingWave({ ...patch, amplitude: 0 }), RangeError);
@@ -127,7 +125,7 @@ test('breaker controls reject unsupported dimensions, values and discrete counts
   assert.deepEqual(small.outline, large.outline, 'Flow spread changes the ink field without changing the silhouette');
 });
 
-test('ink ribbons remain simple and their edges stay on the water sheet', () => {
+test('sparse marks remain within the sheet and never recreate dense filled ribbons', () => {
   const inside = ([x, y], polygon) => {
     let hit = false;
     for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
@@ -136,21 +134,17 @@ test('ink ribbons remain simple and their edges stay on the water sheet', () => 
     }
     return hit;
   };
-  for (let seed = 0; seed < 48; seed++) {
-    const wave = breakingWave({ length: 400 + seed * 11, amplitude: 80 + seed * 5,
+  for (let seed = 0; seed < 128; seed++) {
+    const wave = breakingWave({ length: 600 + seed * 3, amplitude: 100 + seed,
       shape: seed % 3 ? 'breaker' : 'spilling', phase: seed * .719 });
-    assert.ok(wave.masses.length >= 1);
-    for (const mass of wave.masses) {
-      const points = mass.points.filter((point, i, all) => i === 0 || distance(point, all[i - 1]) > 1e-9);
-      if (distance(points[0], points.at(-1)) < 1e-9) points.pop();
-      for (let i = 0; i < points.length; i++) {
-        const a = points[i], b = points[(i + 1) % points.length];
-        assert.ok(inside([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], wave.mask), 'Ink must not bridge the open hollow');
-        for (let j = i + 2; j < points.length; j++) {
-          if (i === 0 && j === points.length - 1) continue;
-          assert.ok(!intersects(a, b, points[j], points[(j + 1) % points.length]), 'An ink ribbon must not cross itself');
-        }
-      }
+    assert.equal(wave.masses.length, 0, 'No closed ink ribbons');
+    assert.ok(wave.strokes.length <= 3 && wave.foam.length <= 4, 'Default marks stay sparse');
+    assert.ok(wave.rim.at(-1)[0] - wave.rim[0][0] < .07, 'Lip stays short compared with its wavelength');
+    for (let i = 1; i < wave.outline.length; i++) {
+      assert.ok(wave.outline[i - 1][0] - wave.outline[i][0] < .006, 'Only the tiny falling lip may turn back');
+    }
+    for (const stroke of [...wave.strokes, ...wave.foam]) {
+      for (const point of stroke.points) assert.ok(inside(point, wave.mask), 'Ink stays on the water');
     }
   }
 });

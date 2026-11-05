@@ -1,5 +1,9 @@
 # Ribbons
 
+<img src="../../../docs/samples/ribbons-1.jpg" width="360" alt="First seeded ribbons example"> <img src="../../../docs/samples/ribbons-2.jpg" width="360" alt="Second seeded ribbons example">
+
+[Sample seeds and artwork revisions](../../../docs/samples/manifest.json).
+
 Deterministic flowing bands generated from an analytic vector field. The four
 families—sweep, meander, eddy, and confluence—are parameter distributions, not
 stored outlines. Every centerline, tapered boundary, and interior stripe is

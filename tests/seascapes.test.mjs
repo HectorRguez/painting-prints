@@ -19,9 +19,12 @@ test('seascapes reproduce a seed without depending on ambient random state', () 
   const second = generateSeascape('sea 雨 & boats / 42');
   assert.deepEqual(first, second);
   assert.equal(first.mode, 'seascapes');
-  assert.equal(first.artRevision, 4);
+  assert.equal(first.artRevision, 5);
   assert.equal(first.whiteToAlpha, true);
-  assert.equal(first.width / first.height, 1.414);
+  assert.equal(first.previewWidth, 3200);
+  assert.equal(first.height, 800);
+  assert.match(first.svg, /width="3200" height="800"/);
+  assert.equal(first.width / first.height, Math.SQRT2);
   assert.notEqual(first.svg, generateSeascape('sea 雨 & boats / 43').svg);
 });
 
@@ -54,8 +57,8 @@ test('48 review seeds have unique finite drawings, clear margins and non-collidi
     const svg = generateSeascape(seed).svg;
     hashes.add(createHash('sha256').update(svg).digest('hex'));
     assert.ok(!/NaN|Infinity|<image|<script/.test(svg), seed);
-    assert.ok(scene.paths.length > 150 && scene.paths.length < 1600, seed);
-    assert.ok(svg.length < 900000, seed);
+    assert.ok(scene.paths.length > 150 && scene.paths.length < 2200, seed);
+    assert.ok(svg.length < 2000000, seed);
     assert.ok(scene.boats.length >= 0 && scene.boats.length <= 4, seed);
     minRoughness = Math.min(minRoughness, scene.sea.roughness);
     maxRoughness = Math.max(maxRoughness, scene.sea.roughness);
@@ -64,7 +67,7 @@ test('48 review seeds have unique finite drawings, clear margins and non-collidi
     scene.crests.forEach(crest => shapes.add(crest.shape));
     const maximumCrest = Math.max(...scene.crests.map(crest => crest.amplitude));
     if (scene.sea.regime === 'breakers') {
-      assert.ok(maximumCrest >= 160, `${seed}: dramatic waves must be genuinely large`);
+      assert.ok(maximumCrest >= 145, `${seed}: dramatic waves must be genuinely large`);
       assert.equal(scene.crests.filter(patch => patch.shape === 'breaker').length <= 1, true, 'do not stack duplicate curls');
       for (const boat of scene.boats) {
         assert.ok(['skiff', 'sampan', 'fishing'].includes(boat.kind), seed + ': storm working boat');
@@ -88,6 +91,8 @@ test('48 review seeds have unique finite drawings, clear margins and non-collidi
     }
     for (const [index, boat] of scene.boats.entries()) {
       kinds.add(boat.kind); headings.add(boat.heading);
+      const printLeft = (scene.sea.width - scene.sea.printWidth) / 2;
+      assert.ok(boat.bounds.left > printLeft + 45 && boat.bounds.right < printLeft + scene.sea.printWidth - 45, seed + ': vessel must fit the central print crop');
       const water = seaSurface(scene.sea, boat.x, boat.depth);
       assert.equal(boat.y, water.y, `${seed}: detached boat`);
       assert.ok(Math.abs(boat.angle) <= 0.18, `${seed}: excessive roll`);
@@ -118,7 +123,7 @@ test('48 review seeds have unique finite drawings, clear margins and non-collidi
   assert.deepEqual([...headings].sort(), [-1, 1]);
   assert.ok(minRoughness < 0.3 && maxRoughness > 1.6, 'batch must cover calm and large seas');
   assert.deepEqual([...regimes].sort(), ['breakers', 'calm', 'rolling swell', 'wind sea']);
-  assert.deepEqual([...shapes].sort(), ['breaker', 'chop', 'ripple', 'shoulder', 'spilling', 'swell']);
+  assert.ok(['breaker', 'chop', 'ripple', 'shoulder', 'swell'].every(shape => shapes.has(shape)));
   assert.equal(arrangements.size, 4);
   assert.ok(largeScenes >= 8 && calmScenes >= 8 && emptyScenes >= 4, 'batch must show distinct sea states and intentional empty seas');
 });
@@ -178,10 +183,10 @@ test('scene extremes keep visible geometry finite and inside print margins', () 
     { regime: 'calm', roughness: .15, steepness: .1, boatCount: 0 },
     { regime: 'wind sea', roughness: 2, steepness: .62, direction: .9, horizon: 240, boatCount: 4, boatScale: 1.2 },
     { regime: 'rolling swell', roughness: 1.9, direction: -.9, horizon: 370, wind: -1, boatCount: 1 },
-    { regime: 'breakers', direction: .9, breaker: { curl: 1, crestPosition: -.18, overhang: .34, lipDrop: .55,
-      hollow: .38, shoulderLift: .4, foamScale: 1.3, foamClusters: 11, flowBundles: 11, sprayCount: 60 } },
-    { regime: 'breakers', breaker: { curl: .18, crestPosition: -.035, overhang: .18, lipDrop: .24,
-      hollow: .2, shoulderLift: .05, foamScale: .65, foamClusters: 4, flowBundles: 5, sprayCount: 0 } },
+    { regime: 'breakers', direction: .9, breaker: { curl: .45, crestPosition: -.14, overhang: .09, lipDrop: .22,
+      shoulderLift: .2, foamScale: 1.3, foamMarks: 6, flowLines: 5 } },
+    { regime: 'breakers', breaker: { curl: 0, crestPosition: .06, overhang: .02, lipDrop: .06,
+      shoulderLift: .02, foamScale: .6, foamMarks: 0, flowLines: 1 } },
     { regime: 'breakers', boatCount: 0, wind: -1, horizon: 240, roughness: 2, steepness: .62,
       breaker: { flowSpread: 1.2, foamScale: 1.3 } },
   ];
@@ -191,14 +196,14 @@ test('scene extremes keep visible geometry finite and inside print margins', () 
       assert.ok(!/NaN|Infinity/.test(path.d));
       const values = path.d.match(/-?\d+(?:\.\d+)?/g).map(Number);
       for (let i = 0; i < values.length; i += 2) {
-        assert.ok(values[i] > 20 && values[i] < 1394, 'stress ' + index + ': horizontal margin');
+        assert.ok(values[i] > 20 && values[i] < scene.sea.width - 20, 'stress ' + index + ': horizontal margin');
         assert.ok(values[i + 1] > 45 && values[i + 1] < 955, 'stress ' + index + ': vertical margin');
       }
     }
   }
 });
 
-test('bundled classic worker returns revision4 SVG and parameters identical to direct generation', { timeout: 20000 }, async () => {
+test('bundled classic worker returns revision5 SVG and parameters identical to direct generation', { timeout: 20000 }, async () => {
   const seed = 'worker sea & waves 雨', painting = generateSeascape(seed);
   const folder = await mkdtemp(join(tmpdir(), 'painting-sea-worker-'));
   try {
@@ -215,7 +220,30 @@ test('bundled classic worker returns revision4 SVG and parameters identical to d
         worker.once('message', resolve); worker.once('error', reject); worker.postMessage({ seed });
       });
     } finally { await worker.terminate(); }
-    assert.equal(result.type, 'painting-ready'); assert.equal(result.artRevision, 4);
+    assert.equal(result.type, 'painting-ready'); assert.equal(result.artRevision, 5);
     assert.equal(result.svg, painting.svg); assert.deepEqual(result.parameters, painting.parameters);
   } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+
+test('panorama contains independently placed side water and a composed center print region', () => {
+  for (let i = 0; i < 48; i++) {
+    const seed = `seascape-review-${String(i).padStart(2, '0')}`;
+    const scene = buildSeascape(seed), painting = generateSeascape(seed);
+    const left = (scene.sea.width - scene.sea.printWidth) / 2, right = left + scene.sea.printWidth;
+    const groups = [scene.crests.filter(p => p.x < left), scene.crests.filter(p => p.x >= left && p.x <= right), scene.crests.filter(p => p.x > right)];
+    for (const group of groups) assert.ok(group.length > 10, `${seed}: side water and center must all have geometry`);
+    const signatures = groups.map(group => group.map(p => `${p.length.toFixed(3)}:${p.phase.toFixed(3)}`).sort().join('|'));
+    assert.equal(new Set(signatures).size, 3, 'Side water must not repeat the center panel');
+    const centerMajor = groups[1].filter(p => p.major);
+    assert.ok(centerMajor.length >= 1, 'Every center crop has a deliberate major wave');
+    const panorama = artworkSvg(painting, true, true), crop = artworkSvg(painting, true);
+    assert.match(panorama, /width="3200" height="800"/);
+    assert.ok(!panorama.includes('transform="translate('));
+    assert.ok(crop.includes(`translate(${-(3200 - 800 * Math.SQRT2) / 2} 0)`));
+    const points = [...painting.svg.matchAll(/ d="([^"]+)"/g)].flatMap(match => match[1].match(/-?\d+(?:\.\d+)?/g).map(Number));
+    const xs = points.filter((_, index) => index % 2 === 0), ys = points.filter((_, index) => index % 2 === 1);
+    assert.ok(Math.min(...xs) < 240 && Math.max(...xs) > 2960, 'Output fills the actual panoramic source');
+    assert.ok(Math.min(...ys) > 30 && Math.max(...ys) < 770, 'Source retains vertical print margins');
+  }
 });

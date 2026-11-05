@@ -17,6 +17,7 @@ for (const mode of pageModes) {
     .replace('aria-labelledby="flowers-link"', `aria-labelledby="${mode}-link"`)
     .replace('class="artwork flowers"', `class="artwork ${mode}"`)
     .replace('class="artwork-frame flowers"', `class="artwork-frame ${mode}"`);
+  if (!project.showCredit) html = html.replace('class="credit"', 'class="credit" hidden');
   for (const page of pageModes) html = html.replaceAll(`href="./${page}/"`, `href="../${page}/"`);
   const directory = new URL(`${mode}/`, dist);
   await mkdir(directory, { recursive: true });

@@ -1,0 +1,25 @@
+{
+  "modes": [
+    "flowers",
+    "landscapes",
+    "leaves",
+    "snowflakes",
+    "seascapes",
+    "ribbons",
+    "dunes",
+    "brushwork"
+  ],
+  "seeds": {
+    "flowers": "painting-stock-v1-flowers-7",
+    "landscapes": "painting-stock-v1-landscapes-0",
+    "leaves": "mw3m8gwg-1vw92mc",
+    "snowflakes": "mw3m8hdh-hvgg3j",
+    "seascapes": "mw3m8ix2-cqa06s",
+    "ribbons": "mw3m8jf5-1si5i3r",
+    "dunes": "mw3m8jr4-1rvs8rm",
+    "brushwork": "mw3m8kh2-lv66so"
+  },
+  "desktop": "passed",
+  "phone": "passed",
+  "retiredRoutes": "absent"
+}

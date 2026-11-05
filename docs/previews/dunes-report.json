@@ -5,20 +5,20 @@
   "unique": 48,
   "uniquePngs": 48,
   "generationMs": {
-    "max": 377.030221,
-    "mean": 244.51087224999978
+    "max": 992.274645999998,
+    "mean": 629.8037395625003
   },
   "svgBytes": {
-    "max": 145634,
-    "mean": 116848.41666666667
+    "max": 396779,
+    "mean": 328085.1875
   },
   "records": [
     {
       "seed": "dunes-review-00",
-      "sha256": "13160a2578cc85dcb2f0a02050331dc0ae4e1a92abf9fa7ae31ddd4aaa6187fa",
-      "generationMs": 349.908767,
-      "svgBytes": 91752,
-      "paths": 317,
+      "sha256": "8821a7250b04a018a4c13c0d728d39ed8532ccb91a12fe39210814c9597a6014",
+      "generationMs": 662.7203039999999,
+      "svgBytes": 270151,
+      "paths": 942,
       "label": "star · 1 travelers · 0 camels",
       "parameters": {
         "morphology": "star",
@@ -58,31 +58,38 @@
         "camelLoad": 0.357098097121343
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 48,
+        "visibleCrests": 9,
+        "rippleStrokes": 131,
         "travelers": 1,
         "camels": 0
       },
-      "pngSha256": "7c1e9a524f4b8af32f6e9fef184f7bdea370e1db246d620ff0b6dcb2641709b2",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.015516265912305515,
+      "pngSha256": "e49770b292d3b07d62cdd1815b81457280634149ac44a7b32f000353de0fb628",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02136953125,
       "edgeInk": 0,
       "bounds": {
-        "left": 68,
-        "top": 233,
-        "right": 1343,
-        "bottom": 927
+        "left": 127,
+        "top": 180,
+        "right": 3096,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "c1b028ba05825dae51704ae71499af68a683f362b909ab7cecd150d1e58244f1",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02077137649138312,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-01",
-      "sha256": "fff8e6275dc2282a96bfbe0185c09c3ca4964a15f695b2feb8db2a8c0cf7537c",
-      "generationMs": 342.11584400000004,
-      "svgBytes": 133691,
-      "paths": 435,
+      "sha256": "8b7348582b7fdbade28af1221906e2c00db393603b6a357faae1e8dc49bfdada",
+      "generationMs": 657.3105690000002,
+      "svgBytes": 325615,
+      "paths": 1072,
       "label": "transverse · 2 travelers · 0 camels",
       "parameters": {
         "morphology": "transverse",
@@ -122,31 +129,38 @@
         "camelLoad": 0.7848564310930669
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 126,
+        "visibleCrests": 10,
+        "rippleStrokes": 255,
         "travelers": 2,
         "camels": 0
       },
-      "pngSha256": "9a72e4b9c6771d54545585d7241477740a3886996e059a867749ed84a4b71133",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.016652050919377652,
+      "pngSha256": "30874b0eab9f8e2783b2d31bcf36a655032d51d14edfa8039404e63d265d311b",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0198625,
       "edgeInk": 0,
       "bounds": {
-        "left": 144,
-        "top": 189,
-        "right": 1254,
-        "bottom": 926
+        "left": 113,
+        "top": 154,
+        "right": 2915,
+        "bottom": 715
+      },
+      "crop": {
+        "pngSha256": "9072b839391865a484ba693f9d7c7c2a12cda8f9fdbdcadf27a7e007ff049ab1",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.019021072691117986,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-02",
-      "sha256": "2307fe5d9346a810ee9953684b485e14b42bafe5a8f519b0ca7075e884c5bad9",
-      "generationMs": 295.39180199999987,
-      "svgBytes": 108525,
-      "paths": 398,
+      "sha256": "56e010b65815dba4cbd0bf2c1e422e5308588b5fd7de7dac6b7ce2d2fc2dc009",
+      "generationMs": 849.3925290000006,
+      "svgBytes": 279622,
+      "paths": 1012,
       "label": "transverse · 2 travelers · 2 camels",
       "parameters": {
         "morphology": "transverse",
@@ -186,31 +200,38 @@
         "camelLoad": 0.8434653538512066
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 39,
+        "visibleCrests": 8,
+        "rippleStrokes": 112,
         "travelers": 2,
         "camels": 2
       },
-      "pngSha256": "daf8a853ab27c0fca1b7c8f44e5a2777f68e872345b21dc820bf18eebcea8698",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.011816124469589816,
+      "pngSha256": "4633cef847eaa4f1274e90556ef2c1a81592087817febf0b3ca61ccddc89c90b",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.016242578125,
       "edgeInk": 0,
       "bounds": {
-        "left": 237,
-        "top": 236,
-        "right": 1174,
-        "bottom": 919
+        "left": 186,
+        "top": 186,
+        "right": 2842,
+        "bottom": 712
+      },
+      "crop": {
+        "pngSha256": "f935ccb2501188970220ab98a0468ed3a8cff2a778f6a1bf46af622d0e3bd559",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.017995608705258508,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-03",
-      "sha256": "688425bd3121de8a8d2754e39f406f6270887e8910b414b487b032a792039421",
-      "generationMs": 377.030221,
-      "svgBytes": 107036,
-      "paths": 372,
+      "sha256": "887f6c936efc8568ae312652b784dad7efdbd8a453ee5640c5178caa66ea85b9",
+      "generationMs": 812.858232999999,
+      "svgBytes": 339529,
+      "paths": 1139,
       "label": "transverse · 1 travelers · 3 camels",
       "parameters": {
         "morphology": "transverse",
@@ -250,31 +271,38 @@
         "camelLoad": 0.3556683588773012
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 58,
+        "visibleCrests": 9,
+        "rippleStrokes": 235,
         "travelers": 1,
         "camels": 3
       },
-      "pngSha256": "6af83e3549efc9db8e63d45c727c6d53937364fea8a0ed529c29be955dc64323",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012592644978783592,
+      "pngSha256": "cea56affa2dbac84c2c295c625bae0840954c3b47411355920c2103ef5fcdfc4",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.018483203125,
       "edgeInk": 0,
       "bounds": {
-        "left": 254,
-        "top": 280,
-        "right": 1160,
-        "bottom": 890
+        "left": 549,
+        "top": 204,
+        "right": 2769,
+        "bottom": 740
+      },
+      "crop": {
+        "pngSha256": "e1dbebccb7d4e8f53ab60b1b748d3617e3fa06ced4d1f880e10e0928270c1e1e",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.024298773751657093,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-04",
-      "sha256": "03cc9525d2eabd88aea3370bf997fa55eefe1fcb147306d399f74facaaa197ba",
-      "generationMs": 289.93678100000034,
-      "svgBytes": 124021,
-      "paths": 443,
+      "sha256": "2f076157dd0325da78de8d335dd0803c6f84413381c1733e9be9fd3b6d7e4f0e",
+      "generationMs": 979.8858230000005,
+      "svgBytes": 332607,
+      "paths": 1170,
       "label": "transverse · 3 travelers · 0 camels",
       "parameters": {
         "morphology": "transverse",
@@ -314,31 +342,38 @@
         "camelLoad": 0.6172540737548843
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 81,
+        "visibleCrests": 11,
+        "rippleStrokes": 174,
         "travelers": 3,
         "camels": 0
       },
-      "pngSha256": "9b7c4fa1be94d0363138f9fb5ea7ed32048c667940db900c01db6c61ec58696f",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01628005657708628,
+      "pngSha256": "b6b02c57b90e19448669df9eef617949fe8700aea875d895dd3642fcf34c721a",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0238625,
       "edgeInk": 0,
       "bounds": {
-        "left": 93,
-        "top": 230,
-        "right": 1298,
-        "bottom": 883
+        "left": 162,
+        "top": 195,
+        "right": 3127,
+        "bottom": 734
+      },
+      "crop": {
+        "pngSha256": "04887b782d332bdc595922fec5db50eb79337fc13fc2cc2360e6daadd74f1524",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022411345558992487,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-05",
-      "sha256": "d92f7fd7d7e4e0758f2f5270b9bec7356a2df3f7698c9a0d46a1fd8fb04f0c5c",
-      "generationMs": 243.4964399999999,
-      "svgBytes": 103310,
-      "paths": 365,
+      "sha256": "ecc0f8c8f2de20bdc82bd73945c3b8113b7c525b334ab3a37b680077214acd3f",
+      "generationMs": 738.0717389999991,
+      "svgBytes": 295069,
+      "paths": 1031,
       "label": "star · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "star",
@@ -378,31 +413,38 @@
         "camelLoad": 0.6195180623559281
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 47,
+        "visibleCrests": 8,
+        "rippleStrokes": 144,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "b71e812f5c1a1347fa423e006373145ef89b8187a035085203a74763f974640e",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.015181753889674682,
+      "pngSha256": "d8e8e43f206553c484c63410438d7b09b942c5e5c3df0f92ef6ad4b6645614ed",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021862109375,
       "edgeInk": 0,
       "bounds": {
-        "left": 71,
-        "top": 203,
-        "right": 1346,
-        "bottom": 925
+        "left": 66,
+        "top": 181,
+        "right": 2997,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "7abc566c7077faca8632a03c9ad7304b198b162aee39b32542ea692b0fc4b84f",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022084346000883784,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-06",
-      "sha256": "7cfbe8270dfe118fb22b10d60f9c0d6d1b4f391c5c95a4dc358d7265bfb05a0c",
-      "generationMs": 291.3391680000004,
-      "svgBytes": 103240,
-      "paths": 358,
+      "sha256": "738be13e9098d1231fe77d5ffce2cf73d8e475d7e77ebe96bb03e147e078420a",
+      "generationMs": 648.022831000002,
+      "svgBytes": 277341,
+      "paths": 999,
       "label": "linear · 2 travelers · 0 camels",
       "parameters": {
         "morphology": "linear",
@@ -442,31 +484,38 @@
         "camelLoad": 0.7994317417265847
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 48,
+        "visibleCrests": 9,
+        "rippleStrokes": 145,
         "travelers": 2,
         "camels": 0
       },
-      "pngSha256": "e2f45c52fc4341eae957aea3b0551973dda2a0eeee3ecef72d2e5e76545e5312",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.015233380480905234,
+      "pngSha256": "04578e4b6c12ac8d24382b20b1127e8ffa18ef17547c58ae7c6de440662f04e9",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020209375,
       "edgeInk": 0,
       "bounds": {
-        "left": 68,
-        "top": 245,
-        "right": 1320,
-        "bottom": 872
+        "left": 92,
+        "top": 204,
+        "right": 3132,
+        "bottom": 720
+      },
+      "crop": {
+        "pngSha256": "5c25b400a2e404e2095f2cdf796839e5b87e7b1e45a404ef8454cff34045f6c5",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.01868647812638091,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-07",
-      "sha256": "5388d9dfbd3fc85f2a97db58073b768b8e3059676c55f760eb89287c1a53f29a",
-      "generationMs": 310.7973470000006,
-      "svgBytes": 138609,
-      "paths": 481,
+      "sha256": "399e03cf855caff2bef20e4307ad46aa3e28a667291defdf84da0a106669ac8e",
+      "generationMs": 848.0227750000013,
+      "svgBytes": 389533,
+      "paths": 1334,
       "label": "star · 2 travelers · 2 camels",
       "parameters": {
         "morphology": "star",
@@ -506,31 +555,38 @@
         "camelLoad": 0.501026846608147
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 112,
+        "visibleCrests": 10,
+        "rippleStrokes": 310,
         "travelers": 2,
         "camels": 2
       },
-      "pngSha256": "39b15c255be1aece180f854c860fe60e9a9648ba98157f92f3fe58ebc3318e46",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01504031117397454,
+      "pngSha256": "8594fc911be2c24da8b40b218db28b19834afa5ed09517eff7c4db6ac31eff80",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02207421875,
       "edgeInk": 0,
       "bounds": {
-        "left": 152,
-        "top": 310,
-        "right": 1176,
-        "bottom": 817
+        "left": 289,
+        "top": 247,
+        "right": 2954,
+        "bottom": 723
+      },
+      "crop": {
+        "pngSha256": "ad8e2237892fd779d08622fb330425d4f38cc1892f49401825bd4816603e0b52",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.023734257622624835,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-08",
-      "sha256": "638098dd0c3c511bcfb67964e4492c7cb24f58a84216aa4af90d1706e79e684c",
-      "generationMs": 256.70659499999965,
-      "svgBytes": 145476,
-      "paths": 507,
+      "sha256": "153f15ef4f077bdb63653cfce161e0447c14195e3abab9d239b89ddb98161355",
+      "generationMs": 548.9093429999994,
+      "svgBytes": 362333,
+      "paths": 1202,
       "label": "transverse · 3 travelers · 3 camels",
       "parameters": {
         "morphology": "transverse",
@@ -570,31 +626,38 @@
         "camelLoad": 0.4381620661821216
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 97,
+        "visibleCrests": 7,
+        "rippleStrokes": 245,
         "travelers": 3,
         "camels": 3
       },
-      "pngSha256": "2843de4a8536fad1fad79c3bcb24eb75b38aacee28a03a8be8ee3553c6e6b738",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014033239038189533,
+      "pngSha256": "6f0e0184cd6d465e2787849ad8f88cf2375431128aed3a2ad7e1ad51a5968572",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.017572265625,
       "edgeInk": 0,
       "bounds": {
-        "left": 173,
-        "top": 234,
-        "right": 1229,
-        "bottom": 876
+        "left": 377,
+        "top": 210,
+        "right": 2791,
+        "bottom": 699
+      },
+      "crop": {
+        "pngSha256": "1a17f18462ee1a63c0680063d8b4b5b449ba7c24acf1ba76f8647c0494725946",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.021440289438798055,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-09",
-      "sha256": "f54effb04d02f39925a5735747090a659ba94149727b802dd4aa098afce6b5e6",
-      "generationMs": 293.0730199999998,
-      "svgBytes": 121584,
-      "paths": 413,
+      "sha256": "d9dba0ae01bb0896e771ca7b9dc1f6cbcad60267aa848e04d36a1e1cb1003250",
+      "generationMs": 643.9316620000027,
+      "svgBytes": 323087,
+      "paths": 1119,
       "label": "barchan · 3 travelers · 1 camels",
       "parameters": {
         "morphology": "barchan",
@@ -634,31 +697,38 @@
         "camelLoad": 0.5673114609904587
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 80,
+        "visibleCrests": 10,
+        "rippleStrokes": 168,
         "travelers": 3,
         "camels": 1
       },
-      "pngSha256": "2516cff1ddbe0ab39492efa412fef8d6cc00b29ed1eb49e235169d8774a5d713",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014652050919377652,
+      "pngSha256": "897136030a212414e8934606a701d72562bb40cf0a584e96c6b769d6703e37a7",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02161953125,
       "edgeInk": 0,
       "bounds": {
-        "left": 68,
-        "top": 270,
-        "right": 1344,
-        "bottom": 846
+        "left": 65,
+        "top": 199,
+        "right": 3127,
+        "bottom": 739
+      },
+      "crop": {
+        "pngSha256": "b3778882145f56889d2d96af91d130f254dda9536494ce62c7e9cfd0e6fdae3b",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.018446475916924436,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-10",
-      "sha256": "89d75b1ccf8e321b8a163432c24114c98ffc28f9f130c3d33b3b7f4203f454c0",
-      "generationMs": 223.76381500000025,
-      "svgBytes": 128330,
-      "paths": 436,
+      "sha256": "e61c838189820a44ee4b8922dfab054d6b200b930300f68b65bc9f7565571366",
+      "generationMs": 569.874498000001,
+      "svgBytes": 335996,
+      "paths": 1114,
       "label": "barchan · 2 travelers · 0 camels",
       "parameters": {
         "morphology": "barchan",
@@ -698,31 +768,38 @@
         "camelLoad": 0.6885839161928743
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 97,
+        "visibleCrests": 7,
+        "rippleStrokes": 226,
         "travelers": 2,
         "camels": 0
       },
-      "pngSha256": "1d5c873a289043b51587eb6c3dfca2e37821ae629737d94bc8d9dc6d02aaa3ca",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014285007072135786,
+      "pngSha256": "4e7b281c8a0c569e3d00e51affe4169bb5ffdba900bf34df56cfef9e398f760e",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.018672265625,
       "edgeInk": 0,
       "bounds": {
-        "left": 294,
-        "top": 266,
-        "right": 1213,
-        "bottom": 850
+        "left": 535,
+        "top": 198,
+        "right": 2890,
+        "bottom": 719
+      },
+      "crop": {
+        "pngSha256": "80b118d4941e77dd29597e6b2bdbaadeb78a5c6c3798dde141d24ba4a257d57b",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.023204264250994255,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-11",
-      "sha256": "1b5f1d66a6a63ed52bb81cf5115862dfd16ee682128b01b592a368c7ce74e08a",
-      "generationMs": 217.41477700000087,
-      "svgBytes": 97908,
-      "paths": 342,
+      "sha256": "7bbec8ba013f490750f1c6afb227381135b922e1375e41df3f275f2f016cd8dc",
+      "generationMs": 595.7602200000001,
+      "svgBytes": 306109,
+      "paths": 1062,
       "label": "transverse · 2 travelers · 0 camels",
       "parameters": {
         "morphology": "transverse",
@@ -762,31 +839,38 @@
         "camelLoad": 0.6778603118378669
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 61,
+        "visibleCrests": 9,
+        "rippleStrokes": 193,
         "travelers": 2,
         "camels": 0
       },
-      "pngSha256": "b02ec945402b7dae45f53ee9b80e69c9bc2d30e2619ac9bc198d661cf36dd23f",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012714992927864216,
+      "pngSha256": "4d4bfd9dec548c64250575661e40d0b94b8655393529a254a06ea6845d28dfb6",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020434765625,
       "edgeInk": 0,
       "bounds": {
-        "left": 95,
-        "top": 187,
-        "right": 1321,
-        "bottom": 926
+        "left": 132,
+        "top": 141,
+        "right": 3131,
+        "bottom": 742
+      },
+      "crop": {
+        "pngSha256": "69788ae8ef3eda6c842099642c56a5b0d8d39f9e3bc3fc36d82fa1f48cd32463",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.018715339151568713,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-12",
-      "sha256": "820a495343e2bba93015e82fc2402a8c4c9caabbb0699a803607497952b0d593",
-      "generationMs": 243.5520459999998,
-      "svgBytes": 99777,
-      "paths": 340,
+      "sha256": "53843bdbab0973311af26468d980cf23dc14df9877529e356eb15ca504ee77fa",
+      "generationMs": 531.5265300000028,
+      "svgBytes": 277528,
+      "paths": 962,
       "label": "star · 2 travelers · 0 camels",
       "parameters": {
         "morphology": "star",
@@ -826,31 +910,38 @@
         "camelLoad": 0.6301831553224474
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 78,
+        "visibleCrests": 11,
+        "rippleStrokes": 192,
         "travelers": 2,
         "camels": 0
       },
-      "pngSha256": "843d06dbc98e8c3d11d4e16df8a486ab97ff18eb3aa2ed15e82c131ad391c613",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013123762376237623,
+      "pngSha256": "0802f7cd7917284be6d94263b42ed06681910890f1892542d2920dbca002e6ca",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.018665625,
       "edgeInk": 0,
       "bounds": {
-        "left": 70,
-        "top": 322,
-        "right": 1326,
-        "bottom": 880
+        "left": 64,
+        "top": 237,
+        "right": 3057,
+        "bottom": 706
+      },
+      "crop": {
+        "pngSha256": "90f3061cff70b6004c377b2d02c8d2c69a25e71231f40f03037c11f8ca299f3e",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.015839317277949624,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-13",
-      "sha256": "04203783f37e337cfee17bf2e474771afbb6d0f845f2e499a6dfb2f0c04d1f70",
-      "generationMs": 298.67258799999945,
-      "svgBytes": 122913,
-      "paths": 413,
+      "sha256": "a8fe562dd6786e2468c07ca15fad4f6f46ed84f68098b0d2817b043aabe33b4d",
+      "generationMs": 629.801156999998,
+      "svgBytes": 280515,
+      "paths": 991,
       "label": "barchan · 2 travelers · 1 camels",
       "parameters": {
         "morphology": "barchan",
@@ -890,31 +981,38 @@
         "camelLoad": 0.4647952084429562
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 8,
-        "rippleStrokes": 71,
+        "visibleCrests": 10,
+        "rippleStrokes": 133,
         "travelers": 2,
         "camels": 1
       },
-      "pngSha256": "a5d0544a6d7c1bd6da51583aa5e5c8d4226ecf79164565df6d60f3e83a0d5155",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01832956152758133,
+      "pngSha256": "daa1dfe3f9505f18f833d4021d2c88467138ba1b187fe4fe7db47907c7066fc8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021153125,
       "edgeInk": 0,
       "bounds": {
-        "left": 138,
-        "top": 248,
-        "right": 1345,
-        "bottom": 793
+        "left": 144,
+        "top": 196,
+        "right": 3132,
+        "bottom": 708
+      },
+      "crop": {
+        "pngSha256": "11826e65edb2b918ac866142c5f3973404f5b3629770e88c2f6bcc3252291899",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.021204429960229785,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-14",
-      "sha256": "34e557e0a7c10ad0a0f1eda6febb7bf30b49ffaf556780dc077f701a17f7c719",
-      "generationMs": 216.95915800000148,
-      "svgBytes": 96677,
-      "paths": 345,
+      "sha256": "63581ce3afc5b6ba178564810ce95d7ecd9e0b1e441d219b38adb19b3ae582a0",
+      "generationMs": 516.2619229999982,
+      "svgBytes": 320031,
+      "paths": 1101,
       "label": "barchan · 1 travelers · 0 camels",
       "parameters": {
         "morphology": "barchan",
@@ -954,31 +1052,38 @@
         "camelLoad": 0.47451749923639
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 4,
-        "rippleStrokes": 62,
+        "visibleCrests": 6,
+        "rippleStrokes": 207,
         "travelers": 1,
         "camels": 0
       },
-      "pngSha256": "ef1e3084c1b3f76fab887063cabd1f165c1021d48be3d9dbce58e5360ed83edc",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012768033946251768,
+      "pngSha256": "f2070ff27d8841ab61f289d8cd2485318506a2a9bcba3f53bfe1cbdca406b9ee",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.022087890625,
       "edgeInk": 0,
       "bounds": {
-        "left": 106,
-        "top": 177,
-        "right": 1294,
-        "bottom": 924
+        "left": 152,
+        "top": 104,
+        "right": 3027,
+        "bottom": 742
+      },
+      "crop": {
+        "pngSha256": "5da69e5365dd56ea11e8df9b4018b493caed4b1b07ba62c206d17d21a91b8dd5",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.021878176093680955,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-15",
-      "sha256": "b92f6410f6a41c10505d799682d178a8f208ed860dce4dc0800254abadf33991",
-      "generationMs": 286.4487939999999,
-      "svgBytes": 93932,
-      "paths": 305,
+      "sha256": "6b3b96ffeffb4a13cb20e3b8596ffda31182c6d173a1823ba1ce1731d6cbf6a8",
+      "generationMs": 528.103489000001,
+      "svgBytes": 350478,
+      "paths": 1160,
       "label": "linear · 1 travelers · 1 camels",
       "parameters": {
         "morphology": "linear",
@@ -1018,31 +1123,38 @@
         "camelLoad": 0.8035450575640425
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 54,
+        "visibleCrests": 6,
+        "rippleStrokes": 243,
         "travelers": 1,
         "camels": 1
       },
-      "pngSha256": "7e4429efcf04b3427b5f30f7e22d71981e4a13a1110ccf247c51ea6e9ce52b61",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013315417256011316,
+      "pngSha256": "3744d9b8821abd5d8af0a251c3acd547bff85a9cb943b25cfe33bd4b85332ba6",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02354453125,
       "edgeInk": 0,
       "bounds": {
-        "left": 67,
-        "top": 212,
-        "right": 1242,
-        "bottom": 926
+        "left": 68,
+        "top": 154,
+        "right": 3085,
+        "bottom": 721
+      },
+      "crop": {
+        "pngSha256": "72a7e2fc5b8cb49e51d9c3b943a4fea53260cda5d81a2e23da3896786335ba7b",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.024725060760053028,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-16",
-      "sha256": "e0e18d75aa83afb187ab41aa9c0d48e8b7f4c41cdd5acf7943423b9b7ae63579",
-      "generationMs": 233.42611699999907,
-      "svgBytes": 144156,
-      "paths": 537,
+      "sha256": "9978cbbff0c4449c98d5316dda0812eb1711466f528ffc17477b8d02cfda534c",
+      "generationMs": 814.1576679999998,
+      "svgBytes": 371400,
+      "paths": 1317,
       "label": "linear · 3 travelers · 1 camels",
       "parameters": {
         "morphology": "linear",
@@ -1082,31 +1194,38 @@
         "camelLoad": 0.39779164399951694
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 77,
+        "visibleCrests": 8,
+        "rippleStrokes": 176,
         "travelers": 3,
         "camels": 1
       },
-      "pngSha256": "d08fd95ff5dc4c6439c62c864c754b3ba6d365d4384d234cb0f730119f65d504",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01644695898161245,
+      "pngSha256": "a611750a2fbca2e5d34b69f873fc4553ea5e4b0841a7b828221750b9196523ae",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0215046875,
       "edgeInk": 0,
       "bounds": {
-        "left": 198,
-        "top": 219,
-        "right": 1185,
-        "bottom": 925
+        "left": 418,
+        "top": 176,
+        "right": 2892,
+        "bottom": 740
+      },
+      "crop": {
+        "pngSha256": "86bcb66f93b7805d629ed804224e5f38e258ce4fe08d03e0fa18a19130c1b3e8",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.025142924215642952,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-17",
-      "sha256": "376c590a4d3ce3842d26893a46e72dee8982107dbd2183a27c8173910a2af147",
-      "generationMs": 205.20386999999937,
-      "svgBytes": 103649,
-      "paths": 359,
+      "sha256": "e6940336fbefb6af0b3f7ef96b5784dafa41b91b13dc4fd2d67898b5e87bd93a",
+      "generationMs": 732.9845429999987,
+      "svgBytes": 296006,
+      "paths": 1041,
       "label": "barchan · 3 travelers · 2 camels",
       "parameters": {
         "morphology": "barchan",
@@ -1146,31 +1265,38 @@
         "camelLoad": 0.7600315284449607
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 37,
+        "visibleCrests": 5,
+        "rippleStrokes": 107,
         "travelers": 3,
         "camels": 2
       },
-      "pngSha256": "d725c9afa1ec08873d179ba1b332fefed068621b96a55e2b297e2ccad7275fa1",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013465346534653465,
+      "pngSha256": "22c74af2a4c6aad8a49e34c0ed0bf045c57ebe20d3211e0403cce2ac26a0bf8b",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021556640625,
       "edgeInk": 0,
       "bounds": {
-        "left": 85,
-        "top": 131,
-        "right": 1304,
-        "bottom": 902
+        "left": 84,
+        "top": 105,
+        "right": 3015,
+        "bottom": 742
+      },
+      "crop": {
+        "pngSha256": "efcdd6173fd68e584203acc778fa0a8c0f270afaa966297b2e5f85f15dc3b21a",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.021437389527176314,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-18",
-      "sha256": "f3803b14b384db7b9d6dee87f0d9d4d29b1ef5739fe5fc8a7ee06baee5839501",
-      "generationMs": 282.3509699999995,
-      "svgBytes": 116172,
-      "paths": 416,
+      "sha256": "5e47893f6f5732a5b6d6b4c605cb37a6ff364017a9191f84413ccd8cb67ca46a",
+      "generationMs": 598.7048339999965,
+      "svgBytes": 283154,
+      "paths": 991,
       "label": "transverse · 1 travelers · 3 camels",
       "parameters": {
         "morphology": "transverse",
@@ -1210,31 +1336,38 @@
         "camelLoad": 0.6045282677747309
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 61,
+        "visibleCrests": 10,
+        "rippleStrokes": 138,
         "travelers": 1,
         "camels": 3
       },
-      "pngSha256": "bf1ad836436a611b171097566bff727866566873c194cf44d3498ba3624fe553",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013181753889674682,
+      "pngSha256": "618b4812a925b194e359753613f65124b7cdec3ecfdd08a7619861d793e246d1",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.01603671875,
       "edgeInk": 0,
       "bounds": {
-        "left": 210,
-        "top": 238,
-        "right": 1189,
-        "bottom": 903
+        "left": 320,
+        "top": 179,
+        "right": 2795,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "2a469586f26a424308afe2b4904ee4cca60d7dfec83ffde5137fd770ddc52fd2",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.017823961555457356,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-19",
-      "sha256": "fd62579bebf0bff36a56a2f84abe8cf97e0f6da6f734c588889f85a050fcdb30",
-      "generationMs": 245.4368429999995,
-      "svgBytes": 120577,
-      "paths": 411,
+      "sha256": "53dc7da9ff1697c010368eefe89fc2b486169f7ff2689e3f878c983854e56b03",
+      "generationMs": 992.274645999998,
+      "svgBytes": 369043,
+      "paths": 1221,
       "label": "star · 1 travelers · 1 camels",
       "parameters": {
         "morphology": "star",
@@ -1274,31 +1407,38 @@
         "camelLoad": 0.4351095070829615
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 87,
+        "visibleCrests": 9,
+        "rippleStrokes": 251,
         "travelers": 1,
         "camels": 1
       },
-      "pngSha256": "4fc3d168fe3e9d1bcea4e721ce5cf81997c2d33aab2c19e057e45f20126e50b0",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014576379066478077,
+      "pngSha256": "1967ecdb8d3a725cdc29cf962c8dca47b090839f597a7ae832f97f03417c8ef8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.023691796875,
       "edgeInk": 0,
       "bounds": {
-        "left": 189,
-        "top": 211,
-        "right": 1257,
-        "bottom": 908
+        "left": 436,
+        "top": 177,
+        "right": 2955,
+        "bottom": 733
+      },
+      "crop": {
+        "pngSha256": "b93b1ccad7aad482a5361c52ae8816908f0eeea174f4cf6996fcffb03eba9592",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.025332523199292974,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-20",
-      "sha256": "d109e000cfe172b20560ef6cb60719bcc9a6ec4e18e686ce38808ddfc9430a3d",
-      "generationMs": 237.28045699999893,
-      "svgBytes": 112564,
-      "paths": 419,
+      "sha256": "a9b1118e3ac230fe00e2578f8fc5121843b45075c4006434204724984d38e5b9",
+      "generationMs": 790.1026940000011,
+      "svgBytes": 351347,
+      "paths": 1197,
       "label": "barchan · 3 travelers · 0 camels",
       "parameters": {
         "morphology": "barchan",
@@ -1338,31 +1478,38 @@
         "camelLoad": 0.5750405114609748
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 8,
-        "rippleStrokes": 69,
+        "visibleCrests": 12,
+        "rippleStrokes": 221,
         "travelers": 3,
         "camels": 0
       },
-      "pngSha256": "d94a36718613442033d7b6d75000acee0ac349ca81bd7b24fe9d5f0beafeff6f",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013167609618104668,
+      "pngSha256": "7ec64b0fb4b784fb258f4f5da64d53477513cba4599060969f73fc93eb832b54",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02092265625,
       "edgeInk": 0,
       "bounds": {
-        "left": 167,
-        "top": 240,
-        "right": 1242,
-        "bottom": 875
+        "left": 268,
+        "top": 193,
+        "right": 2885,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "4e8897d9765c3ae99b3fc87d54acda441ef567bf1f0d93c19f06ce396e9a16f2",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.021641488068935042,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-21",
-      "sha256": "9afe684986f0c28f55c89062a40c629844947a78e7dfa3f9edebe1a4b3043f47",
-      "generationMs": 276.20989700000064,
-      "svgBytes": 123465,
-      "paths": 422,
+      "sha256": "d11876bfe5c720b244a981b765cd139a2ed983524244ec1f6ee56a3c762d3ec3",
+      "generationMs": 852.5893209999995,
+      "svgBytes": 352042,
+      "paths": 1257,
       "label": "linear · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "linear",
@@ -1402,31 +1549,38 @@
         "camelLoad": 0.67721592055168
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 69,
+        "visibleCrests": 12,
+        "rippleStrokes": 216,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "eac8918f53fa2af062a336cb9b0e876dff99918be981ea3b266c16b186c06eb2",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01566124469589816,
+      "pngSha256": "6bcb229c3861f91ceb0c5a0f5025157a06587ab2695c018786d5158bca2c10b6",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.022084375,
       "edgeInk": 0,
       "bounds": {
-        "left": 118,
-        "top": 179,
-        "right": 1293,
-        "bottom": 926
+        "left": 94,
+        "top": 150,
+        "right": 3037,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "8a143722255b86cab3be19afa56e744a2eab82149755157b1ef245f417c6b2f7",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022225198851082633,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-22",
-      "sha256": "d013c8d1a956beb16e425b0c0c40be6d6bee3de9422c97594bde94c91b3c6e39",
-      "generationMs": 218.857258,
-      "svgBytes": 132087,
-      "paths": 455,
+      "sha256": "d1fe5c31213c86c0dce9a4b5e38676c4d82cbf81c345bbf662e12f0b6932fc04",
+      "generationMs": 545.1273020000008,
+      "svgBytes": 363817,
+      "paths": 1202,
       "label": "barchan · 3 travelers · 3 camels",
       "parameters": {
         "morphology": "barchan",
@@ -1466,31 +1620,38 @@
         "camelLoad": 0.542304715514183
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 82,
+        "visibleCrests": 6,
+        "rippleStrokes": 247,
         "travelers": 3,
         "camels": 3
       },
-      "pngSha256": "4493c4af324e5dceb665cbaa78239f1e6752c12bec7e83f4e9c1698e1e8aec44",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013789250353606789,
+      "pngSha256": "a7a17e80651686248db1f247c7de7f6e082fadc238b7f83b16440c6ceac37582",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.01964765625,
       "edgeInk": 0,
       "bounds": {
-        "left": 170,
-        "top": 193,
-        "right": 1272,
-        "bottom": 910
+        "left": 342,
+        "top": 146,
+        "right": 3065,
+        "bottom": 703
+      },
+      "crop": {
+        "pngSha256": "a43358140967630743b3646370f6bb37876933ae5eeef06cecdf58b7015fd11f",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.020231992929739283,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-23",
-      "sha256": "be729ebf5015084ffb4bc0e2f3c2264fcaa0b55c1d14f8b1801aa5e6aeed5364",
-      "generationMs": 213.90984799999933,
-      "svgBytes": 145634,
-      "paths": 512,
+      "sha256": "ebb33c5b251ebc6691a7218e13def0c2042bf2d9c7406b69aff18f7702d17f3c",
+      "generationMs": 654.3929589999971,
+      "svgBytes": 350309,
+      "paths": 1178,
       "label": "star · 3 travelers · 2 camels",
       "parameters": {
         "morphology": "star",
@@ -1530,31 +1691,38 @@
         "camelLoad": 0.7766988836461678
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 92,
+        "visibleCrests": 10,
+        "rippleStrokes": 224,
         "travelers": 3,
         "camels": 2
       },
-      "pngSha256": "2e5cc9bfa1fc6117984d683f10293f79fceeebf753287ca9a6f7cc1398a25c23",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.017364214992927864,
+      "pngSha256": "e6b9c1a61672c36eba3b621757ba9352ac8e1c0ca3b0594c4c174410dd36bee3",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.022900390625,
       "edgeInk": 0,
       "bounds": {
-        "left": 206,
-        "top": 191,
-        "right": 1281,
-        "bottom": 925
+        "left": 245,
+        "top": 173,
+        "right": 3106,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "8a51bf41968a03bf06349a77683a1db0c738ad191cd961d43b92aea96174d831",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.026194211224038887,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-24",
-      "sha256": "640087e53135f9d7b17a884de95bab8ad66355ddbedd557eff59c93d9ecf9a51",
-      "generationMs": 266.67651099999966,
-      "svgBytes": 116292,
-      "paths": 390,
+      "sha256": "07fd36e2089a56e4f9b1b50e0dcc68631415f920873e509488abb896f055e580",
+      "generationMs": 720.8330729999943,
+      "svgBytes": 319597,
+      "paths": 1122,
       "label": "linear · 3 travelers · 2 camels",
       "parameters": {
         "morphology": "linear",
@@ -1594,31 +1762,38 @@
         "camelLoad": 0.38987412026617674
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 60,
+        "visibleCrests": 9,
+        "rippleStrokes": 206,
         "travelers": 3,
         "camels": 2
       },
-      "pngSha256": "d94c0e5fc5778f6dc8db767ce2030dd235d5d5137e0725cb22d19c950e0964e3",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.017182461103253183,
+      "pngSha256": "03a83fa9040a44cd303c2719ef4fe84e150cd823434d0fc95f10178fefc5bd9a",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021989453125,
       "edgeInk": 0,
       "bounds": {
-        "left": 67,
-        "top": 239,
-        "right": 1346,
-        "bottom": 917
+        "left": 94,
+        "top": 182,
+        "right": 3119,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "e98cdeb22c31d96f60d18ff653f66b285521ab2b96eac245af85188e8f0e9f07",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.0226253866548829,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-25",
-      "sha256": "e2a7ae6c2c5f96da2fea087e207f44de956616de4e80d3bd5e2a5265e209d3cc",
-      "generationMs": 243.1421019999998,
-      "svgBytes": 116082,
-      "paths": 414,
+      "sha256": "45941700c8ae22f0d9e767af649b5eb8646c842a44ec61c5f0f68fc97d881589",
+      "generationMs": 868.3938530000014,
+      "svgBytes": 354338,
+      "paths": 1195,
       "label": "linear · 1 travelers · 0 camels",
       "parameters": {
         "morphology": "linear",
@@ -1658,31 +1833,38 @@
         "camelLoad": 0.6754152941517532
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 74,
+        "visibleCrests": 5,
+        "rippleStrokes": 242,
         "travelers": 1,
         "camels": 0
       },
-      "pngSha256": "fd8239c9eafbfbd7ac545853913152b20d10cc3a757b4a4d9869fd1261aacb1d",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01570933521923621,
+      "pngSha256": "958722df3e810f5848e85f1806057394ce656e292b1993850cb44d74b87d1128",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02492734375,
       "edgeInk": 0,
       "bounds": {
-        "left": 85,
-        "top": 212,
-        "right": 1343,
-        "bottom": 927
+        "left": 66,
+        "top": 171,
+        "right": 3061,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "a9676f323999ae21eb64777505e398ca15ef94058a39a95a8bd3ed168ca9f5ed",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.023415819708351746,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-26",
-      "sha256": "30c442f4b00a6b92b5491e77e76cc82dae18f58520a0deb7abdd037b3c52951a",
-      "generationMs": 262.9478369999997,
-      "svgBytes": 138110,
-      "paths": 505,
+      "sha256": "8a4bba1fd12baa7b600f77ff02b56106f86ddc5d1e4878926d66a8a28e893d28",
+      "generationMs": 910.7968519999995,
+      "svgBytes": 396779,
+      "paths": 1354,
       "label": "linear · 3 travelers · 2 camels",
       "parameters": {
         "morphology": "linear",
@@ -1722,31 +1904,38 @@
         "camelLoad": 0.47900272116530684
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 71,
+        "visibleCrests": 11,
+        "rippleStrokes": 247,
         "travelers": 3,
         "camels": 2
       },
-      "pngSha256": "9ea2362d5cfc96d22191e500fc36c12ca869000616b3a3a4286a00ccce0d51bd",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.016373408769448372,
+      "pngSha256": "51cbf39ba993a328c48f29527db6b636c9a9d9c35d4b1f773cc7fcc77f748eaf",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0248078125,
       "edgeInk": 0,
       "bounds": {
-        "left": 78,
-        "top": 250,
-        "right": 1341,
-        "bottom": 926
+        "left": 127,
+        "top": 205,
+        "right": 3134,
+        "bottom": 725
+      },
+      "crop": {
+        "pngSha256": "d33c593bbb73f1aedab640a6749be04e15b314da417b7505abe6491e73a48676",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022577192885550153,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-27",
-      "sha256": "75a702cd7553b734cacd6aa77715ab143232acaa96f432b8f368c84cfa73fa3e",
-      "generationMs": 243.81965499999933,
-      "svgBytes": 126744,
-      "paths": 447,
+      "sha256": "a7fefab9b3e302111e435b4f8dd2b9fce401328774ac149c6ba2120ef6b3ae06",
+      "generationMs": 624.7098549999937,
+      "svgBytes": 375526,
+      "paths": 1316,
       "label": "transverse · 2 travelers · 1 camels",
       "parameters": {
         "morphology": "transverse",
@@ -1786,31 +1975,38 @@
         "camelLoad": 0.6402835252461955
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 92,
+        "visibleCrests": 9,
+        "rippleStrokes": 254,
         "travelers": 2,
         "camels": 1
       },
-      "pngSha256": "d7d6c765c451a130cb7ab955be296ffe01aa6c7a938a44243b71bb94694a7bfe",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012763790664780764,
+      "pngSha256": "63ef8138f5127d7529b6be71b7eef651d51b5bec081a4efd322bacffdebc3630",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020579296875,
       "edgeInk": 0,
       "bounds": {
-        "left": 194,
-        "top": 305,
-        "right": 1175,
-        "bottom": 890
+        "left": 344,
+        "top": 242,
+        "right": 2913,
+        "bottom": 683
+      },
+      "crop": {
+        "pngSha256": "58b42c9c370907eac426415a00f58f50b38ec6400075632ca7f19c72ce76f28b",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02122887207247017,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-28",
-      "sha256": "6acbb0138b4addad5ea1b074ee0a669d37adb2a1bb30448f6f88fc529748a512",
-      "generationMs": 201.46713400000044,
-      "svgBytes": 99968,
-      "paths": 359,
+      "sha256": "55bfa9857ba3eee182c03f1f869b749c16e234917767a06ec218bc758f0e12a7",
+      "generationMs": 492.72538400000485,
+      "svgBytes": 297744,
+      "paths": 1015,
       "label": "star · 1 travelers · 0 camels",
       "parameters": {
         "morphology": "star",
@@ -1850,31 +2046,38 @@
         "camelLoad": 0.7611458995612338
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 75,
+        "visibleCrests": 8,
+        "rippleStrokes": 167,
         "travelers": 1,
         "camels": 0
       },
-      "pngSha256": "f8d6601c2136a8108b27248df62d000f118cb9c44da8823f7d64f748e0c595a4",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.010437765205091938,
+      "pngSha256": "d5a802e8d217753189db1c373ae82d64267cfb370dfe9addb51870b76d531621",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.016142578125,
       "edgeInk": 0,
       "bounds": {
-        "left": 286,
-        "top": 188,
-        "right": 1182,
-        "bottom": 926
+        "left": 479,
+        "top": 153,
+        "right": 2653,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "f52673c266222d33d2c6c471d0eaebad3d757c39f78b7fc763a5d283ec56a546",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.0206640797613787,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-29",
-      "sha256": "7fa98097773ef54f35e37eccbf0ab2a501aed94d0216a1a93ab76f66ead4ca27",
-      "generationMs": 226.4687159999994,
-      "svgBytes": 94485,
-      "paths": 341,
+      "sha256": "e49ecafd1f2b798fb50b63fc8fe02d1ba0bb435a2572abf81ad6a605ab88c8d6",
+      "generationMs": 554.5612330000004,
+      "svgBytes": 305910,
+      "paths": 1111,
       "label": "star · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "star",
@@ -1914,31 +2117,38 @@
         "camelLoad": 0.5715769528411329
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 44,
+        "visibleCrests": 13,
+        "rippleStrokes": 169,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "051474ea1d24f765e3d81b4ac5353d2d61fe28f15c494d709ce080ea46ca1aa8",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.011026874115983026,
+      "pngSha256": "2385e4a58e53f6b6ccc70917934c3e0a9208ab4be2dc3765fdd9543bb3c343ce",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.017608203125,
       "edgeInk": 0,
       "bounds": {
-        "left": 175,
-        "top": 278,
-        "right": 1272,
-        "bottom": 892
+        "left": 208,
+        "top": 208,
+        "right": 2872,
+        "bottom": 708
+      },
+      "crop": {
+        "pngSha256": "b9fd5b5830f50b22af931d84e514c9a13444fda24430ca967dbc872c087c5ff7",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.015728292090145823,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-30",
-      "sha256": "46a11b6c88312e38635a7dae7b2e84b6efea8e320c1008bdf8ef47affc881c75",
-      "generationMs": 242.05648099999962,
-      "svgBytes": 105908,
-      "paths": 373,
+      "sha256": "d8c34785060a9d1853606211fa9f30d2148aabbc3e8e372c5abbb9bedf8755b8",
+      "generationMs": 476.84540999999444,
+      "svgBytes": 327559,
+      "paths": 1109,
       "label": "linear · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "linear",
@@ -1978,31 +2188,38 @@
         "camelLoad": 0.7283180725295096
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 43,
+        "visibleCrests": 7,
+        "rippleStrokes": 171,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "e3c5619ceb6bf259120fbde8d449ab1600a14f3eee384d9cb21dff43b54babf8",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013105374823196606,
+      "pngSha256": "5e519256e5c8cd52530db3146db507a8b29f5db8e4aceb71198ef12de18adf80",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.019942578125,
       "edgeInk": 0,
       "bounds": {
-        "left": 186,
-        "top": 275,
-        "right": 1292,
-        "bottom": 869
+        "left": 329,
+        "top": 236,
+        "right": 2891,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "31d9d0d98370fe69178f1645cdde0f54bed29cbf6fa6a38e8514e93658deedd7",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02109699513919576,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-31",
-      "sha256": "4f7b9cecf63956132f56b235388e5a2ffc1ced9a6ca929ac00f25d52b18be407",
-      "generationMs": 219.30074199999945,
-      "svgBytes": 131317,
-      "paths": 443,
+      "sha256": "647bb097d75a3c5cab35da075f5dc7b4b6f2f3fb78411c46562649f83322a2eb",
+      "generationMs": 485.9630370000086,
+      "svgBytes": 335529,
+      "paths": 1146,
       "label": "barchan · 3 travelers · 3 camels",
       "parameters": {
         "morphology": "barchan",
@@ -2042,31 +2259,38 @@
         "camelLoad": 0.44315777535084633
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 72,
+        "visibleCrests": 8,
+        "rippleStrokes": 186,
         "travelers": 3,
         "camels": 3
       },
-      "pngSha256": "66abfdb1680e7ec549de56b0b4a2ea68ec8f85ff5f4c4bfc0707949163a78844",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.016748939179632247,
+      "pngSha256": "029910354016a2d44dff4996393faa7068d47c3fa88f109ed1bdc4b448f29594",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02324453125,
       "edgeInk": 0,
       "bounds": {
-        "left": 68,
-        "top": 260,
-        "right": 1284,
-        "bottom": 865
+        "left": 92,
+        "top": 210,
+        "right": 3108,
+        "bottom": 691
+      },
+      "crop": {
+        "pngSha256": "e5444fc62497047298d10373ea2c89900a51843993f8f4216d58b570c461195f",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02320744034467521,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-32",
-      "sha256": "191f1955511b7a8cc8671ba541f73e8e5b54474501e9c43286ba01f1d27f71ab",
-      "generationMs": 193.87553499999922,
-      "svgBytes": 108307,
-      "paths": 383,
+      "sha256": "fbdd3a561b6144c264d493f8bb905a2404a87a40b87a0c16d6401c97a916baa1",
+      "generationMs": 462.25513299999875,
+      "svgBytes": 290550,
+      "paths": 1037,
       "label": "transverse · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "transverse",
@@ -2106,31 +2330,38 @@
         "camelLoad": 0.6909886504523456
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 42,
+        "visibleCrests": 8,
+        "rippleStrokes": 108,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "d37a6da94bb1fcaf4913638ce177adfe086616e6c20bd07e0f0a6cba85e6739d",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012992220650636491,
+      "pngSha256": "1dca735a63be9b2ea276b2a40c3593685b23a4fd203e3c11e3f83fcd91cb6908",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.01807421875,
       "edgeInk": 0,
       "bounds": {
-        "left": 123,
-        "top": 153,
-        "right": 1271,
-        "bottom": 924
+        "left": 255,
+        "top": 145,
+        "right": 3067,
+        "bottom": 740
+      },
+      "crop": {
+        "pngSha256": "c91f69e564a54851aaadccb9d526604bef305754bc2bb59c79e02bf7576b3ab5",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.01856620083959346,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-33",
-      "sha256": "9bc8bcd29c40ce3ed49b46b0163fef895d058725fa0665a63818213156eb53ad",
-      "generationMs": 179.72423799999888,
-      "svgBytes": 105042,
-      "paths": 374,
+      "sha256": "33a6792cf4a96377c49aacc88eaeb22e166dfb49f7b4d612f1caf8df6bbe4c78",
+      "generationMs": 443.76685500000895,
+      "svgBytes": 354667,
+      "paths": 1193,
       "label": "barchan · 3 travelers · 1 camels",
       "parameters": {
         "morphology": "barchan",
@@ -2170,31 +2401,38 @@
         "camelLoad": 0.6224644485861063
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
         "visibleCrests": 5,
-        "rippleStrokes": 66,
+        "rippleStrokes": 188,
         "travelers": 3,
         "camels": 1
       },
-      "pngSha256": "1c102909c15e656a1dfecae2dd291c8366eeed41737223483bef745b560598c8",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012433521923620933,
+      "pngSha256": "5127b7c4bfa0a6a922b2b09df2bb1e53db3d4f05bafd094f9d86e7766dd2d616",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021355078125,
       "edgeInk": 0,
       "bounds": {
-        "left": 226,
-        "top": 219,
-        "right": 1188,
-        "bottom": 890
+        "left": 445,
+        "top": 138,
+        "right": 2750,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "e1efaaf103e4209e4d830f43da1fa24cc5d0cae55340345d2f55d29626dddda0",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02540212107821476,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-34",
-      "sha256": "3f0684daf9b0e167fcf3dece816bc3a46fe60bea16a82a750ce089f24694ddc5",
-      "generationMs": 206.22710899999947,
-      "svgBytes": 101281,
-      "paths": 375,
+      "sha256": "1a2cd92297d2f0bf263fb86102c93d63494a52838f8fa9c5ca4950601e43e2d5",
+      "generationMs": 486.6522479999985,
+      "svgBytes": 286443,
+      "paths": 988,
       "label": "linear · 1 travelers · 3 camels",
       "parameters": {
         "morphology": "linear",
@@ -2234,31 +2472,38 @@
         "camelLoad": 0.483346012677066
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 37,
+        "visibleCrests": 8,
+        "rippleStrokes": 105,
         "travelers": 1,
         "camels": 3
       },
-      "pngSha256": "b4310681f900c937a40e833670b042ef225b81c6d535a00a7ce34851548a37fb",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012294908062234796,
+      "pngSha256": "255b78a9fd409e0034c0c7e2681e65f8192edc7610d5d1bf9831ed8b32920377",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.018908203125,
       "edgeInk": 0,
       "bounds": {
-        "left": 179,
-        "top": 227,
-        "right": 1346,
-        "bottom": 926
+        "left": 304,
+        "top": 168,
+        "right": 2891,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "3dfd8054d25eb34f90fca4bb2fd009a01d76443f0d95ddf4a85ec59600b75192",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.019852242598320812,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-35",
-      "sha256": "f13f73bc5704c8f5f039b8333dd959f77b95af3c35b8adb3c1bd3b337b7f70d7",
-      "generationMs": 215.85500499999762,
-      "svgBytes": 121072,
-      "paths": 422,
+      "sha256": "117d4d0478b34975fcbde329a024109bb4e6e9804aa9ee5a04ff83647c04ca54",
+      "generationMs": 485.51356300000043,
+      "svgBytes": 325257,
+      "paths": 1097,
       "label": "star · 2 travelers · 1 camels",
       "parameters": {
         "morphology": "star",
@@ -2298,31 +2543,38 @@
         "camelLoad": 0.5826956064207479
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 74,
+        "visibleCrests": 7,
+        "rippleStrokes": 213,
         "travelers": 2,
         "camels": 1
       },
-      "pngSha256": "1b2f26ddf40a0b98d26e3c794955ddf110524f7c43f00b9a4deb5454fb8d5a72",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.012775106082036775,
+      "pngSha256": "72dabacf70e18e5a37c2ac041a3e105e78958780320feafe70d6bc7051fded5e",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.01795078125,
       "edgeInk": 0,
       "bounds": {
-        "left": 150,
-        "top": 273,
-        "right": 1234,
-        "bottom": 887
+        "left": 250,
+        "top": 212,
+        "right": 3016,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "e91ceae2877aa24fb6fe599df51a35aefcb0e34abe4e997cebfca921698b4d5a",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.01910917476800707,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-36",
-      "sha256": "201cca8e504df61a899a0469acc79b75e83176e30a02a41718492eacddd23f4e",
-      "generationMs": 195.55455900000015,
-      "svgBytes": 143562,
-      "paths": 490,
+      "sha256": "549a2e215ccfec52b88ff12848271c3305bb1c582ac72db900dd579d168f2ed2",
+      "generationMs": 480.86313900000823,
+      "svgBytes": 362381,
+      "paths": 1181,
       "label": "barchan · 2 travelers · 3 camels",
       "parameters": {
         "morphology": "barchan",
@@ -2362,31 +2614,38 @@
         "camelLoad": 0.7202029432170093
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 98,
+        "visibleCrests": 6,
+        "rippleStrokes": 252,
         "travelers": 2,
         "camels": 3
       },
-      "pngSha256": "dd3b2cb2e3d7e83de29a0aea5937b693e254d501402b7d4db0657ff5cf2e44db",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.015545968882602545,
+      "pngSha256": "0a4e632813e4a7db844dbaf84d01f39bf2039b6e6791bcc3f7ca28c4a8cf3a6d",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.01866640625,
       "edgeInk": 0,
       "bounds": {
-        "left": 260,
-        "top": 197,
-        "right": 1134,
-        "bottom": 926
+        "left": 521,
+        "top": 140,
+        "right": 2630,
+        "bottom": 724
+      },
+      "crop": {
+        "pngSha256": "f8b0f4d86a809595772d37fe8121d59bc969ea0f51f3a2b8d92cc2de7f402fa1",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02400657313300928,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-37",
-      "sha256": "cff25cb3d5405c734fe442b689cd98db4425a3344c5bbd1371586a171e752810",
-      "generationMs": 251.69105000000127,
-      "svgBytes": 116351,
-      "paths": 397,
+      "sha256": "4045de1f0d03660d28622768f14735169666dbf029dbee3c325ae894d8bc0fbc",
+      "generationMs": 501.808406000011,
+      "svgBytes": 313394,
+      "paths": 1037,
       "label": "star · 1 travelers · 3 camels",
       "parameters": {
         "morphology": "star",
@@ -2426,31 +2685,38 @@
         "camelLoad": 0.8031642366200685
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 55,
+        "visibleCrests": 8,
+        "rippleStrokes": 165,
         "travelers": 1,
         "camels": 3
       },
-      "pngSha256": "e7e17114f54315d2e7a5c653eb92d92876adc9096482b99972003708070a13c5",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013758132956152759,
+      "pngSha256": "2332ae0b2395c501e5b79af6ecf89288e9e1e9674264d1c58cb32b300e08cfaf",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02095,
       "edgeInk": 0,
       "bounds": {
-        "left": 105,
-        "top": 162,
-        "right": 1264,
-        "bottom": 883
+        "left": 292,
+        "top": 113,
+        "right": 3094,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "a98e147d638b52fb0b3601e89ecd173fff25476ab1f2c510e82a7ebf3c67ca25",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022919796730004417,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-38",
-      "sha256": "760e01b2bef3ad48677dc0e81593a3eba58787f8c9034142847e03a2a55bfeee",
-      "generationMs": 226.9400569999998,
-      "svgBytes": 106085,
-      "paths": 398,
+      "sha256": "5e06707e1bac568ae878c5ceab6d624e2e135e80a4954c61e2b6abe7d50345ac",
+      "generationMs": 551.610950000002,
+      "svgBytes": 351532,
+      "paths": 1248,
       "label": "linear · 1 travelers · 1 camels",
       "parameters": {
         "morphology": "linear",
@@ -2490,31 +2756,38 @@
         "camelLoad": 0.8067948557669297
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 46,
+        "visibleCrests": 11,
+        "rippleStrokes": 171,
         "travelers": 1,
         "camels": 1
       },
-      "pngSha256": "88709b9c6ef4b44cb3eabcb1a3aefe33642125455fde00ecbd307d21b60ec9f9",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01396039603960396,
+      "pngSha256": "20f64683670f73dd644516aa0927a5cd6c89e07de9618c01ee9bd71ee71df691",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02166796875,
       "edgeInk": 0,
       "bounds": {
-        "left": 194,
-        "top": 257,
-        "right": 1233,
-        "bottom": 926
+        "left": 352,
+        "top": 198,
+        "right": 2802,
+        "bottom": 740
+      },
+      "crop": {
+        "pngSha256": "4faeb16fff32d214c55e9f35fa2114b8daf1f97832a07ab8fae77eb828f39033",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02503479893946089,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-39",
-      "sha256": "95674fde321a4b9063b98ce32311281a8d1c06ea0ccec7114797543fb91e0cae",
-      "generationMs": 238.50918399999864,
-      "svgBytes": 122326,
-      "paths": 422,
+      "sha256": "c0b51aa8c127a84fdda997975938125a1d26257b8b0da42353ccdaa7baa73fff",
+      "generationMs": 500.7742399999988,
+      "svgBytes": 317703,
+      "paths": 1080,
       "label": "transverse · 2 travelers · 3 camels",
       "parameters": {
         "morphology": "transverse",
@@ -2554,31 +2827,38 @@
         "camelLoad": 0.6854269607225433
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 64,
+        "visibleCrests": 8,
+        "rippleStrokes": 166,
         "travelers": 2,
         "camels": 3
       },
-      "pngSha256": "532b0d9c4c5fca862cd1b15478123ca3a3d961cf41c190a3660f50432d2dd0f2",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013452616690240452,
+      "pngSha256": "7e2d84f84580343185adc6e2f7834bba1490a50ff4341402ccd3d25808fd233e",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.01856171875,
       "edgeInk": 0,
       "bounds": {
-        "left": 184,
-        "top": 255,
-        "right": 1221,
-        "bottom": 926
+        "left": 391,
+        "top": 193,
+        "right": 2879,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "cf32b042e122c88ced18802b2cea183247f4536cc0f98ae09d171e6489029e2b",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.023354507291206365,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-40",
-      "sha256": "91d086965a8c84d016fedeb2e544ef024e860588aa42b8bf24b4ef767f904d1b",
-      "generationMs": 204.45890599999984,
-      "svgBytes": 138100,
-      "paths": 495,
+      "sha256": "a11e7df7926ce13883c0b7e96545cc94cc4d965e822e30b5b2ccded2e5568917",
+      "generationMs": 526.6247389999917,
+      "svgBytes": 384679,
+      "paths": 1330,
       "label": "barchan · 2 travelers · 2 camels",
       "parameters": {
         "morphology": "barchan",
@@ -2618,31 +2898,38 @@
         "camelLoad": 0.5251130174379796
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 88,
+        "visibleCrests": 10,
+        "rippleStrokes": 217,
         "travelers": 2,
         "camels": 2
       },
-      "pngSha256": "e0793e624ad08992f570f14c70c25dbd9a0e5a133686a649350c978597084550",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014581329561527582,
+      "pngSha256": "a9b9205ae6dd0f461056ddd891a850b90343a3426799e90c45530c389545972a",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020188671875,
       "edgeInk": 0,
       "bounds": {
-        "left": 242,
-        "top": 279,
-        "right": 1195,
-        "bottom": 864
+        "left": 500,
+        "top": 223,
+        "right": 2746,
+        "bottom": 672
+      },
+      "crop": {
+        "pngSha256": "ad45e41e2f38897b275648b188d2f05b578637e9bf542278abcc062a1eb44412",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.025438853292090145,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-41",
-      "sha256": "38329f2ae6c4bd4355522d6bf58e000742620979285c7a12af3514adb9db567f",
-      "generationMs": 244.39001500000086,
-      "svgBytes": 93915,
-      "paths": 324,
+      "sha256": "8492655e1fe3f1224641a4dca11ca911c34bc67cb156302ce5e97c0e0f37148f",
+      "generationMs": 523.7927610000042,
+      "svgBytes": 300397,
+      "paths": 1006,
       "label": "linear · 1 travelers · 1 camels",
       "parameters": {
         "morphology": "linear",
@@ -2682,31 +2969,38 @@
         "camelLoad": 0.43703880803659556
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 55,
+        "visibleCrests": 10,
+        "rippleStrokes": 194,
         "travelers": 1,
         "camels": 1
       },
-      "pngSha256": "0f353aa79db7fe69165505d47ee78f87964ee0fa3c06a0246c6a93bfe700f1c0",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014253889674681754,
+      "pngSha256": "9c926c9e97acc49df0516378a7f02af20b466280b16bdb5c2824202b55e67641",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02210390625,
       "edgeInk": 0,
       "bounds": {
-        "left": 155,
-        "top": 182,
-        "right": 1312,
-        "bottom": 919
+        "left": 90,
+        "top": 145,
+        "right": 3015,
+        "bottom": 742
+      },
+      "crop": {
+        "pngSha256": "1328c9fbd462a2e13481ae2c94bf9498e61b3af72b324cb2d9ef2f88b6f2604c",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.024676728899690675,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-42",
-      "sha256": "9895a0466aa803edc2cf317c185216f7eb905a3713bbc603928ca98252dc8982",
-      "generationMs": 189.12437999999747,
-      "svgBytes": 105136,
-      "paths": 380,
+      "sha256": "a1d17f68bf32ffe61667b1a01b87d6162fb118a46232f5d0b862767df7ec12b0",
+      "generationMs": 511.53180599999905,
+      "svgBytes": 280264,
+      "paths": 996,
       "label": "linear · 3 travelers · 1 camels",
       "parameters": {
         "morphology": "linear",
@@ -2746,31 +3040,38 @@
         "camelLoad": 0.4244346949504688
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 57,
+        "visibleCrests": 9,
+        "rippleStrokes": 124,
         "travelers": 3,
         "camels": 1
       },
-      "pngSha256": "4aa67a0d3c8b2cb0331cb0c02731df60eb11a55a8533be8715a5cadefa50ec12",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.013276520509193776,
+      "pngSha256": "c5dd3d461528174c23add2e123f8222f24d924eefeed55ff9a3fb45aaf61eddd",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.020167578125,
       "edgeInk": 0,
       "bounds": {
-        "left": 197,
-        "top": 244,
-        "right": 1345,
-        "bottom": 926
+        "left": 69,
+        "top": 199,
+        "right": 3096,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "812f0f2aa3fd34fa122fe21b452b7a92d78f9baa4b8c2e4387784bf093708384",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.018619365885992046,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-43",
-      "sha256": "80e19953093e53323081fafac4c846358bf2310cd6df81c02d565b68f027affd",
-      "generationMs": 206.37506500000018,
-      "svgBytes": 124444,
-      "paths": 426,
+      "sha256": "e1d2047d8f3b3bf6c0caa11185b4c8d9d54fadad5574a0f0376cabada5033f4d",
+      "generationMs": 510.9968070000032,
+      "svgBytes": 327951,
+      "paths": 1129,
       "label": "barchan · 2 travelers · 3 camels",
       "parameters": {
         "morphology": "barchan",
@@ -2810,31 +3111,38 @@
         "camelLoad": 0.6910506038926542
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 8,
-        "rippleStrokes": 70,
+        "visibleCrests": 7,
+        "rippleStrokes": 168,
         "travelers": 2,
         "camels": 3
       },
-      "pngSha256": "0107f59f77207051487b06f10685dc5712070aec0e9b39f5f0703641c60eadd1",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.016753889674681752,
+      "pngSha256": "f466ae8bca2b86e44b4a76f2c984bc3f5eaa9ea0e7a7036b73d1944b24ec64c0",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02507578125,
       "edgeInk": 0,
       "bounds": {
-        "left": 110,
-        "top": 166,
-        "right": 1318,
-        "bottom": 865
+        "left": 153,
+        "top": 120,
+        "right": 3032,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "07d327ec3ac14a71f12f49269bcd359a1d1e53781cc7bac21c4f5cb44ff87d35",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.026201391957578434,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-44",
-      "sha256": "540e41a779e20c517bcd8c6782613030fb58cdb3a8be15c26a391de9430f103c",
-      "generationMs": 170.83404700000028,
-      "svgBytes": 128515,
-      "paths": 445,
+      "sha256": "e88a9c52089626377553a7e6b13b2093b0ef7a2cf3a369a9f5a25f392942e1d2",
+      "generationMs": 531.8356469999999,
+      "svgBytes": 322034,
+      "paths": 1110,
       "label": "linear · 2 travelers · 1 camels",
       "parameters": {
         "morphology": "linear",
@@ -2874,31 +3182,38 @@
         "camelLoad": 0.6868640230037272
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 77,
+        "visibleCrests": 6,
+        "rippleStrokes": 155,
         "travelers": 2,
         "camels": 1
       },
-      "pngSha256": "b7f1f705c0cf029362c3d1f2b2abef89a316798fb9dac3528c36c6207c6f56b6",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.015382602545968883,
+      "pngSha256": "5ee37a1d8cb8d22c075b8cf805050e4c68217b9d3f68cffc67af2289828972a9",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02140625,
       "edgeInk": 0,
       "bounds": {
-        "left": 153,
-        "top": 279,
-        "right": 1345,
-        "bottom": 882
+        "left": 224,
+        "top": 209,
+        "right": 3109,
+        "bottom": 687
+      },
+      "crop": {
+        "pngSha256": "24c48f3ff356a8da52dc1ae2dfa4e59f304d43289ec9414dc8aeb3422299be88",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022124668581528943,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-45",
-      "sha256": "c09c2755cdd70dbc40e48267d9d71ff603598f34c85388126bc75d82b2c64cc7",
-      "generationMs": 256.05239000000074,
-      "svgBytes": 122327,
-      "paths": 455,
+      "sha256": "13eb34b0707ea977cea96fed8e04bc701a94f195dd196fd58008d1b211fefbef",
+      "generationMs": 636.9712960000033,
+      "svgBytes": 336152,
+      "paths": 1226,
       "label": "linear · 3 travelers · 0 camels",
       "parameters": {
         "morphology": "linear",
@@ -2938,31 +3253,38 @@
         "camelLoad": 0.4170746152754873
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 79,
+        "visibleCrests": 9,
+        "rippleStrokes": 164,
         "travelers": 3,
         "camels": 0
       },
-      "pngSha256": "d43415bdf8e7eb35f895e3d23167dd26d7c6fc4871b0a31e321c3bea54f563fc",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.015743281471004244,
+      "pngSha256": "9df417162fa9b1501bfee2982897a10933e885790cc4c9ba6ac319c85f0b6964",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.023980078125,
       "edgeInk": 0,
       "bounds": {
-        "left": 67,
-        "top": 254,
-        "right": 1331,
-        "bottom": 923
+        "left": 187,
+        "top": 196,
+        "right": 3134,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "af28690c0940e7343165b41512d4013daa9270f375615d0ce689c81638b64abe",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.022388284357048167,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-46",
-      "sha256": "584bd53544e5c75323c06e60b305ef0f3edbfe4ff687de29a1e1e65e6266843c",
-      "generationMs": 201.80662799999845,
-      "svgBytes": 117318,
-      "paths": 395,
+      "sha256": "ee5f04de7a82c2836a1d357e8a0d245ef3ed8883a5e6c2f2b3daad030336faa8",
+      "generationMs": 505.9382629999891,
+      "svgBytes": 331618,
+      "paths": 1135,
       "label": "barchan · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "barchan",
@@ -3002,31 +3324,38 @@
         "camelLoad": 0.5101054817438125
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 76,
+        "visibleCrests": 7,
+        "rippleStrokes": 201,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "73b281ad95e323a6ef4b7093cd6c3952136619b30d4086a1d15a6b9c44cc75fd",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014888260254596889,
+      "pngSha256": "1ec70a43f1e70938686549bea55f16ec8da08ec047e3dce286526078b7294443",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.022326171875,
       "edgeInk": 0,
       "bounds": {
-        "left": 100,
-        "top": 265,
-        "right": 1188,
-        "bottom": 879
+        "left": 213,
+        "top": 210,
+        "right": 2986,
+        "bottom": 740
+      },
+      "crop": {
+        "pngSha256": "a0c37de3142a03498e40d7333af108d37aaea28fe97cb8ee6d426b83b080934d",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.023480308219178084,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-review-47",
-      "sha256": "cc53e4e4ad1584d04d50472bf55460dc869ed09db6d05baddb59950a351ac174",
-      "generationMs": 199.94209899999987,
-      "svgBytes": 110952,
-      "paths": 417,
+      "sha256": "0bbbdd0c1576419970dbd60f6d38a8bc407a5f05e42b54a85034b9f27a2166a5",
+      "generationMs": 694.027356999999,
+      "svgBytes": 347423,
+      "paths": 1248,
       "label": "transverse · 1 travelers · 0 camels",
       "parameters": {
         "morphology": "transverse",
@@ -3066,23 +3395,30 @@
         "camelLoad": 0.5513665677513927
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 72,
+        "visibleCrests": 11,
+        "rippleStrokes": 219,
         "travelers": 1,
         "camels": 0
       },
-      "pngSha256": "b765f52a064453505f215bf57af70a81d529ef1dd8c83a83cb798c760c7293d7",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.014088401697312588,
+      "pngSha256": "73c6de2ed891629a1864add8c8519c76ab0dea53cf3585c85b1dcf21c14960b8",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02056328125,
       "edgeInk": 0,
       "bounds": {
-        "left": 172,
-        "top": 230,
-        "right": 1262,
-        "bottom": 926
+        "left": 415,
+        "top": 197,
+        "right": 2846,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "5d27476be3bcda05e1aa522b5a10de4d9961e5f2cf4e7954716f56598936cadc",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.02316987958462218,
+        "verticalEdgeInk": 0
       }
     }
   ]

@@ -1,0 +1,78 @@
+{
+  "width": 1600,
+  "count": 8,
+  "records": [
+    {
+      "seed": "brushwork-review-06",
+      "palette": "forest",
+      "emptyPixels": 2146134,
+      "opaquePixels": 226512,
+      "antialiasedPixels": 187354,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-11",
+      "palette": "teal",
+      "emptyPixels": 1996161,
+      "opaquePixels": 296061,
+      "antialiasedPixels": 267778,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-16",
+      "palette": "violet",
+      "emptyPixels": 2041096,
+      "opaquePixels": 335354,
+      "antialiasedPixels": 183550,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-22",
+      "palette": "cobalt",
+      "emptyPixels": 2258044,
+      "opaquePixels": 143183,
+      "antialiasedPixels": 158773,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-23",
+      "palette": "indigo",
+      "emptyPixels": 2275502,
+      "opaquePixels": 135232,
+      "antialiasedPixels": 149266,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-25",
+      "palette": "ochre",
+      "emptyPixels": 2160284,
+      "opaquePixels": 264251,
+      "antialiasedPixels": 135465,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-26",
+      "palette": "magenta",
+      "emptyPixels": 2234336,
+      "opaquePixels": 176642,
+      "antialiasedPixels": 149022,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    },
+    {
+      "seed": "brushwork-review-34",
+      "palette": "forest",
+      "emptyPixels": 2286073,
+      "opaquePixels": 154338,
+      "antialiasedPixels": 119589,
+      "edgeAlpha": 0,
+      "maximumPaperCompositeDifference": 0
+    }
+  ]
+}

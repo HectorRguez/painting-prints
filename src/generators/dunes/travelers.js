@@ -120,8 +120,8 @@ export function placeTravelers(seed, grid, camera, visibility, p) {
       const height = (kinds[i] === 'camel' ? 23.5 : 15.5) * p.figureScale / baseScale;
       const figure = figureGeometry(kinds[i], [x, z], height, heading, grid, `${seed}:figure-${i}`, p.camelLoad);
       const top = camera.project(x, surface.height + height * 1.12, z);
-      if (projected.x < 125 || projected.x > 1289 || projected.y < 250 || projected.y > 865
-        || top.y < 160 || !visibility.visible(top, 1.8)) continue;
+      if (projected.x < camera.width / 2 - 500 || projected.x > camera.width / 2 + 500 || projected.y < camera.height * .25 || projected.y > camera.height * .865
+        || top.y < camera.height * .16 || !visibility.visible(top, 1.8)) continue;
       const feetVisible = figure.feet.map(foot => visibility.visible(camera.project(...foot), 3));
       if (feetVisible.filter(Boolean).length < (figure.kind === 'camel' ? 2 : 1)) continue;
       const minFoot = Math.min(...figure.feet.map(foot => foot[1])), maxFoot = Math.max(...figure.feet.map(foot => foot[1]));
@@ -130,6 +130,8 @@ export function placeTravelers(seed, grid, camera, visibility, p) {
       figure.bounds = { left: Math.min(...outline.map(p => p.x)), right: Math.max(...outline.map(p => p.x)),
         top: Math.min(...outline.map(p => p.y)), bottom: Math.max(...outline.map(p => p.y)) };
       const box = figure.bounds;
+      const halfPrint = camera.height * Math.SQRT2 / 2;
+      if (box.left < camera.width / 2 - halfPrint + 12 || box.right > camera.width / 2 + halfPrint - 12) continue;
       if (candidates.some(other => box.left < other.bounds.right + 3 && box.right > other.bounds.left - 3
         && box.top < other.bounds.bottom + 3 && box.bottom > other.bounds.top - 3)) continue;
       figure.feetVisible = feetVisible; figure.id = i;

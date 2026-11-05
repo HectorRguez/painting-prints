@@ -1,0 +1,929 @@
+{
+  "mode": "snowflakes",
+  "count": 48,
+  "start": 0,
+  "unique": 48,
+  "uniquePngs": 48,
+  "generationMs": {
+    "max": 3678.2455419999997,
+    "mean": 1918.455366895833
+  },
+  "svgBytes": {
+    "max": 120260,
+    "mean": 46302.229166666664
+  },
+  "records": [
+    {
+      "seed": "snowflake-review-000",
+      "sha256": "9bb7f1b52447f7b0aedbde53739143f00a1cca5fb10e7c697f0f2802889933d5",
+      "generationMs": 1475.5748569999998,
+      "svgBytes": 72486,
+      "paths": 163,
+      "label": "fern dendrite",
+      "pngSha256": "e88d71444e2744b45e8706c9e8ff76def452e2df4e597fb73f8046c8a49b44dc",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.06504861111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 99,
+        "top": 114,
+        "right": 1100,
+        "bottom": 1085
+      }
+    },
+    {
+      "seed": "snowflake-review-001",
+      "sha256": "2cf23cd0e7df51b08883122ca5a2d02753d31df8509383854d4943e9503618da",
+      "generationMs": 3678.2455419999997,
+      "svgBytes": 35776,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "ac5f44daae69de7192d284b0c0871b693b6611e63cce98b8b36586ae9dd94904",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.023084027777777776,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 141,
+        "right": 1109,
+        "bottom": 1058
+      }
+    },
+    {
+      "seed": "snowflake-review-002",
+      "sha256": "8427b0732111703454ac0bec90bf029db429f239612e96f5753a19ecaf487f63",
+      "generationMs": 2507.992153,
+      "svgBytes": 84653,
+      "paths": 109,
+      "label": "fern dendrite",
+      "pngSha256": "c7fbb562649693bd0ba8667ce37f136479a1e886c4cc8cfb84706fa7475f6bea",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.06339930555555555,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 105,
+        "top": 106,
+        "right": 1094,
+        "bottom": 1093
+      }
+    },
+    {
+      "seed": "snowflake-review-003",
+      "sha256": "1f591a402ec11c1a75feb4d03fd96549d834e36353f61e7c085214a297cf910e",
+      "generationMs": 2686.7288979999994,
+      "svgBytes": 115594,
+      "paths": 217,
+      "label": "fern dendrite",
+      "pngSha256": "9b8eb5b2519992d994cf324b2d1b543d1f31d6ec28dbc6b9a79e411a05e08471",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.08038611111111112,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 100,
+        "top": 113,
+        "right": 1099,
+        "bottom": 1086
+      }
+    },
+    {
+      "seed": "snowflake-review-004",
+      "sha256": "8ae2298e1dd42ed0f481217bd46410fff4d93308542436d0193b537608e5540d",
+      "generationMs": 1498.2432020000015,
+      "svgBytes": 7805,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "7b39ec131860a0e99037237c75ac0e9b5ad1b30f253ed0a592d86d3711bf3bc5",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.013053472222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 95,
+        "top": 122,
+        "right": 1104,
+        "bottom": 1077
+      }
+    },
+    {
+      "seed": "snowflake-review-005",
+      "sha256": "fde6d7e6f05332a59d4dd536044e0230b6d1df7bcdb5f5f21744cb5dadddfe05",
+      "generationMs": 1976.265918000001,
+      "svgBytes": 41632,
+      "paths": 37,
+      "label": "stellar dendrite",
+      "pngSha256": "6e71affc538ec859b25c00f47b0622de1e40e9bd6eb33b8f86c3969c6707963a",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.03285625,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 144,
+        "right": 1110,
+        "bottom": 1055
+      }
+    },
+    {
+      "seed": "snowflake-review-006",
+      "sha256": "2acb835a90244675ea478abcd00e571dafe1a8d13766a11a049eb3f21b7581bd",
+      "generationMs": 1504.6770450000004,
+      "svgBytes": 27294,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "a48d86aeee44815c58261f12d0ed5e783eaf5451aa8d853a00e6784be714dedb",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.02365625,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 139,
+        "right": 1109,
+        "bottom": 1060
+      }
+    },
+    {
+      "seed": "snowflake-review-007",
+      "sha256": "57514e623f8ad4db0da0c85ed62e47f3c9748f974d1df35fa94d5d07b7a94081",
+      "generationMs": 1826.6550019999995,
+      "svgBytes": 44192,
+      "paths": 25,
+      "label": "stellar dendrite",
+      "pngSha256": "cff6ed22fb2b5d82ab47d94c119b70541bb4bafc52015367dab5634228758775",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.02900763888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 149,
+        "right": 1110,
+        "bottom": 1050
+      }
+    },
+    {
+      "seed": "snowflake-review-008",
+      "sha256": "77bf46827bc497e2865da66f116d4c553d6dcf0f110bd48a8070c511eccbed2b",
+      "generationMs": 1259.0193990000007,
+      "svgBytes": 6084,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "6d7f89ad358b90254468d48206e7398afe05cea43c660aa1740da326191cb9ea",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.013542361111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 98,
+        "top": 115,
+        "right": 1101,
+        "bottom": 1084
+      }
+    },
+    {
+      "seed": "snowflake-review-009",
+      "sha256": "c383debc603f6411b006898ea5ed7901295ffba1915902c7c479e4af69122bb5",
+      "generationMs": 2117.6393650000027,
+      "svgBytes": 76253,
+      "paths": 187,
+      "label": "fern dendrite",
+      "pngSha256": "2ba0f6c31ed337adeff160f6c528f0dbf2d407d1a05822a0d8761b7946eea929",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.06381597222222223,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 92,
+        "top": 130,
+        "right": 1107,
+        "bottom": 1069
+      }
+    },
+    {
+      "seed": "snowflake-review-010",
+      "sha256": "b4ed3a8b73c17bda7f81ef986e8a0499a8a4d311fa7f639a2036c73073333204",
+      "generationMs": 1884.8292340000007,
+      "svgBytes": 31600,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "64cf91ae8d302a4adc5a8bc69c7bac4deda257b741c21a0f8d7f78b42fd9705c",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.02567152777777778,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 156,
+        "right": 1110,
+        "bottom": 1043
+      }
+    },
+    {
+      "seed": "snowflake-review-011",
+      "sha256": "9c3d66417df0d03edc04b83b62bfc2dacb182b9b42ab7f99629fd95641e9e1aa",
+      "generationMs": 754.0628099999994,
+      "svgBytes": 8183,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "efe65f447b8d252c3a5d26a1d9bf7086c07366f2fd6fc2048ea2c4b4271dddc6",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.011942361111111112,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 93,
+        "top": 127,
+        "right": 1106,
+        "bottom": 1072
+      }
+    },
+    {
+      "seed": "snowflake-review-012",
+      "sha256": "a14f62f7e0926baa15bacc38290b4b685dd574d7c984720cdaaf32a44c5212b8",
+      "generationMs": 2097.959032999999,
+      "svgBytes": 32921,
+      "paths": 13,
+      "label": "stellar dendrite",
+      "pngSha256": "3e82a3c09e64ae457805f20b897b82fcdef9ad6664c75fb4837c8c8f20c8dccd",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.02045,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 99,
+        "top": 114,
+        "right": 1100,
+        "bottom": 1085
+      }
+    },
+    {
+      "seed": "snowflake-review-013",
+      "sha256": "f6fcfb7c732fbe6f823cc797d2382539ad26a5f55bf8546f5d1e5dbf2bf7a604",
+      "generationMs": 1992.7605459999977,
+      "svgBytes": 51112,
+      "paths": 31,
+      "label": "stellar dendrite",
+      "pngSha256": "54683b4f6795bdf00d42b6f701f42e8a284eefc7d74161260ed3cc324a509bb0",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.039372222222222225,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 151,
+        "right": 1110,
+        "bottom": 1048
+      }
+    },
+    {
+      "seed": "snowflake-review-014",
+      "sha256": "80ea0c84615b62fcb332f26ad2cade37eaecd5f87f042c0bcedb00a63d3cb988",
+      "generationMs": 2347.4840049999984,
+      "svgBytes": 31444,
+      "paths": 7,
+      "label": "stellar dendrite",
+      "pngSha256": "bc825a0209ce7f690c35085656cb947348945f43127c38ebf186d987a3406db4",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.02157361111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 92,
+        "top": 129,
+        "right": 1107,
+        "bottom": 1070
+      }
+    },
+    {
+      "seed": "snowflake-review-015",
+      "sha256": "5e87d417efa2e0623c04b52f64672efc2a7da38f2964aad22dbced9aa30c5bf3",
+      "generationMs": 2586.4653929999986,
+      "svgBytes": 38312,
+      "paths": 7,
+      "label": "stellar dendrite",
+      "pngSha256": "953ba1c130a9ed502931ff97196b1a397db7a913268bc9d2f438400391edb820",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.019113194444444443,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 155,
+        "right": 1110,
+        "bottom": 1044
+      }
+    },
+    {
+      "seed": "snowflake-review-016",
+      "sha256": "d342db1ecd30057d428ef47ee4d2053a7c243bb815c9a135bd1e85042fc62472",
+      "generationMs": 3278.040224999997,
+      "svgBytes": 70555,
+      "paths": 103,
+      "label": "fern dendrite",
+      "pngSha256": "e4261ba0e8a79abbfe0fff669e486a1416df966941d550eb681a48181270a05a",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.051056944444444446,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 99,
+        "top": 114,
+        "right": 1100,
+        "bottom": 1085
+      }
+    },
+    {
+      "seed": "snowflake-review-017",
+      "sha256": "569d989aac42d122435f7a876fbc078ed8207729f754d09bbed18931d3bdfa30",
+      "generationMs": 2541.4001510000016,
+      "svgBytes": 42442,
+      "paths": 55,
+      "label": "fern dendrite",
+      "pngSha256": "d54d972bc35510b4f51a802de00f9ff97fd83622d235e2f65e2b361bf813dd88",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.04078125,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 92,
+        "top": 129,
+        "right": 1107,
+        "bottom": 1070
+      }
+    },
+    {
+      "seed": "snowflake-review-018",
+      "sha256": "4d3736f17e4b272909d9f591e094831eece23e1d2ede4cf123dd9a4263a48a1a",
+      "generationMs": 3624.725255999998,
+      "svgBytes": 77286,
+      "paths": 115,
+      "label": "fern dendrite",
+      "pngSha256": "dca674a2e4d9483e9c08d1b4b2d015961c54c078f67095e90b70256997532ac1",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.05816388888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 141,
+        "right": 1109,
+        "bottom": 1058
+      }
+    },
+    {
+      "seed": "snowflake-review-019",
+      "sha256": "1de3197de17df6fa240bb3ff61c8cc5267151a39126db484a39407fa4f4161c6",
+      "generationMs": 2495.101447000001,
+      "svgBytes": 56022,
+      "paths": 91,
+      "label": "fern dendrite",
+      "pngSha256": "9fa6deffa0c6dd54529aa7108ae86112e74a80122df738bde063908e6756722f",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.047279166666666664,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 104,
+        "top": 107,
+        "right": 1095,
+        "bottom": 1092
+      }
+    },
+    {
+      "seed": "snowflake-review-020",
+      "sha256": "968ed723ad4d37a3f453a029e87b6e96e03fe4972ddb097ef9c01f3dbc981fb0",
+      "generationMs": 2072.3189070000008,
+      "svgBytes": 27832,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "ce3a57b1d30b1d33c17ee95c82a715885af174fe6a4a61210357ffc102bf3f8b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.018654166666666666,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 153,
+        "right": 1110,
+        "bottom": 1046
+      }
+    },
+    {
+      "seed": "snowflake-review-021",
+      "sha256": "a57c268a1cc765a8a10383d747cc8bcefa43fe00c3c7caeea1aad8a671bda3fb",
+      "generationMs": 1751.9098930000036,
+      "svgBytes": 120260,
+      "paths": 199,
+      "label": "fern dendrite",
+      "pngSha256": "c1c2261ce4b264aacc3e625febe5b5834a935f32e4f3dba6115d11813cc4eadd",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.09091388888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 93,
+        "top": 126,
+        "right": 1106,
+        "bottom": 1073
+      }
+    },
+    {
+      "seed": "snowflake-review-022",
+      "sha256": "08c29c260782d0d8e7ae730fcb28ab9ba4747b242270facee1a9426444caab55",
+      "generationMs": 2767.2337780000016,
+      "svgBytes": 43235,
+      "paths": 31,
+      "label": "stellar dendrite",
+      "pngSha256": "4e34f69399c3c944b742ce8ce4049210f78cbee3f64ce2d37fb87a3a04d8e54e",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.033606944444444446,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 101,
+        "top": 111,
+        "right": 1098,
+        "bottom": 1088
+      }
+    },
+    {
+      "seed": "snowflake-review-023",
+      "sha256": "2337e3c623f84d47161d56f310fa377bc78e992aea69c58c6303b35de6dbc72e",
+      "generationMs": 2124.933210000003,
+      "svgBytes": 61427,
+      "paths": 37,
+      "label": "fern dendrite",
+      "pngSha256": "3af1fa8e22a75e0c03849e0fee5e11ff0dbc90221fe05051ea5eaad2c3fb4034",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.044553472222222223,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 95,
+        "top": 122,
+        "right": 1104,
+        "bottom": 1077
+      }
+    },
+    {
+      "seed": "snowflake-review-024",
+      "sha256": "9f6bab2fb0317536e640f1624ea1fbc90a8ab3ff5e77060de964e1b4ac63a2e2",
+      "generationMs": 1069.3988769999996,
+      "svgBytes": 46761,
+      "paths": 37,
+      "label": "stellar dendrite",
+      "pngSha256": "e01e294ba4bb3adc8c327acfa01806ebd562b1e62b2f36adcf0e24bd1d64a04b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.037289583333333334,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 91,
+        "top": 132,
+        "right": 1108,
+        "bottom": 1067
+      }
+    },
+    {
+      "seed": "snowflake-review-025",
+      "sha256": "acf0b0438e8e5df2221b76138b548623faf2af8d11addcf0c21764ecfe2f5096",
+      "generationMs": 978.2529429999995,
+      "svgBytes": 7810,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "19cba727dbac4a1845fd9d51400cedc2f4f3163f9054ecef0101c1a38f0315d7",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.011963194444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 94,
+        "top": 123,
+        "right": 1105,
+        "bottom": 1076
+      }
+    },
+    {
+      "seed": "snowflake-review-026",
+      "sha256": "064820f86a1ccffe71e745a521fd106102debf65beef01aa4d3d42f2798d6459",
+      "generationMs": 1691.079334999995,
+      "svgBytes": 41170,
+      "paths": 25,
+      "label": "stellar dendrite",
+      "pngSha256": "33d4828fc586c8dd2bd0d9ec4beeca3e82a8c408ae691b3a23dff43bd6ce5120",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.027333333333333334,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 92,
+        "top": 130,
+        "right": 1107,
+        "bottom": 1069
+      }
+    },
+    {
+      "seed": "snowflake-review-027",
+      "sha256": "e7c8744427c632b3584d0fbbb24704cdf1351dcee87de600a05c413a3904ff28",
+      "generationMs": 1136.7087119999997,
+      "svgBytes": 38805,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "42f08f57528f9fd0b032a56a2f04ef5f686f817b06730230383c08adb21b09be",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.021784027777777777,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 140,
+        "right": 1109,
+        "bottom": 1059
+      }
+    },
+    {
+      "seed": "snowflake-review-028",
+      "sha256": "f996988bc646761458d22511ab5930b522b99a68d93f21f83e81bfd7013ed27f",
+      "generationMs": 2024.0320309999952,
+      "svgBytes": 29132,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "e8d87c950620f78c7bc2a602baf1c6636cdfe4527dc1bc7f503c8be66cb64632",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.017156944444444443,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 136,
+        "right": 1109,
+        "bottom": 1063
+      }
+    },
+    {
+      "seed": "snowflake-review-029",
+      "sha256": "eb3de202126c78cf3fa6d696420dda46647311ab4f5e171487a234153c9243c8",
+      "generationMs": 2193.4212860000116,
+      "svgBytes": 59696,
+      "paths": 61,
+      "label": "fern dendrite",
+      "pngSha256": "9cc0640d033fba605e81eb827b90f4465fe8c03290d42507045778ffde18b562",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.04410694444444444,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 147,
+        "right": 1110,
+        "bottom": 1052
+      }
+    },
+    {
+      "seed": "snowflake-review-030",
+      "sha256": "c02656e6169c4fbc8f47239e997fae5763608d70164dd2fe103d21d761d325e6",
+      "generationMs": 2550.512625000003,
+      "svgBytes": 50904,
+      "paths": 55,
+      "label": "fern dendrite",
+      "pngSha256": "b7b99af07d72c1dd584fd9accd5bca15ec003cadee45344967bc806a51b63d0a",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.04180763888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 99,
+        "top": 114,
+        "right": 1100,
+        "bottom": 1085
+      }
+    },
+    {
+      "seed": "snowflake-review-031",
+      "sha256": "a20aba29461beeb3cc16ceb3c75305a901bf7c68502fdafaa1497a5a95e9228b",
+      "generationMs": 2469.222069999989,
+      "svgBytes": 117941,
+      "paths": 259,
+      "label": "fern dendrite",
+      "pngSha256": "0132e69d9e5735d684126fe940ddf98ab1a91299d5dba653043047fba0ceb8e1",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.07645902777777777,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 92,
+        "top": 129,
+        "right": 1107,
+        "bottom": 1070
+      }
+    },
+    {
+      "seed": "snowflake-review-032",
+      "sha256": "d883a879ae644ecb18ede60797c12a35803e134a290dde34b6dadb85cdb9b09b",
+      "generationMs": 1671.3231559999986,
+      "svgBytes": 28902,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "3037360a52763cb9bdbc059413f4fcae33896d20beed6e4380b83b5e3696d9a1",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.01634236111111111,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 143,
+        "right": 1110,
+        "bottom": 1056
+      }
+    },
+    {
+      "seed": "snowflake-review-033",
+      "sha256": "0e333c7fd9ffd1396c439b7fb9f851bfa44030091af8e7674d93a1158c75740a",
+      "generationMs": 1147.1878169999982,
+      "svgBytes": 8739,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "fb7b0c49459f74b9cb8f2d65e6f1d4b5eed4a3b10fa3b87768483264e6ab274b",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.011971527777777777,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 139,
+        "right": 1109,
+        "bottom": 1060
+      }
+    },
+    {
+      "seed": "snowflake-review-034",
+      "sha256": "dbe6b7e60f1310bca19564fe7d6fabb85e987f10a86e2ebfec3c33ac768d8515",
+      "generationMs": 1736.0939480000088,
+      "svgBytes": 8926,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "ee03cecb610ac8401c01ef76386de41dd51c2c9b556d04cbd59c4fccf7cd050a",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.01198125,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 99,
+        "top": 115,
+        "right": 1100,
+        "bottom": 1084
+      }
+    },
+    {
+      "seed": "snowflake-review-035",
+      "sha256": "06be2a27ce4367419be934eccad998d2bd34576eec36833e2afd83acc9ea8c26",
+      "generationMs": 925.5041789999959,
+      "svgBytes": 8364,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "48733b1a1dcf0e52adae87554f5d8fd713b80297d9850726ce3223e500b83025",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.012411805555555556,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 152,
+        "right": 1110,
+        "bottom": 1047
+      }
+    },
+    {
+      "seed": "snowflake-review-036",
+      "sha256": "ce4207e83928d487fb1581479baba92d5e167599ad41491ec43f07ebef953f16",
+      "generationMs": 1755.7072329999937,
+      "svgBytes": 22940,
+      "paths": 7,
+      "label": "stellar dendrite",
+      "pngSha256": "5c70c64dbc3e7f866cdf0f07ba2f8269a34f89fa4ab4df99d9ad45563a494ad3",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.01919513888888889,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 102,
+        "top": 110,
+        "right": 1097,
+        "bottom": 1089
+      }
+    },
+    {
+      "seed": "snowflake-review-037",
+      "sha256": "67d1947ed766da9d3e0cd7efc1ff4137382d5cf5ca6a66fff13742122d4d364b",
+      "generationMs": 1410.8171900000016,
+      "svgBytes": 41630,
+      "paths": 37,
+      "label": "stellar dendrite",
+      "pngSha256": "6084e0095d12e9ec303fa42ee9e3ca06d76e9a7c8b2ee0780206380de43cb5e4",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.031525694444444446,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 94,
+        "top": 124,
+        "right": 1105,
+        "bottom": 1075
+      }
+    },
+    {
+      "seed": "snowflake-review-038",
+      "sha256": "6b6f2f8bbcfcf556b2ed812b53bb168c49b2deba6f4eea94527ecbe6977fbfe8",
+      "generationMs": 2401.8414639999974,
+      "svgBytes": 65404,
+      "paths": 79,
+      "label": "fern dendrite",
+      "pngSha256": "28ddadfaaa5ac598ec13ad370ac30f83c90bb6cab29f91589ee5af8537056a2e",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.04954722222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 140,
+        "right": 1109,
+        "bottom": 1059
+      }
+    },
+    {
+      "seed": "snowflake-review-039",
+      "sha256": "419c6c769c8ccac3357040c6e42332df716f8264dd610eb225fd590587dbb473",
+      "generationMs": 1366.426814999999,
+      "svgBytes": 107924,
+      "paths": 187,
+      "label": "fern dendrite",
+      "pngSha256": "609102242258e0134d864fa86845866f2b8a3b1d4f18b9d3dd70b18ee9529764",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.07584097222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 147,
+        "right": 1110,
+        "bottom": 1052
+      }
+    },
+    {
+      "seed": "snowflake-review-040",
+      "sha256": "f8ec4c6a8483413a657b4785bfe21121b3c9bb31e93e4ef553f705982e578c05",
+      "generationMs": 744.227881999992,
+      "svgBytes": 8369,
+      "paths": 7,
+      "label": "sectored plate",
+      "pngSha256": "b49891720c97dda84db5664bda60ffb669315cf532c93f95b488b4dfc8634d91",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.011772916666666666,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 140,
+        "right": 1109,
+        "bottom": 1059
+      }
+    },
+    {
+      "seed": "snowflake-review-041",
+      "sha256": "2ac4eb8c6cf0071b6e1b435b5eeb739711012207cd0d5f50cf7a019fc26df1f0",
+      "generationMs": 1298.7651509999996,
+      "svgBytes": 33133,
+      "paths": 7,
+      "label": "stellar dendrite",
+      "pngSha256": "d10139f7614ffab2cfbebfeccae2534e3edc11586685322c55f7bf2650665e11",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.02069722222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 91,
+        "top": 135,
+        "right": 1108,
+        "bottom": 1064
+      }
+    },
+    {
+      "seed": "snowflake-review-042",
+      "sha256": "efe6e8ea29b8b0ea1e6ff4dfe99b5020de7fcf9faf2bf3229a391cf7d8ce797c",
+      "generationMs": 2142.876597999988,
+      "svgBytes": 25401,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "b18b3b0392d4c304069c3a9694eeea6e91359308339432be8ebd3d9e181f72f1",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.018890972222222222,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 101,
+        "top": 111,
+        "right": 1098,
+        "bottom": 1088
+      }
+    },
+    {
+      "seed": "snowflake-review-043",
+      "sha256": "89a00dd6f9ef7be014550fdc78056a4c744f9887837e8d56cb1d65ea548c9065",
+      "generationMs": 1570.6536489999999,
+      "svgBytes": 33908,
+      "paths": 13,
+      "label": "stellar dendrite",
+      "pngSha256": "e991e722f3ca00e2771af68347e0a87f3d15568c619209203f61f29f71e1c942",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.020996527777777777,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 93,
+        "top": 126,
+        "right": 1106,
+        "bottom": 1073
+      }
+    },
+    {
+      "seed": "snowflake-review-044",
+      "sha256": "8752514bf8a7a0f2cb6ae43a0343bc9a80f1e0ffa9675ea7b0d6c0fa670bb23c",
+      "generationMs": 1289.6719430000085,
+      "svgBytes": 70516,
+      "paths": 91,
+      "label": "fern dendrite",
+      "pngSha256": "71c0ac326010337ac214fd6c09a98e5211a5ae5d7c23066fb959213f0b97b8e4",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.06061458333333333,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 148,
+        "right": 1110,
+        "bottom": 1051
+      }
+    },
+    {
+      "seed": "snowflake-review-045",
+      "sha256": "eba639460c99aa71967181b225abd140cebe5c674e44ac21773302f358c14d9c",
+      "generationMs": 2381.802911999999,
+      "svgBytes": 30786,
+      "paths": 7,
+      "label": "plate with branches",
+      "pngSha256": "167722aecd8ab6489c48abe01223f257127c4f9ef8a5193951a6f92c31e5f0e6",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.020769444444444445,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 90,
+        "top": 137,
+        "right": 1109,
+        "bottom": 1062
+      }
+    },
+    {
+      "seed": "snowflake-review-046",
+      "sha256": "c55b775e11df70354f078fac43c43aead78679adcc911c886143ed990af8b611",
+      "generationMs": 1325.990254999997,
+      "svgBytes": 62784,
+      "paths": 61,
+      "label": "fern dendrite",
+      "pngSha256": "e4d6c7762c6a68d8c8cf087ca9574e65101d442cb4404882115d9116bf77b6e3",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.04699166666666667,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 95,
+        "top": 121,
+        "right": 1104,
+        "bottom": 1078
+      }
+    },
+    {
+      "seed": "snowflake-review-047",
+      "sha256": "5e9edde8b3e4db553bd47ab62568d4562c150dfe8b6bc50c07ec39942bf0ff21",
+      "generationMs": 1954.074271000005,
+      "svgBytes": 68162,
+      "paths": 115,
+      "label": "fern dendrite",
+      "pngSha256": "3713ca90f77f49654d6ade413f3d00f3cb80e34a2c07f1a3bced8e2e475cbed6",
+      "width": 1200,
+      "height": 1200,
+      "inkFraction": 0.05644791666666667,
+      "edgeInk": 0,
+      "bounds": {
+        "left": 89,
+        "top": 147,
+        "right": 1110,
+        "bottom": 1052
+      }
+    }
+  ]
+}

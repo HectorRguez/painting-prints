@@ -191,8 +191,8 @@ function checkGeometry(scene, seed) {
     assert.ok(!/NaN|Infinity/.test(path.d), seed);
     const numbers = path.d.match(/-?\d+(?:\.\d+)?/g).map(Number);
     for (let i = 0; i < numbers.length; i += 2) {
-      assert.ok(numbers[i] > 20 && numbers[i] < 1394, `${seed}: horizontal margin ${numbers[i]}`);
-      assert.ok(numbers[i + 1] > 45 && numbers[i + 1] < 955, `${seed}: vertical margin ${numbers[i + 1]}`);
+      assert.ok(numbers[i] > 20 && numbers[i] < 3180, `${seed}: horizontal margin ${numbers[i]}`);
+      assert.ok(numbers[i + 1] > 45 && numbers[i + 1] < 775, `${seed}: vertical margin ${numbers[i + 1]}`);
     }
   }
   for (const stroke of scene.lines) if (stroke.role === 'ripple') {
@@ -229,6 +229,17 @@ test('48 seeded dune fields are unique, bounded, visible and cover all four morp
     checkGeometry(scene, seed);
     hashes.add(hash(scene.paths.map(path => path.d).join(''))); morphologies.add(scene.parameters.morphology);
     assert.ok(scene.metrics.rippleStrokes > 0, seed);
+    // All three panorama thirds contain genuine ridge geometry; the print
+    // region contains independently curved relief rather than a stretched edge.
+    const crests = scene.lines.filter(line => line.role === 'crest').flatMap(line => line.screen);
+    for (const [left, right] of [[0, 1067], [1067, 2133], [2133, 3200]]) {
+      assert.ok(crests.filter(([x]) => x > left && x < right).length > 60, `${seed}: empty panorama third`);
+    }
+    const central = crests.filter(([x]) => Math.abs(x - 1600) < 400);
+    assert.ok(Math.max(...central.map(p => p[1])) - Math.min(...central.map(p => p[1])) > 170, `${seed}: flat central crop`);
+    for (const figure of scene.figures) {
+      assert.ok(figure.bounds.left > 1600 - 400 * Math.SQRT2 && figure.bounds.right < 1600 + 400 * Math.SQRT2, `${seed}: print crop bisects a figure`);
+    }
   }
   assert.equal(hashes.size, 48); assert.deepEqual([...morphologies].sort(), fields.toSorted());
 });
@@ -252,8 +263,8 @@ test('low-angle visible texture also passes independent rays toward the camera e
     const scene = buildDunes(`dune-eye-ray-${morphology}`, { morphology, palette: 'ochre', cameraElevation: .22,
       perspective: .5, crestHeight: 95, relief: 1.55 });
     const p = scene.parameters, distance = scene.camera.distance;
-    const eye = [-Math.sin(p.cameraAzimuth) * Math.cos(p.cameraElevation) * distance,
-      Math.sin(p.cameraElevation) * distance, -Math.cos(p.cameraAzimuth) * Math.cos(p.cameraElevation) * distance];
+    const eye = [-Math.sin(scene.camera.azimuth) * Math.cos(p.cameraElevation) * distance,
+      Math.sin(p.cameraElevation) * distance, -Math.cos(scene.camera.azimuth) * Math.cos(p.cameraElevation) * distance];
     const points = scene.lines.flatMap(line => line.points), stride = Math.ceil(points.length / 280);
     let checked = 0, obstruction = 0;
     for (let i = 0; i < points.length; i += stride) {
@@ -278,7 +289,9 @@ test('low-angle visible texture also passes independent rays toward the camera e
 test('public generator and bundled classic worker reproduce identical SVG and parameters', { timeout: 30000 }, async () => {
   const seed = 'worker sand & 雨', painting = generateDunes(seed);
   assert.deepEqual(painting, generateDunes(seed));
-  assert.equal(painting.mode, 'dunes'); assert.equal(painting.artRevision, 2);
+  assert.equal(painting.mode, 'dunes'); assert.equal(painting.artRevision, 3);
+  assert.equal(painting.width, 800 * Math.SQRT2); assert.equal(painting.height, 800); assert.equal(painting.previewWidth, 3200);
+  assert.match(painting.svg, /viewBox="0 0 3200 800"/);
   assert.equal(painting.whiteToAlpha, true); assert.ok(!painting.svg.includes('<image'));
   const folder = await mkdtemp(join(tmpdir(), 'painting-dune-worker-'));
   try {
@@ -296,7 +309,7 @@ test('public generator and bundled classic worker reproduce identical SVG and pa
       });
     } finally { await worker.terminate(); }
     assert.equal(received.type, 'painting-ready');
-    assert.equal(received.artRevision, 2);
+    assert.equal(received.artRevision, 3);
     assert.equal(received.svg, painting.svg);
     assert.deepEqual(JSON.parse(JSON.stringify(received.parameters)), painting.parameters);
     assert.ok(received.generationMs > 0);
@@ -354,8 +367,8 @@ test('illustrated ink visibility agrees with independent oblique viewing rays', 
     const point = points[i], projected = scene.camera.project(...point);
     for (let z = point[2] - 8; z > -690; z -= 8) {
       const scale = 1 - z * scene.parameters.perspective / 2300;
-      const x = (projected.x - 707) / (.87 * scale) - z * Math.sin(scene.parameters.cameraAzimuth) * .25;
-      const y = (600 - z * scene.camera.depthScale - projected.y) / (.87 * scale);
+      const x = (projected.x - 1600) / (.696 * scale) - z * Math.sin(scene.parameters.cameraAzimuth) * .25;
+      const y = (480 - z * scene.camera.depthScale - projected.y) / (.696 * scale);
       obstruction = Math.max(obstruction, scene.grid.sample(x, z).height - y);
     }
     checked++;
