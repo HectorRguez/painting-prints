@@ -1,6 +1,6 @@
 # Painting
 
-A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Seascapes, Ribbons, Interference, Dunes, Brushwork, Folds. Create a drawing, explore it, and download it for print.
+A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Snowflakes, Seascapes, Ribbons, Interference, Dunes, Brushwork, Folds. Create a drawing, explore it, and download it for print.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
@@ -22,6 +22,7 @@ Every displayed artwork writes its seed to the URL, for example `flowers/?seed=f
 
 ## Procedural styles
 
+- [Snowflakes: model, parameters and review](src/generators/snowflakes/README.md)
 - [Seascapes: model, parameters and review](docs/seascapes-review.md)
 - [Ribbons: model, parameters and review](docs/ribbons-review.md)
 - [Interference: model, parameters and review](docs/interference-review.md)
