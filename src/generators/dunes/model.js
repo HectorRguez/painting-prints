@@ -11,18 +11,23 @@ export function duneParameters(seed) {
   const random = randomSource(`${seed}:dune-parameters`);
   const morphology = ['barchan', 'transverse', 'linear', 'star'][Math.floor(random() * 4)];
   return {
-    morphology, palette: 'ochre', windAzimuth: between(random, -0.9, 0.9), windDivergence: between(random, morphology === 'linear' ? 2.05 : 0.6, morphology === 'linear' ? 2.7 : 1.9),
+    morphology, palette: 'ink', windAzimuth: between(random, .9, 2.05), windDivergence: between(random, morphology === 'linear' ? 2.05 : 0.6, morphology === 'linear' ? 2.7 : 1.9),
     secondaryWind: between(random, 0.35, 0.85), shearRatio: between(random, 1.65, 3.1),
     saturationLength: between(random, 8, 17), crestLength: between(random, 245, 385),
-    crestHeight: between(random, 36, 67), horns: between(random, 0.32, 0.65),
+    crestHeight: between(random, 53, 82), horns: between(random, 0.32, 0.65),
     asymmetry: between(random, -0.23, 0.23), curvature: between(random, 0.07, 0.18),
     stossExponent: between(random, 2.6, 3.4), slipAngle: between(random, 29, 34) * Math.PI / 180,
-    relief: between(random, 0.85, 1.25), spacing: between(random, 230, 350), density: between(random, 0.65, 1),
-    rippleWavelength: between(random, 8, 14), rippleSlope: between(random, 0.08, 0.22), rippleDensity: between(random, 0.45, 0.82),
-    cameraAzimuth: between(random, -0.32, 0.32), cameraElevation: between(random, morphology === 'star' ? 0.38 : 0.26, 0.56),
+    relief: between(random, 1, 1.32), spacing: between(random, 230, 350), density: between(random, 0.65, 1),
+    rippleWavelength: between(random, 11, 19), rippleSlope: between(random, 0.08, 0.22), rippleDensity: between(random, 0.32, 0.62),
+    cameraAzimuth: between(random, -0.32, 0.32), cameraElevation: between(random, .36, .56),
     perspective: between(random, 0.28, 0.47), lightAzimuth: between(random, -2.7, -1.5),
     lightElevation: between(random, 0.34, 0.66), contrast: between(random, 0.65, 1),
     phase: random() * TAU,
+    ridgeBands: 5 + Math.floor(random() * 6), lineWeight: between(random, .85, 1.2),
+    travelerCount: 1 + Math.floor(random() * 3), camelCount: random() < .65 ? 1 + Math.floor(random() * 3) : 0,
+    figureScale: between(random, .85, 1.12), caravanSpacing: between(random, 27, 43),
+    figureHeading: random() < .5 ? between(random, -.25, .25) : between(random, Math.PI - .25, Math.PI),
+    camelLoad: between(random, .35, .85),
   };
 }
 
@@ -33,6 +38,8 @@ const limits = {
   relief: [0.55, 1.55], spacing: [175, 430], density: [0.4, 1.2], rippleWavelength: [5, 24],
   rippleSlope: [0, 0.35], rippleDensity: [0, 1], cameraAzimuth: [-0.65, 0.65], cameraElevation: [0.22, 0.95],
   perspective: [0, 0.5], lightAzimuth: [-Math.PI, Math.PI], lightElevation: [0.22, 1.1], contrast: [0.3, 1.2], phase: [-1000, 1000],
+  ridgeBands: [0, 16], lineWeight: [.65, 1.6], travelerCount: [0, 8], camelCount: [0, 6],
+  figureScale: [.6, 1.6], caravanSpacing: [18, 70], figureHeading: [-Math.PI, Math.PI], camelLoad: [0, 1],
 };
 
 export function resolveParameters(seed, overrides = {}) {
@@ -47,6 +54,7 @@ export function resolveParameters(seed, overrides = {}) {
     }
     parameters[key] = value;
   }
+  for (const key of ['ridgeBands', 'travelerCount', 'camelCount']) if (!Number.isInteger(parameters[key])) throw new RangeError(`${key} must be an integer`);
   return parameters;
 }
 

@@ -11,6 +11,8 @@ import { resolveParameters, ridgeSkeletons, makeTerrain, terrainGrid, stossProfi
 import { makeCamera, depthBuffer, sunlight, filterLighting } from '../src/generators/dunes/render.js';
 import { shadeContours } from '../src/generators/dunes/contours.js';
 import { prepare } from '../src/generators/dunes/build.mjs';
+import { inkLandscapeModel } from '../src/generators/dunes/ink-landscape.js';
+import { figureGeometry } from '../src/generators/dunes/travelers.js';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const near = (a, b, tolerance = 1e-7) => assert.ok(Math.abs(a - b) < tolerance, `${a} != ${b}`);
@@ -25,7 +27,7 @@ test('dune seed and explicit overrides are stable and reject unsupported values'
   const before = { ...overrides };
   assert.deepEqual(resolveParameters(seed, overrides), { ...parameters, ...overrides });
   assert.deepEqual(overrides, before);
-  for (const value of [{ mystery: 1 }, { horns: NaN }, { density: Infinity }, { morphology: 'cloud' }, { cameraElevation: 0 }, { palette: 'blue' }]) {
+  for (const value of [{ mystery: 1 }, { horns: NaN }, { density: Infinity }, { morphology: 'cloud' }, { cameraElevation: 0 }, { palette: 'blue' }, { travelerCount: 2.5 }, { camelCount: 7 }, { figureScale: 0 }]) {
     assert.throws(() => resolveParameters(seed, value), RangeError);
   }
 });
@@ -205,6 +207,19 @@ function checkGeometry(scene, seed) {
     const projected = scene.camera.project(...point);
     assert.ok(scene.visibility.visible(projected), `${seed}: hidden-line leak`);
   }
+  for (const figure of scene.figures) {
+    assert.ok(figure.feetVisible.some(Boolean), `${seed}: entirely hidden figure`);
+    for (const foot of figure.feet) near(foot[1] - scene.grid.sample(foot[0], foot[2]).height, .12, 1e-8);
+  }
+  for (let i = 0; i < scene.figures.length; i++) for (let j = i + 1; j < scene.figures.length; j++) {
+    const a = scene.figures[i].bounds, b = scene.figures[j].bounds;
+    assert.ok(a.right + 2.9 <= b.left || b.right + 2.9 <= a.left || a.bottom + 2.9 <= b.top || b.bottom + 2.9 <= a.top,
+      `${seed}: overlapping traveler silhouettes`);
+  }
+  for (const stroke of scene.figureStrokes) for (const point of stroke.points) {
+    assert.ok(point.every(Number.isFinite));
+    assert.ok(scene.visibility.visible(scene.camera.project(...point), 3), `${seed}: hidden figure stroke`);
+  }
 }
 
 test('48 seeded dune fields are unique, bounded, visible and cover all four morphologies', { timeout: 240000 }, () => {
@@ -234,7 +249,7 @@ test('extreme supported geometry, lighting and camera controls remain finite wit
 
 test('low-angle visible texture also passes independent rays toward the camera eye', { timeout: 30000 }, () => {
   for (const morphology of ['barchan', 'star']) {
-    const scene = buildDunes(`dune-eye-ray-${morphology}`, { morphology, cameraElevation: .22,
+    const scene = buildDunes(`dune-eye-ray-${morphology}`, { morphology, palette: 'ochre', cameraElevation: .22,
       perspective: .5, crestHeight: 95, relief: 1.55 });
     const p = scene.parameters, distance = scene.camera.distance;
     const eye = [-Math.sin(p.cameraAzimuth) * Math.cos(p.cameraElevation) * distance,
@@ -263,8 +278,8 @@ test('low-angle visible texture also passes independent rays toward the camera e
 test('public generator and bundled classic worker reproduce identical SVG and parameters', { timeout: 30000 }, async () => {
   const seed = 'worker sand & 雨', painting = generateDunes(seed);
   assert.deepEqual(painting, generateDunes(seed));
-  assert.equal(painting.mode, 'dunes'); assert.equal(painting.artRevision, 1);
-  assert.equal(painting.whiteToAlpha, false); assert.ok(!painting.svg.includes('<image'));
+  assert.equal(painting.mode, 'dunes'); assert.equal(painting.artRevision, 2);
+  assert.equal(painting.whiteToAlpha, true); assert.ok(!painting.svg.includes('<image'));
   const folder = await mkdtemp(join(tmpdir(), 'painting-dune-worker-'));
   try {
     await prepare(pathToFileURL(`${folder}/`));
@@ -281,8 +296,70 @@ test('public generator and bundled classic worker reproduce identical SVG and pa
       });
     } finally { await worker.terminate(); }
     assert.equal(received.type, 'painting-ready');
+    assert.equal(received.artRevision, 2);
     assert.equal(received.svg, painting.svg);
     assert.deepEqual(JSON.parse(JSON.stringify(received.parameters)), painting.parameters);
     assert.ok(received.generationMs > 0);
   } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+test('illustrated ridge controls deform a continuous field and the ink surface remains unfilled', () => {
+  const seed = 'continuous illustrated sand', p = resolveParameters(seed), model = inkLandscapeModel(seed, p);
+  for (const key of ['crestHeight', 'spacing', 'curvature', 'asymmetry']) {
+    const altered = inkLandscapeModel(seed, { ...p, [key]: p[key] + .0001 });
+    let change = 0;
+    for (let x = -450; x <= 450; x += 75) for (let z = -450; z <= 450; z += 75) {
+      const a = model.sample(x, z).height, b = altered.sample(x, z).height;
+      assert.ok(Number.isFinite(a) && a >= 0);
+      change += Math.abs(a - b);
+    }
+    assert.ok(change > 1e-6 && change < 5, `${key}: continuous control response`);
+  }
+  const scene = buildDunes(seed, { travelerCount: 0, camelCount: 0 });
+  assert.ok(scene.paths.every(path => path.fill === 'none'), 'The dune landscape must not return the old filled terrain slabs');
+  assert.ok(scene.paths.some(path => path.role === 'crest'));
+});
+
+test('articulated people and camels attach every planted foot to sloping terrain', () => {
+  const grid = { sample: (x, z) => ({ height: 40 + .18 * x - .12 * z }) };
+  const silhouettes = new Set();
+  for (const kind of ['traveler', 'camel']) for (let i = 0; i < 12; i++) {
+    const figure = figureGeometry(kind, [i * 3, -i * 2], 20 + i, .04 * i, grid, `articulated-${i}`, .6);
+    assert.equal(figure.feet.length, kind === 'camel' ? 4 : 2);
+    for (const foot of figure.feet) near(foot[1] - grid.sample(foot[0], foot[2]).height, .12, 1e-10);
+    assert.ok(figure.primitives.every(path => path.points.every(point => point.every(Number.isFinite))));
+    assert.ok(figure.primitives.some(path => path.closed && path.fill === '#333333'), 'A readable tiny silhouette needs a solid body');
+    silhouettes.add(hash(JSON.stringify(figure.primitives)));
+  }
+  assert.equal(silhouettes.size, 24);
+});
+
+test('figure controls preserve the underlying terrain and support an empty or compact caravan', () => {
+  const seed = 'caravan count study', empty = buildDunes(seed, { travelerCount: 0, camelCount: 0 });
+  const populated = buildDunes(seed, { travelerCount: 2, camelCount: 3, figureScale: 1.1, caravanSpacing: 35 });
+  assert.equal(empty.figures.length, 0);
+  assert.deepEqual(empty.paths, populated.paths.filter(path => path.role !== 'figure'));
+  assert.equal(populated.metrics.travelers, 2); assert.equal(populated.metrics.camels, 3);
+  const centers = populated.figures.map(f => populated.camera.project(f.center[0], populated.grid.sample(...f.center).height, f.center[1]));
+  for (let i = 0; i < centers.length; i++) for (let j = i + 1; j < centers.length; j++) {
+    assert.ok(Math.hypot(centers[i].x - centers[j].x, centers[i].y - centers[j].y) > 18, 'Caravan figures must not pile up');
+  }
+});
+
+test('illustrated ink visibility agrees with independent oblique viewing rays', () => {
+  const scene = buildDunes('ink visibility study', { crestHeight: 95, relief: 1.4, perspective: .45 });
+  const points = scene.lines.flatMap(stroke => stroke.points), stride = Math.max(1, Math.floor(points.length / 220));
+  let obstruction = 0, checked = 0;
+  for (let i = 0; i < points.length; i += stride) {
+    const point = points[i], projected = scene.camera.project(...point);
+    for (let z = point[2] - 8; z > -690; z -= 8) {
+      const scale = 1 - z * scene.parameters.perspective / 2300;
+      const x = (projected.x - 707) / (.87 * scale) - z * Math.sin(scene.parameters.cameraAzimuth) * .25;
+      const y = (600 - z * scene.camera.depthScale - projected.y) / (.87 * scale);
+      obstruction = Math.max(obstruction, scene.grid.sample(x, z).height - y);
+    }
+    checked++;
+  }
+  assert.ok(checked >= 200);
+  assert.ok(obstruction < 3, `A foreground dune hides the ink by ${obstruction} world units`);
 });

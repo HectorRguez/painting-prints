@@ -1,128 +1,84 @@
-# Dune field review
+# Dune Fields — revision 2 review
 
-The first 48 seeds, `dunes-review-00` through `dunes-review-47`, were generated
-and rasterized with the application's line renderer at 1200 × 849 pixels.
-All 48 SVG hashes and all 48 PNG hashes are distinct. The full contact sheet
-was inspected, with larger views of each morphology, the darkest barchan
-fields, and the least contrasted examples.
+The default style is now an open monochrome ink landscape: broad asymmetric dune crests, curved shoulder hatching, a few longer ripple traces, and tiny articulated travelers/camels. The older ochre surface study remains an explicit override. [Model, complete parameter reference, API, and primary-paper distinctions](../src/generators/dunes/README.md).
 
-![All 48 dune fields](previews/dunes-contact.jpg)
+## Before and after
 
-| Family | Samples |
-| --- | ---: |
-| Barchan | 13 |
-| Transverse | 11 |
-| Linear | 14 |
-| Star-inspired | 10 |
+| Earlier shaded surface study | Revised flowing ink landscape |
+| --- | --- |
+| ![Earlier ochre terrain](previews/dunes-before.jpg) | ![Revised ink terrain](previews/dunes-transverse.jpg) |
 
-The four families use different ridge equations and wind relationships.
-Within a family, seeds change the wind direction, scale, relief, curvature,
-spacing, ripple phase, camera and light. These are geometric illustrations
-inspired by dune papers; they do not simulate sediment transport or predict
-real dune evolution. The [algorithm documentation](../src/generators/dunes/README.md)
-links the primary papers, identifies the equations adopted, and lists all
-supported parameter overrides.
+The change goes beyond palette. The new continuous ridge surface composes a landscape across the page; sparse curved marks describe its shoulders without a filled slab or a dense wire grid. Crests use analytic surface heights so the visibility grid does not scallop the outlines. Short buried ridge remnants are removed, their associated marks are suppressed, and longer endings taper into the sand.
 
-## Full-size examples
+## Final 48 seeds
 
-Star arms share summits and merge into one terrain surface (`dunes-review-00`).
+![48 revised dune landscapes](previews/dunes-contact.jpg)
 
-![Star dune field](previews/dunes-star.jpg)
+`dunes-review-00` through `dunes-review-47` were generated and rasterized through the actual application line renderer at 1414×1000 pixels.
 
-Transverse ridges cross the primary wind and show asymmetric windward and
-lee slopes (`dunes-review-01`).
+| Measurement | Recorded result |
+| --- | --- |
+| Unique SVG hashes / unique PNG hashes | 48 / 48 |
+| Placed travelers / camels | 91 / 68 |
+| Default requested figure counts satisfied | All 48 seeds |
+| Retained crest runs per scene | 4–8 |
+| Ripple/hatch strokes per scene | 37–126 |
+| Raster ink coverage | 1.04%–1.83% |
+| Ink touching the image edge | 0 across the batch |
+| Mean / maximum generation time | 245 ms / 377 ms |
+| Mean / maximum SVG size | 117 KB / 146 KB |
 
-![Transverse dune field](previews/dunes-transverse.jpg)
+The low ink fraction reflects deliberate open sand, not an incomplete shaded terrain. Timings are observations on the shared development machine, not guarantees for every device. The [full audit report](previews/dunes-report.json) preserves exact seeds, resolved controls, hashes, placement metrics, and pixel bounds.
 
-Linear ridges follow a resultant of two wind directions. This low camera
-angle emphasizes their longitudinal shape (`dunes-review-06`).
+## Details
 
-![Linear dune field](previews/dunes-linear.jpg)
+A varied multi-summit composition, seed 00. The retained morphology labels now select illustrative ink profile neighborhoods; this is not a claim of planform star-dune geometry.
 
-Barchan horns taper downwind. A pale base tone preserves the fully lit faces
-under this softer lighting (`dunes-review-09`).
+![Wide ink composition](previews/dunes-star.jpg)
 
-![Barchan dune field](previews/dunes-barchan.jpg)
+A broad flowing composition, seed 06.
 
-The darkest barchan example makes the finite lighting contours easier to
-inspect (`dunes-review-33`). Illumination normals are filtered at the terrain
-sampling scale, and the lighting filter follows the local projected depth
-plane. Shadow rays refine their strongest obstruction. These changes smooth
-shade transitions without changing the terrain, coverage or occlusion.
+![Broad ridge landscape](previews/dunes-linear.jpg)
 
-![Dark barchan lighting diagnostic](previews/dunes-shadow-detail.jpg)
+A small caravan, seed 09. Solid miniature bodies make the people and camel readable, while jointed legs, variable proportions, load, heading, and planted feet remain procedural geometry.
 
-## Verification
+![Tiny travelers and camel in the dunes](previews/dunes-barchan.jpg)
 
-The final batch contains 83–1,456 paths per scene. SVG sizes range from
-49–408 kB, averaging 171 kB. Local generation averaged 2.46 seconds; the
-slowest was 4.76 seconds while parallel validation was running. These are
-observations from the review run, not a cross-device performance guarantee.
+The complete contact sheet and full-size specimens were inspected for unexplained floating crest fragments, clipping, dense wire patterns, badly formed silhouettes, and crowding. Earlier prototypes exposed two specific problems: overlapping phase lines and shoulder bands looked technical, and retaining every short buried crest fragment left unexplained little strokes. The final model uses selective curved marks and retained crest intervals instead. Figure outlines were strengthened into small ink silhouettes; the camel's lower neck and exposed hump read more clearly than the earlier long-neck outline.
 
-Raster checks found no empty images, saturated frames or ink touching the
-image edges. Visible coverage ranged from 9.1% to 34.4%. Across the batch,
-measured colored ink stayed within x = 60–1,142 and y = 196–779 in the
-1200 × 849 review images. Very pale sand is excluded from that ink threshold;
-separate vector-coordinate checks enforce the margins for every path.
+## Stress review
 
-Fourteen dune tests and four shared contour tests pass. They check:
+![Eight parameter stress studies](previews/dunes-stress-contact.jpg)
 
-- The cosine-power stoss section, parabolic crest envelope, slip angle and
-  wind-shear/saturation width relationships adopted from the papers.
-- Downwind horns at asymmetric extremes, connected star arms, and the
-  expected transverse/linear wind alignment.
-- Analytic bicubic normals against finite differences, unit upward normals,
-  perspective scale, reciprocal-depth lighting and draw-order-independent
-  visibility.
-- Refined terrain-shadow rays, filtered illumination normals, smoothing along
-  sloping faces without crossing visibility breaks, and contour winding that
-  keeps illuminated holes open.
-- Surface-attached texture, suppression of phase-root jumps, 48 unique
-  bounded fields, and eight combinations of extreme controls.
-- Independent rays from emitted texture toward the camera eye at minimum
-  camera elevation, maximum relief and maximum perspective. The largest
-  sampled terrain obstruction was below 1.50 world units, within the
-  2-unit allowance for the finite terrain and visibility grids.
-- Seed determinism and exact SVG/parameter parity with the bundled classic
-  worker.
+The eight `--stress` cases cover low and high relief, crowded and widely spaced caravans, large and small figures, sideways and depth-directed headings, no figures, no hatching, extreme crest width/curvature, and the optional ochre renderer. All eight SVG and PNG hashes differ and all have zero edge clipping. The [stress report](previews/dunes-stress-report.json) records each exact case.
 
-Eight additional native raster specimens covered the monochrome palette,
-minimum camera elevation with maximum relief, and an almost overhead view
-of low star dunes. They were also inspected for clipping, unstable texture
-and disconnected geometry.
+Ink-only stress generation ranged from 228 to 969 ms. The optional ochre case took 3.10 seconds; the complete eight-case mean was 768 ms. The largest SVG was 226,324 bytes. Ink-only and ochre coverage are intentionally different, so the combined 0.61%–32.39% coverage range should not be read as default ink density.
 
-The renderer uses a sampled height surface and finite lighting/depth grids.
-Very close inspection can reveal small contour facets and broad stepped shade
-boundaries at dune intersections; the diagnostic image above shows this limit. Texture is intentionally sparse on lee slopes;
-a low viewpoint can hide most of a distant ridge. The monochrome option and
-all high-level controls remain available through `generateDunes(seed, overrides)`.
+Two deliberately crowded requests could not fit all figures while preserving scale, visible terrain contact, and clear silhouettes. Stress seed 01 requested eight walkers and six camels and placed eight/two; seed 02 requested eight/six and placed six/three. Count controls are documented as requested maxima. The generator reports actual counts instead of overlapping or silently shrinking figures. All default seeds placed every requested figure.
+
+## Geometry and integration checks
+
+All **75 repository tests** and the production build pass. The 18 dune test groups include the original optional-model checks plus revision-2 properties:
+
+- Every emitted terrain mark remains on its active surface, within print margins, and visible under the depth test. Extreme relief exercises adaptive ripple subdivision.
+- Independent oblique viewing rays check the new ink surface, allowing less than three world units of sampled obstruction from the finite visibility grid. The optional ochre camera retains its separate independent eye-ray test.
+- Every planted foot matches terrain height plus the `.12`-unit numerical offset. Figures retain visible foot contacts; body bounds do not overlap, and rendered figure strokes pass the terrain depth test.
+- Articulated figures vary across seeds, zero counts remove them, and figure-only overrides leave the terrain drawing unchanged. Nearby continuous controls change the ink height field smoothly.
+- The default landscape contains no filled terrain slabs. The bundled worker matches the source SVG/parameters and forwards revision 2.
+
+Chromium checks passed on desktop and at 390×844 portrait, 844×390 landscape, and 320×568 narrow-phone sizes. Saved-seed reload/history, cache reuse, and exactly one regeneration after the revision upgrade pass. Downloads include 3200-pixel paper/transparent PNGs, SVG, and PDF; pixel checks verify dimensions, visible artwork, opaque paper, and transparent margins. [Fresh browser results](previews/dunes-browser-results.json).
+
+The visibility buffer is approximate; tests cover specified seeds and extremes rather than proving all combinations. Tiny limbs disappear naturally in thumbnails. Ink morphology names indicate profile choices, and the view is an artistic oblique construction. The cited dune papers inspire sections and qualitative width relationships; neither renderer integrates sediment transport, predicts migration, or simulates a caravan's locomotion.
 
 ## Reproduce
 
 ```sh
 node --test tests/dunes.test.mjs tests/isocontours.test.mjs
-node scripts/art-review/dunes.mjs --count 48 --raster --out /tmp/dune-review
-node scripts/art-review/dunes.mjs --count 4 --raster --out /tmp/dune-ink \
-  --prefix dunes-ink --overrides '{"palette":"ink","cameraElevation":0.6}'
-node scripts/art-review/dunes.mjs --count 2 --raster --out /tmp/dune-low \
-  --prefix dunes-low --overrides '{"morphology":"barchan","cameraElevation":0.22,"perspective":0.5,"crestHeight":95,"relief":1.55}'
-node scripts/art-review/dunes.mjs --count 2 --raster --out /tmp/dune-high \
-  --prefix dunes-high --overrides '{"morphology":"star","cameraElevation":0.95,"crestHeight":22,"relief":0.55,"saturationLength":30,"rippleWavelength":24}'
+node scripts/art-review/dunes.mjs --count 48 --raster --width 1414 --out /tmp/dunes-review
+node scripts/art-review/dunes.mjs --stress --raster --width 1414 --out /tmp/dunes-stress
+npm test
+npm run build
+node scripts/check-browser.mjs
 ```
 
-Raster review uses optional local `canvas` and `path2d` packages. The audit
-writes each SVG/PNG, a contact sheet, JPEG examples and `report.json`, including
-exact parameters, hashes, elapsed generation time, path/byte counts and
-pixel bounds. These review packages are not runtime dependencies.
-
-The [final 48-sample report](previews/dunes-report.json) and
-[eight-sample stress report](previews/dunes-stress-report.json) preserve the
-exact reviewed parameters and hashes.
-
-![Eight palette and camera stress studies](previews/dunes-stress-contact.jpg)
-
-## Application integration
-
-The final full repository suite passed all **71 tests**, followed by a production build and Chromium verification. Desktop and 390×844, 844×390, and 320×568 phone checks preserve the landscape page ratio and keep the complete artwork visible. Saved-seed reload/history, cache reuse, and exactly one regeneration after a revision upgrade pass. Downloads include 3200-pixel paper and transparent PNGs, SVG, and PDF; PNG pixel checks verify visible artwork, dimensions, opaque paper, and transparent margins. [Recorded browser results](previews/dunes-browser-results.json).
-
-Run `npm test`, `npm run build`, then `node scripts/check-browser.mjs` to reproduce; the last command requires Playwright and Chromium. SVG retains vector paths; the existing PDF exporter embeds a rendered PNG.
+Raster review uses optional local Cairo `canvas` and `path2d`; browser verification needs Playwright/Chromium. The review directory contains every SVG/PNG and its JSON record. Committed JPEGs are review artifacts, while live art remains procedural and cached locally. SVG exports retain vector paths; the existing PDF exporter embeds a rendered PNG.
