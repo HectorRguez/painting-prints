@@ -1,7 +1,6 @@
 # Painting
 
-A minimal procedural-art gallery with Flowers, Landscapes, Cityscapes,
-Houses, and Folded Light. Create a drawing, explore it, and download it for print.
+A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Brushwork, Folds. Create a drawing, explore it, and download it for print.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
@@ -15,15 +14,13 @@ Houses, and Folded Light. Create a drawing, explore it, and download it for prin
 | Houses | Matthias Schermann (N3R01N) | [iso-building-generator](https://github.com/N3R01N/iso-building-generator) |
 | Interface controls, icons and typography | Daniel Belyi | [Drawably](https://github.com/danielwh2/drawably) |
 
-Original source snapshots and licenses are retained in each generator's
-`upstream/` directory; Drawably's license ships with its dependency.
+Original source snapshots and licenses are retained in each generator’s `upstream/` directory; Drawably’s license ships with its dependency.
 
 ## Sharing and rendering
 
-Every displayed artwork writes its seed to the URL, for example
-`buildings/?seed=painting-stock-v1-buildings-0`. Sharing or reopening that URL loads that
-exact cached painting or regenerates it from the same seed.
+Every displayed artwork writes its seed to the URL, for example `flowers/?seed=flower-study`. Sharing or reopening that URL loads that exact cached painting or regenerates it from the same seed. PNG, SVG and PDF downloads are available; the PDF exporter embeds raster artwork.
 
-## Folded Light
+## Procedural styles
 
-See the [parameter, research and visual review](docs/folds-review.md) for equations, controls, 48-seed gallery and reproducible checks.
+- [Brushwork: model, parameters and review](docs/brushwork-review.md)
+- [Folds: model, parameters and review](docs/folds-review.md)
