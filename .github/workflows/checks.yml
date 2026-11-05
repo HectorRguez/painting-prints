@@ -1,0 +1,40 @@
+name: Check Painting PR
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: painting-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.2'
+          cache: false
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Install browser verification tools
+        run: npm install --no-save --package-lock=false playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: painting-browser-review
+          path: .artifacts/browser/
+          if-no-files-found: ignore
+          retention-days: 14

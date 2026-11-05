@@ -1,7 +1,7 @@
 # Painting
 
 A minimal procedural-art gallery with Flowers, Landscapes, Cityscapes,
-and Houses. Create a drawing, explore it, and download it for print.
+Houses, and Folded Light. Create a drawing, explore it, and download it for print.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
@@ -23,3 +23,7 @@ Original source snapshots and licenses are retained in each generator's
 Every displayed artwork writes its seed to the URL, for example
 `buildings/?seed=painting-stock-v1-buildings-0`. Sharing or reopening that URL loads that
 exact cached painting or regenerates it from the same seed.
+
+## Folded Light
+
+See the [parameter, research and visual review](docs/folds-review.md) for equations, controls, 48-seed gallery and reproducible checks.
