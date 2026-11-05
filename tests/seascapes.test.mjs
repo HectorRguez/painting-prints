@@ -13,7 +13,7 @@ test('seascapes reproduce a seed without depending on ambient random state', () 
   const second = generateSeascape('sea 雨 & boats / 42');
   assert.deepEqual(first, second);
   assert.equal(first.mode, 'seascapes');
-  assert.equal(first.artRevision, 2);
+  assert.equal(first.artRevision, 3);
   assert.equal(first.whiteToAlpha, true);
   assert.equal(first.width / first.height, 1.414);
   assert.notEqual(first.svg, generateSeascape('sea 雨 & boats / 43').svg);

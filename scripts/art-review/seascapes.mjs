@@ -79,6 +79,10 @@ for (let i = 0; i < count; i++) {
     regime: scene.sea.regime, roughness: scene.sea.roughness, arrangement: scene.arrangement,
     requestedBoats: scene.requestedCount, maximumWaveHeight: Math.max(...scene.crests.map(crest => crest.amplitude)),
     waveShapes: frequency(scene.crests.map(crest => crest.shape)),
+    breakingWaves: scene.crests.filter(crest => crest.breaking).map(crest => ({
+      shape: crest.shape, length: crest.length, amplitude: crest.amplitude, phase: crest.phase,
+      parameters: crest.breaking.parameters,
+    })),
     boats: scene.boats.map(({ kind, x, y, angle, length, depth }) => ({ kind, x, y, angle, length, depth })) });
 }
 const unique = new Set(records.map(record => record.sha256)).size;
@@ -88,7 +92,7 @@ if (raster) {
   await writeFile(resolve(output, 'contact-sheet.png'), grid.toBuffer('image/png'));
   await writeFile(resolve(output, 'seascapes-contact.jpg'), grid.toBuffer('image/jpeg', { quality: 0.92 }));
 }
-const report = { artRevision: 2, count, unique,
+const report = { artRevision: 3, count, unique,
   ...(raster ? { uniquePngs: new Set(records.map(record => record.pngSha256)).size } : {}),
   maximumGenerationMs: Math.max(...records.map(record => record.generationMs)),
   regimes: frequency(records.map(record => record.regime)),
