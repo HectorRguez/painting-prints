@@ -1,5 +1,5 @@
 import { randomSource, drawing, line } from '../shared/port.js';
-import { breakingWave } from './breaker.js';
+import { breakingWave, validateBreakerOverrides } from './breaker.js';
 
 const TAU = Math.PI * 2;
 const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
@@ -9,17 +9,28 @@ const gray = value => `#${Math.round(clamp(value, 0, 255)).toString(16).padStart
 
 // The same bounded Gerstner field positions every crest and vessel. The
 // illustrative breakers below can curl; the boat-supporting field cannot fold.
-export function seaParameters(seed) {
+export function seaParameters(seed, overrides = {}) {
+  const limits = { roughness: [.15, 2], direction: [-.9, .9], steepness: [.1, .62],
+    horizon: [240, 370], boatCount: [0, 4], boatScale: [.6, 1.2] };
+  if (!overrides || typeof overrides !== 'object' || Array.isArray(overrides)) throw new RangeError('Sea overrides must be an object');
+  for (const [key, value] of Object.entries(overrides)) {
+    if (key === 'regime' && ['calm', 'wind sea', 'rolling swell', 'breakers'].includes(value)) continue;
+    if (key === 'wind' && (value === -1 || value === 1)) continue;
+    if (key === 'breaker') { validateBreakerOverrides(value); continue; }
+    if (!(key in limits) || !Number.isFinite(value) || value < limits[key][0] || value > limits[key][1]
+      || key === 'boatCount' && !Number.isInteger(value)) throw new RangeError('Unsupported sea parameter: ' + key);
+  }
+  const resolved = (key, seeded) => overrides[key] ?? seeded;
   const random = randomSource(`${seed}:water`);
   const state = random();
-  const regime = state < 0.24 ? 'calm' : state < 0.48 ? 'wind sea' : state < 0.78 ? 'rolling swell' : 'breakers';
+  const regime = overrides.regime ?? (state < 0.24 ? 'calm' : state < 0.48 ? 'wind sea' : state < 0.78 ? 'rolling swell' : 'breakers');
   const ranges = {
     calm: [0.18, 0.42, 330, 510], 'wind sea': [0.6, 1.05, 240, 410],
     'rolling swell': [1.05, 1.55, 540, 820], breakers: [1.35, 1.9, 610, 900],
   }[regime];
-  const roughness = pick(random, ranges[0], ranges[1]);
-  const direction = pick(random, -0.6, 0.6);
-  const steepness = pick(random, 0.32, 0.62);
+  const roughness = resolved('roughness', pick(random, ranges[0], ranges[1]));
+  const direction = resolved('direction', pick(random, -0.6, 0.6));
+  const steepness = resolved('steepness', pick(random, 0.32, 0.62));
   const waves = [1, 0.57, 0.29].map((ratio, index) => {
     const wavelength = pick(random, ranges[2], ranges[3]) * ratio;
     const k = TAU / wavelength;
@@ -28,8 +39,13 @@ export function seaParameters(seed) {
     return { k, amplitude, dx: Math.cos(angle), dz: Math.sin(angle),
       phase: random() * TAU, lateral: steepness / (3 * k) };
   });
-  return { width: 1414, height: 1000, horizon: pick(random, 260, 345),
-    regime, roughness, steepness, waves, texture: random() * TAU, wind: random() < 0.5 ? -1 : 1 };
+  const frequency = randomSource(seed + ':fleet')();
+  const boatCount = overrides.boatCount ?? (regime === 'breakers'
+    ? (frequency < .2 ? 0 : frequency < .6 ? 1 : frequency < .96 ? 2 : 3)
+    : frequency < .15 ? 0 : frequency < .46 ? 1 : frequency < .87 ? 2 : frequency < .98 ? 3 : 4);
+  return { width: 1414, height: 1000, horizon: resolved('horizon', pick(random, 260, 345)),
+    regime, roughness, direction, steepness, waves, texture: random() * TAU,
+    wind: resolved('wind', random() < 0.5 ? -1 : 1), boatCount, boatScale: overrides.boatScale ?? 1, breaker: { ...overrides.breaker } };
 }
 
 function surfaceAtParameter(sea, u, depth) {
@@ -135,19 +151,59 @@ function wavePatches(sea, random) {
       trough: pick(random, 0.13, 0.27), roundness: pick(random, 0.37, 0.76),
       layers: major ? 5 + Math.floor(random() * 4) : 1 + Math.floor(random() * (2 + depth * 3)), phase: random() * TAU };
     if (shape === 'breaker') patch.crest = pick(random, -0.09, 0.075);
-    patch.breaking = shape === 'breaker' || shape === 'spilling' ? breakingWave(patch) : null;
+    patch.breaking = shape === 'breaker' || shape === 'spilling' ? breakingWave(patch, sea.breaker) : null;
     patch.profile = patch.breaking?.outline || waveProfile(patch);
-    const detail = patch.breaking ? patch.breaking.foam.flatMap(stroke => stroke.points) : [];
+    const detail = patch.breaking ? [...patch.breaking.foam, ...patch.breaking.trails].flatMap(stroke => stroke.points) : [];
     const points = [...patch.profile, ...detail, [0.5, 0.32], [-0.5, 0.32]].map(point => patchPoint(sea, patch, point));
     patch.bounds = { left: Math.min(...points.map(p => p[0])) - 2, right: Math.max(...points.map(p => p[0])) + 2,
       top: Math.min(...points.map(p => p[1])) - 2, bottom: Math.max(...points.map(p => p[1])) + 2 };
     patches.push(patch);
   };
-  const candidates = sea.regime === 'calm' ? 125 : 160;
+  const dramatic = sea.regime === 'breakers';
+  const count = dramatic ? 3 : sea.regime === 'calm' ? 1 : 2 + Math.floor(random() * 2);
+  let primary;
+  for (let i = 0; i < count; i++) {
+    let length = dramatic ? (i === 0 ? pick(random, 820, 970) : pick(random, 290, 480)) : pick(random, 310, 570);
+    let depth = dramatic ? (i === 0 ? pick(random, 0.8, 0.89) : pick(random, 0.66, 0.88)) : pick(random, 0.77, 0.96);
+    let x = pick(random, length / 2 + 75, sea.width - length / 2 - 75);
+    if (dramatic && i === 0) x = clamp(sea.width / 2 - sea.wind * pick(random, 60, 110), length * .63 + 65, sea.width - length * .63 - 65);
+    if (primary) {
+      // Major crests occupy different parts of the sea. A second curl should
+      // not repeat the first directly underneath it like a stack of symbols.
+      const sign = primary.x < sea.width / 2 ? 1 : -1;
+      x = clamp(primary.x + sign * (primary.length + length) * pick(random, 0.35, 0.47),
+        length / 2 + 75, sea.width - length / 2 - 75);
+      if (i === 2) x = clamp(sea.width - x + pick(random, -100, 100), length / 2 + 75, sea.width - length / 2 - 75);
+    }
+    let amplitude = dramatic ? (i === 0 ? pick(random, 270, 350) : pick(random, 55, 105)) : sea.regime === 'rolling swell'
+      ? pick(random, 65, 145) : sea.regime === 'wind sea' ? pick(random, 25, 55) : pick(random, 10, 22);
+    if (dramatic && primary) {
+      const rear = i === 1;
+      length = pick(random, rear ? 480 : 620, rear ? 660 : 820);
+      depth = clamp(primary.depth + (rear ? -.16 : .09), .4, .97);
+      x = clamp(primary.x + sea.wind * primary.length * (rear ? -.34 : .28), length / 2 + 65, sea.width - length / 2 - 65);
+      amplitude = pick(random, rear ? 75 : 70, rear ? 115 : 110);
+    }
+    const shape = dramatic ? (i === 0 ? 'breaker' : (i === 1 && random() < .18 ? 'spilling' : 'swell'))
+      : sea.regime === 'wind sea' ? 'chop' : 'swell';
+    if (shape === 'breaker' || shape === 'spilling') x = clamp(x, length * .63 + 65, sea.width - length * .63 - 65);
+    add(x, depth, length, amplitude, shape, true);
+    if (!primary) primary = patches.at(-1);
+  }
+  if (dramatic) {
+    for (let i = 0; i < 2; i++) {
+      const length = pick(random, 380, 620), depth = .4 + i * .18;
+      const x = clamp(primary.x - sea.wind * pick(random, 210, 370), length / 2 + 65, sea.width - length / 2 - 65);
+      add(x, depth, length, pick(random, 25, 50), 'swell', true);
+    }
+  }
+  const candidates = dramatic ? 84 : sea.regime === 'calm' ? 125 : 160;
   for (let i = 0; i < candidates; i++) {
-    const depth = pick(random, 0.012, 0.98) ** 1.24;
+    const depth = pick(random, 0.012, dramatic ? 0.81 : 0.98) ** 1.24;
+    if (dramatic && depth > .55 && random() < .5) continue;
     const x = pick(random, 105, sea.width - 105);
-    const openWater = channel.x + channel.bend * Math.sin(depth * 2.6);
+    const openWater = dramatic ? sea.width * (.5 + sea.wind * .23) + channel.bend * .3 * Math.sin(depth * 2.6)
+      : channel.x + channel.bend * Math.sin(depth * 2.6);
     if (Math.abs(x - openWater) < channel.width * (0.4 + depth) && random() < 0.7) continue;
     const length = Math.min(pick(random, 55, 190) * (0.38 + depth * 0.94) * (sea.regime === 'breakers' ? 1 + depth * .65 : 1), 2 * Math.min(x - 60, sea.width - 60 - x));
     if (patches.some(p => Math.abs(p.depth - depth) < 0.023 && Math.abs(p.x - x) < (p.length + length) * 0.3)) continue;
@@ -157,28 +213,6 @@ function wavePatches(sea, random) {
       : choice < 0.2 ? 'ripple' : choice < 0.38 ? 'chop' : 'swell';
     const amplitude = length * pick(random, 0.045, 0.125) * sea.roughness * (0.42 + depth * 0.72);
     add(x, depth, length, amplitude, shape);
-  }
-  const dramatic = sea.regime === 'breakers';
-  const count = sea.regime === 'calm' ? 1 : 2 + Math.floor(random() * 2);
-  let primary;
-  for (let i = 0; i < count; i++) {
-    const length = dramatic ? (i === 0 ? pick(random, 740, 940) : pick(random, 290, 480)) : pick(random, 310, 570);
-    const depth = dramatic ? (i === 0 ? pick(random, 0.81, 0.94) : pick(random, 0.66, 0.88)) : pick(random, 0.77, 0.96);
-    let x = pick(random, length / 2 + 75, sea.width - length / 2 - 75);
-    if (primary) {
-      // Major crests occupy different parts of the sea. A second curl should
-      // not repeat the first directly underneath it like a stack of symbols.
-      const sign = primary.x < sea.width / 2 ? 1 : -1;
-      x = clamp(primary.x + sign * (primary.length + length) * pick(random, 0.35, 0.47),
-        length / 2 + 75, sea.width - length / 2 - 75);
-      if (i === 2) x = clamp(sea.width - x + pick(random, -100, 100), length / 2 + 75, sea.width - length / 2 - 75);
-    }
-    const amplitude = dramatic ? (i === 0 ? pick(random, 225, 300) : pick(random, 55, 105)) : sea.regime === 'rolling swell'
-      ? pick(random, 65, 145) : sea.regime === 'wind sea' ? pick(random, 25, 55) : pick(random, 10, 22);
-    const shape = dramatic ? (i === 0 ? 'breaker' : (random() < 0.7 ? 'swell' : 'spilling'))
-      : sea.regime === 'wind sea' ? 'chop' : 'swell';
-    add(x, depth, length, amplitude, shape, true);
-    if (!primary) primary = patches.at(-1);
   }
   return patches.sort((a, b) => a.depth - b.depth);
 }
@@ -190,12 +224,14 @@ function drawWave(sea, patch, paths) {
   const tone = mix(151, 48, depth), width = mix(0.46, patch.major ? 1.9 : 1.4, depth);
   if (patch.breaking) {
     const wave = patch.breaking;
-    pen([...points, project([0.5, 0.22]), project([-0.5, 0.22])], 0.08, 255, '#ffffff');
+    pen(wave.mask.map(project), 0.08, 255, '#ffffff');
     inkStroke(paths, wave.shoulder.map(project), width * .7, tone + 15, patch.phase);
     inkStroke(paths, wave.rim.map(project), width * .4, tone + 45, patch.phase);
     inkStroke(paths, wave.face.map(project), width * .75, tone + 10, patch.phase);
+    for (const mass of wave.masses) pen(mass.points.map(project), .08, mass.tone, gray(mass.tone));
     for (const stroke of wave.strokes) inkStroke(paths, stroke.points.map(project), stroke.width, stroke.tone, patch.phase);
     for (const foam of wave.foam) pen(foam.points.map(project), foam.width, foam.tone, foam.fill);
+    for (const stroke of wave.trails) inkStroke(paths, stroke.points.map(project), stroke.width, stroke.tone, patch.phase);
     return;
   }
   pen([...points, project([0.5, 0.32]), project([-0.5, 0.32])], 0.08, 255, '#ffffff');
@@ -220,15 +256,17 @@ function drawWave(sea, patch, paths) {
 }
 
 function boatLayout(sea, random, crests) {
-  const requestedCount = 2 + Math.floor(random() * 6.8);
+  random(); // Reserve the seeded fleet-size draw; overrides retain layout randomness.
+  const storm = sea.regime === 'breakers';
+  const requestedCount = sea.boatCount;
   const arrangement = ['scattered', 'crossing', 'flotilla', 'procession'][Math.floor(random() * 4)];
   const boats = [], fleetX = pick(random, 0.3, 0.7) * sea.width;
   const fleetDirection = random() < 0.5 ? -1 : 1;
   for (let i = 0; i < requestedCount; i++) {
     for (let attempt = 0; attempt < 150; attempt++) {
-      const hero = attempt < 85 && (i === 0 || (i === 1 && requestedCount > 5 && attempt < 20));
-      const depth = hero ? pick(random, 0.39, 0.65) : attempt < 85 ? pick(random, 0.11, 0.57) : pick(random, 0.035, 0.3);
-      const length = hero ? pick(random, 132, 194) : pick(random, 61, attempt < 85 ? 137 : 105) * (0.57 + depth);
+      const hero = !storm && attempt < 85 && i === 0;
+      const depth = hero ? pick(random, 0.39, 0.65) : attempt < 85 ? pick(random, storm ? 0.17 : 0.11, 0.57) : pick(random, 0.035, 0.3);
+      const length = (hero ? pick(random, 110, 164) : pick(random, storm ? 65 : 61, storm ? 112 : attempt < 85 ? 137 : 105) * (0.57 + depth)) * sea.boatScale;
       let x = pick(random, 125, sea.width - 125);
       if (attempt < 25 && arrangement === 'flotilla') x = fleetX + pick(random, -370, 370);
       if (attempt < 30 && arrangement === 'procession') x = mix(190, sea.width - 190, (i + random()) / requestedCount);
@@ -237,7 +275,8 @@ function boatLayout(sea, random, crests) {
       const bow = seaSurface(sea, x + length * 0.38, depth);
       const stern = seaSurface(sea, x - length * 0.38, depth);
       const angle = clamp(Math.atan2(bow.y - stern.y, length * 0.76), -0.18, 0.18);
-      const kind = ['sail', 'sampan', 'skiff', 'cutter', 'lugger', 'fishing'][Math.floor(random() * 6)];
+      const families = storm ? ['skiff', 'skiff', 'sampan', 'fishing'] : ['sail', 'sampan', 'skiff', 'cutter', 'lugger', 'fishing'];
+      const kind = families[Math.floor(random() * families.length)];
       const height = length * (['sail', 'cutter', 'lugger'].includes(kind) ? 0.94 : kind === 'fishing' ? 0.45 : 0.33);
       const bounds = { left: x - length * 0.82, right: x + length * 0.82,
         top: center.y - height - length * 0.16, bottom: center.y + length * 0.21 };
@@ -376,8 +415,8 @@ function drawBoat(sea, boat, paths) {
   }
 }
 
-export function buildSeascape(seed) {
-  const sea = seaParameters(seed);
+export function buildSeascape(seed, overrides = {}) {
+  const sea = seaParameters(seed, overrides);
   const paths = [];
   const crests = wavePatches(sea, randomSource(`${seed}:crests`));
   const { boats, arrangement, requestedCount } = boatLayout(sea, randomSource(`${seed}:fleet`), crests);
@@ -394,8 +433,8 @@ export function buildSeascape(seed) {
   return { sea, crests, boats, arrangement, requestedCount, paths };
 }
 
-export function generateSeascape(seed) {
-  const { sea, paths } = buildSeascape(seed);
+export function generateSeascape(seed, overrides = {}) {
+  const { sea, paths } = buildSeascape(seed, overrides);
   return { ...drawing(paths, { width: sea.width, height: sea.height, whiteToAlpha: true, rounded: true }),
-    mode: 'seascapes', seed, artRevision: 3 };
+    mode: 'seascapes', seed, artRevision: 4, parameters: sea };
 }

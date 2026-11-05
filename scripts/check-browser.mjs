@@ -37,6 +37,23 @@ async function ready(page) {
   }, null, { timeout: 120_000 });
   assert.equal(await page.locator('#status').innerText(), '');
 }
+async function assertArtworkFits(page, mode, label) {
+  const layout = await page.locator('#artwork').evaluate(art => {
+    const bounds = art.getBoundingClientRect();
+    const viewport = document.querySelector('#canvas-viewport').getBoundingClientRect();
+    const image = art.querySelector('img');
+    return { width: bounds.width, height: bounds.height, viewportWidth: viewport.width,
+      viewportHeight: viewport.height, naturalRatio: image.naturalWidth / image.naturalHeight,
+      inside: bounds.left >= viewport.left - 1 && bounds.right <= viewport.right + 1
+        && bounds.top >= viewport.top - 1 && bounds.bottom <= viewport.bottom + 1 };
+  });
+  assert.ok(layout.width > 0 && layout.height > 0, `${label}: artwork must have visible dimensions`);
+  assert.ok(layout.width <= layout.viewportWidth + 1 && layout.height <= layout.viewportHeight + 1
+    && layout.inside, `${label}: the complete new artwork must fit in the viewport`);
+  const ratio = layout.width / layout.height;
+  assert.ok(Math.abs(ratio - projects[mode].ratio) < .002, `${label}: preserve the generator's page ratio`);
+  assert.ok(Math.abs(ratio - layout.naturalRatio) < .002, `${label}: do not distort the preview image`);
+}
 async function waitForSaved(page, mode, seed, artRevision = projects[mode].artRevision) {
   await page.waitForFunction(async ({ mode, seed, artRevision }) => {
     return new Promise(resolve => {
@@ -93,6 +110,28 @@ async function download(page, mode, format, background) {
   if (format === 'png') {
     assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(bytes.readUInt32BE(16), 3200);
+    assert.ok(Math.abs(bytes.readUInt32BE(16) / bytes.readUInt32BE(20) - projects[mode].ratio) < .002);
+    const pixels = await page.evaluate(async encoded => {
+      const image = await createImageBitmap(await (await fetch(`data:image/png;base64,${encoded}`)).blob());
+      const canvas = new OffscreenCanvas(image.width, image.height), context = canvas.getContext('2d');
+      context.drawImage(image, 0, 0);
+      const data = context.getImageData(0, 0, image.width, image.height).data;
+      let transparent = 0, opaque = 0, ink = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i + 3] === 0) transparent++;
+        if (data[i + 3] === 255) opaque++;
+        if (data[i + 3] > 20 && Math.abs(data[i] - 245) + Math.abs(data[i + 1] - 242) + Math.abs(data[i + 2] - 235) > 35) ink++;
+      }
+      image.close();
+      return { total: data.length / 4, transparent, opaque, ink, cornerAlpha: data[3] };
+    }, bytes.toString('base64'));
+    assert.ok(pixels.ink > pixels.total * .0001 && pixels.ink < pixels.total * .9, 'PNG export must contain visible artwork');
+    if (background) {
+      assert.equal(pixels.opaque, pixels.total, 'Paper export must be fully opaque');
+    } else {
+      assert.ok(pixels.transparent > pixels.total * .05, 'Transparent export must retain transparent paper');
+      assert.equal(pixels.cornerAlpha, 0, 'Transparent export must not bake in a paper rectangle');
+    }
   } else if (format === 'pdf') assert.equal(bytes.subarray(0, 5).toString(), '%PDF-');
   else {
     assert.ok(bytes.toString().startsWith('<svg'));
@@ -155,13 +194,14 @@ try {
     assert.equal(await mobile.locator('#painting-style').isVisible(), true);
     assert.equal(await mobile.locator('#painting-style').inputValue(), mode);
     assert.equal(await mobile.locator('.modes').isVisible(), false);
-    const fitting = await mobile.locator('#artwork').evaluate(art => {
-      const bounds = art.getBoundingClientRect();
-      const viewport = document.querySelector('#canvas-viewport').getBoundingClientRect();
-      return bounds.width <= viewport.width + 1 && bounds.height <= viewport.height + 1;
-    });
-    assert.ok(fitting, 'The complete new artwork must fit on the phone initially');
+    await assertArtworkFits(mobile, mode, 'Initial phone layout');
     await mobile.screenshot({ path: resolve(output, `${mode}-phone.png`) });
+    for (const [label, viewport] of [['rotated', { width: 844, height: 390 }],
+      ['narrow', { width: 320, height: 568 }]]) {
+      await mobile.setViewportSize(viewport);
+      await assertArtworkFits(mobile, mode, `${label} phone layout`);
+      await mobile.screenshot({ path: resolve(output, `${mode}-phone-${label}.png`) });
+    }
     assert.deepEqual(errors, []);
     await phone.close();
     results.push({ mode, seed, desktop: 'passed', mobile: 'passed', cache: 'passed', exports });
