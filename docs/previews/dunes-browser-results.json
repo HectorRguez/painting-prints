@@ -1,0 +1,31 @@
+[
+  {
+    "mode": "dunes",
+    "seed": "browser-review-dunes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 459602
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 431552
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 61187
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 246769
+      }
+    ]
+  }
+]
