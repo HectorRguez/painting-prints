@@ -1,7 +1,7 @@
 # Painting
 
 A minimal procedural-art gallery with Flowers, Landscapes, Cityscapes,
-and Houses. Create a drawing, explore it, and download it for print.
+Houses, and Interference Studies. Create a drawing, explore it, and download it for print.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
@@ -13,6 +13,7 @@ and Houses. Create a drawing, explore it, and download it for print.
 | Landscapes | Lingdong Huang | [shan-shui-inf](https://github.com/LingDong-/shan-shui-inf) |
 | Cityscapes | Michael Fogleman | [ln](https://github.com/fogleman/ln) |
 | Houses | Matthias Schermann (N3R01N) | [iso-building-generator](https://github.com/N3R01N/iso-building-generator) |
+| Interference Studies | Painting | [Mathematics, parameters, and review](src/generators/interference/README.md) |
 | Interface controls, icons and typography | Daniel Belyi | [Drawably](https://github.com/danielwh2/drawably) |
 
 Original source snapshots and licenses are retained in each generator's

@@ -7,9 +7,15 @@ export function renderLinePreview(painting, options) {
       const a = attributes(match[1]);
       const path = new Path2D(a.d);
       if (a.fill !== 'none') { context.fillStyle = a.fill; context.fill(path); }
-      context.strokeStyle = a.stroke;
-      context.lineWidth = Number(a['stroke-width']);
-      context.stroke(path);
+      // Canvas ignores invalid strokeStyle='none' and lineWidth=0 assignments;
+      // SVG uses them to suppress strokes. Skip drawing instead of reusing the
+      // preceding path's stroke state, especially for filled contour regions.
+      const width = Number(a['stroke-width']);
+      if (a.stroke !== 'none' && width > 0) {
+        context.strokeStyle = a.stroke;
+        context.lineWidth = width;
+        context.stroke(path);
+      }
     }
   }, { width: 2400, ...options, ...(painting.whiteToAlpha ? { filter: pixels => {
     // Solid faces occlude earlier lines; remove their paper only after drawing.

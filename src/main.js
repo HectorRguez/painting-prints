@@ -135,8 +135,13 @@ function syncPaintingUrl(entry, action = 'replace') {
   updateSelectedPage();
 }
 
-function frameClass(mode) {
-  return `artwork-frame ${mode}${useLandscapeCrop(mode) ? ' landscape-crop' : ''}`;
+function updateArtworkFrame(mode) {
+  const frame = artwork.parentElement;
+  frame.className = `artwork-frame ${mode}${useLandscapeCrop(mode) ? ' landscape-crop' : ''}`;
+  // New generators use their declared page ratio. Legacy styles keep their
+  // specific CSS framing, including the panoramic landscape preview.
+  if (projects[mode].bundled === false) frame.style.setProperty('--ratio', projects[mode].ratio);
+  else frame.style.removeProperty('--ratio');
 }
 
 async function showPainting(entry, token = revision, historyAction = 'replace') {
@@ -169,7 +174,7 @@ async function showPainting(entry, token = revision, historyAction = 'replace') 
   displayed.set(painting.mode, { image, url, cropLandscape });
   paintings.set(painting.mode, cached);
   void paintingCache.remember(cached);
-  artwork.parentElement.className = frameClass(painting.mode);
+  updateArtworkFrame(painting.mode);
   artwork.className = `artwork ${painting.mode}`;
   image.style.transform = `translate(${offset.x}%, ${offset.y}%)`;
   artwork.replaceChildren(image);
@@ -197,9 +202,10 @@ async function nextPainting({ cachedFirst = false, seed = null, historyAction = 
     const cached = seed ? await paintingCache.find(mode, seed)
       : cachedFirst ? await paintingCache.next(mode, paintings.get(mode)?.seed) : null;
     if (token !== revision) return;
-    // Older flower PNGs have the original rounded mask baked into their pixels.
-    // Regenerate the same seed once, then cache the complete artwork and preview.
-    const regenerateCached = cached?.mode === 'flowers' && cached.artRevision !== 2;
+    // Refresh revised generators without losing the saved/shared seed. This
+    // also retires older flower PNGs with the rounded mask baked into them.
+    const requiredRevision = projects[mode].artRevision;
+    const regenerateCached = cached && requiredRevision && cached.artRevision !== requiredRevision;
     if (cached && !regenerateCached) {
       if (await showPainting(cached, token, historyAction)) void prepareCurrentExport(token);
     } else {
@@ -269,7 +275,7 @@ async function showPage(nextMode, seed = null) {
   restoreSettingsFocus = false;
   mode = nextMode;
   updateSelectedPage();
-  artwork.parentElement.className = frameClass(mode);
+  updateArtworkFrame(mode);
   artwork.className = `artwork ${mode}`;
   artwork.replaceChildren();
   viewer.reset();

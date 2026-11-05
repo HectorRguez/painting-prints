@@ -6,7 +6,7 @@ import vm from 'node:vm';
 import { webcrypto } from 'node:crypto';
 const url = new URL(`../../public/generators/${workerData.mode}/worker.js`, import.meta.url);
 const context = vm.createContext({
-  URL, TextEncoder, TextDecoder, performance, crypto: webcrypto, console,
+  URL, TextEncoder, TextDecoder, structuredClone, performance, crypto: webcrypto, console,
   setTimeout, clearTimeout, setInterval, clearInterval,
   location: { href: url.href },
   fetch: async location => new Response(readFileSync(new URL(location))),
