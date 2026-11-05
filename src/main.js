@@ -197,9 +197,10 @@ async function nextPainting({ cachedFirst = false, seed = null, historyAction = 
     const cached = seed ? await paintingCache.find(mode, seed)
       : cachedFirst ? await paintingCache.next(mode, paintings.get(mode)?.seed) : null;
     if (token !== revision) return;
-    // Older flower PNGs have the original rounded mask baked into their pixels.
-    // Regenerate the same seed once, then cache the complete artwork and preview.
-    const regenerateCached = cached?.mode === 'flowers' && cached.artRevision !== 2;
+    // Refresh revised generators without losing the saved/shared seed. This
+    // also retires older flower PNGs with the rounded mask baked into them.
+    const requiredRevision = projects[mode].artRevision;
+    const regenerateCached = cached && requiredRevision && cached.artRevision !== requiredRevision;
     if (cached && !regenerateCached) {
       if (await showPainting(cached, token, historyAction)) void prepareCurrentExport(token);
     } else {

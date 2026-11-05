@@ -12,6 +12,10 @@ const count = Number(process.argv[3] || 48);
 if (!Number.isInteger(count) || count < 1 || count > 256) throw new Error('Count must be 1–256');
 await mkdir(output, { recursive: true });
 const results = [], previews = [], hashes = new Set();
+const saveSheet = async (name, canvas) => {
+  await writeFile(`${output}/${name}.png`, canvas.toBuffer('image/png'));
+  await writeFile(`${output}/leaves-${name}.jpg`, canvas.toBuffer('image/jpeg', { quality: .92, chromaSubsampling: false }));
+};
 for (let i = 0; i < count; i++) {
   const seed = `leaf-review-${String(i).padStart(3, '0')}`;
   const start = performance.now();
@@ -53,7 +57,7 @@ for (let i = 0; i < count; i++) {
   await writeFile(`${output}/${seed}.svg`, art.svg);
   await writeFile(`${output}/${seed}.png`, canvas.toBuffer('image/png'));
   previews.push(canvas);
-  results.push({ seed, ...art.traits, generationMs: Math.round(generationMs * 100) / 100,
+  results.push({ seed, artRevision: art.artRevision, ...art.traits, generationMs: Math.round(generationMs * 100) / 100,
     svgBytes: Buffer.byteLength(art.svg), digest, inkPixels: ink, outsideInk, bounds: [xmin, ymin, xmax, ymax] });
 }
 for (let start = 0; start < count; start += 24) {
@@ -68,7 +72,7 @@ for (let start = 0; start < count; start += 24) {
     ctx.fillStyle = '#42483b'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
     ctx.fillText(`${entry.seed} · ${entry.profile}`, x + tile / 2, y + 263);
   });
-  await writeFile(`${output}/contact-${Math.floor(start / 24) + 1}.png`, sheet.toBuffer('image/png'));
+  await saveSheet(`contact-${Math.floor(start / 24) + 1}`, sheet);
 }
 await writeFile(`${output}/audit.json`, JSON.stringify({ count, unique: hashes.size, results }, null, 2));
 for (const profile of [...new Set(results.map(result => result.profile))]) {
@@ -81,7 +85,40 @@ for (const profile of [...new Set(results.map(result => result.profile))]) {
   ctx.font = '22px sans-serif'; ctx.fillStyle = '#42483b'; ctx.textAlign = 'center';
   ctx.fillText(`${results[index].seed} · ${profile}`, 400, 940);
   ctx.fillText('Vein detail at 100%', 1200, 940);
-  await writeFile(`${output}/detail-${profile}.png`, sheet.toBuffer('image/png'));
+  await saveSheet(`detail-${profile}`, sheet);
+}
+
+// Show the added families at a useful scale, separately from the 48-seed
+// contacts. These JPEGs can be copied directly into docs/previews for review.
+const newProfiles = ['cordate', 'spatulate', 'falcate'];
+if (newProfiles.every(profile => results.some(result => result.profile === profile))) {
+  const sheet = createCanvas(1800, 850), ctx = sheet.getContext('2d');
+  ctx.fillStyle = '#f5f2eb'; ctx.fillRect(0, 0, sheet.width, sheet.height);
+  newProfiles.forEach((profile, n) => {
+    const index = results.findIndex(result => result.profile === profile);
+    ctx.drawImage(previews[index], n * 600, 60, 600, 600);
+    ctx.fillStyle = '#42483b'; ctx.font = '26px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText({ cordate: 'Heart-shaped · cordate', spatulate: 'Spoon-shaped · spatulate', falcate: 'Curved · falcate' }[profile], n * 600 + 300, 735);
+    ctx.font = '18px sans-serif'; ctx.fillText(results[index].seed, n * 600 + 300, 775);
+  });
+  await saveSheet('detail-profiles', sheet);
+}
+const styles = ['serrate', 'dentate', 'crenate'];
+const marginExamples = styles.map(style => results.map((result, index) => ({ ...result, index }))
+  .filter(result => result.marginStyle === style && ['ovate', 'elliptic', 'obovate'].includes(result.profile))
+  .sort((a, b) => b.marginStrength - a.marginStrength)[0]).filter(Boolean);
+if (marginExamples.length) {
+  const sheet = createCanvas(marginExamples.length * 500, 760), ctx = sheet.getContext('2d');
+  ctx.fillStyle = '#f5f2eb'; ctx.fillRect(0, 0, sheet.width, sheet.height);
+  marginExamples.forEach((entry, n) => {
+    const margin = leafGeometry(entry.seed).paths.filter(path => path.role === 'margin')[1].points;
+    const [x, y] = margin[Math.floor(margin.length / 2)].map(value => value * 1.2);
+    ctx.drawImage(previews[entry.index], x - 340, y - 260, 480, 520, n * 500 + 10, 120, 480, 520);
+    ctx.fillStyle = '#42483b'; ctx.font = '26px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(`${entry.marginStyle} margin`, n * 500 + 250, 70);
+    ctx.font = '18px sans-serif'; ctx.fillText(entry.seed, n * 500 + 250, 700);
+  });
+  await saveSheet('detail-margin', sheet);
 }
 console.log(JSON.stringify({ output, count, unique: hashes.size,
   profiles: [...new Set(results.map(r => r.profile))],

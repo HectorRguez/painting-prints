@@ -10,15 +10,17 @@ import { cacheEntry, createPaintingCache } from '../src/painting-cache.js';
 test('leaf seeds reproduce the complete drawing, including Unicode seeds', () => {
   for (const seed of ['herbarium-1', 'leaf 雪 & / 3', '']) {
     assert.deepEqual(generateLeaf(seed), generateLeaf(seed));
+    assert.equal(generateLeaf(seed).artRevision, 2);
   }
 });
 
 test('48 leaf seeds have distinct geometry, varied silhouettes, and uncropped finite paths', () => {
-  const hashes = new Set(), profiles = new Set();
+  const hashes = new Set(), profiles = new Set(), margins = new Set();
   for (let i = 0; i < 48; i++) {
     const seed = `leaf-review-${String(i).padStart(3, '0')}`;
     const { paths, traits } = leafGeometry(seed);
     profiles.add(traits.profile);
+    margins.add(traits.marginStyle);
     // Hash coordinates independently of metadata/seed so renaming the same
     // drawing cannot satisfy uniqueness.
     hashes.add(createHash('sha256').update(JSON.stringify(paths.map(path => path.points))).digest('hex'));
@@ -33,9 +35,38 @@ test('48 leaf seeds have distinct geometry, varied silhouettes, and uncropped fi
     for (const role of ['primary', 'secondary', 'minor', 'veinlet', 'margin', 'petiole']) assert.ok(roles.has(role));
     const average = role => paths.filter(p => p.role === role).reduce((sum, p, _, list) => sum + p.width / list.length, 0);
     assert.ok(average('primary') > average('secondary') && average('secondary') > average('minor'), `${seed}: vein hierarchy`);
+
+    // Check visible anatomy, independently of the profile labels or random
+    // parameters. All distances are relative to the midrib's base–apex axis.
+    const midrib = paths.filter(path => path.role === 'primary').flatMap(path => path.points);
+    const [base, tip] = [midrib[0], midrib.at(-1)];
+    const [dx, dy] = [tip[0] - base[0], tip[1] - base[1]], length = Math.hypot(dx, dy);
+    const along = point => ((point[0] - base[0]) * dx + (point[1] - base[1]) * dy) / length ** 2;
+    const across = point => ((point[0] - base[0]) * -dy + (point[1] - base[1]) * dx) / length;
+    const outline = paths.filter(path => path.role === 'margin');
+    const points = outline.flatMap(path => path.points);
+    const widest = points.reduce((a, b) => Math.abs(across(a)) > Math.abs(across(b)) ? a : b);
+    if (traits.profile === 'spatulate') assert.ok(along(widest) > .68, `${seed}: spoon must broaden toward the apex`);
+    if (traits.profile === 'falcate') assert.ok(Math.max(...midrib.map(p => Math.abs(across(p)))) / length > .20, `${seed}: sickle must visibly curve`);
+    if (traits.profile === 'cordate') {
+      const basal = points.reduce((a, b) => along(a) < along(b) ? a : b);
+      assert.ok(along(basal) < -.08, `${seed}: heart must have basal lobes behind insertion`);
+      assert.ok(Math.abs(across(basal) / across(widest)) < .86, `${seed}: round basal lobes, not pointed outer wings`);
+    }
+    let turning = 0;
+    for (const path of outline) {
+      const unique = path.points.filter((p, i, all) => !i || Math.hypot(p[0] - all[i - 1][0], p[1] - all[i - 1][1]) > 1e-5);
+      for (let i = 1; i < unique.length - 1; i++) {
+        const a = [unique[i][0] - unique[i - 1][0], unique[i][1] - unique[i - 1][1]];
+        const b = [unique[i + 1][0] - unique[i][0], unique[i + 1][1] - unique[i][1]];
+        turning += Math.abs(Math.atan2(a[0] * b[1] - a[1] * b[0], a[0] * b[0] + a[1] * b[1]));
+      }
+    }
+    assert.ok(turning > 25, `${seed}: margin needs visible repeated notches rather than a smooth ellipse`);
   }
   assert.equal(hashes.size, 48);
-  assert.deepEqual([...profiles].sort(), ['elliptic', 'lanceolate', 'lobed', 'obovate', 'ovate']);
+  assert.deepEqual([...profiles].sort(), ['cordate', 'elliptic', 'falcate', 'lanceolate', 'lobed', 'obovate', 'ovate', 'spatulate']);
+  assert.deepEqual([...margins].sort(), ['crenate', 'dentate', 'serrate']);
 });
 
 test('minor vein networks form connected loops that cover each sector without holes', () => {

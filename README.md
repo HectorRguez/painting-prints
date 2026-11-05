@@ -25,6 +25,9 @@ Every displayed artwork writes its seed to the URL, for example
 `buildings/?seed=painting-stock-v1-buildings-0`. Sharing or reopening that URL loads that
 exact cached painting or regenerates it from the same seed.
 
-Leaf Skeletons generates five families of botanical outlines with connected
-vein networks. Its first drawing is generated on demand, then cached in the
-browser; SVG exports preserve the full vein geometry.
+Leaf Skeletons generates eight families of botanical outlines with connected
+vein networks and irregular serrate, dentate, or crenate margins. Heart-shaped,
+spoon-shaped, and curved leaves join the classic and lobed profiles. Its first
+drawing is generated on demand, then cached in the browser; SVG exports preserve
+the full vein geometry. See the [profile comparison](docs/previews/leaves-detail-profiles.jpg)
+and [margin detail](docs/previews/leaves-detail-margin.jpg).
