@@ -1,6 +1,6 @@
 # Painting
 
-A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Dunes, Brushwork, Folds. Create a drawing, explore it, and download it for print.
+A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Interference, Dunes, Brushwork, Folds. Create a drawing, explore it, and download it for print.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
@@ -22,6 +22,7 @@ Every displayed artwork writes its seed to the URL, for example `flowers/?seed=f
 
 ## Procedural styles
 
+- [Interference: model, parameters and review](docs/interference-review.md)
 - [Dunes: model, parameters and review](docs/dunes-review.md)
 - [Brushwork: model, parameters and review](docs/brushwork-review.md)
 - [Folds: model, parameters and review](docs/folds-review.md)
