@@ -24,9 +24,9 @@ export async function loadKernel() {
 export const number = n => Math.round(n * 1000) / 1000;
 export const line = (points, close = false) => points.map((p, i) => `${i ? 'L' : 'M'}${number(p[0])},${number(p[1])}`).join('') + (close ? 'Z' : '');
 
-export function drawing(paths, { width = 1000, height = 1000, whiteToAlpha = false } = {}) {
+export function drawing(paths, { width = 1000, height = 1000, whiteToAlpha = false, rounded = false } = {}) {
   return { width, height, whiteToAlpha, paperColor: '#f5f2eb',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${paths.map(p => `<path d="${p.d}" fill="${p.fill || 'none'}" stroke="${p.stroke || '#252525'}" stroke-width="${p.width ?? 0.8}"/>`).join('')}</svg>` };
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${paths.map(p => `<path${rounded ? ' stroke-linecap="round" stroke-linejoin="round"' : ''} d="${p.d}" fill="${p.fill || 'none'}" stroke="${p.stroke || '#252525'}" stroke-width="${p.width ?? 0.8}"/>`).join('')}</svg>` };
 }
 
 export function fitLines(lines, width = 1000, height = 1000, padding = 65) {

@@ -22,7 +22,7 @@ a:focus-visible, .canvas-viewport:focus-visible { outline: 2px solid #1a1a1a; ou
 .canvas-viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; container-type: size; touch-action: none; user-select: none; -webkit-user-select: none; }
 .canvas-viewport.zoomed { cursor: grab; }
 .canvas-viewport.zoomed:active { cursor: grabbing; }
-.artwork-frame { --ratio: 1; width: calc(100cqh * var(--ratio)); height: 100cqh; aspect-ratio: var(--ratio); position: relative; flex: none; }
+.artwork-frame { --ratio: 1; width: min(100cqw, calc(100cqh * var(--ratio))); height: auto; aspect-ratio: var(--ratio); position: relative; flex: none; }
 .artwork { width: 100%; height: 100%; background: transparent; flex: none; position: relative; transform-origin: center; }
 .artwork:has(> img[data-format="png"]) { will-change: transform; }
 .artwork-frame.flowers { --ratio: 1; width: min(100cqw, 100cqh); height: auto; }
