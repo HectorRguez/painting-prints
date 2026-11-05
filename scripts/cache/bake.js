@@ -5,7 +5,7 @@ const base = new URL('../../public/', import.meta.url);
 const files = {};
 let manifest = {};
 const requested = new URLSearchParams(location.search).get('styles')?.split(',');
-const styles = requested ? pageModes.filter(mode => requested.includes(mode)) : pageModes;
+const styles = requested ? pageModes.filter(mode => requested.includes(mode)) : pageModes.filter(mode => projects[mode].bundled !== false);
 document.querySelector('#start').textContent = `Prepare ${styles.length * 10} paintings`;
 function generate(mode, seed) {
   return new Promise((resolve, reject) => {

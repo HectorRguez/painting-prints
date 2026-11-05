@@ -1,6 +1,6 @@
 # Painting
 
-A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Leaf Skeletons, Snowflakes, Seascapes, Ribbons, Interference, Dunes, Brushwork, Folds. Create a drawing, explore it, and download it for print.
+A procedural-art gallery with Flowers, Landscapes, Leaf Skeletons, Snowflakes, Seascapes, Ribbons, Interference, Dunes, Brushwork, Folds. Create a drawing, explore it, and download it for print.
 
 **Live:** https://hectorrguez.github.io/painting-prints/
 
@@ -10,8 +10,6 @@ A procedural-art gallery with Flowers, Landscapes, Cityscapes, Houses, Leaf Skel
 | --- | --- | --- |
 | Flowers | Lingdong Huang | [nonflowers](https://github.com/LingDong-/nonflowers) |
 | Landscapes | Lingdong Huang | [shan-shui-inf](https://github.com/LingDong-/shan-shui-inf) |
-| Cityscapes | Michael Fogleman | [ln](https://github.com/fogleman/ln) |
-| Houses | Matthias Schermann (N3R01N) | [iso-building-generator](https://github.com/N3R01N/iso-building-generator) |
 | Interface controls, icons and typography | Daniel Belyi | [Drawably](https://github.com/danielwh2/drawably) |
 
 Original source snapshots and licenses are retained in each generator’s `upstream/` directory; Drawably’s license ships with its dependency.

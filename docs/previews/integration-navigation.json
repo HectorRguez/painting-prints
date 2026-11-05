@@ -1,0 +1,29 @@
+{
+  "modes": [
+    "flowers",
+    "landscapes",
+    "leaves",
+    "snowflakes",
+    "seascapes",
+    "ribbons",
+    "interference",
+    "dunes",
+    "brushwork",
+    "folds"
+  ],
+  "seeds": {
+    "flowers": "painting-stock-v1-flowers-9",
+    "landscapes": "painting-stock-v1-landscapes-6",
+    "leaves": "mw3jndwg-eudjw7",
+    "snowflakes": "mw3jne6m-1kog54h",
+    "seascapes": "mw3jnflj-1byl2pi",
+    "ribbons": "mw3jnfwa-5nwu3y",
+    "interference": "mw3jng5x-1t05g04",
+    "dunes": "mw3jngiv-1wz3er5",
+    "brushwork": "mw3jngvd-gk8fk9",
+    "folds": "mw3jnh9q-1nj0svz"
+  },
+  "desktop": "passed",
+  "phone": "passed",
+  "retiredRoutes": "absent"
+}

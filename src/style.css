@@ -120,9 +120,7 @@ dialog.drawably-host > .drawably-svg > .drawably-outline { fill: var(--drawably-
   .style-picker select::picker(select) { position-area: block-end span-inline-end; max-height: 65dvh; overflow-y: auto; }
   .style-picker option { min-height: 44px; }
 }
-.artwork-frame.buildings { width: min(100cqw, 100cqh); height: auto; }
 .artwork-frame.snowflakes { width: min(100cqw, 100cqh); height: auto; }
-.artwork-frame.cityscapes { --ratio: 1.414; width: min(100cqw, calc(100cqh * var(--ratio))); height: auto; }
 @media (max-width: 720px) {
   .has-style-picker .modes { display: none; }
   .style-picker.drawably-select { display: inline-block; }

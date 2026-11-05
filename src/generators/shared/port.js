@@ -12,15 +12,6 @@ export function randomSource(seed) {
   };
 }
 
-export async function loadKernel() {
-  const response = await fetch(new URL('engine.wasm', self.location.href));
-  if (!response.ok) throw new Error('Could not load generator');
-  const { instance } = await WebAssembly.instantiate(await response.arrayBuffer(), {
-    env: { abort() { throw new Error('Generator exceeded its bounds'); } },
-  });
-  return instance.exports;
-}
-
 export const number = n => Math.round(n * 1000) / 1000;
 export const line = (points, close = false) => points.map((p, i) => `${i ? 'L' : 'M'}${number(p[0])},${number(p[1])}`).join('') + (close ? 'Z' : '');
 

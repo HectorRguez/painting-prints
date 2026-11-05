@@ -140,7 +140,50 @@ async function download(page, mode, format, background) {
   return { format, background, bytes: bytes.length };
 }
 try {
+  for (const mode of ['cityscapes', 'buildings']) {
+    for (const path of [mode, `generators/${mode}`, `cache/${mode}`]) {
+      await assert.rejects(stat(resolve(root, path)), { code: 'ENOENT' });
+    }
+    assert.equal((await fetch(`${base}/${mode}/`)).status, 404);
+  }
+  const manifest = JSON.parse(await readFile(resolve(root, 'cache/manifest.json'), 'utf8'));
+  assert.deepEqual(Object.keys(manifest).sort(), ['flowers', 'landscapes']);
   browser = await chromium.launch();
+  // Exercise the combined app in one session: the independent per-style checks
+  // below cannot catch a stale menu entry or state leaking between generators.
+  const navigation = await browser.newContext({ viewport: { width: 1024, height: 800 } });
+  const gallery = await navigation.newPage(), navigationErrors = [], displayedSeeds = {};
+  gallery.on('pageerror', error => navigationErrors.push(String(error)));
+  await gallery.goto(`${base}/flowers/`);
+  await ready(gallery);
+  assert.deepEqual(await gallery.locator('.modes [data-mode]').evaluateAll(links => links.map(link => link.dataset.mode)), pageModes);
+  assert.deepEqual(await gallery.locator('#painting-style option').evaluateAll(options => options.map(option => option.value)), pageModes);
+  for (const mode of pageModes) {
+    await gallery.locator(`[data-mode="${mode}"]`).click();
+    await ready(gallery);
+    assert.equal(await gallery.locator('.modes [aria-current="page"]').count(), 1);
+    assert.equal(await gallery.locator('#painting-style').inputValue(), mode);
+    assert.equal(new URL(gallery.url()).pathname, `/${mode}/`);
+    displayedSeeds[mode] = new URL(gallery.url()).searchParams.get('seed');
+    const visibleTab = await gallery.locator(`[data-mode="${mode}"]`).evaluate(link => {
+      const r = link.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth;
+    });
+    assert.ok(visibleTab, `${mode}: selected desktop tab stays visible`);
+  }
+  await gallery.screenshot({ path: resolve(output, 'gallery-desktop.png') });
+  await gallery.setViewportSize({ width: 390, height: 844 });
+  for (const mode of pageModes) {
+    await gallery.selectOption('#painting-style', mode);
+    await ready(gallery);
+    assert.equal(new URL(gallery.url()).pathname, `/${mode}/`);
+    assert.equal(new URL(gallery.url()).searchParams.get('seed'), displayedSeeds[mode]);
+    await assertArtworkFits(gallery, mode, `${mode}: shared-session phone switch`);
+  }
+  assert.deepEqual(navigationErrors, []);
+  await gallery.screenshot({ path: resolve(output, 'gallery-phone.png') });
+  await writeFile(resolve(output, 'navigation.json'), JSON.stringify({ modes: pageModes, seeds: displayedSeeds, desktop: 'passed', phone: 'passed', retiredRoutes: 'absent' }, null, 2));
+  await navigation.close();
+  console.log('Combined gallery: all ten styles navigate on desktop/phone; retired routes/assets are absent');
   for (const mode of pageModes.filter(mode => projects[mode].bundled === false)) {
     const seed = `browser-review-${mode}`;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
@@ -157,6 +200,7 @@ try {
     }
     assert.equal(await page.locator(`[data-mode="${mode}"]`).getAttribute('aria-current'), 'page');
     assert.equal(await page.title(), `Painting · ${projects[mode].label}`);
+    await assertArtworkFits(page, mode, `${mode}: desktop layout`);
     await page.screenshot({ path: resolve(output, `${mode}-desktop.png`) });
     await waitForSaved(page, mode, seed);
     const originalGenerations = generations;

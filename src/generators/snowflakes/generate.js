@@ -154,7 +154,7 @@ export function snowflakeGeometry(seed) {
 export function generateSnowflake(seed) {
   const { crystal, paths } = snowflakeGeometry(seed);
   return { ...drawing(paths.map(path => ({ d: line(path.points, path.closed), width: path.width, stroke: path.stroke })), { rounded: true }),
-    mode: 'snowflakes', seed,
+    mode: 'snowflakes', seed, artRevision: 1,
     snowflake: { habit: crystal.parameters.habit, steps: crystal.steps, radius: crystal.radius,
       parameters: crystal.parameters, contours: paths.filter(path => path.role === 'outline').length } };
 }
