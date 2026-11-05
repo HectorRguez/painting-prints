@@ -25,22 +25,26 @@ export function inkLandscapeModel(seed, p) {
   const r = randomSource(`${seed}:ink-landscape`), layers = [];
   const count = Math.round(3 + p.density * 3), extent = mix(650, 1050, (p.spacing - 175) / 255);
   for (let i = 0; i < count; i++) {
-    const t = i / (count - 1), width = p.crestLength * between(r, 3.5, 4.5);
-    const layer = { id: i, center: between(r, -130, 130), width: clamp(width, 880, 1620),
+    const t = i / (count - 1), width = p.crestLength * between(r, 10.8, 13.2);
+    const layer = { id: i, center: between(r, -130, 130), width: clamp(width, 3000, 4250),
       z: 20 + mix(extent / 2, -extent / 2, t) + between(r, -35, 35),
       height: p.crestHeight * p.relief * between(r, .85, 1.4) * mix(.72, 1.35, t),
       peak: between(r, -.38, .38) + p.asymmetry * .35, breadth: between(r, .43, .76),
       secondary: between(r, .05, p.morphology === 'star' ? .8 : .48),
       secondPeak: between(r, -.65, .65), phase: r() * Math.PI * 2 + p.windAzimuth,
-      bend: p.curvature * width * between(r, .6, 1.15),
-      slopeWidth: between(r, .85, 1.15), };
+      bend: p.curvature * p.crestLength * 3.8 * between(r, .6, 1.15),
+      slopeWidth: between(r, .85, 1.15),
+      peaks: [-.61, 0, .61].map((u, j) => ({ u: u + between(r, -.13, .13) + p.asymmetry * .15,
+        width: between(r, .17, .31), weight: between(r, .62, 1.15) * (j === 1 ? 1.12 : 1) })), };
     const envelope = u => {
       if (Math.abs(u) >= 1) return 0;
-      const main = Math.exp(-(((u - layer.peak) / layer.breadth) ** 2));
+      // Independent broad peaks occupy the left, middle and right of the
+      // actual field; widening the viewport never stretches a single hill.
+      const hills = layer.peaks.reduce((sum, peak) => sum + peak.weight * Math.exp(-(((u - peak.u) / peak.width) ** 2)), 0);
       const secondary = layer.secondary * Math.exp(-(((u - layer.secondPeak) / .34) ** 2));
-      return (1 - u * u) ** (p.morphology === 'linear' ? 1.15 : 1.7) * (main + secondary);
+      return (1 - u * u) ** (p.morphology === 'linear' ? .62 : .85) * (hills + secondary);
     };
-    let max = 0; for (let j = 0; j <= 100; j++) max = Math.max(max, envelope(j / 50 - 1));
+    let max = 0; for (let j = 0; j <= 300; j++) max = Math.max(max, envelope(j / 150 - 1));
     layer.crest = x => {
       const u = (x - layer.center) / (layer.width / 2), height = layer.height * envelope(u) / max;
       const z = layer.z + layer.bend * (.7 * Math.sin(u * 2.7 + layer.phase)
@@ -66,20 +70,20 @@ export function inkLandscapeModel(seed, p) {
 }
 
 export function makeInkCamera(p) {
-  const depthScale = .4 + p.cameraElevation * .55, scale = .87;
+  const depthScale = (.4 + p.cameraElevation * .55) * .8, scale = .696;
   const project = (x, y, z) => {
     const perspectiveScale = 1 - z * p.perspective / 2300;
-    return { x: 707 + (x + z * Math.sin(p.cameraAzimuth) * .25) * scale * perspectiveScale,
-      y: 600 - z * depthScale - y * scale * perspectiveScale,
+    return { x: 1600 + (x + z * Math.sin(p.cameraAzimuth) * .25) * scale * perspectiveScale,
+      y: 480 - z * depthScale - y * scale * perspectiveScale,
       depth: 5000 + z, perspectiveScale };
   };
   return { project, scale, verticalScale: 1, distance: 5000,
-    direction: [0, Math.SQRT1_2, -Math.SQRT1_2], depthScale };
+    direction: [0, Math.SQRT1_2, -Math.SQRT1_2], depthScale, origin: [1600, 480], width: 3200, height: 800 };
 }
 
 export function buildInkLandscape(seed, p) {
   const terrain = inkLandscapeModel(seed, p), camera = makeInkCamera(p);
-  const nx = 225, nz = 177, x0 = -900, z0 = -704, dx = 1800 / (nx - 1), dz = 1408 / (nz - 1);
+  const nx = 551, nz = 177, x0 = -2200, z0 = -704, dx = 4400 / (nx - 1), dz = 1408 / (nz - 1);
   const heights = new Float64Array(nx * nz);
   for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) heights[j * nx + i] = terrain.sample(x0 + i * dx, z0 + j * dz).height;
   const sample = (x, z) => {
@@ -100,13 +104,13 @@ export function buildInkLandscape(seed, p) {
   for (let j = 0; j < grid.nz - 1; j++) for (let i = 0; i < grid.nx - 1; i++) {
     cells.push({ indices: [j * grid.nx + i, j * grid.nx + i + 1, (j + 1) * grid.nx + i + 1, (j + 1) * grid.nx + i] });
   }
-  const visibility = depthBuffer(vertices, cells, 943, 667);
+  const visibility = depthBuffer(vertices, cells, 1600, 400, 3200, 800);
   const ink = (world, role, width, tone, owner, intervals = null) => {
     let points = [], screen = [];
     const flush = () => {
       const distances = [0];
       for (let i = 1; i < screen.length; i++) distances.push(distances[i - 1] + Math.hypot(screen[i][0] - screen[i - 1][0], screen[i][1] - screen[i - 1][1]));
-      const length = distances.at(-1) || 0, minimum = role === 'crest' ? 200 : role === 'edge' ? 220 : 6;
+      const length = distances.at(-1) || 0, minimum = role === 'crest' ? 160 : role === 'edge' ? 176 : 5;
       if (points.length > 2 && length >= minimum) {
         if (role === 'crest') {
           // Long ridge remnants fade into the sand at occlusion/merge points;
@@ -124,7 +128,7 @@ export function buildInkLandscape(seed, p) {
     };
     for (const point of world) {
       const projected = camera.project(...point), s = terrain.sample(point[0], point[2]);
-      if (projected.x < 67 || projected.x > 1347 || projected.y < 130 || projected.y > 927
+      if (projected.x < 64 || projected.x > 3136 || projected.y < 104 || projected.y > 742
         || point[1] < 2 || s.owner !== owner || !visibility.visible(projected, 3)
         || intervals && !intervals.some(([a, b]) => point[0] >= a && point[0] <= b)) { flush(); continue; }
       points.push(point); screen.push([projected.x, projected.y]);
@@ -134,8 +138,8 @@ export function buildInkLandscape(seed, p) {
   const ridges = [];
   for (const layer of terrain.layers) {
     const points = [];
-    for (let j = 0; j <= 240; j++) {
-      const x = layer.center + layer.width * (j / 240 - .5), c = layer.crest(x);
+    for (let j = 0; j <= 600; j++) {
+      const x = layer.center + layer.width * (j / 600 - .5), c = layer.crest(x);
       points.push([x, grid.sample(x, c.z).height + .35, c.z]);
     }
     ridges.push({ dune: layer.id, points: points.map(([x, y, z]) => [x, z, y]) });
@@ -145,8 +149,8 @@ export function buildInkLandscape(seed, p) {
     // A second, short line just below selected crests supplies an engraved
     // edge, while the broad light-facing surfaces stay open.
     const edge = [];
-    for (let j = 0; j <= 160; j++) {
-      const u = mix(-.74, .74, j / 160), x = layer.center + layer.width * u / 2, c = layer.crest(x);
+    for (let j = 0; j <= 480; j++) {
+      const u = mix(-.84, .84, j / 480), x = layer.center + layer.width * u / 2, c = layer.crest(x);
       const z = c.z - terrain.stossWidth(c.height) * .025 * Math.sin((u + 1) * Math.PI / 2);
       edge.push([x, grid.sample(x, z).height + .35, z]);
     }
@@ -162,9 +166,9 @@ export function buildInkLandscape(seed, p) {
       });
       ink(world, 'ripple', .48, 115 + band * 9, layer.id, intervals);
     }
-    const bundles = longRipples ? 1 : 1 + Math.floor(p.rippleDensity * 4);
+    const bundles = longRipples ? 3 : 3 + Math.floor(p.rippleDensity * 7);
     for (let bundle = 0; bundle < bundles; bundle++) {
-      const center = longRipples ? .64 : -.7 + (bundle + .5) * 1.4 / bundles + between(r, -.08, .08);
+      const center = longRipples ? [-.69, .06, .69][bundle] : -.8 + (bundle + .5) * 1.6 / bundles + between(r, -.04, .04);
       const q0 = between(r, .004, .015);
       const q1 = between(r, .13, .28) + p.rippleSlope * .24;
       const count = Math.round(p.ridgeBands * between(r, .75, 1.4));

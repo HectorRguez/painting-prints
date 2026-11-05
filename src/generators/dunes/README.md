@@ -1,8 +1,8 @@
 # Dune Fields — ink landscapes and tiny caravans
 
-Revision 2 defaults to sweeping monochrome dune crests, open sand, curved slope hatching, and a sparse group of procedural travelers and camels. A continuous height field supports the marks and planted feet; depth tests suppress geometry behind nearer terrain. Shapes, proportions, poses, and placement come from seeded mathematics, without stock silhouettes or raster textures.
+Revision 3 defaults to sweeping monochrome dune crests, open sand, curved slope hatching, and a sparse group of procedural travelers and camels. A continuous height field supports the marks and planted feet; depth tests suppress geometry behind nearer terrain. Shapes, proportions, poses, and placement come from seeded mathematics, without stock silhouettes or raster textures.
 
-The earlier ochre surface study remains available with `palette: 'ochre'`. It uses a separate geometric model and lighting renderer. The default ink landscape is an illustrative redesign, not the old shaded terrain with its colors removed.
+The earlier ochre surface study remains available with `palette: 'ochre'`. It uses a separate geometric model and lighting renderer. Both palettes now generate a real 3200×800 panorama with independently varying terrain across its width; the center is the same √2-ratio print window used by Landscapes. The default ink landscape is an illustrative redesign, not the old shaded terrain with its colors removed.
 
 ## API
 
@@ -21,13 +21,13 @@ const painting = generateDunes(seed, {
 const scene = buildDunes(seed, { travelerCount: 0, camelCount: 0 });
 ```
 
-`duneParameters(seed)` returns the full seeded control record. `buildDunes(seed, overrides = {})` also returns the terrain, sampling grid, camera, visibility buffer, ridges, visible surface strokes, figure geometry, foot contacts, figure bounds, and rendered paths. `generateDunes` returns the 1414×1000 painting with SVG, `mode: 'dunes'`, `artRevision: 2`, resolved parameters, and metrics. The classic worker forwards that same revision and result.
+`duneParameters(seed)` returns the full seeded control record. `buildDunes(seed, overrides = {})` also returns the terrain, sampling grid, camera, visibility buffer, ridges, visible surface strokes, figure geometry, foot contacts, figure bounds, and rendered paths. `generateDunes` returns an SVG whose source dimensions/viewBox are **3200×800**, with painting metadata `width: 800*Math.SQRT2`, `height: 800`, `previewWidth: 3200`, `mode: 'dunes'`, `artRevision: 3`, resolved parameters, and metrics. The metadata width is the central print window, not the SVG source width: its source-space horizontal interval is approximately `[1034.315, 2165.685]`. No horizontal scaling, repeated bitmap tiles, or clipped smaller source drawing creates the panorama. The classic worker forwards that same revision and result.
 
 Seeds and explicit controls reproduce the drawing without ambient `Math.random()` or network access. Overrides do not resample unrelated controls. Unknown names, nonfinite/out-of-range numbers, and fractional figure/hatch counts throw. Zero-valued supported controls are honored.
 
 ## Default ink model
 
-The terrain has four to seven broad ridges, with five or six under the default density range. Each ridge has a seeded center, width, depth, asymmetric main summit, optional secondary summit, and bending crest line. A compact height envelope combines two Gaussian bumps with a power of `1-u²`, normalized to the ridge's chosen height. It vanishes at the lateral ends. These are our own composition equations, not a reconstruction of a measured dune.
+The terrain has four to seven broad ridges, with five or six under the default density range. Each ridge has a seeded center, width, depth, three broad summit regions with independent offsets/weights/widths, an optional secondary summit, and a bending crest line. The principal regions lie around normalized coordinates −.61, 0, and .61, with independent ±.13 offsets; asymmetry shifts them further. A compact height envelope combines these Gaussian bumps with a power of `1-u²`, normalized to the ridge's chosen height. It vanishes at the lateral ends. These are our own composition equations, not a reconstruction of a measured dune.
 
 The retained morphology names select profile variations. `linear` uses a broader envelope; `star` permits a stronger secondary peak; `barchan` adds a crescent-like plan bend; `transverse` uses the general sweeping profile. In ink mode these names are **illustrative profile neighborhoods**, not promises of true planform star arms, barchan horns, or a simulated wind-selected morphology. The older ochre model retains those explicit planform constructions.
 
@@ -42,20 +42,20 @@ terrain(x,z) = maximum of the ridge sections at (x,z)
 
 The maximum makes one continuous height surface, although its derivatives can change at ridge intersections. Seeded per-ridge width factors vary the sections. The long-axis envelopes, broad layering, and finite composition limits are artistic choices. World units are a drawing scale, not metres.
 
-Geometry queries use the analytic surface directly. A 225×177 height grid and 943×667 depth buffer approximate visibility; this avoids baking sampled-height scallops into the crest silhouettes. Surface derivatives use centered finite differences for placement and inspection. No terrain lighting fills are emitted in ink mode.
+Geometry queries use the analytic surface directly across a 4400×1408-world-unit field. A 551×177 height grid and 1600×400 depth buffer approximate visibility; this avoids baking sampled-height scallops into the crest silhouettes. Surface derivatives use centered finite differences for placement and inspection. No terrain lighting fills are emitted in ink mode.
 
 The ink view is deliberately an oblique illustration with a mild depth-scale adjustment, rather than a calibrated pinhole camera. Its mapping is explicit:
 
 ```text
 s(z) = 1 - z*perspective/2300
-X = 707 + 0.87*(x + 0.25*z*sin(cameraAzimuth))*s(z)
-Y = 600 - z*(0.4 + 0.55*cameraElevation) - 0.87*h*s(z)
+X = 1600 + 0.696*(x + 0.25*z*sin(cameraAzimuth))*s(z)
+Y = 480 - 0.8*z*(0.4 + 0.55*cameraElevation) - 0.696*h*s(z)
 depth = 5000 + z
 ```
 
-This mapping also governs figure placement and the independent visibility-ray test. The ochre renderer has its own actual perspective camera.
+This mapping also governs figure placement and the independent visibility-ray test. The ochre renderer has its own actual perspective camera. Its wide field combines three independently seeded neighboring planform constructions at horizontal offsets −1400, 0, and 1400 in one sampled height surface; overlaps resolve by surface height before lighting and visibility. It uses a 441×142 grid. The panoramic camera rotates by `cameraAzimuth/4` to keep the long terrain axis readable, fits the complete field uniformly into the 3200×800 source, and reports its effective angle as `camera.azimuth`.
 
-Crests use tapered ink endings. Buried or disconnected crest remnants shorter than 200 page units are omitted; subordinate edge runs need 220 units. Hatch/ripple marks are restricted to retained crest intervals so a discarded remnant cannot leave an unexplained bundle floating on the page. These are visible-feature selection rules, not alterations to terrain height or a clipping mask.
+Crests use tapered ink endings. Buried or disconnected crest remnants shorter than 160 page units are omitted; subordinate edge runs need 176 units. Hatch/ripple marks are restricted to retained crest intervals so a discarded remnant cannot leave an unexplained bundle floating on the page. These are visible-feature selection rules, not alterations to terrain height or a clipping mask.
 
 Short groups of curves run down the front shoulders. Their lateral drift grows nonlinearly with descent, while sampled heights keep every mark on the terrain. Some ridges instead receive a few longer shoulder traces. Those traces adaptively subdivide when a world-space chord exceeds 8 units or midpoint deviation exceeds .2, up to depth 10. This prevents extreme relief from producing long, coarse segments. A small number of broad traces supplies volume without covering the scene with a technical wire grid.
 
@@ -63,11 +63,11 @@ Short groups of curves run down the front shoulders. Their lateral drift grows n
 
 Figures are generated from articulated world-space geometry, not pasted icons. Travelers have variable robe width/length, head, arms, jointed legs, stride stance, and optional staff. Camels have independently varied body length, hump height, neck/head, four jointed legs, tail, ears, stride stance, and optional load. Their compact side silhouettes are solid ink; small negative-space details keep loads and clothing legible. These are static illustrated poses, not locomotion or anatomical simulations.
 
-At unit `figureScale`, the base projected height is approximately 15.5 units for a person and 23.5 for a camel, before depth scaling and the camel's hump/head proportions. Default figures are intentionally tiny relative to the 1414-unit scene. Heading favors side views by default, with continuous overrides available.
+At unit `figureScale`, the base projected height is approximately 15.5 units for a person and 23.5 for a camel, before depth scaling and the camel's hump/head proportions. Default figures are intentionally tiny relative to the 3200-unit panorama and remain readable in the central 1131.37-unit print crop. Heading favors side views by default, with continuous overrides available.
 
-Every planted foot queries the same active terrain surface and is lifted by only `.12` world units to avoid numerical self-occlusion. Knees and hips articulate between those contacts. Placement rejects overly uneven ground, fully hidden feet, out-of-frame figures, and overlapping projected body bounds. Small ground accents sit on the terrain under the feet. Body/limb strokes are depth-tested against nearer dunes, and fully visible closed silhouettes occlude marks behind them.
+Every planted foot queries the same active terrain surface and is lifted by only `.12` world units to avoid numerical self-occlusion. Knees and hips articulate between those contacts. Placement rejects overly uneven ground, fully hidden feet, out-of-frame figures, bodies intersecting the print-crop boundaries, and overlapping projected body bounds. Complete figure bounds keep at least 12 source units of clearance from either horizontal crop edge. Small ground accents sit on the terrain under the feet. Body/limb strokes are depth-tested against nearer dunes, and fully visible closed silhouettes occlude marks behind them.
 
-A deterministic search evaluates up to 95 candidate caravan routes. `caravanSpacing` is a requested center spacing; a conservative silhouette-size clearance may increase it. Bounds also enforce at least a three-unit separation between projected figures. Count controls are **requested maxima**: an overfull route or hidden terrain can yield fewer figures instead of overlapping, floating, or rescaling them. Actual counts are returned in `metrics.travelers` and `metrics.camels`. All 48 default reviewed seeds placed their requested counts; two deliberately crowded stress cases placed fewer.
+A deterministic search evaluates up to 95 candidate caravan routes. `caravanSpacing` is a requested center spacing; a conservative silhouette-size clearance may increase it. Bounds also enforce at least a three-unit separation between projected figures. Count controls are **requested maxima**: an overfull route or hidden terrain can yield fewer figures instead of overlapping, floating, or rescaling them. Actual counts are returned in `metrics.travelers` and `metrics.camels`. Actual placement counts and any crowded-route shortfalls are recorded in the review report.
 
 Changing only figure controls leaves the terrain paths unchanged. `travelerCount: 0, camelCount: 0` removes every figure. `buildDunes` exposes `figures[].feet`, `feetVisible`, `bounds`, `gait`, proportions/load metadata, and `figureStrokes` for independent inspection.
 
@@ -89,13 +89,13 @@ Bounds are inclusive. Angles are radians unless indicated. Lengths are numerical
 | --- | --- | --- | --- |
 | `palette` | `ink` | `ink`, `ochre` | Selects the new open ink landscape or the earlier shaded planform study. |
 | `morphology` | Four-way seeded choice | `barchan`, `transverse`, `linear`, `star` | Ink: profile neighborhoods described above. Ochre: explicit planform constructions. |
-| `crestLength` | 245–385 | 170–520 | Ink broad-ridge width is 3.5–4.5 times this value, constrained to 880–1620 world units; ochre uses its family-specific length factors. |
+| `crestLength` | 245–385 | 170–520 | Ink broad-ridge width is 10.8–13.2 times this value, constrained to 3000–4250 world units; ochre uses its family-specific length factors. |
 | `crestHeight` | 53–82 | 22–95 | Base height, multiplied by relief and seeded per-ridge variation. |
 | `relief` | 1–1.32 | .55–1.55 | Height multiplier; section widths change with height as well. |
 | `spacing` | 230–350 | 175–430 | Ink: smoothly maps to a 650–1050-unit depth extent. Ochre: separates placement rows/ridges. |
 | `density` | .65–1 | .4–1.2 | Ink ridge count is `round(3 + 3*density)`; count is deliberately discrete. Ochre controls retention/count of planform dunes. |
 | `curvature` | .07–.18 | 0–.28 | Bending of crest depth and curvature of shoulder hatching. |
-| `asymmetry` | −.23–.23 | −.4–.4 | Ink: shifts the main summit within its envelope. Ochre: barchan horn imbalance. |
+| `asymmetry` | −.23–.23 | −.4–.4 | Ink: shifts the summit regions and biases shoulder curvature. Ochre: barchan horn imbalance. |
 | `horns` | .32–.65 | .1–.85 | Crescent-like bend in the ink barchan neighborhood; explicit downwind horn bend in ochre. |
 | `stossExponent` | 2.6–3.4 | 1.8–4 | Cosine-power front/windward section exponent. |
 | `slipAngle` | 29°–34°, stored in radians | .42–.62 | Lee-section descent via `H/tan(slipAngle)`. |
@@ -109,8 +109,8 @@ Bounds are inclusive. Angles are radians unless indicated. Lengths are numerical
 | `rippleDensity` | .32–.62 | 0–1 | Ink bundle count/density; zero removes hatching and longer ripples. Ochre retention probability for phase lines. |
 | `ridgeBands` | Integer 5–10 | Integer 0–16 | Base number of strokes per ink hatch bundle, with seeded .75–1.4 variation. The three occasional long shoulder traces are separate. |
 | `lineWeight` | .85–1.2 | .65–1.6 | Ink terrain and figure stroke multiplier. In ochre it affects figures, while the original terrain stroke weights remain fixed. |
-| `cameraAzimuth` | −.32–.32 | −.65–.65 | Ink oblique horizontal depth shear; ochre camera rotation. |
-| `cameraElevation` | .36–.56 | .22–.95 | Ink depth spacing coefficient `.4 + .55*cameraElevation`; ochre physical camera angle. |
+| `cameraAzimuth` | −.32–.32 | −.65–.65 | Ink oblique horizontal depth shear; ochre panoramic camera rotation is one quarter of this control. |
+| `cameraElevation` | .36–.56 | .22–.95 | Ink depth spacing coefficient `.8*(.4 + .55*cameraElevation)`; ochre physical camera angle. |
 | `perspective` | .28–.47 | 0–.5 | Ink depth-dependent size adjustment; zero removes it. Ochre camera-distance control. |
 | `phase` | 0–2π | −1000–1000 | Ink caravan-route bend phase; ochre ripple waviness and retained-line selection. |
 | `lightAzimuth` | −2.7–−1.5 | −π–π | Ochre lighting only. |
@@ -129,16 +129,16 @@ The figure pose/proportion samples are derived from the seed and exposed by `bui
 
 All output is flat SVG path geometry. The ink renderer uses white-to-alpha conversion after drawing so silhouette cutouts and negative-space load/clothing details remain transparent in the final ink layer. SVG downloads retain vectors. The preview/PNG exporter rasterizes those paths; the existing PDF exporter embeds a rendered PNG.
 
-The 18 dune test groups retain the optional renderer's analytic profiles, planform orientation, bicubic derivatives, perspective, shadow, lighting-filter, winding, and independent eye-ray checks. Revision-2 checks additionally cover continuous ink-field controls, absence of filled dune slabs, 48 unique bounded scenes, surface-attached marks, sampled visibility, every planted foot, nonoverlapping figure bounds, articulated geometry variation, zero-count removal, terrain invariance under figure controls, and independent oblique viewing rays. The long-ripple adaptive sampler is exercised by the existing extreme-relief geometry test. Bundled-worker parity includes `artRevision: 2`.
+The 18 dune test groups retain the optional renderer's analytic profiles, planform orientation, bicubic derivatives, perspective, shadow, lighting-filter, winding, and independent eye-ray checks. The ink and panoramic checks additionally cover continuous ink-field controls, absence of filled dune slabs, 48 unique bounded scenes, surface-attached marks, sampled visibility, every planted foot, nonoverlapping figure bounds, articulated geometry variation, zero-count removal, terrain invariance under figure controls, and independent oblique viewing rays. The long-ripple adaptive sampler is exercised by the existing extreme-relief geometry test. All 48 default scenes must occupy each panorama third and contain substantial vertical relief in the central crop. Figure bounds must lie entirely inside that print window. Bundled-worker parity includes `artRevision: 3`, the full SVG viewBox, and distinct print/preview dimensions.
 
 Visibility is a finite-grid approximation. The independent ink ray check allows less than three world units of sampled obstruction; the optional ochre ray check retains its stricter two-unit allowance. These are tested bounds for specified cases, not a universal visibility proof. Tiny details naturally disappear at thumbnail size, and optional ochre shading retains its finite-grid contour limitations.
 
 ```sh
 node --test tests/dunes.test.mjs tests/isocontours.test.mjs
-node scripts/art-review/dunes.mjs --count 48 --raster --width 1414 --out /tmp/dunes-review
-node scripts/art-review/dunes.mjs --stress --raster --width 1414 --out /tmp/dunes-stress
+node scripts/art-review/dunes.mjs --count 48 --raster --width 3200 --out /tmp/dunes-review
+node scripts/art-review/dunes.mjs --stress --raster --width 3200 --out /tmp/dunes-stress
 node scripts/art-review/dunes.mjs --count 4 --raster --out /tmp/dunes-bare \
   --overrides '{"travelerCount":0,"camelCount":0,"rippleDensity":0}'
 ```
 
-The review wrapper writes every SVG/PNG, contact sheets, exact control records, hashes, timings, byte/path counts, placement metrics, and actual-renderer pixel bounds. Local Cairo `canvas` and `path2d` are optional review dependencies, not runtime dependencies. See the [review gallery and recorded results](../../../docs/dunes-review.md).
+The review wrapper writes full-panorama and `-crop` SVG/PNG pairs, separate panorama/crop contact sheets, exact control records, hashes, timings, byte/path counts, placement metrics, and actual-renderer pixel bounds. Panorama audits reject ink at any source edge. Crop audits allow expected horizontal ridge crossings but reject top/bottom clipping. Crop image coordinates correspond to the central source interval; no figure is intentionally bisected by that crop. Local Cairo `canvas` and `path2d` are optional review dependencies, not runtime dependencies. See the [review gallery and recorded results](../../../docs/dunes-review.md).

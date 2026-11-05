@@ -1,5 +1,9 @@
 # Leaf skeletons
 
+<img src="../../../docs/samples/leaves-1.jpg" width="360" alt="First seeded leaves example"> <img src="../../../docs/samples/leaves-2.jpg" width="360" alt="Second seeded leaves example">
+
+[Sample seeds and artwork revisions](../../../docs/samples/manifest.json).
+
 An original, deterministic botanical drawing generator. Eight silhouette families
 (elliptic, ovate, lanceolate, obovate, pinnately lobed, cordate, spatulate, and
 falcate) vary in proportion, curvature, asymmetry, margin, secondary spacing,

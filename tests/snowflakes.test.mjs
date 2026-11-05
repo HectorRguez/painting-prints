@@ -57,6 +57,7 @@ test('48 seeds grow connected sixfold crystals with bounded, distinct vector geo
   for (const seed of seeds) {
     const start = performance.now();
     const { crystal, paths } = snowflakeGeometry(seed);
+    assert.ok(paths.every(path => path.role === 'outline' || path.role === 'ridge'), `${seed}: no hexagonal phase overlays`);
     const occupied = new Set();
     for (let q = -fieldRadius; q <= fieldRadius; q++) for (let r = -fieldRadius; r <= fieldRadius; r++) {
       const id = at(q, r);
@@ -123,6 +124,14 @@ test('growth contours belong to the crystal rather than being detached decoratio
   }
 });
 
+test('broad stellar plates have no hexagonal web while fern branches retain ridges', () => {
+  const stellar = snowflakeGeometry('snowflake-review-007');
+  const interior = stellar.paths.filter(path => path.role === 'ridge'
+    && Math.hypot(path.points[0][0] - 500, path.points[0][1] - 500) < 250);
+  assert.equal(interior.length, 6, 'Only the six main axes traverse this broad central plate');
+  assert.ok(snowflakeGeometry('snowflake-review-000').paths.filter(path => path.role === 'ridge').length > 6);
+});
+
 test('fresh snowflakes round-trip through browser-cache payloads and SVG exports', async () => {
   const painting = generateSnowflake('snowflake-cache-and-export');
   const entry = await cacheEntry(painting);
@@ -161,7 +170,7 @@ test('shipping worker returns the same seeded vectors as the pure generator', { 
     assert.equal(message.mode, 'snowflakes');
     assert.equal(message.seed, expected.seed);
     assert.equal(message.svg, expected.svg);
-    assert.equal(message.artRevision, 1);
+    assert.equal(message.artRevision, 2);
     assert.ok(message.generationMs >= 0);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });

@@ -1,71 +1,97 @@
-# Ink Gestures — parameter and visual review
+# Brushwork: color and texture review
 
-Ink Gestures composes pressure-shaped brush strokes with imperfect bristle contact: broken circles, flowing bends and layered counterstrokes, with occasional rust pigment. Geometry and texture come from equations and seeded numbers. There are no stored glyphs, traced outlines or raster assets.
+Revision 2 adds ten seeded pigment palettes: graphite, indigo, cobalt, teal,
+forest, violet, magenta, ochre, terracotta and olive. Small seeded hue and
+saturation variations broaden each palette. Explicit color controls can change
+the palette or rotate/desaturate it while preserving complete brush geometry.
 
-![48 consecutive seeds](previews/brushwork-contact.jpg)
+![48 consecutive colored seeds](previews/brushwork-contact.jpg)
 
-## Mathematical model and source
+The [48-seed report](previews/brushwork-report.json) records exact parameters,
+SVG/PNG SHA-256, bounds, coverage, file size and timing. Every image is distinct,
+all ten palettes appear, and none has ink in the outer two pixels. Colored area
+covers 9.34–27.87% of the page. Local generation averaged 90.3 ms and peaked at
+236.3 ms; SVGs averaged 485 KB and peaked at 901 KB. Timings exclude rasterization
+and vary with machine and concurrent load.
 
-Steve Strassmann's **Hairy Brushes in Computer-Generated Images** (MIT, 1986; SIGGRAPH paper DOI [10.1145/15886.15911](https://doi.org/10.1145/15886.15911)) is the primary inspiration. The [MIT thesis](https://dspace.mit.edu/server/api/core/bitstreams/618d714e-613f-4863-9bc0-b67e4e38100f/content) separates brush, stroke, dip and paper models (chapter 3), with pressure-dependent bristle spread/contact (section 5.4). This implementation adapts the bristle/contact abstraction; it does not reproduce the complete kinetic model or simulate liquid, absorption or pigment diffusion.
+All 48 seeds' fitted SVG path coordinates were compared directly with revision
+1: **every path is unchanged**. The report stores a geometry hash for each
+comparison. Only pigment colors and revision metadata changed.
 
-For loops, `theta = start + sweep*t`, `r = R*(1 + wobble*sin(2*theta + phase) + drift*(t-.5))`, and `C(t) = (r*cos(theta), aspect*r*sin(theta))`. Flowing strokes use `C(t) = span*(t-.5, .23*bend*sin(2*pi*t+phase) + bias*(t-.5)^2)`. Each curve receives seeded translation and rotation. Both derivatives are analytic; curvature is `cross(C',C'') / |C'|^3`. These are composition families with continuous parameters, not fixed outlines.
+![Forest loop](previews/brushwork-example-06.jpg)
 
-Pressure combines a short attack, decaying release and low-frequency pulse. Spread is proportional to pressure. Half-width times absolute curvature is limited to .75, keeping offsets inside the local radius of curvature. Forward/backward arc-length propagation limits half-width change to .5 units per unit traveled, preventing notches at tight bends. This local bound does not prohibit intentional crossings between separate strokes.
+![Teal and gold crossing strokes](previews/brushwork-example-11.jpg)
 
-Bristles sample the tangent/normal frame. Lateral placement includes coherent roughness, stronger edge irregularity and a small backward lag. A seeded contact signal combines dryness, progress, edge pressure and two oscillations; lost contact splits a bristle into separate polygons. Pressure and contact control width. Opaque ink colors mix toward paper for lighter pigment. Strokes paint in order; this is not optical watercolor blending.
+![Violet loop](previews/brushwork-example-16.jpg)
 
-Polygon edges are simplified with an explicit distance tolerance. One uniform composition fit into an 850-unit square inside a 1000-unit page preserves at least 75 units of margin. Seeds use the repository's finite 32-bit generator; sample uniqueness is not a proof of unlimited uniqueness.
+![Cobalt strokes](previews/brushwork-example-22.jpg)
 
-## Parameterization
+![Magenta strokes](previews/brushwork-example-26.jpg)
 
-`generateBrushwork(seed, overrides)` accepts the controls below. Defaults are seeded within narrower ranges; overrides are validated, zero is respected, and unknown keys fail. Units refer to the unscaled construction plane.
+I inspected the contact sheet and full-size colored examples. Saturated primary
+strokes retain thin bristle gaps, lighter edge fibers and dry trailing ends.
+Complementary counterstrokes remain distinct without changing stroke order or
+intentional intersections.
 
-| Control | Default | Accepted range | Effect |
-| --- | --- | --- | --- |
-| family | equal choice | orbit, sweep, crossing, rising | Arrangement and trajectory type |
-| width | 110–190 | 24–220 | Primary width before pressure/fit |
-| dryness | .32–.66 | 0–.85 | Contact loss toward trailing end |
-| bristles | 100 | 40–160 integer | Fibers per stroke |
-| pressureVariation | .18–.42 | 0–.65 | Pressure pulse amplitude |
-| taper | .45–.85 | .4–1.8 | Release exponent; larger tapers earlier |
-| bend | .5–1 | .2–1.25 | Sinusoidal bend amplitude |
-| sweep | 4.7–5.75 | 3.6–6.05 radians | Arc extent |
-| radialWobble | .025–.065 | 0–.12 | Radial harmonic deformation |
-| aspect | .78–1.2 | .65–1.35 | Loop vertical scale |
-| rotation | full turn | -pi–pi radians | Composition rotation |
-| roughness | .3–.8 | 0–2.5 | Bristle lateral displacement |
-| pigment | .92–1 | .35–1 | Ink density relative to paper |
-| accent | 60% zero; else .65–1 | 0–1 | Rust mix in first counterstroke; lone strokes have none |
-| strokeCount | orbit 1, crossing 3, others 2 | 1–4 integer | Number of trajectories |
-| scale | .82–.97 | .65–1 | Occupancy of inset fit box |
-| samples | 240 | 120–400 integer | Contact/curve sampling intervals |
-| chordError | .1 | .02–.2 | Simplification tolerance against sampled edge |
+## Joint extremes
 
-Secondary seeded values include primary spans 600–730 and radii 235–290; secondary spans 360–610 and radii 130–200; secondary width .35–.72 of primary; secondary pigment .7–1 of requested pigment; radial drift -.1–.1; bend sign; phases; bristle contact frequency 5–12 cycles; and width factor 1.35–2. Placement differs by family to balance overlap and negative space. These are artistic priors, not measured physical constants.
+![Eight joint color and geometry extremes](previews/brushwork-stress.jpg)
 
-## Review and tests
+The [stress report](previews/brushwork-stress-report.json) covers wet heavy teal
+strokes, a pale dry cobalt loop, hue shifts at ±180°, saturation 0 and 1.4,
+warm/cool crossings, thin rising marks and sparse/fine fibers. All eight SVGs
+and PNGs are distinct, finite, nonempty and unclipped. Coverage spans
+1.54–31.30%; the largest SVG is 3.01 MB. Local generation averaged 242.2 ms and
+peaked at 700.9 ms.
 
-The [default report](previews/brushwork-report.json) and [stress report](previews/brushwork-stress-report.json) record seeds, parameters, SVG/PNG SHA-256, bounds, ink coverage, file size and timing. The **48 consecutive defaults yield 48 distinct SVGs and PNGs**, no ink in the outer two pixels, and no blank/saturated images. Local generation averaged **61.6 ms**, maximum **151.6 ms**; SVG averaged **485 KB**, maximum **901 KB**. Timing excludes rasterization and is machine-specific.
+The deliberately thin, low-pigment cobalt study is pale; the thinnest dry marks
+become less legible at thumbnail size. These cases exercise supported limits
+rather than the narrower default artistic priors.
 
-![Joint parameter extremes](previews/brushwork-stress.jpg)
+## Paper and transparent exports
 
-Eight named joint extremes cover maximum width/curvature/pressure, dry thin loops, flattened wide loops, short arcs, dense crossings, thin rising strokes, sparse coarse fibers and dense fine fibers. All remain unique, finite, nonempty and unclipped while retaining requested controls. Maximum stress SVG: 3.01 MB. Extreme combinations are deliberately less curated than normal defaults.
+![Paper, checkerboard and dark-backdrop comparison](previews/brushwork-transparency.jpg)
 
-Tests independently compare derivatives to finite differences and exact circles; verify pressure endpoints, orthonormal frames, curvature/width-slope bounds, point-to-segment simplification error, dryness reducing contact, color-only geometry invariance, continuity of geometric parameters, 48-seed diversity/bounds, override validation and joint extremes. Shipping worker tests compare SVG to the pure generator and round-trip compressed cache, seed URL and exports.
+Eight examples were rendered at 1600×1600 through the app's actual Canvas
+renderer in paper and transparent modes. The
+[export report](previews/brushwork-export-report.json) records transparent,
+opaque and antialiased pixel counts. All transparent margins are empty; paper
+images are fully opaque. Recoloring preserves every alpha pixel, including fine
+bristle texture. Compositing a transparent PNG onto the paper reference agrees
+with the paper render within two RGB levels.
 
-All 60 repository tests pass. The production build and browser checks pass. The app's actual Canvas renderer produced both galleries. Browser checks cover desktop and three mobile sizes, navigation/reload/history, stale-cache regeneration and SVG, paper/transparent PNG and PDF downloads. SVG stays vector; the current PDF embeds raster artwork.
+Transparent exports retain opaque pigment colors and expose the background
+through real contact gaps; they do not simulate optical watercolor transmission.
+Darker inks have lower contrast on dark backdrops, as shown. Texture remains
+clear over paper and the light checkerboard.
+
+## Model and tests
+
+The [generator README](../src/generators/brushwork/README.md) documents palette
+swatches, continuous color equations, the full parameter table, bristle model
+and original *Hairy Brushes* research inspiration. Color selection has a
+separate random stream and never perturbs trajectories or texture.
+
+Nine targeted test groups pass: deterministic controls/validation; geometry
+invariance across every palette and color extrema; analytic color cases and
+bounded output; trajectory derivatives and exact circles; pressure/curvature
+and width-slope limits; simplification error; contact loss and continuity;
+48-seed diversity, all palettes and bounds; and joint extremes. Generator and
+project both declare revision 2 so the shared cache upgrade retains old seeds.
+
+The combined refinement also passes all 122 repository tests, the production
+build and Chromium desktop/mobile/cache/export checks. See the
+[shared integration evidence](refinement-review.md) for those results.
 
 ## Reproduce
 
 ```sh
-npm ci
-PAINTING_GO=/path/to/go npm test
-PAINTING_GO=/path/to/go npm run build
-npm install --no-save --package-lock=false canvas@3.2.3 path2d@0.2.2 playwright@1.58.2
-node scripts/art-review/brushwork.mjs --count 48 --raster --out .artifacts/brushwork
-node scripts/art-review/brushwork-stress.mjs --count 8 --prefix brushwork-stress --raster --out .artifacts/brushwork-stress
-npx playwright install chromium
-node scripts/check-browser.mjs
+node --test tests/brushwork.test.mjs
+npm install --no-save --package-lock=false canvas@3.2.3 path2d@0.2.2
+node scripts/art-review/brushwork.mjs --count 48 --raster --out /tmp/brushwork-review
+node scripts/art-review/brushwork-stress.mjs --count 8 --prefix brushwork-stress --raster --out /tmp/brushwork-stress
+node scripts/art-review/brushwork-exports.mjs --out /tmp/brushwork-exports
 ```
 
-`--overrides '{"family":"orbit","dryness":0}'` supports controlled experiments; `--width 3200` inspects print detail. Fine bristles merge at thumbnail size and can resemble hair at high zoom. Four simple composition families provide a coherent but limited vocabulary; they do not model handwriting or semantic symbols.
+Omit `--raster` for SVG/report-only audits. `--overrides` accepts a JSON control
+object, for example `'{"palette":"cobalt","hueShift":-4,"saturation":1.1}'`.

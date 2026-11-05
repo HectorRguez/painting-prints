@@ -1,0 +1,176 @@
+[
+  {
+    "mode": "leaves",
+    "seed": "browser-review-leaves",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1188540
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1180261
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 462518
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 692099
+      }
+    ]
+  },
+  {
+    "mode": "snowflakes",
+    "seed": "browser-review-snowflakes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1274629
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1252072
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 65437
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 693099
+      }
+    ]
+  },
+  {
+    "mode": "seascapes",
+    "seed": "browser-review-seascapes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 619083
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 806167
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 1410800
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 221577
+      }
+    ]
+  },
+  {
+    "mode": "ribbons",
+    "seed": "browser-review-ribbons",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 1621268
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 1599601
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 117964
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 833389
+      }
+    ]
+  },
+  {
+    "mode": "dunes",
+    "seed": "browser-review-dunes",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 539974
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 707281
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 314490
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 169531
+      }
+    ]
+  },
+  {
+    "mode": "brushwork",
+    "seed": "browser-review-brushwork",
+    "desktop": "passed",
+    "mobile": "passed",
+    "cache": "passed",
+    "exports": [
+      {
+        "format": "png",
+        "background": false,
+        "bytes": 3089973
+      },
+      {
+        "format": "png",
+        "background": true,
+        "bytes": 3001315
+      },
+      {
+        "format": "svg",
+        "background": false,
+        "bytes": 383754
+      },
+      {
+        "format": "pdf",
+        "background": false,
+        "bytes": 1774580
+      }
+    ]
+  }
+]

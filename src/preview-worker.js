@@ -23,7 +23,7 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
       const file = await prepareExport(painting, settings, (art, dimensions, background) =>
         art.mode === 'flowers' ? pngBlob(background ? art.png : art.transparentPng)
           : projects[art.mode].renderer === 'lines' ? renderLinePreview(art, {
-            width: dimensions?.width || 3200, measure: false,
+            width: dimensions?.width || 3200, crop: true, measure: false,
             background: background ? art.paperColor || 'white' : undefined,
           }).then(result => result.preview)
           : renderSvgPng(artworkSvg(art, background), dimensions?.width || 3200, fetch(wasmUrl)));
@@ -31,7 +31,7 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
       return;
     }
     const cached = entry.svg || entry.png ? await cacheEntry(painting) : entry;
-    const crop = painting.mode === 'landscapes' && previewOptions.cropLandscape;
+    const crop = projects[painting.mode].panoramic && previewOptions.cropLandscape;
     let offset = crop ? { x: 0, y: 0 } : cached.inkOffset;
     let preview;
     if (painting.mode === 'flowers') {
@@ -44,11 +44,11 @@ self.onmessage = async ({ data: { entry, assetUrl, settings, previewOptions = {}
       preview = rendered.preview;
       offset ||= rendered.offset;
     } else {
-      const rendered = await renderLinePreview(painting, { measure: !offset });
+      const rendered = await renderLinePreview(painting, { crop, measure: !offset });
       preview = rendered.preview;
       offset ||= rendered.offset;
     }
-    if (painting.mode === 'landscapes') offset.x = 0;
+    if (projects[painting.mode].panoramic) offset.x = 0;
     if (!crop) cached.inkOffset = offset;
     // Reopening any style can display its prepared preview directly. Keep its
     // complete compressed source separately for background and print exports.

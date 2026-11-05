@@ -1,1 +1,1 @@
-export default { published: '2018-02-12', label: 'Flowers', title: 'Nonflowers', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/nonflowers', ratio: 1, orientation: 'portrait', artRevision: 2 };
+export default { showCredit: true, published: '2018-02-12', label: 'Flowers', title: 'Nonflowers', author: 'Lingdong Huang', source: 'https://github.com/LingDong-/nonflowers', ratio: 1, orientation: 'portrait', artRevision: 2 };

@@ -1,108 +1,113 @@
-# Seascapes: sweeping waves and smaller fleets
+# Seascapes: simpler waves and a real panorama
 
-Revision 4 redraws the Kanagawa-inspired crests as asymmetric rising shoulders,
-pointed lips and concave returning faces. Long neighboring swells connect them
-to the foreground. Tapered dark water ribbons, fine curved hatching and thinner
-forked foam give the face more weight while retaining generous open space.
-All specimens use the application's actual line renderer.
+Revision 5 replaces the elaborate curled sheet with a broad shoulder, short
+falling lip, open face and a handful of marks. Dense hatching, dark ribbons,
+branching foam and detached spray are removed. The source now spans
+**3200 × 800**, with independently generated water at both sides and a
+centered **800√2 × 800** print crop, matching Landscapes. The sparse fleet and
+main wave remain inside the print composition.
 
-The art reference is Hokusai's
-[Under the Wave off Kanagawa](https://www.metmuseum.org/art/collection/search/45434).
-These are seeded geometric illustrations, not traced images or calibrated
-simulations of breaking water. The
-[generator documentation](../src/generators/seascapes/README.md) explains the
-Gerstner supporting surface, separate drawn overhang, equations and controls.
+All images below use the actual line renderer and white-to-alpha masking.
+The [generator README](../src/generators/seascapes/README.md) documents the
+Gerstner supporting surface, simple cubic sheet, units and changed controls.
 
 ## Same seed before and after
 
-Both images use `seascape-review-33`. The previous output has five prominent
-boats; the new scene has one small working boat in the distant clear water.
+Both images use `seascape-review-33`, with one small working boat. The former
+image is the committed revision 4 output; the new one is the center print crop.
 
-| Previous output | Revision 4 |
+| Revision 4 | Revision 5 |
 | --- | --- |
-| ![Previous rounded wave with five boats](previews/seascapes-before.jpg) | ![New asymmetric wave with one small working boat](previews/seascapes-large-wave.jpg) |
+| ![Elaborate curled wave with dense internal strips and branching foam](previews/seascapes-before.jpg) | ![Simple broad wave and short falling lip](previews/seascapes-large-wave.jpg) |
 
-The new full-size hero makes the fine hatching, negative foam shapes and
-longer surrounding swells easier to inspect.
+The complete generated panorama contains different side-water geometry:
 
-![Revision 4 large-wave detail](previews/seascapes-large-wave.jpg)
+![Full 3200 by 800 source with independent side swells](previews/seascapes-large-wave-panorama.jpg)
 
-## All 48 reviewed seeds
+Its central print crop is:
 
-![48 unique seascapes with sea-state and boat-count labels](previews/seascapes-contact.jpg)
+![Center print crop of the same scene](previews/seascapes-large-wave.jpg)
 
-The same first 48 seed identifiers contain **85 boats, averaging 1.77 per
-scene**, compared with 263 boats and 5.48 per scene in the previous review.
-That is 68% fewer vessels in this batch. Empty seas are intentional. Storm
-scenes average 1.43 small working boats; tall sailing rigs remain available
-in the other sea states.
+The previous Kanagawa reference now informs only the sweeping rise and short
+forward lip. This is a stylized geometric illustration, not a traced image or
+physical simulation of breaking water.
 
-| Boats in a scene | Number of scenes |
+## All 48 seeds, in both formats
+
+![48 full-width seascapes](previews/seascapes-contact.jpg)
+
+![The same 48 centered print crops](previews/seascapes-crop-contact.jpg)
+
+The batch contains **86 boats, averaging 1.79 per scene**. Five scenes are
+intentionally empty. Breaker scenes average 1.5 small working boats.
+
+| Boats | Scenes |
 | --- | ---: |
-| 0 | 6 |
-| 1 | 10 |
+| 0 | 5 |
+| 1 | 11 |
 | 2 | 22 |
 | 3 | 9 |
 | 4 | 1 |
 
-Sea-state coverage is 15 calm scenes, 11 wind seas, 8 rolling swells and
-14 breakers. All six boat families appear: 20 skiffs, 21 fishing boats,
-12 sampans, 11 cutters, 9 luggers and 12 battened sailboats. All four placement
-arrangements occur. The largest crest amplitude is 348.58 canvas units.
+Coverage includes 15 calm scenes, 11 wind seas, eight rolling swells and 14
+breakers. All six families appear: 22 skiffs, 18 fishing boats, 16 sampans,
+10 cutters, nine luggers and 11 battened sailboats. All four arrangements occur.
+Vessel placement accounts for the central crop, so panning the panorama does
+not determine the boats included in the exported print.
 
-Seed `seascape-review-01` demonstrates an empty calm sea.
+Seed 01 is a calm empty sea; seed 43 retains three vessels at different depths.
 
-![Calm sea without boats](previews/seascapes-calm.jpg)
+![Empty calm print crop](previews/seascapes-calm.jpg)
 
-Seed `seascape-review-43` retains three distinct vessels at different depths.
+![Three small procedural boats](previews/seascapes-fleet.jpg)
 
-![Three procedural boats on calm water](previews/seascapes-fleet.jpg)
+## Eight parameter extremes
 
-## Extreme controls
+The stress set covers empty water, four requested vessels, minimum/maximum
+roughness and steepness, opposing directions, horizon and boat-size limits,
+minimum/maximum lip/curl controls, and zero/maximal foam strokes. At the upper
+lip bounds the small notch is more pronounced, but it cannot grow back into
+the previous large tube or dense foam structure.
 
-Eight additional scenes exercise empty water, maximum requested boats,
-low/high roughness and steepness, both orientations, boat scale, horizon,
-low/full curl, shoulder entry, lip projection/drop, hollow depth, dense foam
-and no spray. The extreme low-curl example intentionally becomes a spilling
-crest with an open face.
+![Eight full stress panoramas](previews/seascapes-stress.jpg)
 
-![Eight explicit parameter stress cases](previews/seascapes-stress.jpg)
+![Their eight print crops](previews/seascapes-stress-crops.jpg)
 
-All 56 SVG hashes and all 56 PNG hashes are globally unique. Raster checks
-found no empty, saturated or edge-clipped drawings. The default batch uses
-344–714 paths, 414–799 kB SVGs (564 kB mean), and 1.95–6.00% measured ink
-coverage. Generation averaged 47.9 ms locally, with a maximum of 119.5 ms;
-these timings describe the review machine rather than other devices.
+All **56 source SVGs, 56 full PNGs and 56 crop PNGs** are globally unique in
+this combined review. No full-source edge clipping, vertical crop clipping,
+blank scenes or saturated images were found. Horizontal water lines may cross
+the print crop edges intentionally; every boat remains wholly inside.
+
+Default source drawings contain 626–1190 paths and 808–1491 kB of SVG
+(1175 kB mean). Measured ink coverage is 1.91–3.16% in panoramas and
+1.85–3.51% in print crops. The largest crest rise is 223.67 logical units,
+or 178.94 source units. Generation averaged 251 ms, maximum 390 ms on the
+review machine while other local checks were running; other devices differ.
 
 ## Validation
 
-Thirteen generator tests pass, covering:
+Fourteen targeted tests pass:
 
-- Seed determinism, input immutability, validated controls and preservation of
-  unrelated seeded values when overriding one parameter.
-- Continuous silhouette changes, 256 combinations of shape-control bounds,
-  64 additional seeded silhouettes and low-curl regressions.
-- Simple ink ribbons whose edges remain inside the water sheet, with tapered
-  clipped ends instead of disconnected dark fragments.
-- All 48 default scenes, finite path bounds, sparse fleet probabilities,
-  actual boat geometry within collision bounds, foreground-wave clearance,
-  surface attachment and bounded roll.
-- Supporting-surface coordinate inversion, analytic tangents and the
-  non-overturning condition; extreme scene controls; cache/shared-link/vector
-  export behavior; exact SVG/parameter parity with the bundled classic worker.
+- Determinism, immutable inputs, validated overrides and preservation of
+  unrelated seeded values.
+- Continuous controls, 64 combinations of silhouette bounds, 64 additional
+  seeded shapes, and simple connected water-sheet outlines.
+- 128 sparse-stroke containment checks, tiny lip limits and absence of filled
+  ink ribbons; air-opening foam clipping.
+- All 48 scenes with finite geometry, clear source margins, independent side
+  water, deliberately composed centers, wholly contained vessels, correct
+  surface attachment, limited roll and collision/foreground-wave clearance.
+- Analytic Gerstner tangent/inversion checks, sparse fleet distributions,
+  extreme parameters, cache/shared links, centered SVG export and exact
+  classic-worker SVG/parameter parity.
 
-The full repository suite also passed all 65 tests, the production build and
-Chromium checks for desktop/mobile layout, seed links, cache regeneration and
-PNG/SVG/PDF exports. The [browser results](previews/seascapes-browser-results.json)
-are included. The contact sheet, full-size breakers and stress gallery
-were visually inspected separately from those checks.
+Both complete contact sheets and their stress versions were visually reviewed.
+Full-size seed 33, seed 25, seed 11 and extreme 03 were also inspected for
+silhouette, masking and vessel overlap. Geometry tests alone do not establish
+visual quality. The sheet remains a stylized construction; it does not model
+water transport, wave impact or vessel dynamics.
 
-The water sheet and foam remain stylized geometry. Supporting waves do not
-physically evolve into the drawn overhang, and boat placement does not simulate
-dynamics. Uniqueness is established for these reviewed seeds, not an infinite
-set of possible outputs.
-
-## Reproduce and inspect the records
+## Reproduction and records
 
 ```sh
 node --test tests/seascapes.test.mjs tests/breaker.test.mjs
@@ -110,8 +115,10 @@ node scripts/art-review/seascapes.mjs --count 48 --raster --out /tmp/seascape-re
 node scripts/art-review/seascapes.mjs --stress --raster --out /tmp/seascape-stress
 ```
 
-The [48-scene JSON report](previews/seascapes-report.json) and
-[eight-scene stress report](previews/seascapes-stress-report.json) retain exact
-resolved sea and breaker controls, boat geometry, hashes, timing and pixel
-bounds. Raster review requires optional local `canvas` and `path2d` packages;
-they are not runtime dependencies.
+The [48-scene report](previews/seascapes-report.json) and
+[eight-scene stress report](previews/seascapes-stress-report.json) contain
+resolved logical-world and breaker parameters, boat geometry, source/full/crop
+hashes, timing, and separate panorama/crop pixel bounds. Raster review uses
+optional native `canvas` and `path2d`; these are not runtime dependencies.
+
+The combined refinement passes all 122 repository tests, the production build and Chromium desktop/mobile/cache/export checks. [Integration evidence](refinement-review.md) and [current Seascapes browser report](previews/seascapes-browser-results.json).

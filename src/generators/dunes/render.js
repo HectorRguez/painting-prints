@@ -4,8 +4,9 @@ import { shadeContours } from './contours.js';
 
 const gray = value => `#${Math.round(clamp(value, 0, 255)).toString(16).padStart(2, '0').repeat(3)}`;
 
-export function makeCamera(grid, p) {
-  const co = Math.cos(p.cameraAzimuth), si = Math.sin(p.cameraAzimuth);
+export function makeCamera(grid, p, { width = 1414, height = 1000, panoramic = false } = {}) {
+  const azimuth = p.cameraAzimuth * (panoramic ? .25 : 1);
+  const co = Math.cos(azimuth), si = Math.sin(azimuth);
   const ce = Math.cos(p.cameraElevation), se = Math.sin(p.cameraElevation);
   const distance = p.perspective > 0 ? 850 / p.perspective : 1e9;
   const raw = (x, y, z) => {
@@ -21,19 +22,19 @@ export function makeCamera(grid, p) {
   }
   const bounds = { left: Math.min(...projected.map(p => p.x)), right: Math.max(...projected.map(p => p.x)),
     top: Math.min(...projected.map(p => p.y)), bottom: Math.max(...projected.map(p => p.y)) };
-  const scale = Math.min(1280 / (bounds.right - bounds.left), 695 / (bounds.bottom - bounds.top));
-  const offset = [707 - (bounds.right + bounds.left) * scale / 2, 580 - (bounds.bottom + bounds.top) * scale / 2];
+  const scale = Math.min((width - 134) / (bounds.right - bounds.left), height * .695 / (bounds.bottom - bounds.top));
+  const offset = [width / 2 - (bounds.right + bounds.left) * scale / 2, height * .58 - (bounds.bottom + bounds.top) * scale / 2];
   const project = (x, y, z) => {
     const point = raw(x, y, z);
     return { ...point, x: point.x * scale + offset[0], y: point.y * scale + offset[1] };
   };
-  return { project, scale, bounds, distance, direction: [-si * ce, se, -co * ce] };
+  return { project, scale, bounds, distance, azimuth, width, height, direction: [-si * ce, se, -co * ce] };
 }
 
-export function depthBuffer(vertices, cells, width = 708, height = 501) {
+export function depthBuffer(vertices, cells, width = 708, height = 501, outputWidth = 1414, outputHeight = 1000) {
   const depths = new Float64Array(width * height); depths.fill(Infinity);
   const shades = new Float32Array(width * height), coverage = new Float32Array(width * height);
-  const sx = width / 1414, sy = height / 1000;
+  const sx = width / outputWidth, sy = height / outputHeight;
   const raster = (a, b, c) => {
     const ax = a.x * sx, ay = a.y * sy, bx = b.x * sx, by = b.y * sy, cx = c.x * sx, cy = c.y * sy;
     const determinant = (by - cy) * (ax - cx) + (cx - bx) * (ay - cy);
@@ -123,8 +124,9 @@ export function sunlight(grid, p, x, z) {
   return { diffuse, shadow, normal };
 }
 
-export function renderDuneTerrain(grid, ridges, p) {
-  const camera = makeCamera(grid, p), vertices = [], cells = [], paths = [];
+export function renderDuneTerrain(grid, ridges, p, frame = {}) {
+  const { width = 1414, height = 1000 } = frame;
+  const camera = makeCamera(grid, p, frame), vertices = [], cells = [], paths = [];
   for (let j = 0; j < grid.nz; j++) for (let i = 0; i < grid.nx; i++) {
     const x = grid.x0 + i * grid.dx, z = grid.z0 + j * grid.dz, h = grid.heights[j * grid.nx + i];
     const light = sunlight(grid, p, x, z);
@@ -143,7 +145,7 @@ export function renderDuneTerrain(grid, ridges, p) {
     }
     cells.push({ indices, depth: points.reduce((sum, point) => sum + point.depth, 0) / 4 });
   }
-  const visibility = depthBuffer(vertices, cells);
+  const visibility = depthBuffer(vertices, cells, Math.ceil(width / 2), Math.ceil(height / 2), width, height);
   // Keep the original small coverage filter separate from the wider
   // illumination filter: shadow smoothing must not soften dune silhouettes.
   const coverage = new Float32Array(visibility.shades.length);
@@ -163,12 +165,12 @@ export function renderDuneTerrain(grid, ridges, p) {
   visibility.lighting = filterLighting(visibility);
   // A separate pale surface fill keeps fully illuminated faces attached to the
   // dune, while all lighting thresholds and darker tones remain unchanged.
-  const ground = shadeContours(coverage, visibility.width, visibility.height, 0.35);
+  const ground = shadeContours(coverage, visibility.width, visibility.height, 0.35, width, height);
   if (ground.d) paths.push({ d: ground.d, fill: p.palette === 'ochre' ? '#f6edde' : gray(249), stroke: 'none', width: 0, role: 'sand' });
   const shading = [];
   const colors = ['#f0e3cf', '#e7d2b5', '#d5b58f', '#bb926c', '#9c7352', '#785238'];
   for (const [index, level] of [0.025, 0.065, 0.115, 0.18, 0.27, 0.37].entries()) {
-    const contours = shadeContours(visibility.lighting, visibility.width, visibility.height, level);
+    const contours = shadeContours(visibility.lighting, visibility.width, visibility.height, level, width, height);
     const color = p.palette === 'ochre' ? colors[index] : gray(255 - level * 255 * 1.4);
     if (contours.d) paths.push({ d: contours.d, fill: color, stroke: color, width: 0.12, role: 'shade' });
     shading.push({ level, loops: contours.loops });
@@ -185,7 +187,7 @@ export function renderDuneTerrain(grid, ridges, p) {
     };
     for (const point of world) {
       const projection = camera.project(...point);
-      if (projection.x < 65 || projection.x > 1349 || projection.y < 85 || projection.y > 935
+      if (projection.x < 65 || projection.x > camera.width - 65 || projection.y < camera.height * .085 || projection.y > camera.height * .935
         || !visibility.visible(projection) || !predicate(point)) { flush(); continue; }
       const previous = worldSegment.at(-1);
       // Newton's phase solution can switch branches where star arms meet.
@@ -207,7 +209,7 @@ export function renderDuneTerrain(grid, ridges, p) {
     ink(world, 'crest', 1.15, 54, point => point[1] > 3 && point[1] < point[3] + 3.5);
   }
   const wind = [Math.cos(p.windAzimuth), Math.sin(p.windAzimuth)], cross = [-wind[1], wind[0]];
-  const extent = 1100, spacing = p.rippleWavelength;
+  const extent = frame.panoramic ? 2400 : 1100, spacing = p.rippleWavelength;
   for (let u = -extent; u < extent; u += spacing) {
     const frequency = Math.sin(u * 91.73 + p.phase) * 43758.5453;
     if (frequency - Math.floor(frequency) > p.rippleDensity) continue;

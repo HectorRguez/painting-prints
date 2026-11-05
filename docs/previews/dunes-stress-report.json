@@ -5,20 +5,20 @@
   "unique": 8,
   "uniquePngs": 8,
   "generationMs": {
-    "max": 3104.249814999999,
-    "mean": 767.95406525
+    "max": 7572.122475,
+    "mean": 1734.5434042499999
   },
   "svgBytes": {
-    "max": 226324,
-    "mean": 123840.375
+    "max": 651236,
+    "mean": 349623
   },
   "records": [
     {
       "seed": "dunes-stress-00",
-      "sha256": "99f30a678a7f2c03b299f8c4dc11fb759b73beab33aa1d4bc198472dcd56d26d",
-      "generationMs": 255.20269000000002,
-      "svgBytes": 64884,
-      "paths": 241,
+      "sha256": "5b4bb4daedf7072fe511cf2e514241d738ca19776a131f4e5b731ffa116fbb9c",
+      "generationMs": 457.86735799999997,
+      "svgBytes": 213925,
+      "paths": 756,
       "label": "star · 0 travelers · 0 camels",
       "parameters": {
         "morphology": "star",
@@ -58,32 +58,39 @@
         "camelLoad": 0.5227887302404269
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 4,
-        "rippleStrokes": 38,
+        "visibleCrests": 5,
+        "rippleStrokes": 109,
         "travelers": 0,
         "camels": 0
       },
-      "pngSha256": "7cd163e8891b70232a514465849751580e7209abd7e8f8505543dceee8d4ca64",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.006116690240452616,
+      "pngSha256": "87944bbf56bc7569a97376910b3fbe349b0909bc630f6cc2b7bac30375feff5e",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.00891484375,
       "edgeInk": 0,
       "bounds": {
-        "left": 298,
-        "top": 255,
-        "right": 1184,
-        "bottom": 868
+        "left": 491,
+        "top": 209,
+        "right": 2666,
+        "bottom": 708
+      },
+      "crop": {
+        "pngSha256": "247a3cd59e48953ce8f8af5c3a2fc0661f1c9d7e47ba709653409f33613af020",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.01338281595227574,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-01",
-      "sha256": "92e31cc470db17ca35edb1229ffe7c97123280c91797969f58f28b99c2380446",
-      "generationMs": 968.852907,
-      "svgBytes": 226324,
-      "paths": 573,
-      "label": "star · 8 travelers · 2 camels",
+      "sha256": "5ecc832da7beda6a70ce421fe69efba8e728023e230f632cf0ecd8e0ff152d33",
+      "generationMs": 1417.8193149999997,
+      "svgBytes": 651236,
+      "paths": 1743,
+      "label": "star · 8 travelers · 6 camels",
       "parameters": {
         "morphology": "star",
         "palette": "ink",
@@ -122,32 +129,39 @@
         "camelLoad": 0.3684623198583722
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 5,
-        "rippleStrokes": 202,
+        "visibleCrests": 14,
+        "rippleStrokes": 657,
         "travelers": 8,
-        "camels": 2
+        "camels": 6
       },
-      "pngSha256": "d8ccef2db6188a24ba2208096cb4662bf49e91a6eee3abfc7567a899a953217e",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.03702333804809052,
+      "pngSha256": "87242f733c6fb5bcf592f602a537cc4d6637a2a4f8c149551264d85c7f63a1bc",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.04987109375,
       "edgeInk": 0,
       "bounds": {
-        "left": 145,
-        "top": 236,
-        "right": 1208,
-        "bottom": 864
+        "left": 349,
+        "top": 208,
+        "right": 2787,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "a90fc3d5a6dc763895ecc715dc3cc294ca7a0b801502a6fb98f95e7699395e26",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.06291289217852408,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-02",
-      "sha256": "da5ea6b6772c8b2f6441e9c815f49886c56d87efb93250d3f406475fa7b23aeb",
-      "generationMs": 588.5786499999999,
-      "svgBytes": 148217,
-      "paths": 522,
-      "label": "star · 6 travelers · 3 camels",
+      "sha256": "612c61c2666b0caa617832bc0adf99c6a02fd0eff1332c7501fe4e56ab7d2ac0",
+      "generationMs": 1233.0160699999997,
+      "svgBytes": 385734,
+      "paths": 1316,
+      "label": "star · 5 travelers · 2 camels",
       "parameters": {
         "morphology": "star",
         "palette": "ink",
@@ -186,31 +200,38 @@
         "camelLoad": 0.815817425516434
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 7,
-        "rippleStrokes": 101,
-        "travelers": 6,
-        "camels": 3
+        "visibleCrests": 9,
+        "rippleStrokes": 252,
+        "travelers": 5,
+        "camels": 2
       },
-      "pngSha256": "2182a97f414e7e3692d8d13a0dd11536331808f5257f9cd2e3d34ae9d2616abc",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01674045261669024,
+      "pngSha256": "cc5fdf3aafc5da8e7a6788ddf9c80cfc8cc3a5439dd228a13743e89637827c06",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.02593359375,
       "edgeInk": 0,
       "bounds": {
-        "left": 101,
-        "top": 273,
-        "right": 1322,
-        "bottom": 927
+        "left": 195,
+        "top": 214,
+        "right": 3108,
+        "bottom": 720
+      },
+      "crop": {
+        "pngSha256": "9b0aefb9cf28cbf93ec37dc6debb37b444d6c368a5c72e3eac93cb5cca3ac1fb",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.027573740609809987,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-03",
-      "sha256": "c57f6476248e740897d364121b9b366a120b40def2a69ca1b1993f7fa1191251",
-      "generationMs": 228.24239100000023,
-      "svgBytes": 83221,
-      "paths": 332,
+      "sha256": "cf590cf2ae3246bbd8edd8f6835631af1e70dc9ed51e3702ce80faca4403279c",
+      "generationMs": 641.891232,
+      "svgBytes": 237858,
+      "paths": 973,
       "label": "barchan · 0 travelers · 4 camels",
       "parameters": {
         "morphology": "barchan",
@@ -250,31 +271,38 @@
         "camelLoad": 0.4617263325722888
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
         "visibleCrests": 5,
         "rippleStrokes": 0,
         "travelers": 0,
         "camels": 4
       },
-      "pngSha256": "c8ffb8100c1d22291974c603901271153cfe4b8223066e2d0c8459268229e4ac",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.011736916548797736,
+      "pngSha256": "9cf938aca7e030b51b4f20ad4b450acecb8d0e54c8cdb4965ffe445b1506b442",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.0173984375,
       "edgeInk": 0,
       "bounds": {
-        "left": 72,
-        "top": 221,
-        "right": 1282,
-        "bottom": 833
+        "left": 136,
+        "top": 173,
+        "right": 3135,
+        "bottom": 719
+      },
+      "crop": {
+        "pngSha256": "0ac93d77bfee060cfca12d2d936f04f7d3a86f42c3496e52cc6ef186ba634037",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.01826916703490941,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-04",
-      "sha256": "90c66b5f7f37e8b13b36b33dfa9334b0708fc7854d1e12618ffd5ff9384abd32",
-      "generationMs": 322.53387599999996,
-      "svgBytes": 105035,
-      "paths": 356,
+      "sha256": "acc4d30ea8e93f6ea6f9e1d8e80fc058fec4639f006f106b3f730737fe6828c5",
+      "generationMs": 698.9104559999996,
+      "svgBytes": 215491,
+      "paths": 736,
       "label": "barchan · 1 travelers · 3 camels",
       "parameters": {
         "morphology": "barchan",
@@ -314,31 +342,38 @@
         "camelLoad": 0.6394486973527819
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 8,
-        "rippleStrokes": 65,
+        "visibleCrests": 11,
+        "rippleStrokes": 108,
         "travelers": 1,
         "camels": 3
       },
-      "pngSha256": "e621d42a2bce6fb80e07f0baab8b6fc0caa49fe3beca8a5615d596ff3a5414a4",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.01603889674681754,
+      "pngSha256": "1131caf4157bc265964f040589a907b6a2ed2fd2ace8632fe98dbde64e2da9fd",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.015983203125,
       "edgeInk": 0,
       "bounds": {
-        "left": 68,
-        "top": 130,
-        "right": 1255,
-        "bottom": 926
+        "left": 140,
+        "top": 104,
+        "right": 2969,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "e4ca199c3f4cd49455242fdcfa5090d0453f00d13e7c1241c24f5d4770893313",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.016444017896597437,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-05",
-      "sha256": "cf2ddd83eb29270476da2056c01f5ccd1722c442baf73d59668e3778841a5fbe",
-      "generationMs": 329.153182,
-      "svgBytes": 107403,
-      "paths": 404,
+      "sha256": "89cc10595c4d57bbdf73e826bb6bf8fdd8861e5a5afc8c84e8ffffe55ae57528",
+      "generationMs": 907.6093000000001,
+      "svgBytes": 420531,
+      "paths": 1451,
       "label": "transverse · 1 travelers · 0 camels",
       "parameters": {
         "morphology": "transverse",
@@ -378,31 +413,38 @@
         "camelLoad": 0.4822032205061987
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 8,
-        "rippleStrokes": 81,
+        "visibleCrests": 10,
+        "rippleStrokes": 279,
         "travelers": 1,
         "camels": 0
       },
-      "pngSha256": "f20a3fedfe6a8ff41799908b3583bf9bae82a42b572debcea715316c9854c112",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.011236209335219237,
+      "pngSha256": "837aa62d0f052e1c9332de9f13c8b60458b3fafbf5d273831b86748d6efab0e5",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.021835546875,
       "edgeInk": 0,
       "bounds": {
-        "left": 329,
-        "top": 131,
-        "right": 1056,
-        "bottom": 926
+        "left": 471,
+        "top": 104,
+        "right": 2639,
+        "bottom": 741
+      },
+      "crop": {
+        "pngSha256": "93d8d14725120531fdfe74c060b4d83735080cbac1c9f60a4bac433324eea58a",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.027014057666813963,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-06",
-      "sha256": "b3c79a567cb69d907be379cc509e27b8830629ae692c0457e3890ee57bb05ba0",
-      "generationMs": 346.8190110000005,
-      "svgBytes": 144470,
-      "paths": 525,
+      "sha256": "b8dce4d99afe1c828efa8c4d58a305fbe3911e7046b2fb625b1b8dd905c94d06",
+      "generationMs": 947.1110279999994,
+      "svgBytes": 385515,
+      "paths": 1364,
       "label": "transverse · 8 travelers · 0 camels",
       "parameters": {
         "morphology": "transverse",
@@ -442,31 +484,38 @@
         "camelLoad": 0
       },
       "metrics": {
-        "surfaceCells": 39424,
+        "surfaceCells": 96800,
         "shadowCells": 0,
-        "visibleCrests": 6,
-        "rippleStrokes": 55,
+        "visibleCrests": 7,
+        "rippleStrokes": 168,
         "travelers": 8,
         "camels": 0
       },
-      "pngSha256": "2a8b915ff10ddc8c291ffa63d2dd17609ceb80b2432bb2c66e61958f396f7ba8",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.019445544554455445,
+      "pngSha256": "7eb1dee1024942a0b69d474e3e1a3267f1fecd8827d6ae3ea26954d4394abba4",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.026102734375,
       "edgeInk": 0,
       "bounds": {
-        "left": 69,
-        "top": 266,
-        "right": 1340,
-        "bottom": 925
+        "left": 216,
+        "top": 205,
+        "right": 3099,
+        "bottom": 700
+      },
+      "crop": {
+        "pngSha256": "13f63be7ad3fce1e9947304438763222d08fc784098dada434cc3c7bf9ef3d55",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.027583959346000882,
+        "verticalEdgeInk": 0
       }
     },
     {
       "seed": "dunes-stress-07",
-      "sha256": "05f89d269aa8ca7b1453312d73869113a7506693a6b7d6bd80789da50e77dd00",
-      "generationMs": 3104.249814999999,
-      "svgBytes": 111169,
-      "paths": 153,
+      "sha256": "546de6daaea8ccfc3be42e97def03465145829fd9f740f5dd844c1617f104e13",
+      "generationMs": 7572.122475,
+      "svgBytes": 286694,
+      "paths": 403,
       "label": "barchan · 1 travelers · 2 camels",
       "parameters": {
         "morphology": "barchan",
@@ -506,23 +555,30 @@
         "camelLoad": 0.5993609575321898
       },
       "metrics": {
-        "surfaceCells": 20277,
-        "shadowCells": 977,
-        "visibleCrests": 52,
-        "rippleStrokes": 51,
+        "surfaceCells": 41085,
+        "shadowCells": 2572,
+        "visibleCrests": 198,
+        "rippleStrokes": 154,
         "travelers": 1,
         "camels": 2
       },
-      "pngSha256": "500936db2510eff640ef0d339812689eeec7a2ea5c25a127f1b43bc4a1143f6f",
-      "width": 1414,
-      "height": 1000,
-      "inkFraction": 0.3239108910891089,
+      "pngSha256": "7ca9db245a042fda57f5ed0c78475f78e821bdcf2cc55f838b234e11ba91d135",
+      "width": 3200,
+      "height": 800,
+      "inkFraction": 0.29416796875,
       "edgeInk": 0,
       "bounds": {
-        "left": 85,
-        "top": 292,
-        "right": 1334,
-        "bottom": 858
+        "left": 91,
+        "top": 257,
+        "right": 3121,
+        "bottom": 665
+      },
+      "crop": {
+        "pngSha256": "c406424caf4b3f74847b445c14c58cc5a11c7683215ce8b07ea8a5214659a491",
+        "width": 3200,
+        "height": 2263,
+        "inkFraction": 0.30749088599204594,
+        "verticalEdgeInk": 0
       }
     }
   ]

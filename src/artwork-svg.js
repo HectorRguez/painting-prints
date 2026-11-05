@@ -6,7 +6,7 @@ const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '
 // as markup, without constructing hundreds of thousands of DOM nodes to wrap it.
 export function artworkSvg(painting, background = false, preview = false) {
   const { mode, height } = painting;
-  const panoramic = mode === 'landscapes' && painting.previewWidth;
+  const panoramic = painting.previewWidth > painting.width;
   const width = preview && panoramic ? painting.previewWidth : painting.width;
   let viewBox = `0 0 ${width} ${height}`, contents;
   if (mode === 'flowers') {

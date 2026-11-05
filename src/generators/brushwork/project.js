@@ -1,1 +1,1 @@
-export default {published:'2026-11-05',label:'Brushwork',title:'Ink Gestures',author:'Painting',source:'https://github.com/HectorRguez/painting-prints/tree/main/src/generators/brushwork',ratio:1,orientation:'portrait',renderer:'lines',bundled:false,artRevision:1};
+export default {published:'2026-11-05',label:'Brushwork',title:'Ink Gestures',author:'Painting',source:'https://github.com/HectorRguez/painting-prints/tree/main/src/generators/brushwork',ratio:1,orientation:'portrait',renderer:'lines',bundled:false,artRevision:2};

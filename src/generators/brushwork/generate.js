@@ -1,4 +1,6 @@
 import { randomSource, drawing, line } from '../shared/port.js';
+import { brushPalettes, brushColorParameters, pigmentColor } from './palettes.js';
+export { brushPalettes, pigmentColor } from './palettes.js';
 
 const TAU = 2 * Math.PI, mix = (a, b, t) => a + (b - a) * t;
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -8,6 +10,7 @@ export const brushRanges = {
   pressureVariation: [0, .65], taper: [.4, 1.8], bend: [.2, 1.25],
   sweep: [3.6, 6.05], radialWobble: [0, .12], aspect: [.65, 1.35], rotation: [-Math.PI, Math.PI],
   roughness: [0, 2.5], pigment: [.35, 1], accent: [0, 1],
+  hueShift: [-180, 180], saturation: [0, 1.4],
   strokeCount: [1, 4], scale: [.65, 1], samples: [120, 400], chordError: [.02, .2],
 };
 
@@ -20,8 +23,9 @@ export function brushParameters(seed, overrides = {}) {
     sweep: pick(4.7, 5.75), aspect: pick(.78, 1.2), rotation: pick(-Math.PI, Math.PI), radialWobble: pick(.025, .065),
     roughness: pick(.3, .8), pigment: pick(.92, 1), accent: r() < .6 ? 0 : pick(.65, 1),
     strokeCount: family === 'orbit' ? 1 : family === 'crossing' ? 3 : 2,
-    scale: pick(.82, .97), samples: 240, chordError: .1, ...overrides };
-  for (const key of Object.keys(overrides)) if (key !== 'family' && !Object.hasOwn(brushRanges, key)) throw new RangeError(`Unknown brushwork control: ${key}`);
+    scale: pick(.82, .97), samples: 240, chordError: .1, ...brushColorParameters(seed), ...overrides };
+  if (!Object.hasOwn(brushPalettes, p.palette)) throw new RangeError('Unknown brushwork palette');
+  for (const key of Object.keys(overrides)) if (key !== 'family' && key !== 'palette' && !Object.hasOwn(brushRanges, key)) throw new RangeError(`Unknown brushwork control: ${key}`);
   for (const [key, [lo, hi]] of Object.entries(brushRanges)) if (!Number.isFinite(p[key]) || p[key] < lo || p[key] > hi) throw new RangeError(`${key} must be ${lo}–${hi}`);
   for (const key of ['bristles', 'strokeCount', 'samples']) if (!Number.isInteger(p[key])) throw new RangeError(`${key} must be an integer`);
   return p;
@@ -102,12 +106,6 @@ export function pressureAt(stroke, p, t) {
   return attack * release * pulse;
 }
 
-function ink(pigment, accent, variation) {
-  const base = [17, 23, 29].map((c, i) => mix(c, [143, 52, 36][i], accent));
-  const paper = [245, 242, 235], density = clamp(pigment * (1 - variation));
-  return '#' + base.map((c, i) => Math.round(mix(paper[i], c, density)).toString(16).padStart(2, '0')).join('');
-}
-
 export function bristleGeometry(seed, stroke, p, strokeIndex = 0) {
   const r = randomSource(`${seed}:bristles:${strokeIndex}`), pick = (a, b) => mix(a, b, r());
   const base = Array.from({ length: p.samples + 1 }, (_, j) => {
@@ -129,7 +127,7 @@ export function bristleGeometry(seed, stroke, p, strokeIndex = 0) {
     let upper = [], lower = [], points = [];
     const flush = () => {
       if (upper.length > 2) bands.push({ points: simplifyTrace(upper, p.chordError).concat(simplifyTrace(lower, p.chordError).reverse()), centerline: points, bristle: i,
-        color: ink(stroke.pigment, stroke.accent, variation), u });
+        color: pigmentColor(p, stroke.pigment, stroke.accent, variation), u });
       upper = []; lower = []; points = [];
     };
     for (const frame of base) {
@@ -164,12 +162,12 @@ export function buildBrushwork(seed, overrides = {}) {
   const paths = all.map(band => ({ d: line(band.points.map(([x, y]) => [fit.x + x * scale, fit.y + y * scale]), true),
     fill: band.color, stroke: 'none', width: 0 }));
   return { parameters, strokes, geometry, fit, paths,
-    metrics: { family: parameters.family, strokes: strokes.length, bristles: parameters.bristles,
+    metrics: { family: parameters.family, palette: parameters.palette, strokes: strokes.length, bristles: parameters.bristles,
       fragments: paths.length, points: all.reduce((sum, b) => sum + b.points.length, 0) } };
 }
 
 export function generateBrushwork(seed, overrides = {}) {
   const scene = buildBrushwork(seed, overrides);
-  return { ...drawing(scene.paths), mode: 'brushwork', seed, artRevision: 1,
+  return { ...drawing(scene.paths), mode: 'brushwork', seed, artRevision: 2,
     parameters: scene.parameters, metrics: scene.metrics };
 }

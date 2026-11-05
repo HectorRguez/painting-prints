@@ -4,8 +4,8 @@ import { readFile, access } from 'node:fs/promises';
 import { projects, pageModes } from '../src/projects.js';
 import { pageFromPath, pageUrl } from '../src/pages.js';
 
-const retained = ['flowers', 'landscapes', 'leaves', 'snowflakes', 'seascapes', 'ribbons', 'interference', 'dunes', 'brushwork', 'folds'];
-test('integrated gallery exposes all ten retained styles consistently', async () => {
+const retained = ['flowers', 'landscapes', 'leaves', 'snowflakes', 'seascapes', 'ribbons', 'dunes', 'brushwork'];
+test('integrated gallery exposes all eight retained styles consistently', async () => {
   assert.deepEqual(pageModes, retained);
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.deepEqual([...html.matchAll(/data-mode="([^"]+)"/g)].map(m => m[1]), retained);
@@ -18,7 +18,7 @@ test('integrated gallery exposes all ten retained styles consistently', async ()
 
 test('retired styles have no route, generator source or bundled cache', async () => {
   const base = new URL('https://example.test/painting-prints/');
-  for (const mode of ['cityscapes', 'buildings']) {
+  for (const mode of ['cityscapes', 'buildings', 'folds', 'interference']) {
     assert.equal(pageFromPath(`/painting-prints/${mode}/`, base.pathname), null);
     assert.throws(() => pageUrl(mode, base), /Unknown painting page/);
     for (const path of [`src/generators/${mode}`, `public/cache/${mode}`]) {

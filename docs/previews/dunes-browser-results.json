@@ -9,22 +9,22 @@
       {
         "format": "png",
         "background": false,
-        "bytes": 398208
+        "bytes": 539974
       },
       {
         "format": "png",
         "background": true,
-        "bytes": 512480
+        "bytes": 707281
       },
       {
         "format": "svg",
         "background": false,
-        "bytes": 123951
+        "bytes": 314490
       },
       {
         "format": "pdf",
         "background": false,
-        "bytes": 143819
+        "bytes": 169531
       }
     ]
   }

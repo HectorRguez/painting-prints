@@ -1,0 +1,316 @@
+[
+  {
+    "mode": "flowers",
+    "seed": "painting-stock-v1-flowers-0",
+    "artRevision": 2,
+    "sourceWidth": 1800,
+    "printWidth": 1800,
+    "height": 1800,
+    "images": [
+      {
+        "file": "flowers-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "b1290fa8b31a5a37e7348e617e3c746038adb25c4f8c059a1eb54e1e73405a73"
+      }
+    ]
+  },
+  {
+    "mode": "flowers",
+    "seed": "painting-stock-v1-flowers-1",
+    "artRevision": 2,
+    "sourceWidth": 1800,
+    "printWidth": 1800,
+    "height": 1800,
+    "images": [
+      {
+        "file": "flowers-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "7ee77b612d8dbc84b30e6a42bbae1814de168936000e5b0ff11e99acc7fa9cc3"
+      }
+    ]
+  },
+  {
+    "mode": "landscapes",
+    "seed": "painting-stock-v1-landscapes-0",
+    "artRevision": 2,
+    "sourceWidth": 3200,
+    "printWidth": 1131.370849898476,
+    "height": 800,
+    "images": [
+      {
+        "file": "landscapes-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 707,
+        "sha256": "9504e7647113091c6a5bc40df40eff654f518612dc9fd98795dd8af8bfed1468"
+      },
+      {
+        "file": "landscapes-1-panorama.jpg",
+        "panorama": true,
+        "width": 1600,
+        "height": 400,
+        "sha256": "e18c3836f0d64c83b340d7fba116e242a77e74f04c795042242a6172c5754045"
+      }
+    ]
+  },
+  {
+    "mode": "landscapes",
+    "seed": "painting-stock-v1-landscapes-3",
+    "artRevision": 2,
+    "sourceWidth": 3200,
+    "printWidth": 1131.370849898476,
+    "height": 800,
+    "images": [
+      {
+        "file": "landscapes-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 707,
+        "sha256": "13ba52d9da4d0c141a62302cc77f87fe6a707439b717cc1b7f18d70f9bf03f9f"
+      },
+      {
+        "file": "landscapes-2-panorama.jpg",
+        "panorama": true,
+        "width": 1600,
+        "height": 400,
+        "sha256": "8f5409585d696e6e046fb48b42926d5bfe7fdf8e02cc899f8d2fa565eb28f8dc"
+      }
+    ]
+  },
+  {
+    "mode": "leaves",
+    "seed": "leaf-review-008",
+    "artRevision": 2,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "leaves-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "9f036465dc3b185339d535ec167610152e348853e7131d831c7466f0f015fc77"
+      }
+    ]
+  },
+  {
+    "mode": "leaves",
+    "seed": "leaf-review-017",
+    "artRevision": 2,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "leaves-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "4603572f29a685578ea4e1676244470b85d0b5957937759d199a2aa545c47c5e"
+      }
+    ]
+  },
+  {
+    "mode": "ribbons",
+    "seed": "ribbons-review-00",
+    "artRevision": 1,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "ribbons-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "1745c566feeefa1f938e98e003f83548115febe8df64650402e6986010912543"
+      }
+    ]
+  },
+  {
+    "mode": "ribbons",
+    "seed": "ribbons-review-16",
+    "artRevision": 1,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "ribbons-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "076a08872172832612e33b4df90f4502ab305bb4d34618cfccab258feaac97c3"
+      }
+    ]
+  },
+  {
+    "mode": "seascapes",
+    "seed": "seascape-review-33",
+    "artRevision": 5,
+    "sourceWidth": 3200,
+    "printWidth": 1131.370849898476,
+    "height": 800,
+    "images": [
+      {
+        "file": "seascapes-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 707,
+        "sha256": "4ba56cc60463e00ea12255481746e2fffb334660d20f417833cc622c3ae591d1"
+      },
+      {
+        "file": "seascapes-1-panorama.jpg",
+        "panorama": true,
+        "width": 1600,
+        "height": 400,
+        "sha256": "647d2fe9554116d2019485e25ee95aa2e375a44675c512c091ab10ddb4f4b72e"
+      }
+    ]
+  },
+  {
+    "mode": "seascapes",
+    "seed": "seascape-review-01",
+    "artRevision": 5,
+    "sourceWidth": 3200,
+    "printWidth": 1131.370849898476,
+    "height": 800,
+    "images": [
+      {
+        "file": "seascapes-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 707,
+        "sha256": "3e9ad5df5a87e1d051edb9d3521d73413873796bb91c9e9984a371856cd48fa7"
+      },
+      {
+        "file": "seascapes-2-panorama.jpg",
+        "panorama": true,
+        "width": 1600,
+        "height": 400,
+        "sha256": "b875a7e12694cb4800ec11baeebfe3c63a2faef15f7577d6cd53eb3914de8398"
+      }
+    ]
+  },
+  {
+    "mode": "dunes",
+    "seed": "dunes-review-09",
+    "artRevision": 3,
+    "sourceWidth": 3200,
+    "printWidth": 1131.370849898476,
+    "height": 800,
+    "images": [
+      {
+        "file": "dunes-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 707,
+        "sha256": "f50b0d25225260fb3aaa289a1c1b2f98d62065d7c51ba2e32b098c13fc9363f4"
+      },
+      {
+        "file": "dunes-1-panorama.jpg",
+        "panorama": true,
+        "width": 1600,
+        "height": 400,
+        "sha256": "2393c124e45a1a03e1e1bfa665a6257c5d2aadc0b36647cd82da3d74668beaf2"
+      }
+    ]
+  },
+  {
+    "mode": "dunes",
+    "seed": "dunes-review-15",
+    "artRevision": 3,
+    "sourceWidth": 3200,
+    "printWidth": 1131.370849898476,
+    "height": 800,
+    "images": [
+      {
+        "file": "dunes-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 707,
+        "sha256": "1f42e657190da8466d8ff9dbfd19a3166bc833ddaa827e553ff80ecb7f72fab7"
+      },
+      {
+        "file": "dunes-2-panorama.jpg",
+        "panorama": true,
+        "width": 1600,
+        "height": 400,
+        "sha256": "8eca0844876552db82d6ebbe5bc3153671620d3072b2c6fdcf03bcee2313da32"
+      }
+    ]
+  },
+  {
+    "mode": "brushwork",
+    "seed": "brushwork-review-11",
+    "artRevision": 2,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "brushwork-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "b2853c9f90480b533411246e8cca6beadda53d4e5fccb85bb5a4527f4afe503a"
+      }
+    ]
+  },
+  {
+    "mode": "brushwork",
+    "seed": "brushwork-review-16",
+    "artRevision": 2,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "brushwork-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "d5e4f2a7ec125bc6289d3cd6d15006686a45243b3d6ebd4e5688ba3d7f1bcb01"
+      }
+    ]
+  },
+  {
+    "mode": "snowflakes",
+    "seed": "snowflake-review-000",
+    "artRevision": 2,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "snowflakes-1.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "bcbce7b59a555685d2700320987883f2fc5d3c50546ce2989a6e21ab7756f694"
+      }
+    ]
+  },
+  {
+    "mode": "snowflakes",
+    "seed": "snowflake-review-007",
+    "artRevision": 2,
+    "sourceWidth": 1000,
+    "printWidth": 1000,
+    "height": 1000,
+    "images": [
+      {
+        "file": "snowflakes-2.jpg",
+        "panorama": false,
+        "width": 1000,
+        "height": 1000,
+        "sha256": "2d4f8ebfa6b72f5710ff86324199d780b1867cb1d4fcf7105998cbd75a19dad4"
+      }
+    ]
+  }
+]

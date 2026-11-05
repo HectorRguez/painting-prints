@@ -5,8 +5,8 @@
   "unique": 8,
   "uniquePngs": 8,
   "generationMs": {
-    "max": 437.061605,
-    "mean": 159.18213850000006
+    "max": 700.9061300000001,
+    "mean": 242.188672125
   },
   "svgBytes": {
     "max": 3014782,
@@ -15,11 +15,11 @@
   "records": [
     {
       "seed": "brushwork-stress-00",
-      "sha256": "c15ca11199f1599c9b1566cc65da0196efab48598471287a9ab650271a77cc3d",
-      "generationMs": 437.061605,
+      "sha256": "fabeac7e948a574bab02eea8cb13a1527b021683ae10926a4ccb08c0bd399e04",
+      "generationMs": 700.9061300000001,
       "svgBytes": 1914430,
       "paths": 640,
-      "label": "wet-heavy-turn",
+      "label": "wet-heavy-teal",
       "parameters": {
         "family": "sweep",
         "width": 220,
@@ -38,19 +38,23 @@
         "strokeCount": 4,
         "scale": 1,
         "samples": 400,
-        "chordError": 0.1
+        "chordError": 0.1,
+        "palette": "teal",
+        "hueShift": 0,
+        "saturation": 1.4
       },
       "metrics": {
         "family": "sweep",
+        "palette": "teal",
         "strokes": 4,
         "bristles": 160,
         "fragments": 640,
         "points": 119071
       },
-      "pngSha256": "ee3b3f9e1a362cf288e86bdc631b5a820f7f0d844099c63ff516528643f38b31",
+      "pngSha256": "acbb2b50d684a5b4af82a86cbfa78dbfec26b8c849ff4b7d1ffa7790cd57ab99",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.2941243055555556,
+      "inkFraction": 0.2937548611111111,
       "edgeInk": 0,
       "bounds": {
         "left": 90,
@@ -61,11 +65,11 @@
     },
     {
       "seed": "brushwork-stress-01",
-      "sha256": "cf4a20354a72181cb7d3058a805df82d20d257f0f4e5dd755facf2ce762cdebb",
-      "generationMs": 19.490752999999813,
+      "sha256": "33ab0957b2c03ec8b647a5b988c198af7d074d00fee18e7a9c0d14d6c20ca86e",
+      "generationMs": 15.756203999999798,
       "svgBytes": 63753,
       "paths": 145,
-      "label": "dry-fine-loop",
+      "label": "dry-fine-cobalt",
       "parameters": {
         "family": "orbit",
         "width": 24,
@@ -84,19 +88,23 @@
         "strokeCount": 1,
         "scale": 0.8649825056130066,
         "samples": 120,
-        "chordError": 0.1
+        "chordError": 0.1,
+        "palette": "cobalt",
+        "hueShift": -3.0574892689473927,
+        "saturation": 1.2
       },
       "metrics": {
         "family": "orbit",
+        "palette": "cobalt",
         "strokes": 1,
         "bristles": 40,
         "fragments": 145,
         "points": 3492
       },
-      "pngSha256": "4ec9b3f3c58fb5c1977339a3b6b5e12f0e7236a205bcf4efb416e7cea6b13802",
+      "pngSha256": "1d99950c269d2c0a55c9ddcf515f0f1eeb745798a5741fc6c959ed34f9b64b3c",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.0284625,
+      "inkFraction": 0.027588194444444443,
       "edgeInk": 0,
       "bounds": {
         "left": 159,
@@ -107,11 +115,11 @@
     },
     {
       "seed": "brushwork-stress-02",
-      "sha256": "c01a7d9011671d2b6107f0d0d6bb7ef47fe23c05d6c4a9d1b3b0ca9b6a65a855",
-      "generationMs": 108.97625500000004,
+      "sha256": "6255c335c8f51737d6f99f7aed77109769ba8bd1055847f8bb42e60e65bd206d",
+      "generationMs": 117.81565599999976,
       "svgBytes": 596400,
       "paths": 100,
-      "label": "wide-flat-loop",
+      "label": "wide-complementary-loop",
       "parameters": {
         "family": "orbit",
         "width": 220,
@@ -130,19 +138,23 @@
         "strokeCount": 1,
         "scale": 0.9202070085378363,
         "samples": 240,
-        "chordError": 0.1
+        "chordError": 0.1,
+        "palette": "forest",
+        "hueShift": 180,
+        "saturation": 1
       },
       "metrics": {
         "family": "orbit",
+        "palette": "forest",
         "strokes": 1,
         "bristles": 100,
         "fragments": 100,
         "points": 37421
       },
-      "pngSha256": "1488035adb9c96eefd04592405d42ea6ba350a6758c9d08f0568437e85f5abff",
+      "pngSha256": "f400d14d61ba6f230e0f97bdfb08dd3d6d69abcedffa79029bd23bc1e74831aa",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.2736208333333333,
+      "inkFraction": 0.2735326388888889,
       "edgeInk": 0,
       "bounds": {
         "left": 130,
@@ -153,11 +165,11 @@
     },
     {
       "seed": "brushwork-stress-03",
-      "sha256": "b4309da626dfe6b56c7e46c4a45543e333d838b10ebc23ab390dae1c269c23f7",
-      "generationMs": 57.64630399999987,
+      "sha256": "0e5e307d53a190d4d0eec9c25e08538297094e77babf6ced94c623dc00385222",
+      "generationMs": 128.11224300000003,
       "svgBytes": 302347,
       "paths": 139,
-      "label": "short-open-arc",
+      "label": "short-shifted-arc",
       "parameters": {
         "family": "orbit",
         "width": 131.14251676946878,
@@ -176,19 +188,23 @@
         "strokeCount": 1,
         "scale": 0.65,
         "samples": 240,
-        "chordError": 0.1
+        "chordError": 0.1,
+        "palette": "violet",
+        "hueShift": -180,
+        "saturation": 1.4
       },
       "metrics": {
         "family": "orbit",
+        "palette": "violet",
         "strokes": 1,
         "bristles": 100,
         "fragments": 139,
         "points": 18648
       },
-      "pngSha256": "a965371ef9837df4c674ddd0db9ec2450cb9e144020b09e6b9fc1ac65e11f82f",
+      "pngSha256": "8665cca6f291589079aacb1cb00d29696f96628e2a0b81e76fcbbe65f049d5c6",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.04891388888888889,
+      "inkFraction": 0.04884097222222222,
       "edgeInk": 0,
       "bounds": {
         "left": 415,
@@ -199,11 +215,11 @@
     },
     {
       "seed": "brushwork-stress-04",
-      "sha256": "e2f616adc2a51ee4cc5f7f4e22e8bbb4df4ec7e39f092eec54af827f7d5ee3ae",
-      "generationMs": 182.45063900000014,
+      "sha256": "ffa6ffcc2028a9a4d3535a36b21bcfed0764f8a22f49ff017b51ca4cef4ca6e3",
+      "generationMs": 257.0211169999993,
       "svgBytes": 989270,
       "paths": 1546,
-      "label": "rust-crossing",
+      "label": "warm-cool-crossing",
       "parameters": {
         "family": "crossing",
         "width": 220,
@@ -222,34 +238,38 @@
         "strokeCount": 4,
         "scale": 0.9060418310970999,
         "samples": 240,
-        "chordError": 0.1
+        "chordError": 0.1,
+        "palette": "ochre",
+        "hueShift": 0,
+        "saturation": 1
       },
       "metrics": {
         "family": "crossing",
+        "palette": "ochre",
         "strokes": 4,
         "bristles": 100,
         "fragments": 1546,
         "points": 56916
       },
-      "pngSha256": "0873088141be57b9b8dfd997dec6c5e38b39c3ceb73b916ee1a2c00e495a86dd",
+      "pngSha256": "f9d29e962b7ac6da2f19e297317339ad3aa4ad9bee9d29f900daa562ecdf6991",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.3142986111111111,
+      "inkFraction": 0.31300555555555554,
       "edgeInk": 0,
       "bounds": {
         "left": 138,
         "top": 223,
-        "right": 1062,
+        "right": 1061,
         "bottom": 976
       }
     },
     {
       "seed": "brushwork-stress-05",
-      "sha256": "afc9779f9d68df874e4aa58b8840e3436df2909d60e0d47aab677b0fccf72109",
-      "generationMs": 86.547235,
+      "sha256": "4da759415b59374573dec0bead16cc98fa17e6e3028d1aa699328c5fa2d78d27",
+      "generationMs": 173.5790649999999,
       "svgBytes": 354000,
       "paths": 1567,
-      "label": "thin-rising",
+      "label": "thin-magenta-rising",
       "parameters": {
         "family": "rising",
         "width": 24,
@@ -268,34 +288,38 @@
         "strokeCount": 4,
         "scale": 1,
         "samples": 240,
-        "chordError": 0.1
+        "chordError": 0.1,
+        "palette": "magenta",
+        "hueShift": -15,
+        "saturation": 0.9
       },
       "metrics": {
         "family": "rising",
+        "palette": "magenta",
         "strokes": 4,
         "bristles": 100,
         "fragments": 1567,
         "points": 16570
       },
-      "pngSha256": "a8448dd8109d7ca2150666ae554137eb27adf7c1743986e6c38a633874865175",
+      "pngSha256": "92a254a25e625c196a1928925b40944fce72a3316b46f32c3c167d161a18be82",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.01651736111111111,
+      "inkFraction": 0.015445138888888888,
       "edgeInk": 0,
       "bounds": {
-        "left": 93,
-        "top": 446,
+        "left": 120,
+        "top": 447,
         "right": 1109,
         "bottom": 753
       }
     },
     {
       "seed": "brushwork-stress-06",
-      "sha256": "f3d31237201ac4bfa86133a66d482c095d279627507e5714dc2d23a333faf568",
-      "generationMs": 41.97627499999999,
+      "sha256": "3edd1d51f2687419366ebf9ee71dd5e8efc18c44fecf323605e5a355b46c24c9",
+      "generationMs": 52.372669000000315,
       "svgBytes": 148675,
       "paths": 207,
-      "label": "broad-sparse-fibers",
+      "label": "broad-olive-fibers",
       "parameters": {
         "family": "sweep",
         "width": 220,
@@ -314,19 +338,23 @@
         "strokeCount": 2,
         "scale": 0.9092195986234582,
         "samples": 120,
-        "chordError": 0.2
+        "chordError": 0.2,
+        "palette": "olive",
+        "hueShift": 7,
+        "saturation": 1.4
       },
       "metrics": {
         "family": "sweep",
+        "palette": "olive",
         "strokes": 2,
         "bristles": 40,
         "fragments": 207,
         "points": 8641
       },
-      "pngSha256": "74087dc2bb0b524df50c53f046f3fa810f4262130bbdcb45f514186aa8f32dbd",
+      "pngSha256": "6263229eedca1ce12744db5338a8ae22ce6a23031f3988ed88dba6d7ed7ddae7",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.18781458333333334,
+      "inkFraction": 0.18752152777777778,
       "edgeInk": 0,
       "bounds": {
         "left": 136,
@@ -337,11 +365,11 @@
     },
     {
       "seed": "brushwork-stress-07",
-      "sha256": "b0ba49ff598256417975d89d6a2d048f468c8caf01acdbae67de036fde37fea7",
-      "generationMs": 339.30804200000057,
+      "sha256": "3087bdd3fb01bef4766f1ef17e14faf39dbc4eaf1a5b81465e11d8a1c668b8fa",
+      "generationMs": 491.9462930000009,
       "svgBytes": 3014782,
       "paths": 480,
-      "label": "fine-dense-ink",
+      "label": "fine-monochrome-ink",
       "parameters": {
         "family": "crossing",
         "width": 24,
@@ -360,19 +388,23 @@
         "strokeCount": 3,
         "scale": 0.9063578862976283,
         "samples": 400,
-        "chordError": 0.02
+        "chordError": 0.02,
+        "palette": "graphite",
+        "hueShift": 180,
+        "saturation": 0
       },
       "metrics": {
         "family": "crossing",
+        "palette": "graphite",
         "strokes": 3,
         "bristles": 160,
         "fragments": 480,
         "points": 189295
       },
-      "pngSha256": "a497b9c1827abfd521130b0f69f9fce1c555d880fc97536b7fbb7310451d8f4b",
+      "pngSha256": "eb8b679006a92cb6d81de4f1198057c35444f87a0f302245460ae9f78c9c2953",
       "width": 1200,
       "height": 1200,
-      "inkFraction": 0.06930625,
+      "inkFraction": 0.06929027777777778,
       "edgeInk": 0,
       "bounds": {
         "left": 152,

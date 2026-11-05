@@ -1,84 +1,92 @@
-# Dune Fields — revision 2 review
+# Dune Fields — revision 3 panoramic review
 
-The default style is now an open monochrome ink landscape: broad asymmetric dune crests, curved shoulder hatching, a few longer ripple traces, and tiny articulated travelers/camels. The older ochre surface study remains an explicit override. [Model, complete parameter reference, API, and primary-paper distinctions](../src/generators/dunes/README.md).
+Dunes now uses the same framing as Landscapes: a **3200×800 source panorama** and a **central 800√2×800 print window**. This is a wider procedural terrain field, with independently varying summits and hatching across its width. The complete SVG retains that geometry; print crops select its middle without distorting it. Tiny articulated travelers and camels remain grounded and fully inside the print crop.
 
-## Before and after
+[Model, complete parameter reference, API, and primary-paper distinctions](../src/generators/dunes/README.md).
 
-| Earlier shaded surface study | Revised flowing ink landscape |
-| --- | --- |
-| ![Earlier ochre terrain](previews/dunes-before.jpg) | ![Revised ink terrain](previews/dunes-transverse.jpg) |
+## Wider terrain and its print crop
 
-The change goes beyond palette. The new continuous ridge surface composes a landscape across the page; sparse curved marks describe its shoulders without a filled slab or a dense wire grid. Crests use analytic surface heights so the visibility grid does not scallop the outlines. Short buried ridge remnants are removed, their associated marks are suppressed, and longer endings taper into the sand.
+![Full revised dune panorama](previews/dunes-barchan.jpg)
+
+![Central print crop from the same panorama](previews/dunes-crop-09.jpg)
+
+The monochrome scene retains sweeping layered crests, curved shoulder hatching and long ripple traces. Each ridge now has three separately varied summit regions across a 4400-world-unit field, so both outer scenery and the middle crop contain actual relief. The optional ochre palette combines independently seeded neighboring planform fields in one continuous sampled surface, with shared lighting and visibility.
+
+The earlier revision used a compact 1414×1000 scene:
+
+![Previous compact ink composition](previews/dunes-before.jpg)
 
 ## Final 48 seeds
 
-![48 revised dune landscapes](previews/dunes-contact.jpg)
+![48 complete dune panoramas](previews/dunes-contact.jpg)
 
-`dunes-review-00` through `dunes-review-47` were generated and rasterized through the actual application line renderer at 1414×1000 pixels.
+![Matching central print crops](previews/dunes-crop-contact.jpg)
+
+`dunes-review-00` through `dunes-review-47` were generated and rasterized through the actual application line renderer. Panorama rasters are 3200×800; crop rasters are 3200×2263, preserving the √2 print ratio to integer-pixel rounding. The crop contact sheet contains the exact central regions of the corresponding full scenes.
 
 | Measurement | Recorded result |
 | --- | --- |
-| Unique SVG hashes / unique PNG hashes | 48 / 48 |
+| Unique source SVG / panorama PNG / crop PNG hashes | 48 / 48 / 48 |
 | Placed travelers / camels | 91 / 68 |
 | Default requested figure counts satisfied | All 48 seeds |
-| Retained crest runs per scene | 4–8 |
-| Ripple/hatch strokes per scene | 37–126 |
-| Raster ink coverage | 1.04%–1.83% |
-| Ink touching the image edge | 0 across the batch |
-| Mean / maximum generation time | 245 ms / 377 ms |
-| Mean / maximum SVG size | 117 KB / 146 KB |
+| Retained crest runs per scene | 5–13 |
+| Ripple/hatch strokes per scene | 105–310 |
+| Panorama ink coverage | 1.60%–2.51% |
+| Central crop ink coverage | 1.57%–2.62% |
+| Ink touching any panorama edge | 0 across the batch |
+| Ink touching crop top/bottom edges | 0 across the batch |
+| Mean / maximum generation time | 630 ms / 992 ms |
+| Mean / maximum source SVG bytes | 328,085 / 396,779 |
 
-The low ink fraction reflects deliberate open sand, not an incomplete shaded terrain. Timings are observations on the shared development machine, not guarantees for every device. The [full audit report](previews/dunes-report.json) preserves exact seeds, resolved controls, hashes, placement metrics, and pixel bounds.
+[Exact default parameters, geometry hashes, raster hashes, placement metrics, bounds and timings](previews/dunes-report.json). Timings describe this local run and depend on the machine and concurrent work; they exclude raster/export time. Horizontal ridge crossings at print-crop edges are intentional. Every figure's body bounds retain at least 12 source units of horizontal crop clearance.
 
-## Details
+Additional source and print examples:
 
-A varied multi-summit composition, seed 00. The retained morphology labels now select illustrative ink profile neighborhoods; this is not a claim of planform star-dune geometry.
+![Broad panoramic ridge profile](previews/dunes-star.jpg)
 
-![Wide ink composition](previews/dunes-star.jpg)
+![Its matching central crop](previews/dunes-crop-00.jpg)
 
-A broad flowing composition, seed 06.
+![Panoramic linear profile](previews/dunes-linear.jpg)
 
-![Broad ridge landscape](previews/dunes-linear.jpg)
+![Another central print composition](previews/dunes-crop-33.jpg)
 
-A small caravan, seed 09. Solid miniature bodies make the people and camel readable, while jointed legs, variable proportions, load, heading, and planted feet remain procedural geometry.
+The ink labels are illustrative profile families, not claims to reconstruct a measured star dune or barchan planform. Summit positions, widths, heights and overlaps vary continuously with seeded parameters; the illustrated panorama does not repeat a single finished drawing.
 
-![Tiny travelers and camel in the dunes](previews/dunes-barchan.jpg)
+## Eight stress cases
 
-The complete contact sheet and full-size specimens were inspected for unexplained floating crest fragments, clipping, dense wire patterns, badly formed silhouettes, and crowding. Earlier prototypes exposed two specific problems: overlapping phase lines and shoulder bands looked technical, and retaining every short buried crest fragment left unexplained little strokes. The final model uses selective curved marks and retained crest intervals instead. Figure outlines were strengthened into small ink silhouettes; the camel's lower neck and exposed hump read more clearly than the earlier long-neck outline.
+![Eight parameter-extreme panoramas](previews/dunes-stress-contact.jpg)
 
-## Stress review
+![Their matching central print crops](previews/dunes-stress-crop-contact.jpg)
 
-![Eight parameter stress studies](previews/dunes-stress-contact.jpg)
+The cases cover low relief without figures, maximum hatching with a large caravan, a long route heading into the distance, isolated large camels without ripples, high asymmetric barchan-style relief, short crests with strong curvature, a compact group of eight people, and the optional ochre renderer. [Exact overrides and measured results](previews/dunes-stress-report.json).
 
-The eight `--stress` cases cover low and high relief, crowded and widely spaced caravans, large and small figures, sideways and depth-directed headings, no figures, no hatching, extreme crest width/curvature, and the optional ochre renderer. All eight SVG and PNG hashes differ and all have zero edge clipping. The [stress report](previews/dunes-stress-report.json) records each exact case.
+All eight source SVGs, full PNGs and crop PNGs are distinct. No full-panorama edge or crop top/bottom edge contains ink. Panorama coverage ranges from .89% to 29.42%; crop coverage from 1.34% to 30.75%. The upper ends belong to the intentionally shaded ochre case, rather than the normal ink palette.
 
-Ink-only stress generation ranged from 228 to 969 ms. The optional ochre case took 3.10 seconds; the complete eight-case mean was 768 ms. The largest SVG was 226,324 bytes. Ink-only and ochre coverage are intentionally different, so the combined 0.61%–32.39% coverage range should not be read as default ink density.
+The maximum-count side-view case fits all eight people and six camels. The route facing into the distance requests eight people and six camels but places five people and two camels: visibility, uneven-ground, silhouette clearance and crop containment take priority over requested maxima. This shortfall is explicit in the report.
 
-Two deliberately crowded requests could not fit all figures while preserving scale, visible terrain contact, and clear silhouettes. Stress seed 01 requested eight walkers and six camels and placed eight/two; seed 02 requested eight/six and placed six/three. Count controls are documented as requested maxima. The generator reports actual counts instead of overlapping or silently shrinking figures. All default seeds placed every requested figure.
+The eight-case mean is 1.73 seconds. Ink cases take 458–1418 ms in this run; the wider optional ochre lighting case takes 7.57 seconds. The largest source SVG is 651,236 bytes. Generation runs in a worker and completed paintings remain cached; optional ochre is substantially slower than the default ink rendering.
 
-## Geometry and integration checks
+## Geometry validation
 
-All **75 repository tests** and the production build pass. The 18 dune test groups include the original optional-model checks plus revision-2 properties:
+The 18 focused Dunes test groups retain the analytic profiles, planform orientation, bicubic derivatives, perspective, shadows, lighting filtering and nonzero-winding tests. The revised checks cover:
 
-- Every emitted terrain mark remains on its active surface, within print margins, and visible under the depth test. Extreme relief exercises adaptive ripple subdivision.
-- Independent oblique viewing rays check the new ink surface, allowing less than three world units of sampled obstruction from the finite visibility grid. The optional ochre camera retains its separate independent eye-ray test.
-- Every planted foot matches terrain height plus the `.12`-unit numerical offset. Figures retain visible foot contacts; body bounds do not overlap, and rendered figure strokes pass the terrain depth test.
-- Articulated figures vary across seeds, zero counts remove them, and figure-only overrides leave the terrain drawing unchanged. Nearby continuous controls change the ink height field smoothly.
-- The default landscape contains no filled terrain slabs. The bundled worker matches the source SVG/parameters and forwards revision 2.
+- All 48 seeded fields are unique, finite, bounded and visibly populated in each panorama third. Their central regions retain substantial vertical relief, and complete figure bounds lie inside the print window.
+- Every emitted terrain mark stays on its active surface and passes visibility checks. Extreme relief exercises adaptive ripple subdivision.
+- Independent oblique viewing rays test ink geometry with less than three world units of sampled obstruction. Independent perspective eye rays test the optional ochre geometry with the original stricter two-unit allowance.
+- Every planted foot matches terrain height plus its .12-unit numerical offset. Visible foot contacts, body separation and depth-tested figure strokes remain checked.
+- Articulated figures vary across seeds; zero counts remove them; changing figure controls leaves the terrain drawing unchanged; nearby continuous controls deform the ink height field smoothly.
+- The default ink terrain remains unfilled. Classic-worker parity checks revision 3, source SVG geometry, resolved controls and separate source/print dimensions.
 
-Chromium checks passed on desktop and at 390×844 portrait, 844×390 landscape, and 320×568 narrow-phone sizes. Saved-seed reload/history, cache reuse, and exactly one regeneration after the revision upgrade pass. Downloads include 3200-pixel paper/transparent PNGs, SVG, and PDF; pixel checks verify dimensions, visible artwork, opaque paper, and transparent margins. [Fresh browser results](previews/dunes-browser-results.json).
+Focused geometric checks and final raster audits passed. The combined refinement also passes all 122 repository tests, the production build and Chromium desktop/mobile/cache/export checks; see the [integration evidence](refinement-review.md) and [current Dunes browser report](previews/dunes-browser-results.json).
 
-The visibility buffer is approximate; tests cover specified seeds and extremes rather than proving all combinations. Tiny limbs disappear naturally in thumbnails. Ink morphology names indicate profile choices, and the view is an artistic oblique construction. The cited dune papers inspire sections and qualitative width relationships; neither renderer integrates sediment transport, predicts migration, or simulates a caravan's locomotion.
+Visibility remains a finite-grid approximation, and tests cover specified seeds and extremes rather than proving every parameter combination. Tiny details disappear naturally in wide thumbnails. The ink camera is an artistic oblique construction. The cited dune papers inspire sections and qualitative width relationships; neither renderer integrates sediment transport, predicts migration, or simulates caravan locomotion.
 
 ## Reproduce
 
 ```sh
 node --test tests/dunes.test.mjs tests/isocontours.test.mjs
-node scripts/art-review/dunes.mjs --count 48 --raster --width 1414 --out /tmp/dunes-review
-node scripts/art-review/dunes.mjs --stress --raster --width 1414 --out /tmp/dunes-stress
-npm test
-npm run build
-node scripts/check-browser.mjs
+node scripts/art-review/dunes.mjs --count 48 --raster --width 3200 --out /tmp/dunes-review
+node scripts/art-review/dunes.mjs --stress --raster --width 3200 --out /tmp/dunes-stress
 ```
 
-Raster review uses optional local Cairo `canvas` and `path2d`; browser verification needs Playwright/Chromium. The review directory contains every SVG/PNG and its JSON record. Committed JPEGs are review artifacts, while live art remains procedural and cached locally. SVG exports retain vector paths; the existing PDF exporter embeds a rendered PNG.
+Raster review uses optional local Cairo `canvas` and `path2d`. Each output directory contains every panorama SVG/PNG, matching `-crop` SVG/PNG, separate contact sheets, and exact JSON records. Committed JPEGs are review artifacts; live art remains procedural. SVG exports retain paths, PNGs use the application renderer, and the existing PDF exporter embeds a rendered PNG.
